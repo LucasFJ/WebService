@@ -1,0 +1,33 @@
+body{ 
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;	
+}
+
+/* Corretor de sideNav fixa */
+header, main, footer {
+    padding-left: 240px;
+}  @media only screen and (max-width : 992px) {
+    header, main, footer {
+      padding-left: 0px;
+    }
+  }
+
+/* Linha inferior do Logotipo na sideNav */
+.sideLogo {
+	border-bottom: 1px solid #ddd;
+} 
+
+span.brand-logo {
+	font-size: 20px;
+}
+
+/* Tamanho do dizer acima do card de login */
+h5 { font-size: 20px; }
+
+
+/* Mantém rodapé sempre embaixo */
+footer {
+	width: 100%;
+	margin-bottom: -21px;
+}
