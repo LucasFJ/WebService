@@ -13,11 +13,11 @@
         <ul id="nav-mobile" class="side-nav fixed">
           <li class="sideLogo bold orange-text text-darken-2 center">SERVICE</li>
           <!-- Início -->
-          <li><a href="login.php?link=nav/inicio">Início</a></li>
+          <li><a href="#">Início</a></li>
           <!-- Buscar -->
-          <li><a href="login.php?link=nav/buscar">Buscar</a></li>
+          <li><a href="#">Buscar</a></li>
           <!-- Favoritos -->
-          <li><a href="login.php?link=nav/favoritos">Favoritos</a></li>
+          <li><a href="#">Favoritos</a></li>
           <!-- Perfil -->
           <li class="no-padding">
                   <ul class="collapsible collapsible-accordion">
@@ -25,11 +25,11 @@
                           <a class="collapsible-header waves-effect waves-orange aMenu"><strong>Perfil</strong></a>
                           <div class="collapsible-body">
                                 <ul>
-                                  <li><a href="login.php?link=nav/informacoes">Informações</a></li>
-                                  <li><a href="login.php?link=nav/privacidade">Privacidade</a></li>
-                                  <li><a href="login.php?link=nav/configuracoes">Configurações</a></li>
-                                  <li><a href="login.php?link=nav/seguranca">Segurança</a></li>
-                                  <li><a href="login.php?link=nav/excluirconta">Excluir conta</a></li>
+                                  <li><a href="#">Informações</a></li>
+                                  <li><a href="#">Privacidade</a></li>
+                                  <li><a href="#">Configurações</a></li>
+                                  <li><a href="#">Segurança</a></li>
+                                  <li><a href="#">Excluir conta</a></li>
                                 </ul>
                           </div>
                         </li>
@@ -42,10 +42,10 @@
                           <a class="collapsible-header waves-effect waves-orange aMenu"><strong>Página</strong></a>
                           <div class="collapsible-body">
                                 <ul>
-                                  <li><a href="login.php?link=nav/criarpagina">Criar página</a></li>
-                                  <li><a href="login.php?link=nav/editarpagina">Editar página</a></li>
-                                  <li><a href="login.php?link=nav/comentarios">Comentários</a></li>
-                                  <li><a href="login.php?link=nav/excluirpagina">Excluir página</a></li>
+                                  <li><a href="#">Criar página</a></li>
+                                  <li><a href="#">Editar página</a></li>
+                                  <li><a href="#">Comentários</a></li>
+                                  <li><a href="#">Excluir página</a></li>
                                 </ul>
                           </div>
                         </li>
@@ -58,7 +58,7 @@
                           <a class="collapsible-header waves-effect waves-orange aMenu"><strong>Contato</strong></a>
                           <div class="collapsible-body">
                                 <ul>
-                                  <li><a href="login.php?link=nav/faleconosco">Fale conosco</a></li>
+                                  <li><a href="#">Fale conosco</a></li>
                                   <li><a href="login.php?link=nav/sobrenos">Sobre nós</a></li>
                                   <li><a href="login.php?link=nav/sugestoes">Sugestões</a></li>
                                   <li><a href="login.php?link=nav/termos">Termos de uso</a></li>
