@@ -8,5 +8,5 @@
     <link href="<?php echo base_url('src/css/materialize.min.css'); ?>" type="text/css" rel="stylesheet" media="screen,projection" />
     <link href="<?php echo base_url('src/css/style.css'); ?>" type="text/css" rel="stylesheet" media="screen,projection" />
           
-    <title><?php echo $tituloHead ?></title>
+    <title><?php echo 'TO DO'; ?></title>
   </head>
