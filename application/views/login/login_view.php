@@ -32,35 +32,33 @@
 	<form class="col s12">
 	<div class="card-content center-align white-text">
 	<span class="card-title">Painel de acesso</span>
-	<!-- FORM LOGIN -->
+        <!-- FORM LOGIN -->
+        <div class="formLogin">
 	<div class="input-field login">
 	<i class="mdi-social-person prefix"></i>
-	<input id="icon_prefix" type="email" class="validate">
+	<input id="icon_prefix" type="email" class="validate" name="email">
 	<label for="icon_prefix" class="inputLabel">E-mail</label>
 	</div>
 	<div class="input-field login">
 	<i class="mdi-action-lock-outline prefix"></i>
-	<input id="icon_prefix" type="password" class="validate">
+	<input id="icon_prefix" type="password" class="validate" name="senha">
 	<label for="icon_prefix" class="inputLabel">Senha</label>
 	</div>
+        </div>
 	<!-- /FORM LOGIN -->
 	<br />
 	<!-- BUTTONS -->
-	  <div class="containerBtnInicio container">
-	    <a href="login.php?pagina=nav/inicio" class="btnInicio waves-effect waves-light waves-yellow orange darken-2 white-text btn tooltipped" data-position="top" data-delay="200" data-tooltip="Entrar no Service">Entrar
-	      <i class="mdi-content-send right"></i>
-	    </a>
-	    <button href="<?php echo base_url('login/cadastrar'); ?>" class="btnInicio modal-trigger waves-effect waves-light waves-yellow orange darken-2 white-text btn tooltipped" data-position="top" data-delay="200" data-tooltip="Criar nova conta">
-                Nova Conta
-            </button>
-	  </div>
+	  	<div class="containerBtnInicio container">
+                  <button href="<?php echo base_url('home'); ?>"  type="submit" class="btnInicio waves-effect waves-light orange darken-2 white-text btn tooltipped" data-position="top" data-delay="200" data-tooltip="Entrar no Service">Entrar<i class="mdi-content-send right"></i></button>
+		   <a href="<?php echo base_url('cadastro'); ?>" class="btnInicio waves-effect waves-light orange darken-2 white-text btn tooltipped" data-position="top" data-delay="200" data-tooltip="Criar nova conta">Nova Conta</a>
+                </div>
+	</form>
+		
 	<!-- /BUTTONS -->	  
 
 
-	</form>
 	</div>
 	</div>
 	<br /><br />
-	</div>
 	</div>
 	<!-- /CARD LOGIN -->

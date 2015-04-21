@@ -6,5 +6,11 @@ $(document).ready(function(){
     $('.modal-trigger').leanModal();
   });
  
- var titulo = window.title.innerHTML;
- document.getElementById('topo').innerHTML = "merda";
+$('.datepicker').pickadate({
+    selectMonths: true, // Creates a dropdown to control month
+    selectYears: 180 // Creates a dropdown of 15 years to control year
+  });
+
+$(document).ready(function() {
+  $('select').material_select();
+});

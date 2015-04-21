@@ -4,13 +4,21 @@ body{
   -ms-user-select: none;	
 }
 
-
-
 /* Tamanho do dizer acima do card de login */
 h5 { font-size: 20px; }
 
-
-
+@media only screen and (min-width : 1200px) {
+   .card{
+        margin-left: 120px;
+        margin-right: 120px;
+   }
+}
+@media only screen and (min-width : 700px) {
+   .formLogin{
+        margin-left: 40px;
+        margin-right: 40px;
+   }
+}
 /* LOGIN label color = label não focada */
 .login label { color: #fff;}
 /* LOGIN icon prefix focus color = icone do campo quando focado */
@@ -24,7 +32,7 @@ h5 { font-size: 20px; }
 .login input:focus + label.inputLabel { color: #fff; }
 
 .containerBtnInicio{
-	width: 390px;
+	width: 395px;
 }	@media only screen and (max-width : 520px) {
 		.containerBtnInicio {
 		  width: 200px;
@@ -34,30 +42,9 @@ h5 { font-size: 20px; }
 .btnInicio{
 	width: 160px;
 	margin-bottom: 15px;
-	margin-left: 2px;
-	margin-right: 2px;
-} 
-
-.lblNasc{
-	margin-top: 17px;
-}	.lblNasc span {
-		margin-left: 11.5px;
-	}	.dtNasc{
-		margin-top: 15px;
-		}	.dataNasc{
-				margin-left:-15px;
-				margin-right:-15px;
-			}
-			
-/* CADASTRO label underline focus color = linhas do campo focado */
-.cadastro input[type="text"]:focus, .cadastro input[type="email"]:focus, .cadastro input[type="password"]:focus, .cadastro input[type="date"]:focus  {
- border-bottom: 1px solid #f57c00; /* linha superior do campo */
- box-shadow: 0 1px 0 0 #f57c00; /* linha inferior do campo */
+	margin-left: -5px;  
+        margin-right: 10px;
 }
-/* CADASTRO label focus color = label focada*/
-.cadastro input:focus + label.inputLabel { color: #f57c00; }
-
-
 /* Mantém rodapé sempre embaixo */
 footer {
 	width: 100%;

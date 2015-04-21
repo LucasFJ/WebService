@@ -16,32 +16,87 @@
           <header>
             <nav class="grey lighten-3">
               <div class="nav-wrapper">
-                <span unselectable="on" class="brand-logo center orange-text text-darken-2">Service</span>
+                <span unselectable="on" class="brand-logo center orange-text text-darken-2">Nova Conta</span>
               </div>
             </nav>
           </header> 
 
 	<main>
             
-	<h4>Nova conta</h4>
-	<p class="center-align">Primeira vez por aqui? Preencha alguns campos para lembrarmos de você na próxima visita.</p>
-
-<!-- FORMULARIO -->
-		<form class="col s12">
-			<div class="input-field col s6 cadastro">
-			  <input id="nome" type="text" class="validate">
-			  <label for="nome" class="inputLabel">Nome</label>
-			</div>
-			<div class="input-field col s6 cadastro">
-			  <input id="email" type="email" class="validate">
-			  <label for="email" class="inputLabel">E-mail</label>
-			</div>
-			<div class="input-field col s6 cadastro">
-			  <input id="password" type="password" class="validate">
-			  <label for="password" class="inputLabel">Senha</label>
-			</div>
-			<div class="lblNasc left-align">
-			  <span class="grey-text">Data de Nascimento:</span>
-			</div>			
-		</form>
-<!-- /FORMULARIO -->
+	<div class="no-pad-bot">
+	<div class="container center">
+	<br />
+	<h5 class="center-align">Primeira vez por aqui? Preencha alguns campos para lembrarmos de você na próxima visita.</h5>
+	<br />
+            <!-- CARD LOGIN -->
+            <div class="card center-align orange lighten-2 z-depth-2">
+                <br /><span class="card-title">Cadastro</span>
+            <form class="col s12">
+            <div class="card-content center-align contForm">
+                <!--FORM--->
+                
+                <div class="row">
+                <div class="input-field col l6 s12">
+		  <input id="nome" name="nome" type="text" class="validate" required />
+		  <label for="nome" class="inputLabel">Nome</label>
+		</div>
+                <div class="input-field col l6 s12">
+                    <input id="sobrenome" name="sobrenome" type="text" class="validate" required />
+                <label for="last_name">Sobrenome</label>
+                </div>
+                </div>
+                
+                <div class="row">
+                <div class="input-field col l6 s12">
+                    <input id="email" name="email" type="email" class="validate" required />
+                    <label for="first_name">E-mail</label>
+                </div>
+                <div class="input-field col l6 s12 genero">
+                  <select name="genero">
+                    <option value="0" disabled selected>Gênero</option>
+                    <option value="1">Feminino</option>
+                    <option value="2">Masculino</option>
+                  </select>
+                </div>
+                </div>
+                
+                <div class="row">
+                <div class="input-field col l6 s12">
+                    <input id="senha" name="senha" type="password" class="validate" required />
+                <label for="first_name">Senha</label>
+                </div>
+                <div class="input-field col l6 s12">
+                    <input id="repeteSenha" name="repeteSenha" type="password" class="validate" required />
+                <label for="last_name">Senha Novamente</label>
+                </div>
+                </div>
+                
+                <div class="row">
+                <div class="input-field col l6 s12">
+                    <input id="nascimento" name="nascimento" type="date" class="datepicker" required />
+                <label for="first_name">Data de Nascimento</label>
+                </div>
+                <div class="input-field col l6 s12">
+                    <p>
+                        <input type="checkbox" class="filled-in white" id="filled-in-box" />
+                        <label for="filled-in-box">Li e estou de acordo com os Termos de Uso do usuário.</label>
+                    </p>
+                </div>
+                </div>
+                <br />
+                
+                
+                <!--/FORM-->
+                
+                <!-- BUTTONS -->
+                <div class="container containerBtnCadastro">
+                <button href="" type="submit" class="btnCadastro waves-effect waves-light white orange-text text-darken-4 btn tooltipped" data-position="top" data-delay="200" data-tooltip="Cadastrar-se">Cadastrar</button>
+                <button href="" type="reset" class="btnCadastro waves-effect waves-light white orange-text text-darken-4 btn tooltipped" data-position="top" data-delay="200" data-tooltip="Criar nova conta">Limpar</button>
+                </div>
+                <!-- /BUTTONS -->
+            </form>
+            </div>
+            <!-- /CARD LOGIN -->
+	</div>
+	<br /><br />
+	</div>
