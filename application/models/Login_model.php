@@ -10,9 +10,9 @@ class Login_model extends CI_Model {
     public function efetuarLogin($login = "", $senha = ""){
         
         if( empty($login) || empty($senha)){
-            $senha = md5($str);
             $login = mysql_real_escape_string($login);
             $senha = mysql_real_escape_string($senha);
+            $senha = md5($str);
             
             $dados_autenticados = $this->status->autenticarCadastro($login, $senha);
             if(!$dados_autenticados){
