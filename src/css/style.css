@@ -1,198 +1,195 @@
-body{ 
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;	
+/* Nada pode ser selecionado */body{ -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none;	}
+/* SideNav Fixa */ @media only screen and (min-width : 993px) {
+    header, main, footer { padding-left: 240px; }
 }
+.sideLogo       { border-bottom: 1px solid #ddd; } 
+span.brand-logo { font-size: 20px; }
+/* Dizer após cabeçalho */ h5 { font-size: 20px; }
+/* Rodapé fixo TO DO*/ footer { width: 100%; margin-bottom: -21px; }
 
-/* Corretor de sideNav fixa */
-header, main, footer {
-    padding-left: 240px;
-    
-}  @media only screen and (max-width : 992px) {
-    header, main, footer {
-      padding-left: 0px;
-    }
-  }
-
-/* Linha inferior do Logotipo na sideNav */
-.sideLogo {
-	border-bottom: 1px solid #ddd;
-} 
-
-span.brand-logo {
-	font-size: 20px;
-}
-
-/* Tamanho do dizer acima do card de login */
-h5 { font-size: 20px; }
-
-
-/* Mantém rodapé sempre embaixo */
-footer {
-	width: 100%;
-	margin-bottom: -21px;
-}
-
-/* Style das caixa de informações de páginas para buscas. */
-
-/*--Desktop--Desktop--Desktop--Desktop--Desktop--Desktop--*/
-@media only screen and (min-width : 871px){
-.card-panel{
-        margin-left: 40px;
+/* Conteúdo-Desktop */  @media only screen and (min-width : 871px) {
+    .conteudo{   
         margin-right: 40px;
+        margin-left: 40px;
+    }
+}
+/* Conteúdo-Tablet */   @media only screen and (max-width : 870px) {
+    .conteudo{   
+        margin-right: 20px;
+        margin-left: 20px;
+    }
+}
+/* Conteúdo-Mobile */   @media only screen and (max-width : 580px) {
+    .conteudo{   
+        margin-right: 10px;
+        margin-left: 10px;
+    }
+}
+
+/* Card-Página Desktop */   @media only screen and (min-width : 871px) {
+    .card-panel{
+        margin-left: 0px;
+        margin-right: 0px;
         padding: 7px;
-} 
-.cardConteudo{
+    } 
+    .cardConteudo{
         margin: 0px;
         margin-left: 40px;
         margin-right: 60px;
-}
-.imgServico {
-    width: 130px;
-}
-.cardInfo{
+    }
+    .imgServico {
+        width: 130px;
+    }
+    .cardInfo{
         margin: 0px;
-}
-.cardTopo{
+    }
+    .cardTopo{
         margin: 0px;
         border-bottom: 1px solid #ddd;
-}
-.nomeServico{ font-size: 28px; }
-.sloganServico{ font-size: 16px; margin-top: -3px; margin-left: 5px; }
-.enderecoServico{ font-size: 14px; margin-top: 0px; margin-left: 5px; margin-bottom: 8px; font-weight: lighter;}
-.cardRodape{
+    }
+    .nomeServico{ font-size: 28px; }
+    .sloganServico{ font-size: 16px; margin-top: -3px; margin-left: 5px; }
+    .enderecoServico{ font-size: 14px; margin-top: 0px; margin-left: 5px; margin-bottom: 8px; font-weight: lighter;}
+    .cardRodape{
         margin: 0px;
         margin-top: 7px;
-}
-.rateServico{
+    }
+    .rateServico{
         margin: -3px;
         margin-top: -17px;
         margin-bottom: -17px;
         font-size: 3rem;
-}
-.btnServico{
-        margin-left: 10px;
-}
-}
-/*--Tablet--Tablet--Tablet--Tablet--Tablet--Tablet--Tablet--*/
-@media only screen and (max-width : 870px) {
-
-        .card-panel{
-                margin-left: 20px;
-                margin-right: 20px;
-                padding: 7px;
-        } 
-        .cardConteudo{
-                margin: 0px;
-                margin-left: 20px;
-                margin-right: 20px;
-        }
-        .imgServico {
-                width: 107px;
-        }
-        .cardInfo{
-                margin: 0px;
-        }
-        .cardTopo{
-                margin: 0px;
-                border-bottom: 1px solid #ddd;
-        }
-        .nomeServico{ font-size: 24px; }
-        .sloganServico{ font-size: 14px; margin-top: -2px; margin-left: 5px; }
-        .enderecoServico{ font-size: 12px; margin-top: 0px; margin-left: 5px; margin-bottom: 4px; font-weight: lighter;}
-
-        .cardRodape{
-                margin: 0px;
-                margin-top: 3px;
-        }
-        .rateServico{
-                margin: -5px;
-                margin-top: -17px;
-                margin-bottom: -17px;
-                font-size: 2.6rem;
-        }
-        .btnServico{
-                margin-left: 6px;
-                width: 30px;
-                height: 30px;
-        }
-        .btnServico i{
-                font-size: 20px;
-                margin-top: -3px;
-                margin-left: 1px;
-        }
-        .btnServico i.iconeBotao{
-                margin-left: -1px;
-        }
-
-}
-/*--Mobile--Mobile--Mobile--Mobile--Mobile--Mobile--Mobile--*/
-@media only screen and (max-width : 580px) {
-            .card-panel{
-                    margin-left: 10px;
-                    margin-right: 10px;
-                    padding: 7px;
-            } 
-
-            .cardConteudo{
-                    margin: 0px;
-                    margin-left: -10px;
-                    margin-right: -10px;
-            }
-
-            .imgServico {
-          width: 70px;
-        }
-            .cardInfo{
-                    margin: -3px;
-
-            }
-            .cardTopo{
-                    margin: 0px;
-                    border-bottom: 1px solid #ddd;
-            }
-            .nomeServico{ font-size: 18px; }
-            .sloganServico{ font-size: 10px; margin-top: -5px; margin-left: 3px; }
-            .enderecoServico{ font-size: 8px; margin-top: -9px; margin-left: 3px; margin-bottom: 4px; font-weight: lighter;}
-
-            .cardRodape{
-                    margin: 0px;
-                    margin-top: 5px;
-                    margin-left: -10px;
-                    margin-right: -10px;
-
-            }
-            .rateServico{
-                    margin: 5px;
-                    margin-top: -17px;
-                    margin-bottom: -17px;
-                    font-size: 1.6rem;
-            }
-            .btnServico{
-                    margin-left: 3px;
-                    width: 25px;
-                    height: 25px;
-            }
-            .btnServico i{
-                    font-size: 18px;
-                    margin-top: -6px;
-            }
-            .btnServico i.iconeBotao{
-                    margin-left: -1px;
-            }
-
     }
-    
-/* Produto-Desktop */ @media only screen and (min-width : 871px){
-    
+    .btnServico{
+        margin-left: 10px;
+    }
 }
-/* Produto-Tablet */ @media only screen and (max-width : 870px) {
-    
-}
-/* Produto-Mobile */ @media only screen and (max-width : 580px) {
+/* Card-Página Tablet */    @media only screen and (max-width : 870px) {
     .card-panel{
-        margin-left: 40px;
-        margin-right: 40px;
+        margin-left: 0px;
+        margin-right: 0px;
         padding: 7px;
     } 
+    .cardConteudo{
+        margin: 0px;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+    .imgServico {
+        width: 107px;
+    }
+    .cardInfo{
+        margin: 0px;
+    }
+    .cardTopo{
+        margin: 0px;
+        border-bottom: 1px solid #ddd;
+    }
+    .nomeServico{ font-size: 24px; }
+    .sloganServico{ font-size: 14px; margin-top: -2px; margin-left: 5px; }
+    .enderecoServico{ font-size: 12px; margin-top: 0px; margin-left: 5px; margin-bottom: 4px; font-weight: lighter;}
+    .cardRodape{
+        margin: 0px;
+        margin-top: 3px;
+    }
+    .rateServico{
+        margin: -5px;
+        margin-top: -17px;
+        margin-bottom: -17px;
+        font-size: 2.6rem;
+    }
+    .btnServico{
+        margin-left: 6px;
+        width: 30px;
+        height: 30px;
+    }
+    .btnServico i{
+        font-size: 20px;
+        margin-top: -3px;
+        margin-left: 1px;
+    }
+    .btnServico i.iconeBotao{
+        margin-left: -1px;
+    }
+
+}
+/* Card-Página Mobile */    @media only screen and (max-width : 580px) {
+    .card-panel{
+        margin-left: 0px;
+        margin-right: 0px;
+        padding: 7px;
+    } 
+    .cardConteudo{
+        margin: 0px;
+        margin-left: -10px;
+        margin-right: -10px;
+    }
+    .imgServico {
+        width: 70px;
+    }
+    .cardInfo{
+        margin: -3px;
+
+    }
+    .cardTopo{
+        margin: 0px;
+        border-bottom: 1px solid #ddd;
+    }
+    .nomeServico{ font-size: 18px; }
+    .sloganServico{ font-size: 10px; margin-top: -5px; margin-left: 3px; }
+    .enderecoServico{ font-size: 8px; margin-top: -9px; margin-left: 3px; margin-bottom: 4px; font-weight: lighter;}
+    .cardRodape{
+        margin: 0px;
+        margin-top: 5px;
+        margin-left: -10px;
+        margin-right: -10px;
+    }
+    .rateServico{
+        margin: 5px;
+        margin-top: -17px;
+        margin-bottom: -17px;
+        font-size: 1.6rem;
+    }
+    .btnServico{
+        margin-left: 3px;
+        width: 25px;
+        height: 25px;
+    }
+    .btnServico i{
+        font-size: 18px;
+        margin-top: -6px;
+    }
+    .btnServico i.iconeBotao{
+        margin-left: -1px;
+    }
+}
+    
+/* Produto-Desktop */   @media only screen and (min-width : 871px) {
+    .contProdutos{
+        margin: -10px;
+    }
+}
+/* Produto-Tablet */    @media only screen and (max-width : 870px) {
+    .contProdutos{
+        margin: -10px;
+    }
+}
+/* Produto-Mobile */    @media only screen and (max-width : 580px) {
+    .contProdutos{  
+        margin: -10px;
+    }
+    .card{
+        padding: 0px;
+        margin-bottom: 5px;
+    }
+    .card-image img{
+    }
+    .card-content{
+        height: 60px;
+        padding-top: 0px;
+    }
+    .card-content span.card-title{
+        font-size: 20px;
+        margin: -10px;
+    }
 }
