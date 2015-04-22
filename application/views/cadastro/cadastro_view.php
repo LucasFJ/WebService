@@ -31,7 +31,7 @@
             <!-- CARD LOGIN -->
             <div class="card center-align orange lighten-2 z-depth-2">
                 <br /><span class="card-title">Cadastro</span>
-            <form class="col s12">
+            <form class="col s12" method="post">
             <div class="card-content center-align contForm">
                 <!--FORM--->
                 
@@ -78,7 +78,7 @@
                 </div>
                 <div class="input-field col l6 s12">
                     <p>
-                        <input type="checkbox" class="filled-in white" id="filled-in-box" />
+                        <input name="concorda" type="checkbox" class="filled-in white" id="filled-in-box" />
                         <label for="filled-in-box">Li e estou de acordo com os Termos de Uso do usuário.</label>
                     </p>
                 </div>
@@ -90,7 +90,7 @@
                 
                 <!-- BUTTONS -->
                 <div class="container containerBtnCadastro">
-                <button href="" type="submit" class="btnCadastro waves-effect waves-light white orange-text text-darken-4 btn tooltipped" data-position="top" data-delay="200" data-tooltip="Cadastrar-se">Cadastrar</button>
+                    <button href="<?php base_url('cadastro')?>" type="submit" class="btnCadastro waves-effect waves-light white orange-text text-darken-4 btn tooltipped" data-position="top" data-delay="200" data-tooltip="Cadastrar-se">Cadastrar</button>
                 <button href="" type="reset" class="btnCadastro waves-effect waves-light white orange-text text-darken-4 btn tooltipped" data-position="top" data-delay="200" data-tooltip="Limpar dados inseridos">Limpar</button>
                 </div>
                 <!-- /BUTTONS -->
