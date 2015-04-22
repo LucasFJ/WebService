@@ -7,6 +7,7 @@ body{
 /* Corretor de sideNav fixa */
 header, main, footer {
     padding-left: 240px;
+    
 }  @media only screen and (max-width : 992px) {
     header, main, footer {
       padding-left: 0px;
@@ -181,3 +182,17 @@ footer {
             }
 
     }
+    
+/* Produto-Desktop */ @media only screen and (min-width : 871px){
+    
+}
+/* Produto-Tablet */ @media only screen and (max-width : 870px) {
+    
+}
+/* Produto-Mobile */ @media only screen and (max-width : 580px) {
+    .card-panel{
+        margin-left: 40px;
+        margin-right: 40px;
+        padding: 7px;
+    } 
+}

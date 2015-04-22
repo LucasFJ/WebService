@@ -15,7 +15,7 @@ class Pagina extends CI_Controller{
                $this->load->view('pagina/minhapagina_view');
         }
         else{
-            $this->load->view('pagina/criarpagina_view');
+            $this->load->view('pagina/minhapagina_view');
         }
         $this->load->view('include/footer_view');
     }

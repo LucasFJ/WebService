@@ -8,8 +8,8 @@ document.getElementById("cabecalho").innerHTML = "TO DO NOME_PAGINA";
 
 <!--CARD SERVICO-->
 <div class="card-panel deep-purple lighten-2 z-depth-1">
-    <div class="row  cardConteudo valign-wrapper">
-            <div class="col s3 right-align  cardImagem">
+    <div class="row cardConteudo valign-wrapper">
+            <div class="col s3 right-align cardImagem">
             <img src="<?php echo base_url('src/imagens/pagina/perfil/harry-square.png'); ?>" class="circle imgServico z-depth-1"/>
             </div>
             <div class="col s9 center-align cardInfo">
@@ -35,4 +35,19 @@ document.getElementById("cabecalho").innerHTML = "TO DO NOME_PAGINA";
                           </div>
             </div>
     </div>
+</div>
+
+<!-- PRODUTO -->
+<div class="cardConteudo">
+<div class="row">
+<div class="col s6 m7">
+  <div class="card">
+    <div class="card-image">
+      <img src="<?php echo base_url('src/imagens/pagina/produto/harry-kit.jpg'); ?>">
+    </div>
+    <div class="card-content">
+    <span class="card-title activator grey-text text-darken-4">Kit de Poções (Felix Felicius)</span>
+    </div>
+  </div>
+</div>
 </div>
