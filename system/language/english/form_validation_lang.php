@@ -37,14 +37,16 @@
  */
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-$lang['form_validation_required']		= 'The {field} field is required.';
-$lang['form_validation_isset']			= 'The {field} field must have a value.';
-$lang['form_validation_valid_email']		= 'The {field} field must contain a valid email address.';
-$lang['form_validation_valid_emails']		= 'The {field} field must contain all valid email addresses.';
-$lang['form_validation_valid_url']		= 'The {field} field must contain a valid URL.';
+
+
+$lang['form_validation_required']		= 'O campo de {field} deve ser preenchido.';
+$lang['form_validation_isset']			= 'O campo de {field} deve ser preenchido.';
+$lang['form_validation_valid_email']		= '{field} inválido.';
+$lang['form_validation_valid_emails']		= '{field} inválidos.';
+$lang['form_validation_valid_url']		= 'O campo {field} deve conter uma URL válida.';
 $lang['form_validation_valid_ip']		= 'The {field} field must contain a valid IP.';
-$lang['form_validation_min_length']		= 'The {field} field must be at least {param} characters in length.';
-$lang['form_validation_max_length']		= 'The {field} field cannot exceed {param} characters in length.';
+$lang['form_validation_min_length']		= '{field} deve conter ao menos {param} caracteres.';
+$lang['form_validation_max_length']		= '{field} deve conter no máximo {param} caracteres.';
 $lang['form_validation_exact_length']		= 'The {field} field must be exactly {param} characters in length.';
 $lang['form_validation_alpha']			= 'The {field} field may only contain alphabetical characters.';
 $lang['form_validation_alpha_numeric']		= 'The {field} field may only contain alpha-numeric characters.';

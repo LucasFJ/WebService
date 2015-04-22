@@ -36,12 +36,12 @@
         <div class="formLogin">
 	<div class="input-field login">
 	<i class="mdi-social-person prefix"></i>
-	<input id="icon_prefix" type="email" class="validate" name="email">
+	<input id="icon_prefix" type="email" class="validate" name="email" required>
 	<label for="icon_prefix" class="inputLabel">E-mail</label>
 	</div>
 	<div class="input-field login">
 	<i class="mdi-action-lock-outline prefix"></i>
-	<input id="icon_prefix" type="password" class="validate" name="senha">
+	<input id="icon_prefix" type="password" class="validate" name="senha" required>
 	<label for="icon_prefix" class="inputLabel">Senha</label>
 	</div>
         </div>
