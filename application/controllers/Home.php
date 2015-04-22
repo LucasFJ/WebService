@@ -9,11 +9,16 @@ class Home extends CI_Controller{
     }
     
     public function index(){
+        $dados_header = array('possuiNav' => true);
+        
         $this->load->view('include/head_view');
-        $this->load->view('include/header_view');
+        $this->load->view('include/header_view', $dados_header);
         
         
         $this->load->view('include/footer_view');
     }
+    
+    
+ 
 }
 

@@ -57,5 +57,5 @@
                   </ul>
                 </li>
           <!-- Sair -->
-          <li><a href="<?php echo base_url('../WebService'); ?>">Sair</a></li>
+          <li><a href="<?php echo base_url('login'); ?>">Sair</a></li>
         </ul>
