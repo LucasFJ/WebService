@@ -91,7 +91,7 @@
                 <!-- BUTTONS -->
                 <div class="container containerBtnCadastro">
                 <button href="" type="submit" class="btnCadastro waves-effect waves-light white orange-text text-darken-4 btn tooltipped" data-position="top" data-delay="200" data-tooltip="Cadastrar-se">Cadastrar</button>
-                <button href="" type="reset" class="btnCadastro waves-effect waves-light white orange-text text-darken-4 btn tooltipped" data-position="top" data-delay="200" data-tooltip="Criar nova conta">Limpar</button>
+                <button href="" type="reset" class="btnCadastro waves-effect waves-light white orange-text text-darken-4 btn tooltipped" data-position="top" data-delay="200" data-tooltip="Limpar dados inseridos">Limpar</button>
                 </div>
                 <!-- /BUTTONS -->
             </form>
