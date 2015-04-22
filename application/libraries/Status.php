@@ -55,7 +55,7 @@ class Status {
         if(!isset($_COOKIE['user_email']) || !isset($_COOKIE['user_senha'])) {
             return false;
         }
-        elseif(empty($_COOKIE['user_email']) || empty($_COOKIE['user_senha'])) {
+        elseif($_COOKIE['user_email'] == null || $_COOKIE['user_senha'] == null) {
             return false;
         }
         else{
@@ -76,9 +76,8 @@ class Status {
        // setcookie('user_nome');
        // setcookie('user_login');
         try {
-            $_COOKIE['user_nome'] = "";
-            $_COOKIE['user_login'] = "";
-            $_COOKIE['user_senha'] = "";
+            $_COOKIE['user_login'] = null;
+            $_COOKIE['user_senha'] = null;
             return true;
         } catch(Exception $x){ 
             return false; 
@@ -128,7 +127,7 @@ class Status {
         if( !isset($_SESSION['user_email']) || !isset($_SESSION['user_senha'])) {
             return false;
         }
-        elseif(empty($_SESSION['user_email']) || empty($_SESSION['user_senha'])) {
+        elseif($_SESSION['user_email'] == null || $_SESSION['user_senha'] == null) {
             return false;
         }
         else {
@@ -151,13 +150,14 @@ class Status {
             return true;   
         }
     }
+    
     //Função: fecha a sessão sendo utilizada pelo usuario no momento
     public function fecharSessao(){
-        $_SESSION['user_nome'] = '';
-        $_SESSION['user_login'] = '';
-        $_SESSION['user_senha'] = '';
-        $_SESSION['is_ativo'] = '';
-        $_SESSION['is_dono'] = '';
+        $_SESSION['user_nome'] = null;
+        $_SESSION['user_email'] = null;
+        $_SESSION['user_senha'] = null;
+        $_SESSION['is_ativo'] = null;
+        $_SESSION['is_dono'] = null;
          
         return session_destroy();
     }

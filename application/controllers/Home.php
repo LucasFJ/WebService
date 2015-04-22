@@ -18,6 +18,11 @@ class Home extends CI_Controller{
         $this->load->view('include/footer_view');
     }
     
+    public function Sair(){
+        $this->status->fecharSessao();
+        $this->status->fecharCookie();
+        redirect('login');
+    }
     
  
 }

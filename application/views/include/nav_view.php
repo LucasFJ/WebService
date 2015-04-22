@@ -57,5 +57,5 @@
                   </ul>
                 </li>
           <!-- Sair -->
-          <li><a href="<?php echo base_url('login'); ?>">Sair</a></li>
+          <li><a href="<?php echo base_url('home/sair'); ?>">Sair</a></li>
         </ul>
