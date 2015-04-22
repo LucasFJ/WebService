@@ -78,7 +78,7 @@
                 </div>
                 <div class="input-field col l6 s12">
                     <p>
-                        <input name="concorda" type="checkbox" class="filled-in white" id="filled-in-box" />
+                        <input name="concorda" type="checkbox" class="filled-in white" id="filled-in-box" required />
                         <label for="filled-in-box">Li e estou de acordo com os Termos de Uso do usuário.</label>
                     </p>
                 </div>
