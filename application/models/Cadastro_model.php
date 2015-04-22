@@ -20,20 +20,16 @@ class Cadastro_model extends CI_Model {
             
             $disponivel = $this->disponibilidadeLogin($email);
             if($disponivel) {
-                
-                $senha = md5($senha); 
-                $resultado_query = $this->db->query("insert into tb_usuario "
-                        . "(nm_usuario, nm_sobrenome, nm_email, cd_senha, "
+               $nascimento = $this->validarData($nascimento);
+               $senha = md5($senha); 
+               $resultado_query = $this->db->query("insert into tb_usuario "
+                       . "(nm_usuario, nm_sobrenome, nm_email, cd_senha, "
                         . " dt_cadastro, nm_ativo, dt_nascimento, nm_caminho_imagem,"
-                        . " cd_genero) values"
-                        . "('$nome', '$sobrenome', '$email', '$senha', now(), "
+                       . " cd_genero) values "
+                       . "('$nome', '$sobrenome', '$email', '$senha', now(), "
                         . "false, '$nascimento', null, $genero)");
                 
-                if($resultado_query->db->num_rows() > 0){
                     return true;
-                } else { // mesmo sendo disponivel nao foi possivel cadastrar
-                    return false;
-                }
                 
             } else { // o email informado ja esta sendo utilizado por outra conta
                 return false;
@@ -57,5 +53,38 @@ class Cadastro_model extends CI_Model {
             }
         } 
         return false;
+    }
+    
+    public function validarData($data = null){
+        if($data != null){
+            //divide a string em 3 partes
+            $data = trim($data);
+            $data = explode( ' ', $data);
+            //adquire o dia e o ano 
+            $dia = $data[0];
+            
+            $ano = $data[2];
+            //em seguida limpa a string de mês pois ainda está poluida e a
+            //transforma em numeros
+            $data2 = explode(',' ,$data[1]);
+            switch($data2[0]){
+                case 'January': $mes = '01'; break;
+                case 'February': $mes = '02'; break;
+                case 'March': $mes = '03'; break;
+                case 'April': $mes = '04'; break;
+                case 'May': $mes = '05'; break;
+                case 'June': $mes = '06'; break;
+                case 'July': $mes = '07'; break;
+                case 'August': $mes = '08'; break;
+                case 'September': $mes = '09'; break;
+                case 'October': $mes = '10'; break;
+                case 'November': $mes = '11'; break;
+                case 'December': $mes = '12'; break;
+            }
+            
+            return "$ano-$mes-$dia";
+        } else {
+            return false;
+        }
     }
 }
