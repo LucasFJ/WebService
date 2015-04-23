@@ -25,11 +25,14 @@ class BuscaCEP {
                 curl_close($cURL);
                 $saida = utf8_encode($saida);
                 
-                $tabela = preg_match_all('@<td (.*?)<\/td>@i', $saida, $campoTabela);
+                $tabela = preg_match_all('/<td (.*?)<\/td>/i', $saida, $campoTabela);
                 
-                echo "<script> alert('Logradouro: ". $campoTabela[0][0] ." Bairro: " . $campoTabela[0][1] ."') </script>";
+                $logradouro = strip_tags($campoTabela[0][0]);
+                $bairro = strip_tags($campoTabela[0][1]);
+                $cidade = strip_tags($campoTabela[0][2]);
+                $uf = strip_tags($campoTabela[0][3]);
                 
-                return true;
+                return array('logradouro' => $logradouro, 'bairro' => $bairro, 'cidade' => $cidade, 'uf' => $uf);
             }
             return false;
         }

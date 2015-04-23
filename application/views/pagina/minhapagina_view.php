@@ -62,7 +62,7 @@ document.getElementById("cabecalho").innerHTML = "TO DO NOME_PAGINA";
         <img class="activator" src="<?php echo base_url('src/imagens/pagina/produto/harry-kit.jpg'); ?>">
     </div>
     <div class="card-content">
-        <span class="card-title activator grey-text text-darken-4">Card Title <i class="mdi-navigation-more-vert right"></i></span>
+        <span class="card-title activator grey-text text-darken-4">Atendimento Pré Hospitalar <i class="mdi-navigation-more-vert right"></i></span>
     </div>
     <div class="card-reveal">
         <span class="card-title grey-text text-darken-4">Kit de Poções<i class="mdi-navigation-close right"></i></span>
@@ -76,8 +76,8 @@ document.getElementById("cabecalho").innerHTML = "TO DO NOME_PAGINA";
     <div class="card-image waves-effect waves-block waves-light">
         <img class="activator" src="<?php echo base_url('src/imagens/pagina/produto/harry-kit.jpg'); ?>">
     </div>
-    <div class="card-content">
-        <span class="card-title activator grey-text text-darken-4">Card Title <i class="mdi-navigation-more-vert right"></i></span>
+    <div class="card-content sapoha">
+        <span class="legenda card-title activator grey-text text-darken-4">Atendimento Pré Hospitalar <i class="mdi-navigation-more-vert right"></i></span>
     </div>
     <div class="card-reveal">
         <span class="card-title grey-text text-darken-4">Kit de Poções<i class="mdi-navigation-close right"></i></span>

@@ -8,15 +8,19 @@ class Debug extends CI_Controller {
     }
     
     public function index(){
+        $resultado = array('logradouro' => '', 'bairro' => '', 'cidade' => '', 'uf' => '');
+        
         if(isset($_POST['cep'])){
-            $this->buscacep->fazerConsulta($_POST['cep']);
+            
+            $resultado = $this->buscacep->fazerConsulta($_POST['cep']);
+            
         }
-        else{
-            $this->load->view('include/head_view');
-            $this->load->view('include/header_view');
-                $this->load->view('debug/debug_view');
-            $this->load->view('include/footer_view');
-        }
+        
+        $this->load->view('include/head_view');
+        $this->load->view('include/header_view');
+            $this->load->view('debug/debug_view', $resultado);
+        $this->load->view('include/footer_view');
+        
     }
     
     public function testarstatus(){

@@ -186,10 +186,17 @@ span.brand-logo { font-size: 20px; }
     }
     .card-content{
         height: 60px;
-        padding-top: 0px;
+        padding-top: 30px;
+        margin-top: -15px;
     }
-    .card-content span.card-title{
-        font-size: 20px;
+    .card .card-title{
+        font-size: 14px;
+        font-weight: 400;
         margin: -10px;
+        margin-bottom: 0px;
     }
+    .card .card-title i{
+        margin-right: -7px;
+    }
+    
 }
