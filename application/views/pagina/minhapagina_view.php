@@ -1,7 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 
 <script>
-document.getElementById("cabecalho").innerHTML = "TO DO NOME_PAGINA";
+document.getElementById("cabecalho").innerHTML = "Total Saúde SP";
 </script>
 
 <!-- Conteúdo da View abaixo -->
@@ -41,28 +41,13 @@ document.getElementById("cabecalho").innerHTML = "TO DO NOME_PAGINA";
 <div class="contProdutos">
 <!-- PRODUTO -->
 <div class="row">
-    <div class="col s6 m4 l4">
+    <div class="col s12 m4 l4">
     <div class="card">
     <div class="card-image waves-effect waves-block waves-light">
         <img class="activator" src="<?php echo base_url('src/imagens/pagina/produto/harry-kit.jpg'); ?>">
     </div>
     <div class="card-content">
-        <span class="card-title activator grey-text text-darken-4">Card Title <i class="mdi-navigation-more-vert right"></i></span>
-    </div>
-    <div class="card-reveal">
-        <span class="card-title grey-text text-darken-4">Kit de Poções<i class="mdi-navigation-close right"></i></span>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat.</p>
-    </div>
-    </div>
-    </div>
-<!-- PRODUTO -->
-    <div class="col s6 m4 l4">
-    <div class="card">
-    <div class="card-image waves-effect waves-block waves-light">
-        <img class="activator" src="<?php echo base_url('src/imagens/pagina/produto/harry-kit.jpg'); ?>">
-    </div>
-    <div class="card-content">
-        <span class="card-title activator grey-text text-darken-4">Atendimento Pré Hospitalar <i class="mdi-navigation-more-vert right"></i></span>
+        <span class="card-title activator grey-text text-darken-4"><h6 class="truncate">Card Title </h6><i class="mdi-navigation-more-vert right"></i></span>
     </div>
     <div class="card-reveal">
         <span class="card-title grey-text text-darken-4">Kit de Poções<i class="mdi-navigation-close right"></i></span>
@@ -74,13 +59,28 @@ document.getElementById("cabecalho").innerHTML = "TO DO NOME_PAGINA";
     <div class="col s12 m4 l4">
     <div class="card">
     <div class="card-image waves-effect waves-block waves-light">
-        <img class="activator" src="<?php echo base_url('src/imagens/pagina/produto/harry-kit.jpg'); ?>">
+        <img class="activator" src="<?php echo base_url('src/imagens/pagina/produto/harry-olivaras.jpg'); ?>">
     </div>
-    <div class="card-content sapoha">
-        <span class="legenda card-title activator grey-text text-darken-4">Atendimento Pré Hospitalar <i class="mdi-navigation-more-vert right"></i></span>
+    <div class="card-content valign-wrapper">
+        <span class="card-title activator grey-text text-darken-4"><h6 class="truncate">Interpretação de Exames Laboratoriais Total Saúde SP</h6><i class="mdi-navigation-more-vert right"></i></span>
     </div>
     <div class="card-reveal">
-        <span class="card-title grey-text text-darken-4">Kit de Poções<i class="mdi-navigation-close right"></i></span>
+        <span class="card-title grey-text text-darken-4">Interpretação de Exames Laboratoriais Total Saúde SP<i class="mdi-navigation-close right"></i></span>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat.</p>
+    </div>
+    </div>
+    </div>
+<!-- PRODUTO -->
+    <div class="col s12 m4 l4">
+    <div class="card">
+    <div class="card-image waves-effect waves-block waves-light">
+        <img class="activator" src="<?php echo base_url('src/imagens/pagina/produto/harry-weasley.jpg'); ?>">
+    </div>
+    <div class="card-content">
+        <span class="card-title activator grey-text text-darken-4"><h6 class="truncate">Atendimento Pré Hospitalar </h6><i class="mdi-navigation-more-vert right"></i></span>
+    </div>
+    <div class="card-reveal">
+        <span class="card-title grey-text text-darken-4">Atendimento Pré Hospitalar <i class="mdi-navigation-close right"></i></span>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat.</p>
     </div>
     </div>

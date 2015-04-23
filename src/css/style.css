@@ -3,7 +3,7 @@
     header, main, footer { padding-left: 240px; }
 }
 .sideLogo       { border-bottom: 1px solid #ddd; } 
-span.brand-logo { font-size: 20px; }
+span.brand-logo { font-size: 20px; line-height: 25px; }
 /* Dizer após cabeçalho */ h5 { font-size: 20px; }
 /* Rodapé fixo TO DO*/ footer { width: 100%; margin-bottom: -21px; }
 
@@ -165,13 +165,64 @@ span.brand-logo { font-size: 20px; }
 }
     
 /* Produto-Desktop */   @media only screen and (min-width : 871px) {
-    .contProdutos{
+    .contProdutos{  
         margin: -10px;
+    }
+    .card{
+        margin-bottom: 5px;
+    }
+    .card-content{
+        height: 70px;
+    }
+    .card .card-content .card-title {
+        font-size: 18px;
+        font-weight: 300;
+        margin: -10px;
+        margin-right: 15px;
+        line-height: 25px;
+    }
+    .card .card-title i{
+        font-size: 24px;
+        position: absolute;
+        right: 10px;
+        bottom: 21px;
+    }
+    .card .card-reveal .card-title{
+        margin-top: -10px;
+        font-size: 20px;
+    }
+    .card .card-reveal .card-title i{
+        position: absolute;
+        right: 10px;
+        top: 10px;
     }
 }
 /* Produto-Tablet */    @media only screen and (max-width : 870px) {
-    .contProdutos{
+    .contProdutos{  
         margin: -10px;
+    }
+    .card{
+        margin-bottom: 5px;
+    }
+    .card-content{
+        height: 70px;
+    }
+    .card .card-content .card-title {
+        font-size: 18px;
+        font-weight: 300;
+        margin: -10px;
+        margin-right: 15px;
+        line-height: 25px;
+    }
+    .card .card-title i{
+        font-size: 24px;
+        position: absolute;
+        right: 10px;
+        bottom: 21px;
+    }
+    .card .card-reveal .card-title{
+        margin-top: -10px;
+        font-size: 20px;
     }
 }
 /* Produto-Mobile */    @media only screen and (max-width : 580px) {
@@ -179,24 +230,26 @@ span.brand-logo { font-size: 20px; }
         margin: -10px;
     }
     .card{
-        padding: 0px;
         margin-bottom: 5px;
     }
-    .card-image img{
-    }
     .card-content{
-        height: 60px;
-        padding-top: 30px;
-        margin-top: -15px;
+        height: 70px;
     }
-    .card .card-title{
-        font-size: 14px;
-        font-weight: 400;
+    .card .card-content .card-title {
+        font-size: 18px;
+        font-weight: 300;
         margin: -10px;
-        margin-bottom: 0px;
+        margin-right: 15px;
+        line-height: 25px;
     }
     .card .card-title i{
-        margin-right: -7px;
+        font-size: 24px;
+        position: absolute;
+        right: 10px;
+        bottom: 21px;
     }
-    
+    .card .card-reveal .card-title{
+        margin-top: -10px;
+        font-size: 20px;
+    }
 }
