@@ -4,10 +4,19 @@ class Debug extends CI_Controller {
     
     public function __construct() {
         parent::__construct();
+        $this->load->library('buscacep');
     }
     
     public function index(){
-      
+        if(isset($_POST['cep'])){
+            $this->buscacep->fazerConsulta($_POST['cep']);
+        }
+        else{
+            $this->load->view('include/head_view');
+            $this->load->view('include/header_view');
+                $this->load->view('debug/debug_view');
+            $this->load->view('include/footer_view');
+        }
     }
     
     public function testarstatus(){
