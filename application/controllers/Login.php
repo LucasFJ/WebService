@@ -13,6 +13,7 @@ class Login extends CI_Controller{
     
     public function index(){
         $mensagem_erro = '';
+        $login = "";
         //verificando se foram enviados os valores de login ou senha via POST
         if( isset($_POST['email']) && isset($_POST['senha'])){
             //definindo as regras de validação e executando
@@ -21,7 +22,8 @@ class Login extends CI_Controller{
             if($this->form_validation->run()){
                 $email = $_POST['email'];
                 $senha = $_POST['senha'];
-
+                $login = $email;
+                
                 $resultado = $this->logmodel->efetuarLogin($email, $senha);
                 if($resultado){
                     redirect('home');
@@ -33,8 +35,9 @@ class Login extends CI_Controller{
             } // erro durante a validação dos formulários
         } // email ou senha se encontram vazios
        
-       $dados = array('mensagem_erro' => $mensagem_erro); 
-       $this->load->view('login/login_view');
+       $dados = array('mensagem_erro' => $mensagem_erro, 
+           'conteudo_login' => $login); 
+       $this->load->view('login/login_view', $dados);
        $this->load->view('include/footer_view');
     }
     

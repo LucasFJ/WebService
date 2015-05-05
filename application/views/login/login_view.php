@@ -36,7 +36,7 @@
         <div class="formLogin">
 	<div class="input-field login">
 	<i class="mdi-social-person prefix"></i>
-	<input id="icon_prefix" type="email" class="validate" name="email" required>
+	<input id="icon_prefix" type="email" class="validate" name="email" value="<?php echo $conteudo_login;?>" required>
 	<label for="icon_prefix" class="inputLabel">E-mail</label>
 	</div>
 	<div class="input-field login">

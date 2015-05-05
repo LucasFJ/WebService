@@ -95,7 +95,7 @@ class Status {
             foreach($resultado_query1->result() as $row){
                 $nome = $row->nm_usuario;
                 $email = $row->nm_email;
-                $senha = $row->cd_senha;
+               $senha = $row->cd_senha;
                 $ativo = $row->nm_ativo;
                 $codigo = $row->cd_usuario;
             }
@@ -109,6 +109,8 @@ class Status {
             //else {
                 $dono = false;
             //} 
+        
+             
             return array('user_nome' => $nome, 
                 'user_email' => $email, 
                 'user_senha' => $senha,

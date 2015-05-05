@@ -31,8 +31,10 @@ class Cadastro extends CI_Controller{
                     $_POST['nascimento'], $_POST['genero']);
             if($resultado) {
                 echo "<script> alert('Cadastro efetuado com sucesso'); </script>";
+                redirect('login');
             } else {
-               
+                $mensagem_erro = 'O e-mail informado já se encontra cadastrado!';
+                echo "<script> alert('$mensagem_erro'); </script>";
             }
         } 
         
