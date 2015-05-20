@@ -12,8 +12,8 @@ class Login extends CI_Controller{
     }
     
     public function index(){
-        $mensagem_erro = '';
-        $login = "";
+        $mensagem_erro = false;
+        $login = isset($_POST['email']) ? $_POST['email']: "";
         //verificando se foram enviados os valores de login ou senha via POST
         if( isset($_POST['email']) && isset($_POST['senha'])){
             //definindo as regras de validação e executando
@@ -22,17 +22,16 @@ class Login extends CI_Controller{
             if($this->form_validation->run()){
                 $email = $_POST['email'];
                 $senha = $_POST['senha'];
-                $login = $email;
                 
                 $resultado = $this->logmodel->efetuarLogin($email, $senha);
                 if($resultado){
                     redirect('home');
-
                 } else { // erro durante a verificação de login e senha
-                echo "<script> alert('E-mail ou senha incorretos'); </script>";
-                $mensagem_erro = "E-mail ou senha incorreto";
+                $mensagem_erro = "Email ou senha incorretos";
                 }
-            } // erro durante a validação dos formulários
+            } else {// erro durante a validação dos formulários
+                $mensagem_erro = "E-mail ou senha inválidos";
+            }
         } // email ou senha se encontram vazios
        
        $dados = array('mensagem_erro' => $mensagem_erro, 

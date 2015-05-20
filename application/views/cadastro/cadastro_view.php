@@ -37,18 +37,18 @@
                 
                 <div class="row">
                 <div class="input-field col l6 s12">
-		  <input id="nome" name="nome" type="text" class="validate" required />
+                    <input id="nome" name="nome" type="text" class="validate" required value="<?php echo $conteudo_nome;?>"/>
 		  <label for="nome" class="inputLabel">Nome</label>
 		</div>
                 <div class="input-field col l6 s12">
-                    <input id="sobrenome" name="sobrenome" type="text" class="validate" required />
+                    <input id="sobrenome" name="sobrenome" type="text" class="validate" required  value="<?php echo $conteudo_sobrenome;?>"/>
                 <label for="last_name">Sobrenome</label>
                 </div>
                 </div>
                 
                 <div class="row">
                 <div class="input-field col l6 s12">
-                    <input id="email" name="email" type="email" class="validate" required />
+                    <input id="email" name="email" type="email" class="validate" required value="<?php echo $conteudo_email;?>"/>
                     <label for="first_name">E-mail</label>
                 </div>
                 <div class="input-field col l6 s12 genero">

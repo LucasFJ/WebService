@@ -27,9 +27,13 @@
 	<div class="container center">
 	<br />
 	<h5>No Service você encontra o que precisa com apenas alguns cliques.</h5>
-        
-                                <span class="red-text" id="erro">E-mail ou senha inválidos</span><br />
-        
+            <!-- MENSAGEM ERRO -->
+            <?php
+                 if($mensagem_erro){
+                    echo "<span class='red-text' id='erro'>$mensagem_erro</span><br/>";
+                 }
+            ?>
+            <!-- /MENSAGEM ERRO -->                   
 	<div class="card left-align grey darken-1 z-depth-2">
 	<form class="col s12" method="post">
 	<div class="card-content center-align white-text">
