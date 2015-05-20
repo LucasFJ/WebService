@@ -41,6 +41,11 @@ class Login extends CI_Controller{
        $this->load->view('include/footer_view');
     }
     
+    public function recuperar(){
+       $this->load->view('login/recuperar_view');
+       $this->load->view('include/footer_view');
+        
+    }
 } /* EXIBIÇÃO DE ERROS:
  *   --> De acordo com o a form_validation: validation_errors();
  *      *OBS: retorna uma array, logo pode exibir mais de uma linha de erros;

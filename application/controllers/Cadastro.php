@@ -42,4 +42,9 @@ class Cadastro extends CI_Controller{
        $this->load->view('cadastro/cadastro_view');
        $this->load->view('include/footer_view');
     }
+    
+    public function sucesso(){
+        $this->load->view('cadastro/sucesso_view');
+        $this->load->view('include/footer_view');
+    }
 }

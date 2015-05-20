@@ -31,8 +31,16 @@ document.getElementById("cabecalho").innerHTML = "Início";
 				  <a class="btn-floating waves-effect waves-light deep-purple btnServico"><i class="mdi-communication-comment iconeBotao"></i></a>
 				  <a class="btn-floating waves-effect waves-light deep-purple btnServico"><i class="mdi-social-share valign-wrapper iconeBotao"></i></a>
 				  </div>
-				  
 				  </div>
 			</div>
 		  </div>
         </div>
+ 
+ 
+ <div class="container right-align">
+ <a class="btn-floating btn-med orange darken-2 waves-effect waves-light red fixed"><i class="mdi-content-add"></i></a>
+ </div>
+ 
+ <div class="container center-align">
+ <br/><span id="msgErro" class="grey-text">Não há mais páginas para serem exibidas.</span>
+ </div>
