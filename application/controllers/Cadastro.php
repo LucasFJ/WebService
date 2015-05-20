@@ -24,13 +24,19 @@ class Cadastro extends CI_Controller{
         $this->form_validation->set_rules('concorda', 'concordar com os termos de uso', 'required');
         
         $mensagem_erro = '';
+        $nome = '';
+        $sobrenome = '';
+        $email = '';
+        
         if($this->form_validation->run()){
 
+            $nome = $_POST['nome'];
+            $sobrenome = $_POST['sobrenome'];
+            $email = $_POST['email'];
             $resultado = $this->cadmodel->cadastrarConta($_POST['email'], 
                     $_POST['senha'], $_POST['nome'], $_POST['sobrenome'],
                     $_POST['nascimento'], $_POST['genero']);
             if($resultado) {
-                echo "<script> alert('Cadastro efetuado com sucesso'); </script>";
                 redirect('login');
             } else {
                 $mensagem_erro = 'O e-mail informado já se encontra cadastrado!';
@@ -39,7 +45,11 @@ class Cadastro extends CI_Controller{
         } 
         
        echo validation_errors(); 
-       $this->load->view('cadastro/cadastro_view');
+       
+       $dados = array('conteudo_nome' => $nome,
+           'conteudo_sobrenome' => $sobrenome, 
+           'conteudo_email' => $email);
+       $this->load->view('cadastro/cadastro_view', $dados);
        $this->load->view('include/footer_view');
     }
     
