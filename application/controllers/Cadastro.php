@@ -37,17 +37,25 @@ class Cadastro extends CI_Controller{
                 $this->load->view('include/footer_view');
             } else {
                 $mensagem_erro = 'O e-mail informado já se encontra cadastrado!';
-                echo "<script> alert('$mensagem_erro'); </script>";
+                $dados = array('conteudo_nome' => $nome,
+                 'conteudo_sobrenome' => $sobrenome, 
+                'conteudo_email' => $email);
+            
+                  echo validation_errors(); 
+                  $this->load->view('cadastro/cadastro_view', $dados);
+                  $this->load->view('include/footer_view');
             }
-        } 
-        
-       echo validation_errors(); 
-       
-       $dados = array('conteudo_nome' => $nome,
+        } else {
+           $dados = array('conteudo_nome' => $nome,
            'conteudo_sobrenome' => $sobrenome, 
            'conteudo_email' => $email);
-       $this->load->view('cadastro/cadastro_view', $dados);
-       $this->load->view('include/footer_view');
+            
+            echo validation_errors(); 
+            $this->load->view('cadastro/cadastro_view', $dados);
+            $this->load->view('include/footer_view');
+        } 
+        
+        
     }
     
     public function sucesso(){
