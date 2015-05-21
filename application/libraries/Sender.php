@@ -4,6 +4,8 @@ class Sender{
     
     public function __construct() {
         require_once 'mail/class.phpmailer.php';
+        require_once 'mail/class.smtp.php';
+        require_once 'mail/PHPMailerAutoload.php';
     }
     
     public $mail;   //Objeto que irá instanciar a classe PHPmailer
@@ -27,7 +29,7 @@ class Sender{
                     . " Para realizar a verificação de sua conta e assim garantir um aproveitamento"
                     . " completo no sistema clique no link abaixo. <br/><br/>"
                     . "<a href='$url'>Clique aqui para verificar sua conta.</a> <br/><br/>";
-            $mensagem = $this->header_mensagem + $mensagem_principal + $this->footer_mensagem;
+            $mensagem = $mensagem_principal;
             $resultado = $this->Enviar($nome_dest, $email_dest, $assunto, $mensagem);
             if($resultado){
                 return true;
@@ -42,8 +44,8 @@ class Sender{
     //FUNÇÃO: ENVIAR UM EMAIL PARA A O USUARIO COM UM ASSUNTO E MENSAGEM
     public function Enviar($nome_dest = false, $email_dest = false, 
             $assunto =false, $mensagem = false){
-        
-        $mail = new PHPMailer();
+        $mail = new PHPMailer;
+        $mail->setLanguage('pt');
         $mail->addAddress($email_dest, $nome_dest);
         $mail->isSMTP();
         $mail->Host = $this->host;
@@ -65,7 +67,10 @@ class Sender{
         if($resultado){
             $mail->ClearAllRecipients();
             return true;
-        } else {
+        } else { //Medida provisória para quando há bugs no envio de e-mail
+            echo $mail->ErrorInfo + "<br/>";
+            echo $email_dest + "<br/>";
+            echo $mensagem + "<br/>";
             $mail->ClearAllRecipients();
             return false;
         }
