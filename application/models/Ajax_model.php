@@ -7,7 +7,6 @@ class Ajax_model extends CI_Model {
         $this->load->database();
     }
     
-    
     public function carregarFaixadas($nome = false, $ramo = false, $estado = false, 
             $cidade = false, $bairro = false, $ordenacao = false, $offset = 0){
         

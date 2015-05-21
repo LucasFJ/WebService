@@ -1,11 +1,12 @@
-/* Nada pode ser selecionado */body{ -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none;	}
+/* Nada pode ser selecionado */body{ -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; margin-bottom: 70px;	}
 /* SideNav Fixa */ @media only screen and (min-width : 993px) {
     header, main, footer { padding-left: 240px; }
 }
 .sideLogo       { border-bottom: 1px solid #ddd; } 
 span.brand-logo { font-size: 20px; line-height: 25px; }
+.side-nav       { overflow: scroll; }
 /* Dizer após cabeçalho */ h5 { font-size: 20px; }
-/* Rodapé fixo TO DO*/ footer { width: 100%; margin-bottom: -21px; }
+/* Rodapé fixo TO DO*/ .page-footer { width: 100%; position: fixed; bottom: 0px;}
 
 /* Conteúdo-Desktop */  @media only screen and (min-width : 871px) {
     .conteudo{   
@@ -267,3 +268,47 @@ span.brand-logo { font-size: 20px; line-height: 25px; }
         top: 10px;
     }
 }
+
+/* Formulário-Busca */        @media only screen and (min-width : 1px) {
+.formLine{
+    margin: 0px;
+}
+.inputNome{
+    margin-top: 30px;
+}
+/* input text color */
+    .input-field input{
+        color: #888;
+        font-weight: 300;
+        font-size: 16px;
+    }
+/* label color */
+   .input-field label {
+     color: #888;
+   }
+   /* label focus color */
+   .input-field input[type=text]:focus + label {
+     color: #888;
+   }
+   /* label underline focus color */
+   .input-field input[type=text]:focus{
+     border-bottom: 1px solid #888;
+     box-shadow: 0 1px 0 0 #888;
+   }
+    
+.genero{
+    margin-top: 0px;
+}   .select-wrapper i{
+             color: #888;
+         } .dropdown-content li>a, .dropdown-content li>span{
+                 color: #555;
+             }
+
+.btnBusca{
+    width: 180px;
+}
+.rowBusca{
+    margin: 0px;
+}
+}
+
