@@ -6,6 +6,7 @@ document.getElementById("cabecalho").innerHTML = "Início";
 <!-- Conteúdo da View abaixo -->
 
  <!--CARD SERVICO-->
+ <div id="container-cartoes">
         <div class="card-panel deep-purple lighten-2 z-depth-1">
           <div class="row  cardConteudo valign-wrapper">
 		    <div class="col s3 right-align  cardImagem">
@@ -35,12 +36,12 @@ document.getElementById("cabecalho").innerHTML = "Início";
 			</div>
 		  </div>
         </div>
- 
- 
+ </div>
+ <?php  $acao = isset($acao) ? $acao : "CarregarCartoes(0,0,0,0,0,0)"; ?>
  <div class="container right-align">
- <a class="btn-floating btn-med orange darken-2 waves-effect waves-light red fixed"><i class="mdi-content-add"></i></a>
+     <a class="btn-floating btn-med orange darken-2 waves-effect waves-light red fixed" onclick="<?php echo $acao;?>"><i class="mdi-content-add"></i></a>
  </div>
  
  <div class="container center-align">
- <br/><span id="msgErro" class="grey-text">Não há mais páginas para serem exibidas.</span>
+ <br/><span id="msgErro" class="grey-text"></span>
  </div>
