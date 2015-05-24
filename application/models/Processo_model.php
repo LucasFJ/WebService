@@ -37,7 +37,7 @@ class Processo_model extends CI_Model {
             $this->db->query("INSERT INTO tb_processo"
                     . " (cd_usuario, cd_chave, cd_tipo) values "
                     . " ($codigo_usuario, '$chave', 1);"); //Fim inserção
-            $resultado_query2 = $this->db->query("SELECT p.cd_processo AS processo, u.nm_usuario AS nome, u.nm_email AS email"
+            $resultado_query2 = $this->db->query("SELECT p.cd_processo AS 'processo', u.nm_usuario AS 'nome', u.nm_email AS 'email' "
                     . " FROM tb_processo as p, tb_usuario as u"
                     . " WHERE  p.cd_chave = '$chave' AND p.cd_tipo = 1 AND "
                     . " p.cd_usuario = u.cd_usuario AND u.cd_usuario = $codigo_usuario LIMIT 1;");

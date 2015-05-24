@@ -45,19 +45,19 @@ function CarregarCartoes(ramo, estado, cidade, bairro, ordenacao, nome){
             msgErro.innerHTML = "Seu navegador não suporta Ajax!";
         } else {
            containerCartoes = document.getElementById("container-cartoes");
-           offset = document.getElementsByClassName("cartao").length;
+           $offset = document.getElementsByClassName("cartao").length;
            xmlreq.open("GET", "http://localhost/WebService/ajax/carregarCartoes/" +
-                offset + "/" + ramo + "/" + estado + "/" + cidade + "/" + bairro + "/" +
+                $offset + "/" + ramo + "/" + estado + "/" + cidade + "/" + bairro + "/" +
                 ordenacao + "/" + nome, false);
            xmlreq.onreadystatechange = function(){
             // Verifica se foi concluído com sucesso e a conexão fechada (readyState=4) 
                 if (xmlreq.readyState == 4) {
                        if (xmlreq.status === 200) {
                           resultado = xmlreq.responseText;
-                          if(resultado == "Vazio"){
+                          if(resultado === "Vazio"){
                               msgErro.innerHTML = "Não há mais páginas para serem exibidas.";
                           } else {
-                              containerCartoes.innerHTML += resultado;
+                              containerCartoes.innerHTML +=  resultado;
                           }
                        } else {
                            msgErro.innerHTML = "Ocorreu um erro durante a requisição Ajax";
@@ -67,8 +67,7 @@ function CarregarCartoes(ramo, estado, cidade, bairro, ordenacao, nome){
             xmlreq.send(null);
            
         }
-    }
-    
+    } 
 function CarregarBoxRamo(){
     xmlreq = CriaRequest();
     options_ramo = document.getElementById("container-ramo");
@@ -89,7 +88,6 @@ function CarregarBoxRamo(){
             xmlreq.send(null);
         }
 }
-
 function CarregarBoxEstado(){
     xmlreq = CriaRequest();
     options_estado = document.getElementById("container-estado");
@@ -110,7 +108,6 @@ function CarregarBoxEstado(){
             xmlreq.send(null);
         }
 }
-
 function CarregarBoxCidade(){
     xmlreq = CriaRequest();
     options_cidade = document.getElementById("container-cidade");
@@ -133,7 +130,6 @@ function CarregarBoxCidade(){
             xmlreq.send(null);
         }
 }
-
 function CarregarBoxBairro(){
     xmlreq = CriaRequest();
     options_bairro = document.getElementById("container-cidade");

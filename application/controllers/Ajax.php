@@ -21,7 +21,6 @@ class Ajax extends CI_Controller{
             if($nome != 0){
                 $nome = addslashes($nome);
             }
-            
             $this->ajaxmod->carregarCartoes($nome, $ramo, $estado, $cidade, $bairro, $ordenacao, $offset);
         } else { // algum dos dados passados pela URL são inválidos
             echo "Vazio";

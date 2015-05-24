@@ -68,9 +68,7 @@ class Sender{
             $mail->ClearAllRecipients();
             return true;
         } else { //Medida provisória para quando há bugs no envio de e-mail
-            echo $mail->ErrorInfo + "<br/>";
-            echo $email_dest + "<br/>";
-            echo $mensagem + "<br/>";
+            echo "<script> alert('$mensagem'); </script>";
             $mail->ClearAllRecipients();
             return false;
         }

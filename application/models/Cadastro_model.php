@@ -30,7 +30,7 @@ class Cadastro_model extends CI_Model {
                         . "false, '$nascimento', null, $genero);");
                
                 $resultado_query = $this->db->query ("SELECT cd_usuario FROM tb_usuario WHERE "
-                       . " nm_email = '$email' LIMIT 1");
+                       . " nm_email = '$email' LIMIT 1;");
                
                if($resultado_query->num_rows() > 0){
                    foreach($resultado_query->result() as $row){

@@ -37,6 +37,7 @@ document.getElementById("cabecalho").innerHTML = "Início";
 		  </div>
         </div>
  </div>
+ 
  <?php  $acao = isset($acao) ? $acao : "CarregarCartoes(0,0,0,0,0,0)"; ?>
  <div class="container right-align">
      <a class="btn-floating btn-med orange darken-2 waves-effect waves-light red fixed" onclick="<?php echo $acao;?>"><i class="mdi-content-add"></i></a>
