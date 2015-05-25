@@ -269,7 +269,7 @@ span.brand-logo { font-size: 20px; line-height: 25px; }
     }
 }
 
-/* Formulário-Busca */        @media only screen and (min-width : 1px) {
+/* Formulário-Busca */          @media only screen and (min-width : 1px) {
 .formLine{
     margin: 0px;
 }
@@ -312,3 +312,10 @@ span.brand-logo { font-size: 20px; line-height: 25px; }
 }
 }
 
+/* Formulário-Criar-Página*/    @media only screen and (min-width : 750px) {
+    .card-content{
+        margin-left: 40px;
+        margin-right: 40px;
+        margin-top: -10px;
+    }
+}

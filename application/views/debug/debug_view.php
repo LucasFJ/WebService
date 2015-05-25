@@ -6,7 +6,7 @@
         <input id="cep" name="cep" type="text" required />
         <label for="cep" id="teste">Buscar CEP</label>
     </div>
-        <button type="submit" class="btn" value="Buscar">Buscar</button>
+        <a type="btn" id="enviaCEP" class="btn">Buscar</a>
     </form>
     <br />
     <div class="card-panel center-align cian lighten-3">
