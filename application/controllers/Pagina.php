@@ -8,6 +8,7 @@ class Pagina extends CI_Controller{
         }
     }
     
+    //REDIRECIONA O USUARIO PARA AS AÇÕES DE Configuracoes OU Cadastrar
     public function index(){
         $this->load->view('include/head_view');
         $this->load->view('include/header_view');
@@ -19,7 +20,27 @@ class Pagina extends CI_Controller{
         }
         $this->load->view('include/footer_view');
     }
-    
+    //PERMITE AO USUÁRIO VISUALIZAR ALGUMA PAGINA ATRAVÉS DE UM CODIGO PASSADO
+    //PELA URL.
+    public function visualizar($codigo = false){
+        if($codigo){
+           $codigo = hexdec($codigo);
+            if(is_numeric($codigo) and $codigo > 0){
+                echo "valido $codigo";
+                $this->load->model('pagina_model', 'pagmod');
+                
+            } else { //o valor passado pela url nao é um numero natural
+                echo "invalido";
+            }
+        } else { // nenhum valor foi passado pela url
+            echo "invalido2";
+        }
+    }
+    //PERMITE AO USUÁRIO CRIAR UMA NOVA PAGINA VINGULADA A SUA CONTA
+    public function cadastrar(){
+        
+    }
+    //MOSTRA A PAGINA CUJO PROPRIETÁRIO ADMINISTRA
     public function configuracoes(){
         $this->load->view('include/head_view');
         $this->load->view('include/header_view');

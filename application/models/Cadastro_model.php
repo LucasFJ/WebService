@@ -22,13 +22,24 @@ class Cadastro_model extends CI_Model {
             if($disponivel) {
                $nascimento = $this->validarData($nascimento);
                $senha = md5($senha); 
-               $resultado_query = $this->db->query("insert into tb_usuario "
+               $resultado_query1 = $this->db->query("insert into tb_usuario "
                        . "(nm_usuario, nm_sobrenome, nm_email, cd_senha, "
                         . " dt_cadastro, nm_ativo, dt_nascimento, nm_caminho_imagem,"
                        . " cd_genero) values "
                        . "('$nome', '$sobrenome', '$email', '$senha', now(), "
-                        . "false, '$nascimento', null, $genero)");
-                
+                        . "false, '$nascimento', null, $genero);");
+               
+                $resultado_query = $this->db->query ("SELECT cd_usuario FROM tb_usuario WHERE "
+                       . " nm_email = '$email' LIMIT 1;");
+               
+               if($resultado_query->num_rows() > 0){
+                   foreach($resultado_query->result() as $row){
+                        $codigo_usuario = $row->cd_usuario;
+                    }
+                    /* EXECUTA A AÇÃO DE ENVIAR EMAIL DE VERIFICAÇÃO DE FORMA PASSIVA*/
+                    $this->load->model('processo_model');
+                    $this->processo_model->NovaVerificacao($codigo_usuario);
+               }   
                     return true;
                 
             } else { // o email informado ja esta sendo utilizado por outra conta
@@ -68,18 +79,18 @@ class Cadastro_model extends CI_Model {
             //transforma em numeros
             $data2 = explode(',' ,$data[1]);
             switch($data2[0]){
-                case 'January': $mes = '01'; break;
-                case 'February': $mes = '02'; break;
-                case 'March': $mes = '03'; break;
-                case 'April': $mes = '04'; break;
-                case 'May': $mes = '05'; break;
-                case 'June': $mes = '06'; break;
-                case 'July': $mes = '07'; break;
-                case 'August': $mes = '08'; break;
-                case 'September': $mes = '09'; break;
-                case 'October': $mes = '10'; break;
-                case 'November': $mes = '11'; break;
-                case 'December': $mes = '12'; break;
+                case 'Janeiro': $mes = '01'; break;
+                case 'Fevereiro': $mes = '02'; break;
+                case 'Março': $mes = '03'; break;
+                case 'Abril': $mes = '04'; break;
+                case 'Maio': $mes = '05'; break;
+                case 'Junho': $mes = '06'; break;
+                case 'Julho': $mes = '07'; break;
+                case 'Agosto': $mes = '08'; break;
+                case 'Setembro': $mes = '09'; break;
+                case 'Outubro': $mes = '10'; break;
+                case 'Novembro': $mes = '11'; break;
+                case 'Dezembro': $mes = '12'; break;
             }
             
             return "$ano-$mes-$dia";

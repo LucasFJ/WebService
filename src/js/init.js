@@ -11,6 +11,8 @@ $(document).ready(function() {
     $('.modal-trigger').leanModal();
     
     // Inicializa o elemento Form Select do Materialize
+    CarregarBoxRamo();
+    CarregarBoxEstado();
     $('select').material_select();
     
     // Oculta e permite Exibir/Ocultar a busca aprimorada
@@ -19,4 +21,11 @@ $(document).ready(function() {
     function mostrarAdicional(){
             $('#buscaAdicional').toggle();
     }
+    
+    
+    $('#container-cidade').trigger('contentChanged');
+    $('#container-cidade').on('contentChanged', function() {
+        // re-initialize (update)
+        $('#container-cidade').material_select();
+    });
 });
