@@ -55,7 +55,6 @@ function CarregarCartoes(ramo, estado, cidade, bairro, ordenacao, nome){
         }
     } 
 function CarregarBoxRamo(){
-    alert('Carregar Ramo');
     xmlreq = CriaRequest();
     options_ramo = document.getElementById("container-ramo");
      if(!xmlreq){

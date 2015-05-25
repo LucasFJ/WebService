@@ -19,10 +19,8 @@ document.getElementById("cabecalho").innerHTML = "Buscar";
               <label for="nome">Nome da página</label>
             </div>
             <div class="input-field col l6 m6 s12">
-                <select  name="ramo"  id='container-ramo'>
-                <option value="0" disabled selected>Ramo da página</option>
-                 
-              </select>
+                <select  name="ramo"  id='container-ramo'>                 
+                </select>
             </div>
             </div>
             <!-- ROW ROW ROW -->
@@ -31,7 +29,7 @@ document.getElementById("cabecalho").innerHTML = "Buscar";
             <div class="row formLine">
             <div class="input-field col l6 m6 s12">
               <select name="ordenacao">
-                <option value="0" disabled selected>Ordenação</option>
+                <option value="0" selected>Ordenação</option>
                 <option value="1">Melhores avaliadas</option>
                 <option value="2">Nome de A a Z</option>
                 <option value="3">Nome de Z a A</option>
@@ -39,7 +37,7 @@ document.getElementById("cabecalho").innerHTML = "Buscar";
             </div>
             <div class="input-field col l6 m6 s12">
                 <select name="estado" id="container-estado" onchange="CarregarBoxCidade()">
-                <option value="0" disabled selected>Estado</option>
+                <option value="0" selected>Estado</option>
                 <option value="1">São Paulo</option>
                 <option value="2">Rio de Janeiro</option>
                 <option value="3">Paraná</option>
@@ -53,7 +51,7 @@ document.getElementById("cabecalho").innerHTML = "Buscar";
             <div class="row formLine">
             <div class="input-field col l6 m6 s12">
                 <select name="cidade" id="container-cidade">
-                <option value="0" disabled selected>Cidade</option>
+                <option value="0" selected>Cidade</option>
                 <option value="1">Praia Grande</option>
                 <option value="2">Santos</option>
                 <option value="3">São Vicente</option>
@@ -61,7 +59,7 @@ document.getElementById("cabecalho").innerHTML = "Buscar";
             </div>
             <div class="input-field col l6 m6 s12">
               <select name="bairro" id="container-bairro">
-                <option value="0" disabled selected>Bairro</option>
+                <option value="0" selected>Bairro</option>
                 <option value="1">Cidade Ocian</option>
                 <option value="2">Canto do Forte</option>
                 <option value="3">Boqueirão</option>

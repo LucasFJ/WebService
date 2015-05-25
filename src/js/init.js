@@ -23,9 +23,4 @@ $(document).ready(function() {
     }
     
     
-    $('#container-cidade').trigger('contentChanged');
-    $('#container-cidade').on('contentChanged', function() {
-        // re-initialize (update)
-        $('#container-cidade').material_select();
-    });
 });

@@ -24,7 +24,7 @@ class Ajax_model extends CI_Model {
             $strConsulta .= "AND P.nm_pagina LIKE '%$nome%' ";
         }
         if($ramo){ // algum ramo foi especificado?
-            $strConsulta .= "AND R.cd_ramo = $ramo ";
+            $strConsulta .= "AND P.cd_ramo = $ramo ";
         }
         if($estado){ // algum estado foi especificado?
             $strConsulta .= "AND E.cd_estado = $estado ";

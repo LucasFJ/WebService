@@ -20,18 +20,13 @@ class Pagina extends CI_Controller{
         }
         $this->load->view('include/footer_view');
     }
+    
     //PERMITE AO USUÁRIO VISUALIZAR ALGUMA PAGINA ATRAVÉS DE UM CODIGO PASSADO
     //PELA URL.
     public function visualizar($codigo = false){
-        if($codigo){
-           $codigo = hexdec($codigo);
-            if(is_numeric($codigo) and $codigo > 0){
-                echo "valido $codigo";
-                $this->load->model('pagina_model', 'pagmod');
-                
-            } else { //o valor passado pela url nao é um numero natural
-                echo "invalido";
-            }
+        $codigo = hexdec($codigo);
+        if($codigo && is_numeric($codigo) && $codigo > 0){
+             $this->load->model('pagina_model', 'pagmod');
         } else { // nenhum valor foi passado pela url
             echo "invalido2";
         }
