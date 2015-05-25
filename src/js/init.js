@@ -11,6 +11,7 @@ $(document).ready(function() {
     $('.modal-trigger').leanModal();
     
     // Inicializa o elemento Form Select do Materialize
+    CarregarBoxRamo();
     $('select').material_select();
     
     // Oculta e permite Exibir/Ocultar a busca aprimorada

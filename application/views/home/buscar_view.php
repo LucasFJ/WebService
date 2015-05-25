@@ -15,7 +15,7 @@ document.getElementById("cabecalho").innerHTML = "Buscar";
         <form class="col s12" action="<?php echo base_url('home/buscar'); ?>" method="post">
             <div class="row formLine">
             <div class="input-field col l6 m6 s12 inputNome">
-              <input id="nome" type="text" class="validate" name="nome" onclick="CarregarBoxRamo()">
+              <input id="nome" type="text" class="validate" name="nome">
               <label for="nome">Nome da página</label>
             </div>
             <div class="input-field col l6 m6 s12">
