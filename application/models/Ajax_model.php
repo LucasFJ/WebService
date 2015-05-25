@@ -76,8 +76,34 @@ class Ajax_model extends CI_Model {
             $bairro = "Bairro", $cidade = "Cidade", $estado = "Estado", $numero = 1234,
             $caminho_imagem = false, $codigo = 0){
         //INSIRA AQUI O CÓDIGO HTML PARA CADA FAIXADA QUE SERÁ EXIBIDA
-        return "<div class='cartao'> $nome "
-                . "<br/> $slogan </div> <br/>";
+        $contato1 = "(13) 3406-3805";
+        $contato2 = "(13) 3406-3805";
+        $imagem = "total.jpg";
+        $cor = "deep-orange";
+        return "<div class='conteudo cartao'>"
+                ."<div class='card-panel $cor lighten-1 z-depth-1'>"
+                    ."<div class='row cardConteudo valign-wrapper'>"
+                    ."<div class='col s3 right-align cardImagem'>"
+                    ."<img src='". base_url("src/imagens/pagina/perfil/$imagem") ."' class='circle imgServico z-depth-1'/>"
+                    ."</div><div class='col s9 center-align cardInfo'>"
+                        ."<div class='row white-text left-align cardTopo'>"
+                            ."<span class='nomeServico'>$nome</span><br />"
+                            ."<h6 class='sloganServico'>$slogan</h6>"
+                            ."<h6 class='enderecoServico'>$bairro,$cidade - $estado</h6>"
+                            ."<h6 class='enderecoServico'>$contato1 | $contato2</h6>"
+                        ."</div><div class='row cardRodape valign-wrapper'>"
+                        ."<div class='col s4 left-align  valign-wrapper cardRate'>"
+                            ."<i class='mdi-action-star-rate white-text rateServico'></i>"
+                            ."<i class='mdi-action-star-rate white-text rateServico'></i>"
+                            ."<i class='mdi-action-star-rate white-text rateServico'></i>"
+                            ."<i class='mdi-action-star-rate white-text rateServico'></i>"
+                            ."<i class='mdi-action-star-rate white-text rateServico'></i>"
+                        ."</div><div class='col s8 right-align cardBotoes'>"
+                            ."<a href='#modalInfo' class='modal-trigger btn-floating waves-effect waves-light $cor darken-2 btnServico'><i class='mdi-action-info-outline'></i></a>"
+                            ."<a href='' class='btn-floating waves-effect waves-light  $cor darken-2 btnServico'><i class='mdi-maps-place iconeBotao'></i></a>"
+                            ."<a href='#modalComentar' class='modal-trigger btn-floating waves-effect waves-light $cor darken-2 btnServico'><i class='mdi-communication-comment iconeBotao'></i></a>"
+                            ."<a href='#modalCompartilhar' class='modal-trigger btn-floating waves-effect waves-light $cor darken-2 btnServico'><i class='mdi-social-share valign-wrapper iconeBotao'></i></a>"
+                        ."</div></div></div></div></div></div>";
     }
     
     public function carregarOpcoesRamo(){

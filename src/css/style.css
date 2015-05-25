@@ -1,4 +1,4 @@
-/* Nada pode ser selecionado */body{ -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; margin-bottom: 70px;	}
+/* Nada pode ser selecionado */body{ -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none;	}
 /* SideNav Fixa */ @media only screen and (min-width : 993px) {
     header, main, footer { padding-left: 240px; }
 }
@@ -6,7 +6,16 @@
 span.brand-logo { font-size: 20px; line-height: 25px; }
 .side-nav       { overflow: scroll; }
 /* Dizer após cabeçalho */ h5 { font-size: 20px; }
-/* Rodapé fixo TO DO*/ .page-footer { width: 100%; position: fixed; bottom: 0px;}
+
+ body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+
+  main {
+    flex: 1 0 auto;
+  }
 
 /* Conteúdo-Desktop */  @media only screen and (min-width : 871px) {
     .conteudo{   
