@@ -22,20 +22,6 @@ if(!request){
 } 
 
 
-function AdministradorAjax() {
-    var xmlreq = CriaRequest();
-    var offset = 0;
-    
-    this.ConsultarEndereco = function() {
-        //IRÁ ENVIAR UM NUMERO DE CEP E RETORNAR logradouro, bairro, cidade e uf
-    }
-    
-    
-    this.RecarregarPaginas = function(){
-        //IRÁ DELETAR AS FAIXADAS JÁ CARREDAS E SUBSTITUIR PELAS NOVAS 
-        //DE ACORDO COM OS NOVOS REQUISITOS DE BUSCA
-    }
-}
 
 function CarregarCartoes(ramo, estado, cidade, bairro, ordenacao, nome){
         //IRÁ RETORNAR AS FAIXADAS DAS PÁGINAS NA HOME
@@ -124,7 +110,7 @@ function CarregarBoxCidade(){
             // Verifica se foi concluído com sucesso e a conexão fechada (readyState=4) 
                 if (xmlreq.readyState == 4) {
                        if (xmlreq.status === 200) {
-                          options_cidade.innerHTML = xmlreq.responseText;                           
+                          options_cidade.innerHTML = xmlreq.responseText;
                        } else {
                            alert('Não foi possivel carregar os ramos');
                        }

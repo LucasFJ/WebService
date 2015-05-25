@@ -38,7 +38,7 @@ document.getElementById("cabecalho").innerHTML = "Buscar";
               </select>
             </div>
             <div class="input-field col l6 m6 s12">
-                <select name="estado">
+                <select name="estado" id="container-estado" onchange="CarregarBoxCidade()">
                 <option value="0" disabled selected>Estado</option>
                 <option value="1">São Paulo</option>
                 <option value="2">Rio de Janeiro</option>
@@ -52,7 +52,7 @@ document.getElementById("cabecalho").innerHTML = "Buscar";
             <!-- ROW ROW ROW -->
             <div class="row formLine">
             <div class="input-field col l6 m6 s12">
-                <select name="cidade">
+                <select name="cidade" id="container-cidade">
                 <option value="0" disabled selected>Cidade</option>
                 <option value="1">Praia Grande</option>
                 <option value="2">Santos</option>
@@ -60,7 +60,7 @@ document.getElementById("cabecalho").innerHTML = "Buscar";
               </select>
             </div>
             <div class="input-field col l6 m6 s12">
-              <select name="bairro">
+              <select name="bairro" id="container-bairro">
                 <option value="0" disabled selected>Bairro</option>
                 <option value="1">Cidade Ocian</option>
                 <option value="2">Canto do Forte</option>
