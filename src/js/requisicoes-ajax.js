@@ -69,6 +69,7 @@ function CarregarCartoes(ramo, estado, cidade, bairro, ordenacao, nome){
         }
     } 
 function CarregarBoxRamo(){
+    alert('Carregar Ramo');
     xmlreq = CriaRequest();
     options_ramo = document.getElementById("container-ramo");
      if(!xmlreq){
@@ -79,7 +80,9 @@ function CarregarBoxRamo(){
             // Verifica se foi concluído com sucesso e a conexão fechada (readyState=4) 
                 if (xmlreq.readyState == 4) {
                        if (xmlreq.status === 200) {
-                          options_ramo.innerHTML = xmlreq.responseText;                           
+                          options_ramo.innerHTML = xmlreq.responseText;
+                          $('#container-ramo').material_select('destroy');
+                          $('#container-ramo').material_select();
                        } else {
                            alert('Não foi possivel carregar os ramos');
                        }
