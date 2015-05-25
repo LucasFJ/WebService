@@ -6,6 +6,7 @@ class Pagina extends CI_Controller{
         if(!$this->status->verificarLogin()){
             redirect('login');
         }
+        $this->load->model('pagina_model', 'pagmod');
     }
     
     //REDIRECIONA O USUARIO PARA AS AÇÕES DE Configuracoes OU Cadastrar
@@ -16,7 +17,7 @@ class Pagina extends CI_Controller{
                $this->load->view('pagina/minhapagina_view');
         }
         else{
-            $this->load->view('pagina/criarpagina_view');
+            redirect('pagina/cadastrar');
         }
         $this->load->view('include/footer_view');
     }
@@ -26,14 +27,39 @@ class Pagina extends CI_Controller{
     public function visualizar($codigo = false){
         $codigo = hexdec($codigo);
         if($codigo && is_numeric($codigo) && $codigo > 0){
-             $this->load->model('pagina_model', 'pagmod');
+             $dados = $this->pagmod->CarregarDadosPagina($codigo);
+             print_r($dados);
         } else { // nenhum valor foi passado pela url
             echo "invalido2";
         }
     }
     //PERMITE AO USUÁRIO CRIAR UMA NOVA PAGINA VINGULADA A SUA CONTA
     public function cadastrar(){
+        $this->load->view('include/head_view');
+        $this->load->view('include/header_view');
+        $this->load->library('form_validation');
         
+        if(isset($_POST['Cadastrar'])){
+            $nome =     isset($_POST['nome']) ? $_POST['nome'] : false;
+            $ramo =     isset($_POST['ramo']) ? $_POST['ramo'] : false;
+            $slogan =   isset($_POST['slogan']) ? $_POST['slogan'] : false;
+            $site =     isset($_POST['site']) ? $_POST['site'] : false;
+            $descricao = isset($_POST['descricao']) ? $_POST['descricao'] : false;
+            $cep =      isset($_POST['cep']) ? $_POST['cep'] : false;
+            $numero =   isset($_POST['numero']) ? $_POST['numero'] : false;
+            $complemento = isset($_POST['complemento']) ? $_POST['complemento'] : false;
+            $layout =   isset($_POST['layout']) ? $_POST['layout'] : false;
+            $contato1 = isset($_POST['contato1']) ? $_POST['contato1'] : false;
+            $contato2 = isset($_POST['contato2']) ? $_POST['contato2'] : false;
+            $imagem =   isset($_FILES['imagem']) ? $_POST['imagem'] : false;
+            
+            $this->pagmod->CadastrarPagina($nome, $ramo, $slogan , 
+            $site, $descricao, $cep, $numero, $complemento, $layout, $contato1, $contato2, $imagem);
+            
+        } else {
+            $this->load->view('pagina/criarpagina_view');
+        }
+        $this->load->view('include/footer_view');
     }
     //MOSTRA A PAGINA CUJO PROPRIETÁRIO ADMINISTRA
     public function configuracoes(){
