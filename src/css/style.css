@@ -181,7 +181,7 @@ span.brand-logo { font-size: 20px; line-height: 25px; }
     .card{
         margin-bottom: 5px;
     }
-    .card-content{
+    .cardContProduto{
         height: 70px;
     }
     .card .card-content .card-title {
@@ -214,7 +214,7 @@ span.brand-logo { font-size: 20px; line-height: 25px; }
     .card{
         margin-bottom: 5px;
     }
-    .card-content{
+    .cardContProduto{
         height: 70px;
     }
     .card .card-content .card-title {
@@ -242,7 +242,7 @@ span.brand-logo { font-size: 20px; line-height: 25px; }
     .card{
         margin-bottom: 5px;
     }
-    .card-content{
+    .cardContProduto{
         height: 70px;
     }
     .card .card-content .card-title {
@@ -295,6 +295,13 @@ span.brand-logo { font-size: 20px; line-height: 25px; }
      border-bottom: 1px solid #888;
      box-shadow: 0 1px 0 0 #888;
    }
+   .input-field input[type=textarea]:focus + label {
+     color: #888;
+   }
+   .input-field input[type=textarea]:focus{
+     border-bottom: 1px solid #888;
+     box-shadow: 0 1px 0 0 #888;
+   }
     
 .genero{
     margin-top: 0px;
@@ -313,9 +320,13 @@ span.brand-logo { font-size: 20px; line-height: 25px; }
 }
 
 /* Formulário-Criar-Página*/    @media only screen and (min-width : 750px) {
-    .card-content{
+    .contentForm{
         margin-left: 40px;
         margin-right: 40px;
         margin-top: -10px;
     }
+}
+
+.cardCor{
+    margin: 3px;
 }

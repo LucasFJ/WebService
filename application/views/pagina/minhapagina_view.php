@@ -51,7 +51,7 @@ document.getElementById("cabecalho").innerHTML = "Total Saúde SP";
     <div class="card-image waves-effect waves-block waves-light">
         <img class="activator" src="<?php echo base_url('src/imagens/pagina/produto/PIO.png'); ?>">
     </div>
-    <div class="card-content">
+    <div class="card-content cardContProduto">
         <span class="card-title activator grey-text text-darken-4"><h6 class="truncate">Punção Intraóssea</h6><i class="mdi-navigation-more-vert right"></i></span>
     </div>
     <div class="card-reveal">
@@ -72,7 +72,7 @@ document.getElementById("cabecalho").innerHTML = "Total Saúde SP";
     <div class="card-image waves-effect waves-block waves-light">
         <img class="activator" src="<?php echo base_url('src/imagens/pagina/produto/APH.png'); ?>">
     </div>
-    <div class="card-content valign-wrapper">
+    <div class="card-content cardContProduto valign-wrapper">
         <span class="card-title activator grey-text text-darken-4"><h6 class="truncate">Atendimento Pré Hospitalar</h6><i class="mdi-navigation-more-vert right"></i></span>
     </div>
     <div class="card-reveal">
@@ -93,7 +93,7 @@ document.getElementById("cabecalho").innerHTML = "Total Saúde SP";
     <div class="card-image waves-effect waves-block waves-light">
         <img class="activator" src="<?php echo base_url('src/imagens/pagina/produto/ECG.png'); ?>">
     </div>
-    <div class="card-content">
+    <div class="card-content cardContProduto">
         <span class="card-title activator grey-text text-darken-4"><h6 class="truncate">Interpretação de Eletrocardiograma</h6><i class="mdi-navigation-more-vert right"></i></span>
     </div>
     <div class="card-reveal">
