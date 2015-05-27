@@ -14,12 +14,14 @@ class Ajax_model extends CI_Model {
         $strConsulta = "SELECT DISTINCT P.nm_pagina as 'nome', P.nm_slogan as 'slogan',"
                 . " L.nm_logradouro as 'endereco', B.nm_bairro as 'bairro',"
                 . " P.nr_endereco as 'numero',P.nm_caminho_imagem as 'imagem',  "
-                . "P.cd_pagina as 'codigo', C.nm_cidade as 'cidade', UF.sg_uf as 'estado'";
+                . "P.cd_pagina as 'codigo', C.nm_cidade as 'cidade', UF.sg_uf as 'estado',"
+                . "COR.nm_cor as 'cor'";
         //Tabelas de origem
-        $strConsulta .= " FROM tb_pagina as P, tb_ramo as R, tb_logradouro as L, tb_bairro as B, tb_cidade as C, tb_uf as UF";
+        $strConsulta .= " FROM tb_pagina as P, tb_ramo as R, tb_logradouro as L, tb_bairro as B, tb_cidade as C, tb_uf as UF, "
+                . "tb_layout as COR";
         //Condições de busca
         $strConsulta .= " WHERE L.cd_logradouro = P.cd_logradouro AND L.cd_bairro = B.cd_bairro"
-                . " AND B.cd_cidade = C.cd_cidade AND C.cd_uf = UF.cd_uf ";
+                . " AND B.cd_cidade = C.cd_cidade AND C.cd_uf = UF.cd_uf AND P.cd_layout = COR.cd_layout ";
         if($nome) { //algum nome foi especificado?
             $strConsulta .= "AND P.nm_pagina LIKE '%$nome%' ";
         }
@@ -61,8 +63,10 @@ class Ajax_model extends CI_Model {
                     $numero = $row->numero;
                     $imagem = $row->imagem;
                     $codigo = $row->codigo;
+                    $cor = $row->cor;
                     //chamamos a função que vai inserir os dados no molde da faixada
-                    $resultado .= $this->novoCartao($nome, $slogan, $endereco, $bairro, $cidade, $estado, $numero, $imagem, $codigo);
+                    $resultado .= $this->novoCartao($nome, $slogan, $endereco, $bairro, $cidade, $estado, $numero, $imagem, $codigo, 
+                            $cor);
                 }
                 echo $resultado;
             } else {
@@ -74,12 +78,13 @@ class Ajax_model extends CI_Model {
     } 
     private function novoCartao($nome = "Nome", $slogan = "Slogan", $endereco = "Endereço",
             $bairro = "Bairro", $cidade = "Cidade", $estado = "Estado", $numero = 1234,
-            $caminho_imagem = false, $codigo = 0){
+            $imagem = false, $codigo = 0, $cor = 'deep-purple'){
         //INSIRA AQUI O CÓDIGO HTML PARA CADA FAIXADA QUE SERÁ EXIBIDA
         $contato1 = "(13) 3406-3805";
         $contato2 = "(13) 3406-3805";
-        $imagem = "total.jpg";
-        $cor = "deep-orange";
+        $codigo = dechex($codigo);
+        if(!$imagem){ $imagem = "harry-square.png"; }
+        if(!$cor){ $cor = "deep-orange"; }
         return "<div class='conteudo cartao'>"
                 ."<div class='card-panel $cor lighten-1 z-depth-1'>"
                     ."<div class='row cardConteudo valign-wrapper'>"
@@ -99,10 +104,10 @@ class Ajax_model extends CI_Model {
                             ."<i class='mdi-action-star-rate white-text rateServico'></i>"
                             ."<i class='mdi-action-star-rate white-text rateServico'></i>"
                         ."</div><div class='col s8 right-align cardBotoes'>"
-                            ."<a href='#modalInfo' class='modal-trigger btn-floating waves-effect waves-light $cor darken-2 btnServico'><i class='mdi-action-info-outline'></i></a>"
-                            ."<a href='' class='btn-floating waves-effect waves-light  $cor darken-2 btnServico'><i class='mdi-maps-place iconeBotao'></i></a>"
-                            ."<a href='#modalComentar' class='modal-trigger btn-floating waves-effect waves-light $cor darken-2 btnServico'><i class='mdi-communication-comment iconeBotao'></i></a>"
-                            ."<a href='#modalCompartilhar' class='modal-trigger btn-floating waves-effect waves-light $cor darken-2 btnServico'><i class='mdi-social-share valign-wrapper iconeBotao'></i></a>"
+                            ."<a href='". base_url("pagina/visualizar/$codigo")."' class='modal-trigger btn-floating waves-effect waves-light $cor darken-2 btnServico'><i class='mdi-action-info-outline'></i></a>"
+                           // ."<a href='' class='btn-floating waves-effect waves-light  $cor darken-2 btnServico'><i class='mdi-maps-place iconeBotao'></i></a>"
+                          //  ."<a href='#modalComentar' class='modal-trigger btn-floating waves-effect waves-light $cor darken-2 btnServico'><i class='mdi-communication-comment iconeBotao'></i></a>"
+                          //  ."<a href='#modalCompartilhar' class='modal-trigger btn-floating waves-effect waves-light $cor darken-2 btnServico'><i class='mdi-social-share valign-wrapper iconeBotao'></i></a>"
                         ."</div></div></div></div></div></div>";
     }
     

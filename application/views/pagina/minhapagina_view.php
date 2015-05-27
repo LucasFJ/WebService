@@ -1,24 +1,23 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 
 <script>
-document.getElementById("cabecalho").innerHTML = "Total Saúde SP";
+document.getElementById("cabecalho").innerHTML = " <?php echo $nome; ?>";
 </script>
 
 <!-- Conteúdo da View abaixo -->
-
 <!--CARD SERVICO-->
 <div class="conteudo">
-<div class="card-panel teal lighten-1 z-depth-1">
+<div class="card-panel <?php echo $cor; ?> lighten-1 z-depth-1">
     <div class="row cardConteudo valign-wrapper">
     <div class="col s3 right-align cardImagem">
     <img src="<?php echo base_url('src/imagens/pagina/perfil/total.jpg'); ?>" class="circle imgServico z-depth-1"/>
     </div>
     <div class="col s9 center-align cardInfo">
         <div class="row  white-text left-align cardTopo">
-            <span class="nomeServico">Total Saúde SP</span><br />
-            <h6 class="sloganServico">O conhecimento ao seu alcance</h6>
-            <h6 class="enderecoServico">www.totalsaudesp.com.br</h6>
-            <h6 class="enderecoServico">(13) 3018-7500</h6>
+            <span class="nomeServico"><?php echo $nome;?></span><br />
+            <h6 class="sloganServico"><?php echo $slogan; ?></h6>
+            <h6 class="enderecoServico"><?php echo "$logradouro, nº $numero, $bairro - $cidade/$uf. $complemento"; ?></h6>
+            <h6 class="enderecoServico"><?php echo "(13) 3472-3044 | (13) 99169-0517 "; ?></h6>
         </div>
         <div class="row  cardRodape valign-wrapper">
         <div class="col s4 left-align  valign-wrapper cardRate">
@@ -29,18 +28,18 @@ document.getElementById("cabecalho").innerHTML = "Total Saúde SP";
             <i class="mdi-action-star-rate white-text rateServico"></i>
         </div>
         <div class="col s8 right-align  cardBotoes">
-            <a href="#modalInfo" class="modal-trigger btn-floating waves-effect waves-light teal darken-2 btnServico"><i class="mdi-action-info-outline"></i></a>
-            <a href="" class="btn-floating waves-effect waves-light  teal darken-2 btnServico"><i class="mdi-maps-place iconeBotao"></i></a>
-            <a href="#modalComentar" class="modal-trigger btn-floating waves-effect waves-light  teal darken-2 btnServico"><i class="mdi-communication-comment iconeBotao"></i></a>
-            <a href="#modalCompartilhar" class="modal-trigger btn-floating waves-effect waves-light  teal darken-2 btnServico"><i class="mdi-social-share valign-wrapper iconeBotao"></i></a>
+            <a href="#modalInfo" class="modal-trigger btn-floating waves-effect waves-light <?php echo $cor; ?> darken-2 btnServico"><i class="mdi-action-info-outline"></i></a>
+            <a href="" class="btn-floating waves-effect waves-light  <?php echo $cor; ?> darken-2 btnServico"><i class="mdi-maps-place iconeBotao"></i></a>
+            <a href="#modalComentar" class="modal-trigger btn-floating waves-effect waves-light  <?php echo $cor; ?> darken-2 btnServico"><i class="mdi-communication-comment iconeBotao"></i></a>
+            <a href="#modalCompartilhar" class="modal-trigger btn-floating waves-effect waves-light  <?php echo $cor; ?> darken-2 btnServico"><i class="mdi-social-share valign-wrapper iconeBotao"></i></a>
         </div>
         </div>
     </div>
-    </div>
+    </div> 
 </div>
-
+ <br/>
 <div class="row hide-on-med-and-up btnSite">
-    <a class="deep-purple lighten-1 waves-effect waves-light col s12 btn z-depth-1">Acesse o site</a>
+    <a class="<?php echo $cor; ?>  lighten-1 waves-effect waves-light col s12 btn z-depth-1">Acesse o site</a>
 </div>
     
 <div class="contProdutos">

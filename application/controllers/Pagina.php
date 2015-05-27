@@ -27,10 +27,14 @@ class Pagina extends CI_Controller{
     public function visualizar($codigo = false){
         $codigo = hexdec($codigo);
         if($codigo && is_numeric($codigo) && $codigo > 0){
-             $dados = $this->pagmod->CarregarDadosPagina($codigo);
-             print_r($dados);
+             $dados_pagina = $this->pagmod->CarregarDadosPagina($codigo);
+            // print_r($dados_pagina);
+             $this->load->view('include/head_view');
+             $this->load->view('include/header_view');
+             $this->load->view('pagina/minhapagina_view', $dados_pagina);
+             $this->load->view('include/footer_view');
         } else { // nenhum valor foi passado pela url
-            echo "invalido2";
+            redirect('home');
         }
     }
     //PERMITE AO USUÁRIO CRIAR UMA NOVA PAGINA VINGULADA A SUA CONTA
@@ -51,22 +55,34 @@ class Pagina extends CI_Controller{
             $layout =   isset($_POST['layout']) ? $_POST['layout'] : false;
             $contato1 = isset($_POST['contato1']) ? $_POST['contato1'] : false;
             $contato2 = isset($_POST['contato2']) ? $_POST['contato2'] : false;
-            $imagem =   isset($_FILES['imagem']) ? $_POST['imagem'] : false;
+            $imagem =   $_FILES['imagem'] ;
             
-            $this->pagmod->CadastrarPagina($nome, $ramo, $slogan , 
+           print_r($imagem);
+            $resultado = $this->pagmod->CadastrarPagina($nome, $ramo, $slogan , 
             $site, $descricao, $cep, $numero, $complemento, $layout, $contato1, $contato2, $imagem);
             
+            if($resultado){
+                echo "deu bom";
+            } else {
+               echo "deu ruim";
+           }
         } else {
-            $this->load->view('pagina/criarpagina_view');
+            $dados_preload = $this->pagmod->CarregarBoxLayoutRamo();
+            $dados = array('opcoes_ramo' => $dados_preload['opcoes_ramo'], 
+                'opcoes_layout' => $dados_preload['opcoes_layout'] );
+            $this->load->view('pagina/criarpagina_view', $dados);
         }
         $this->load->view('include/footer_view');
     }
     //MOSTRA A PAGINA CUJO PROPRIETÁRIO ADMINISTRA
     public function configuracoes(){
-        $this->load->view('include/head_view');
-        $this->load->view('include/header_view');
-        $this->load->view('pagina/comentarios_view');
-        $this->load->view('include/footer_view');
+        //MEdida provisoria, o usuario visualiza a propria pagina
+        $resultado = $this->pagmod->CarregarPaginaProprietario();
+        if($resultado){
+            redirect("pagina/visualizar/$resultado");
+        } else {
+            redirect('home');
+        }
     }
 
 }

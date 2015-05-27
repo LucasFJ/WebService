@@ -20,21 +20,20 @@ document.getElementById("cabecalho").innerHTML = "Criar Página";
         <!-- Nome e Ramo -->
         <div class="row formLine">
         <div class="input-field col l6 m6 s12 inputNome">
-            <input id="nome" type="text" name="nome" class="validate">
+            <input id="nome" type="text" name="nome" class="validate" required>
             <label for="nome">Nome da página</label>
         </div>
         <div class="input-field col l6 m6 s12">
-            <select name="ramo">
+            <select name="ramo" required>
             <option value="" disabled selected>Ramo da página</option>
-            <option value="1">Música e Arte</option>
-            <option value="2">Jogos e Diversão</option>
+            <?php echo $opcoes_ramo; ?>
             </select>
         </div>
         </div>
         <!-- Slogan e Site -->
         <div class="row formLine">
         <div class="input-field col l6 m6 s12 inputNome">
-            <input id="slogan" type="text" name="slogan" class="validate">
+            <input id="slogan" type="text" name="slogan" class="validate" required>
             <label for="slogan">Slogan</label>
         </div>
         <div class="input-field col l6 m6 s12 inputNome">
@@ -45,7 +44,7 @@ document.getElementById("cabecalho").innerHTML = "Criar Página";
         <!-- Descrição -->
         <div class="row formLine">
         <div class="input-field col l12 m12 s12 inputNome">
-            <textarea id="descricao" name="descricao" class="materialize-textarea"></textarea>
+            <textarea id="descricao" name="descricao" class="materialize-textarea" required></textarea>
             <label for="descricao">Descrição</label>
         </div>
         </div>
@@ -72,20 +71,14 @@ document.getElementById("cabecalho").innerHTML = "Criar Página";
                 <input class="file-path validate" type="text"/>
             <div class="btn grey darken-2">
                 <span><i class="mdi-image-photo-camera"></i></span>
-                <input type="file" />
+                <input type="file" name="imagem[]" multiple />
             </div>
             </div>
             <br /><br/><br/>
             <div class="row formLine center-align">
-                <div class="col l2 center-align">
-                    <input name="group1" type="radio" id="cor1" class="orange-text" />
-                    <label for="cor1">Amarelo</label>
-                </div>
-                <div class="col l2">
-                    <input name="group1" type="radio" id="cor2" />
-                    <label for="cor2">Amarelo</label>
-                </div>
+                <?php echo $opcoes_layout; ?>
             </div>
+            <br/>
     </div>
     </div>
     <br />
@@ -96,15 +89,15 @@ document.getElementById("cabecalho").innerHTML = "Criar Página";
             <!-- CEP, Número e Complemento -->
             <div class="row formLine">
             <div class="input-field col l4 m4 s8 inputNome">
-                <input id="cep" type="text" name="cep" class="validate">
+                <input id="cep" type="text" name="cep" class="validate" value=''>
                 <label for="cep">CEP</label>
             </div>
             <div class="input-field col l2 m2 s4 inputNome">
-              <input id="numero" type="text" name="numero" class="validate">
+              <input id="numero" type="text" name="numero" class="validate" value=''>
               <label for="numero">Número</label>
             </div>
             <div class="input-field col l6 m6 s12 inputNome">
-              <input id="complemento" type="text" name="complemento" class="validate">
+              <input id="complemento" type="text" name="complemento" class="validate" value=''>
               <label for="complemento">Complemento</label>
             </div>
         </div>
@@ -136,7 +129,7 @@ document.getElementById("cabecalho").innerHTML = "Criar Página";
     
     <!-- Botões -->
     <div class="row center-align rowBusca">
-        <input class="btn btnBusca orange darken-2" type="submit" id="buscar" value="Criar Página" />
+        <input class="btn btnBusca orange darken-2" type="submit" id="buscar" value="Criar Página" name="Cadastrar"/>
         <input class="btn btnBusca orange darken-2" type="reset" id="buscar" value="Limpar" />
     </div>          
 </form>

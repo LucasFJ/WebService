@@ -51,10 +51,10 @@ class Processo_model extends CI_Model {
                 $this->load->library('sender');
                 $resultado = $this->sender->Validacao($nome_dest, $email_dest, $codigo_processo, $chave);
                 if($resultado){
-                    echo "<script> alert('Enviou'); </script>";
+                    //echo "<script> alert('Enviou'); </script>";
                     return true;
                 } else { // Falha no envio do email
-                    echo "<script> alert('Não Enviou'); </script>";
+                   // echo "<script> alert('Não Enviou'); </script>";
                     return false;
                 }
             }else { // ocorreu um erro durante a criação de processo

@@ -38,11 +38,11 @@
                               <ul>
                                   <?php
                                     if($_SESSION['is_dono'] == true){
-                                      echo '<li><a href="'. base_url('pagina/index') .'">Minha página</a></li>';
-                                      echo '<li><a href="'. base_url('pagina/comentarios') .'">Comentários</a></li>';
+                                      echo '<li><a href="'. base_url('pagina/configuracoes') .'">Minha página</a></li>';
+                                     // echo '<li><a href="'. base_url('pagina/comentarios') .'">Comentários</a></li>';
                                     }
                                     else {
-                                      echo '<li><a href="'. base_url('pagina/index') .'">Criar página</a></li>';  
+                                      echo '<li><a href="'. base_url('pagina/cadastrar') .'">Criar página</a></li>';  
                                     }
                                   ?>
                                 </ul>

@@ -67,7 +67,7 @@ class Status {
     //de tempo pré-definido
     public function iniciarCookie($user_email = null, $user_senha = null){
         $expira = time() + ( 60 * 60 * 2); // Tempo Unix: 2 horas
-        setcookie('user_email', $user_login, $expira);
+        setcookie('user_email', $user_email, $expira);
         setcookie('user_senha', $user_senha, $expira);
         return true;
     }
@@ -100,16 +100,15 @@ class Status {
                 $codigo = $row->cd_usuario;
             }
             
-            //$resultado_query2 = $this->CI->db->query("SELECT nm_usuario FROM "
-            //        . "tb_usuario, tb_pagina WHERE tb_usuario.cd_usuario = tb_pagina.cd_usuario "
-            //     . " and tb_usuario.cd_usuario = $codigo limit 1");
-            //if($resultado_query2->num_rows() > 0){
-            //    $dono = true;
-            //}
-            //else {
+            $resultado_query2 = $this->CI->db->query("SELECT nm_usuario FROM "
+                    . "tb_usuario, tb_pagina WHERE tb_usuario.cd_usuario = tb_pagina.cd_usuario "
+                 . " and tb_usuario.cd_usuario = $codigo limit 1");
+            if($resultado_query2->num_rows() > 0){
+                $dono = true;
+            }
+            else {
                 $dono = false;
-            //} 
-        
+            } 
              
             return array('user_nome' => $nome, 
                 'user_email' => $email, 
@@ -176,4 +175,4 @@ class Status {
  * VARIÁVEIS PRESENTES NO COOKIE:
  * -> user_login // login do utilizador da conta
  * -> user_senha // senha do utilizador da conta
- */
+ */ 

@@ -35,13 +35,145 @@ class Pagina_model extends CI_Model {
             return false;
         }
     }
+    public function CarregarProdutosPagina($codigo = false){
+        $resultado_query = $this->db->query("SELECT nm_produto as 'nome', cd_produto as 'codigo', "
+                . "nm_descricao as 'descricao' "
+                . "FROM tb_produto as PR WHERE cd_pagina = $codigo");
+       $produtos = null;
+       if($resultado_query->num_rows() > 0){
+           $index = 0;
+           foreach($resultado_query->result() as $row){
+               $produtos[0] = array('nome' => $row->nome, 'descricao' => $row->descricao,
+                   'codigo' => $row->codigo);
+               $index += 1;
+           }
+       } else {
+           $produtos = false;
+       }
+       return $produtos;
+    }
     
-    public function CadastrarPagina($nome = false, $ramo = false, $slogan = false, 
-            $site = false, $descricao = false, $cep = false, $numero = false, 
-            $complemento = false, $layout = false, $contato1 = false, $contato2 = false,
-            $imagem = false){
+    public function CadastrarPagina($nome, $ramo, $slogan,$site, $descricao, $cep, $numero, 
+            $complemento, $layout, $contato1, $contato2, $imagem){
         //primeira etapa >> tratando os dados para serem inseridos
         $nome = addslashes(trim($nome));
+        $ramo = (is_numeric($ramo) && $ramo > 0) ? $ramo : 1;
         $slogan = addslashes(trim($slogan));
+        $descricao = str_replace( "\n", '<br/>', addslashes(trim($descricao))); //escapa os espaços
+        $cep = (is_numeric($cep) && $cep > 0) ? $cep : null;
+        $numero = (is_numeric($numero)) ? $numero : '';
+        $complemento = addslashes(trim($complemento));
+        $layout = (is_numeric($layout) && $layout > 0) ? $layout : 1;
+        $contato1 = (is_numeric($contato1)) ? $contato1 : null;
+        $contato2 = (is_numeric($contato2)) ? $contato2 : null;
+        //segunda etapa >> adquirir o codigo do usuario proprietário
+        $email = $_SESSION['user_email']; $senha = $_SESSION['user_senha'];
+        $resultado_query = $this->db->query("SELECT cd_usuario FROM tb_usuario "
+                . " WHERE nm_email = '$email' AND cd_senha = '$senha' LIMIT 1;");
+        if($resultado_query->num_rows() > 0){
+            $codigo_prop = '';
+            foreach($resultado_query->result() as $row){
+                $codigo_prop = $row->cd_usuario;
+            }
+            //preparar a string de imagem para caso ela tenha sido enviada
+            $caminho_imagem = null;
+            if(!empty($imagem['name'][0])){
+                $caminho_imagem = uniqid("IPP$codigo_prop") . "." . end(explode('/', $imagem['type'][0]));
+                echo "$caminho_imagem";
+            }
+            //inserir o usuario
+            $resultado = $this->efetuarCadastro($nome, $ramo, $slogan, $site, $descricao, $cep, $numero, 
+            $complemento, $layout, $contato1, $contato2, $caminho_imagem, $codigo_prop);
+            if($resultado){
+                if($caminho_imagem){
+                    $this->load->library('imagem');
+                    $this->imagem->RealizarUpload($imagem, base_url("src/imagens/pagina/perfil"), $caminho_imagem);
+                }
+                return true;
+            } else { //ocorreu um erro durante a inserção
+                return false;
+            }
+            //fazer upload da imagem
+        } else { //O usuario nao esta em uma session valida
+            return false;
+        }
     }
+    
+    private function efetuarCadastro($nome = null, $ramo = 1, $slogan = '', 
+            $site = '', $descricao = '', $cep = 1, $numero = '', 
+            $complemento = null, $layout = 1, $contato1 = false, $contato2 = false,
+            $imagem = null, $codigo_prop = null){
+        
+        $this->db->query("INSERT INTO tb_pagina (nm_pagina, "
+                . "cd_ramo, nm_slogan, nm_caminho_site, nm_descricao, cd_logradouro, "
+                . "nr_endereco, nm_complemento_endereco, cd_layout, nm_caminho_imagem, "
+                . "cd_usuario)"
+                . " VALUES ('$nome', $ramo, '$slogan', '$site', '$descricao', null, '$numero', "
+                . "'$complemento', $layout, '$imagem', $codigo_prop);");
+        
+        $resultado_query = $this->db->query("SELECT cd_pagina FROM tb_pagina as P, tb_usuario as U"
+                . " WHERE U.cd_usuario = $codigo_prop AND U.cd_usuario = P.cd_usuario"
+                . " LIMIT 1;");
+        
+        if($resultado_query->num_rows() > 0){
+            $codigo_pagina = null;
+            foreach($resultado_query->result() as $row){
+                $codigo_pagina = $row->cd_pagina;
+            }
+            if($contato1){
+            $this->db->query("INSERT INTO tb_contato (nr_contato, cd_pagina) VALUES "
+                    . "('$contato1', $codigo_pagina);");
+             }
+        
+            if($contato2){
+            $this->db->query("INSERT INTO tb_contato (nr_contato, cd_pagina) VALUES "
+                    . "('$contato2', $codigo_pagina);");
+            }
+            return true;
+        } else { // por algum motivo o insert deu erro
+            return false;
+        }
+    }
+    
+    public function CarregarBoxLayoutRamo(){
+        $opcoes_ramo = "";
+        $opcoes_layout = "";
+        $resultado_query = $this->db->query("SELECT cd_layout, nm_cor FROM"
+                . " tb_layout ORDER BY nm_cor;");
+        if($resultado_query->num_rows() > 0){
+            foreach($resultado_query->result() as $row){
+                
+              $opcoes_layout .= "<div class='col l2 center-align'>
+                    <input value='$row->cd_layout' name='layout' type='radio' id='cor$row->cd_layout' class='orange-text'/>
+                    <label for='cor$row->cd_layout'>$row->nm_cor</label>
+                </div>";
+              
+            }
+        }
+        $resultado_query2 = $this->db->query("SELECT cd_ramo, nm_ramo FROM"
+                . " tb_ramo ORDER BY nm_ramo;");
+        if($resultado_query2->num_rows() > 0){
+            foreach($resultado_query2->result() as $row){
+              $opcoes_ramo .= "<option value='$row->cd_ramo'>$row->nm_ramo</option>";
+            }
+        }
+        return array('opcoes_ramo' => $opcoes_ramo, 'opcoes_layout' => $opcoes_layout);
+    }
+    
+    public function CarregarPaginaProprietario(){
+        $email = $_SESSION['user_email'];
+        $resultado_query = $this->db->query("SELECT P.cd_pagina as 'codigo'"
+                . " FROM tb_pagina as P, tb_usuario as U "
+                . " WHERE P.cd_usuario = U.cd_usuario AND U.nm_email LIKE '$email'"
+                . " LIMIT 1;");
+        if($resultado_query->num_rows() > 0){
+            foreach($resultado_query->result()  as $row){
+                $codigo = $row->codigo;
+            }
+            return dechex($codigo);
+        }else {
+            return false;
+        }
+    }
+    
 }
