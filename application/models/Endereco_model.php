@@ -87,7 +87,7 @@ class Endereco_model extends CI_Model {
                         . " ('$cidade', $codigo_uf)");
                 $result_query = $this->db->query("SELECT cd_cidade FROM tb_cidade "
                     . " WHERE cd_uf = $codigo_uf AND nm_cidade = '$cidade' LIMIT 1;");
-                if($result_query->num_rows > 0){
+                if($result_query->num_rows() > 0){
                     foreach ($result_query->result() as $row){
                         $codigo_cidade = $row->cd_cidade;
                     }

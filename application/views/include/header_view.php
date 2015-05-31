@@ -18,7 +18,7 @@
           <!-- Perfil -->
           <li class="no-padding">
                   <ul class="collapsible collapsible-accordion">
-                        <li>
+                        <li class="liMenu">
                           <a class="collapsible-header waves-effect waves-orange aMenu"><strong>Perfil</strong></a>
                           <div class="collapsible-body">
                                 <ul>
@@ -32,14 +32,14 @@
           <!-- Página -->
           <li class="no-padding">
                   <ul class="collapsible collapsible-accordion">
-                        <li>
+                        <li class="liMenu">
                           <a class="collapsible-header waves-effect waves-orange aMenu"><strong>Página</strong></a>
                           <div class="collapsible-body">
                               <ul>
                                   <?php
                                     if($_SESSION['is_dono'] == true){
-                                      echo '<li><a href="'. base_url('pagina/configuracoes') .'">Minha página</a></li>';
-                                     // echo '<li><a href="'. base_url('pagina/comentarios') .'">Comentários</a></li>';
+                                      echo '<li><a href="'. base_url('pagina/minhapagina') .'">Minha página</a></li>';
+                                      echo '<li><a href="'. base_url('pagina/configuracoes') .'">Configurações</a></li>';
                                     }
                                     else {
                                       echo '<li><a href="'. base_url('pagina/cadastrar') .'">Criar página</a></li>';  
@@ -53,7 +53,7 @@
           <!-- Contato -->
           <li class="no-padding">
                   <ul class="collapsible collapsible-accordion">
-                        <li>
+                        <li class="liMenu">
                           <a class="collapsible-header waves-effect waves-orange aMenu"><strong>Contato</strong></a>
                           <div class="collapsible-body">
                                 <ul>

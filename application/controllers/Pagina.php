@@ -75,7 +75,7 @@ class Pagina extends CI_Controller{
         $this->load->view('include/footer_view');
     }
     //MOSTRA A PAGINA CUJO PROPRIETÁRIO ADMINISTRA
-    public function configuracoes(){
+    public function minhapagina(){
         //MEdida provisoria, o usuario visualiza a propria pagina
         $resultado = $this->pagmod->CarregarPaginaProprietario();
         if($resultado){
@@ -84,6 +84,15 @@ class Pagina extends CI_Controller{
             redirect('home');
         }
     }
+    
+    public function configuracoes(){
+        $this->load->view('include/head_view');
+        $this->load->view('include/header_view');
+        $this->load->view('pagina/configuracoes_view');
+        $this->load->view('include/footer_view');
+    }
+    
+    
 
 }
 

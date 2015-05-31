@@ -4,6 +4,17 @@ body{
   -ms-user-select: none;	
 }
 
+ body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+
+  main {
+    flex: 1 0 auto;
+      alignment-adjust: auto;
+  }
+
 /* Tamanho do dizer acima do card de login */
 h5 { font-size: 20px; }
 

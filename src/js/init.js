@@ -22,5 +22,15 @@ $(document).ready(function() {
             $('#buscaAdicional').toggle();
     }
     
-    
+        $('.liMenu').click(function(){
+        if($(this).hasClass('active')){
+            $(this).children('.collapsible-body').hide(400);
+            $(this).removeClass('active'); 
+        } else {
+            $(this).removeClass('active');
+            $('.active').children('.collapsible-body').hide(400);
+            $(this).addClass('active');
+            $('.active').removeClass('active');
+        }
+    });
 });
