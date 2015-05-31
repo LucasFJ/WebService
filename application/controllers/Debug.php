@@ -32,5 +32,15 @@ class Debug extends CI_Controller {
             echo "falso";
         }
     }
+    
+    public function testarcookie(){
+        echo $_COOKIE['user_email'];
+        echo $_COOKIE['user_senha'];
+    }
+    
+    public function testarsession(){
+        echo $_SESSION['user_email'];
+        echo $_SESSION['user_senha'];
+    }
 }
 

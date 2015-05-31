@@ -140,3 +140,54 @@ function CarregarBoxBairro(){
             xmlreq.send(null);
         }
 }
+
+function CarregarEndereco(){
+    var input_cep = document.getElementById("cep");
+    var conteudo_cep = input_cep.value;
+    conteudo_cep = conteudo_cep.replace(/[^\d]+/g, "");
+    if(conteudo_cep.length == 8){
+        var xmlreq = CriaRequest();
+        if(!xmlreq){
+            alert("Seu navegador não suporta Ajax!");
+        } else {
+             rua = document.getElementById('rua');
+             bairro = document.getElementById('bairro');
+             cidade = document.getElementById('cidade');
+             uf = document.getElementById('uf');
+             cod_log = document.getElementById('codigo_logradouro');
+            xmlreq.open("GET", "http://localhost/WebService/ajax/carregarEndereco/" + conteudo_cep, false);
+            xmlreq.onreadystatechange = function(){// Verifica se foi concluído com sucesso e a conexão fechada (readyState=4) 
+                if (xmlreq.readyState == 4) {
+                       if (xmlreq.status === 200) {
+                          $resultado = xmlreq.responseText;
+                          if($resultado == "Erro"){
+                              alert('O CEP indicado é invalido')
+                              rua.value = "";
+                              bairro.value = "";
+                              cidade.value = "";
+                              uf.value = "";
+                              cod_log.value = "";
+                          } else {
+                              $array_dados = $resultado.split("+");
+                              rua.value = $array_dados[0];
+                              bairro.value = $array_dados[1];
+                              cidade.value = $array_dados[2];
+                              uf.value = $array_dados[3];
+                              cod_log.value = $array_dados[4];
+                          }
+                       } else {
+                           alert('Não foi possivel carregar os ramos');
+                       }
+                }
+            };
+            xmlreq.send(null);
+        }
+    } else {
+        cod_log.value = "";
+        rua.value = "";
+        bairro.value = "";
+        cidade.value = "";
+        uf.value = "";
+        cod_log.value = "";
+    }
+}

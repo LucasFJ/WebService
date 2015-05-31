@@ -17,10 +17,10 @@ class Status {
     // 2º - Verifica se existem dados de uma antiga session salvo nos cookies 
     // do browser do usuário e em seguida verifica a integridade dos dados;
     // 3º - Cria uma nova session ou então retorna o valor false;
-    public function verificarLogin(){
+    public function verificarLogin(){ 
         // 1ª etapa;
         $dados_sessao = $this->verificarSessao();
-        if($dados_sessao){
+        if(is_array($dados_sessao)){
             $dados_autenticados = $this->autenticarCadastro( $dados_sessao['user_email'], 
                     $dados_sessao['user_senha']);
             if($dados_autenticados){
@@ -29,21 +29,22 @@ class Status {
                 $_SESSION['is_dono'] = $dados_autenticados['is_dono'];
                 return true;
             }
-        } 
-        // 2ª etapa;
-        $dados_cookies = $this->verificarCookie();
-        if($dados_cookies){
-            $dados_autenticados = $this->autenticarCadastro($dados_cookies['user_email'], 
-                    $dados_cookies['user_senha']);
-            if($dados_autenticados){
-              // 3ª etapa;
-                $this->iniciarSessao($dados_autenticados['user_nome'], 
-                        $dados_autenticados['user_email'], $dados_autenticados['user_senha'], 
-                        $dados_autenticados['is_ativo'], $dados_autenticados['is_dono']);
-                
-                $this->iniciarCookie( $dados_autenticados['user_email'], 
-                        $dados_autenticados['user_senha']);
-                return true;
+        } else {
+            // 2ª etapa;
+            $dados_cookies = $this->verificarCookie();
+            if(is_array($dados_cookies)){
+                $dados_autenticados = $this->autenticarCadastro($dados_cookies['user_email'], 
+                        $dados_cookies['user_senha']);
+                if($dados_autenticados){
+                  // 3ª etapa;
+                    $this->iniciarSessao($dados_autenticados['user_nome'], 
+                            $dados_autenticados['user_email'], $dados_autenticados['user_senha'], 
+                            $dados_autenticados['is_ativo'], $dados_autenticados['is_dono']);
+
+                    //$this->iniciarCookie( $dados_autenticados['user_email'], 
+                    //        $dados_autenticados['user_senha']);
+                    return true;
+                }
             }
         }
         // Não há session nem cookie com dados integros do usuário
@@ -67,21 +68,22 @@ class Status {
     //de tempo pré-definido
     public function iniciarCookie($user_email = null, $user_senha = null){
         $expira = time() + ( 60 * 60 * 2); // Tempo Unix: 2 horas
-        setcookie('user_email', $user_email, $expira);
-        setcookie('user_senha', $user_senha, $expira);
+        //setcookie('user_email', $user_email, $expira);
+        //setcookie('user_senha', $user_senha, $expira);
         return true;
     }
     // Função: destroi os cookies que possuem dados de login do usuário
     public function fecharCookie(){
-       // setcookie('user_nome');
-       // setcookie('user_login');
-        try {
-            $_COOKIE['user_login'] = null;
-            $_COOKIE['user_senha'] = null;
+        //setcookie('user_email');
+        //setcookie('user_senha');
+        $expira = time() + ( 60 * 60 * 2); // Tempo Unix: 2 horas
+        setcookie("user_email", "email usuario", $expira);
+        setcookie("user_senha", "senha usuario", $expira);
+           //unset($_COOKIE['user_email']);
+          // unset($_COOKIE['user_senha']);
+            $_COOKIE['user_email'] = 'email usuario';
+           $_COOKIE['user_senha'] = 'senha usuario';
             return true;
-        } catch(Exception $x){ 
-            return false; 
-        }
     }
     //Função: verificar se os dados de login são condizentes com os 
     //encontrados no servidor

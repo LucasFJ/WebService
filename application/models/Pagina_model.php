@@ -76,10 +76,9 @@ class Pagina_model extends CI_Model {
                 $codigo_prop = $row->cd_usuario;
             }
             //preparar a string de imagem para caso ela tenha sido enviada
-            $caminho_imagem = null;
+            $caminho_imagem = 'null';
             if(!empty($imagem['name'][0])){
                 $caminho_imagem = uniqid("IPP$codigo_prop") . "." . end(explode('/', $imagem['type'][0]));
-                echo "$caminho_imagem";
             }
             //inserir o usuario
             $resultado = $this->efetuarCadastro($nome, $ramo, $slogan, $site, $descricao, $cep, $numero, 
@@ -107,9 +106,9 @@ class Pagina_model extends CI_Model {
         $this->db->query("INSERT INTO tb_pagina (nm_pagina, "
                 . "cd_ramo, nm_slogan, nm_caminho_site, nm_descricao, cd_logradouro, "
                 . "nr_endereco, nm_complemento_endereco, cd_layout, nm_caminho_imagem, "
-                . "cd_usuario)"
-                . " VALUES ('$nome', $ramo, '$slogan', '$site', '$descricao', null, '$numero', "
-                . "'$complemento', $layout, '$imagem', $codigo_prop);");
+                . "cd_usuario, dt_cadastro)"
+                . " VALUES ('$nome', $ramo, '$slogan', '$site', '$descricao', $cep, '$numero', "
+                . "'$complemento', $layout, '$imagem', $codigo_prop, NOW());");
         
         $resultado_query = $this->db->query("SELECT cd_pagina FROM tb_pagina as P, tb_usuario as U"
                 . " WHERE U.cd_usuario = $codigo_prop AND U.cd_usuario = P.cd_usuario"

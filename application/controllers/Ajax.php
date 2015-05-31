@@ -50,5 +50,19 @@ class Ajax extends CI_Controller{
            echo "<option value='0' selected>Bairro</option>";
        }
     }
+    
+    public function carregarEndereco($cep = false){
+        if(!is_numeric($cep)){
+            echo "Erro";
+        } else {
+            $this->load->model('endereco_model', 'endmod');
+            $resultado = $this->endmod->retornarEndereco($cep);
+            if($resultado){
+                echo $resultado;
+            } else {
+                echo "Erro";
+            }
+        }
+    }
 }
 

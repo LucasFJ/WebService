@@ -14,7 +14,7 @@ class Pagina extends CI_Controller{
         $this->load->view('include/head_view');
         $this->load->view('include/header_view');
         if($_SESSION['is_dono'] == true){
-               $this->load->view('pagina/minhapagina_view');
+               redirect('pagina/configuracoes');
         }
         else{
             redirect('pagina/cadastrar');
@@ -43,13 +43,13 @@ class Pagina extends CI_Controller{
         $this->load->view('include/header_view');
         $this->load->library('form_validation');
         
-        if(isset($_POST['Cadastrar'])){
+        if(isset($_POST['Cadastrar']) && !empty($_POST['codigo_cep'])){
             $nome =     isset($_POST['nome']) ? $_POST['nome'] : false;
             $ramo =     isset($_POST['ramo']) ? $_POST['ramo'] : false;
             $slogan =   isset($_POST['slogan']) ? $_POST['slogan'] : false;
             $site =     isset($_POST['site']) ? $_POST['site'] : false;
             $descricao = isset($_POST['descricao']) ? $_POST['descricao'] : false;
-            $cep =      isset($_POST['cep']) ? $_POST['cep'] : false;
+            $cep =      isset($_POST['codigo_cep']) ? $_POST['codigo_cep'] : false;
             $numero =   isset($_POST['numero']) ? $_POST['numero'] : false;
             $complemento = isset($_POST['complemento']) ? $_POST['complemento'] : false;
             $layout =   isset($_POST['layout']) ? $_POST['layout'] : false;
@@ -57,14 +57,14 @@ class Pagina extends CI_Controller{
             $contato2 = isset($_POST['contato2']) ? $_POST['contato2'] : false;
             $imagem =   $_FILES['imagem'] ;
             
-           print_r($imagem);
+            
             $resultado = $this->pagmod->CadastrarPagina($nome, $ramo, $slogan , 
             $site, $descricao, $cep, $numero, $complemento, $layout, $contato1, $contato2, $imagem);
             
             if($resultado){
-                echo "deu bom";
+                echo "O cadastro foi finalizado e a tela de sucesso será enviada para cá";
             } else {
-               echo "deu ruim";
+               echo "O cadastro não foi efetuado e deve ser informado o motivo para tal";
            }
         } else {
             $dados_preload = $this->pagmod->CarregarBoxLayoutRamo();

@@ -89,7 +89,8 @@ document.getElementById("cabecalho").innerHTML = "Criar Página";
             <!-- CEP, Número e Complemento -->
             <div class="row formLine">
             <div class="input-field col l4 m4 s8 inputNome">
-                <input id="cep" type="text" name="cep" class="validate" value=''>
+                <input id="codigo_logradouro" type="hidden" name="codigo_cep" value="">
+                <input id="cep" type="text" name="cep" class="validate" value='' oninput="CarregarEndereco()">
                 <label for="cep">CEP</label>
             </div>
             <div class="input-field col l2 m2 s4 inputNome">
