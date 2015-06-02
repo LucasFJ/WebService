@@ -42,5 +42,11 @@ class Debug extends CI_Controller {
         echo $_SESSION['user_email'];
         echo $_SESSION['user_senha'];
     }
+    
+    public function testarRegex(){
+       $str = "João da Silva";
+      // $result =  preg_match('/^[A-Za-zá-úÁ=Ú.\s0-9 ]+$/i', $str);
+       echo "$result";  
+    }
 }
 

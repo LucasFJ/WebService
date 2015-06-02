@@ -1302,7 +1302,9 @@ class CI_Form_validation {
 	 */
 	public function alpha($str)
 	{
-		return ctype_alpha($str);
+		//return ctype_alpha($str); MODIFICADO
+            return ( ! preg_match("/^([*A-Za-zá-úÁ=Ú.\s*])+$/i", $str)) ? FALSE : TRUE;
+
 	}
 
 	// --------------------------------------------------------------------
@@ -1328,7 +1330,8 @@ class CI_Form_validation {
 	 */
 	public function alpha_numeric_spaces($str)
 	{
-		return (bool) preg_match('/^[A-Z0-9 ]+$/i', $str);
+		//return (bool) preg_match('/^[A-Z0-9 ]+$/i', $str); MODIFICADO
+            return (bool) preg_match('/^[A-Za-zá-úÁ=Ú.\s0-9 ]+$/i', $str);
 	}
 
 	// --------------------------------------------------------------------

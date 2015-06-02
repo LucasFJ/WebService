@@ -97,7 +97,6 @@ class Pagina_model extends CI_Model {
             return false;
         }
     }
-    
     private function efetuarCadastro($nome = null, $ramo = 1, $slogan = '', 
             $site = '', $descricao = '', $cep = 1, $numero = '', 
             $complemento = null, $layout = 1, $contato1 = false, $contato2 = false,
@@ -158,7 +157,6 @@ class Pagina_model extends CI_Model {
         }
         return array('opcoes_ramo' => $opcoes_ramo, 'opcoes_layout' => $opcoes_layout);
     }
-    
     public function CarregarPaginaProprietario(){
         $email = $_SESSION['user_email'];
         $resultado_query = $this->db->query("SELECT P.cd_pagina as 'codigo'"
@@ -171,6 +169,109 @@ class Pagina_model extends CI_Model {
             }
             return dechex($codigo);
         }else {
+            return false;
+        }
+    }
+    
+    //FUNÇÕES DE ALTERAÇÃO CHAMADAS PELOS AJAX
+    public function AlterarNome($novoNome = false, $codigoPagina = false){
+        if($novoNome && $codigoPagina && is_numeric($codigoPagina && !empty($novoNome))){
+            $novoNome = addslashes(strip_tags(trim($novoNome)));
+            $resultado_query = $this->db->query("UPDATE tb_pagina SET "
+                    . " nm_pagina = '$novoNome' WHERE cd_pagina = $codigoPagina;");
+            if($resultado_query->num_rows() > 0){
+                return $novoNome;
+            } else
+            {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }   
+    public function AlterarSlogan($novoSlogan = false, $codigoPagina = false){
+        if($novoSlogan && $codigoPagina && is_numeric($codigoPagina && !empty($novoSlogan))){
+            $novoSlogan = addslashes(strip_tags(trim($novoSlogan)));
+            $resultado_query = $this->db->query("UPDATE tb_pagina SET "
+                    . " nm_slogan = '$novoSlogan' WHERE cd_pagina = $codigoPagina;");
+            if($resultado_query->num_rows() > 0){
+                return $novoSlogan;
+            } else
+            {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+    public function AlterarDescricao($novaDesc = false, $codigoPagina = false){
+        if($novaDesc && $codigoPagina && is_numeric($codigoPagina && !empty($novaDesc))){
+            $novaDesc = str_replace("/n", "<br/>", $novaDesc);
+             $novaDesc = str_replace("  ", "&nbs;&nbs;", $novaDesc);
+            $novaDesc = addslashes(trim($novaDesc));
+            $resultado_query = $this->db->query("UPDATE tb_pagina SET "
+                    . " nm_descricao = '$novaDesc' WHERE cd_pagina = $codigoPagina;");
+            if($resultado_query->num_rows() > 0){
+                return $novaDesc;
+            } else
+            {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+    public function AlterarSite($novaUrl = "", $codigoPagina = false){
+        $novaUrl  = trim($novaUrl);
+        if($novaUrl && $codigoPagina && is_numeric($codigoPagina) 
+                && (ereg("([a-zA-Z]{3,})://([\w-]+\.)+[\w-]+(/[\w- ./?%&=]*)?", $novaUrl) || 
+                ereg("([a-zA-Z]{3,})://([\w-]+\.)+[\w-]+(/[\w- ./?%&=]*)?", $novaUrl) || $novaUrl == "")){
+            $novaUrl = addslashes(trim($novaUrl));
+            $resultado_query = $this->db->query("UPDATE tb_pagina SET "
+                    . " nm_caminho_imagem = '$novaUrl' WHERE cd_pagina = $codigoPagina;");
+            if($resultado_query->num_rows() > 0){
+                return $novaUrl;
+            } else
+            {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+    public function AlterarRamo($novoRamo = false, $codigoPagina = false){
+        if(is_numeric($novoRamo) && is_numeric($codigoPagina)){
+             $resultado_query = $this->db->query("UPDATE tb_pagina SET "
+                    . " cd_ramo = $novoRamo WHERE cd_pagina = $codigoPagina;");
+            if($resultado_query->num_rows() > 0){
+                $resultado_query = $this->db->query("SELECT nm_ramo FROM tb_ramo "
+                    . "WHERE cd_ramo = $novoRam LIMIT 1");
+                if($resultado_query->num_rows() > 0){
+                    foreach ($resultado_query->result() as $row){
+                        return $row->nm_ramo;
+                    }
+                } else { 
+                    return false;
+                }   
+            } else
+            {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+    public function AlterarNumero($novoNumero = false, $codigoPagina = false){
+        if(is_numeric($novoNumero) && is_numeric($codigoPagina)){
+            $resultado_query = $this->db->query("UPDATE tb_pagina SET "
+                    . " nr_endereco = '$novoNumero' WHERE cd_pagina = $codigoPagina;");
+            if($resultado_query->num_rows() > 0){
+                return $novoNumero;
+            } else
+            {
+                return false;
+            }
+        } else {
             return false;
         }
     }

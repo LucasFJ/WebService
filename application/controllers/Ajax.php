@@ -64,5 +64,27 @@ class Ajax extends CI_Controller{
             }
         }
     }
+    
+    public function AlterarDadoPagina($tipo = false, $codigoPagina = false, $valorDado = false){
+        $this->load->model("pagina_model", "pagmod");
+        if(!empty($tipo) && !empty($codigoPagina) && !empty($valorDado)){
+            $retorno = false;
+            switch ($tipo){
+                case 1: $retorno = $this->pagmod->AlterarNome($valorDado, $codigoPagina);
+                case 2: //slogan;
+                case 3: //descrição;
+                case 4: //site;
+                case 5: //ramo TODO;
+                case 6: //layout TODO;
+                case 7: //logradouro TODO;
+                case 8: //nr endereço;
+                case 9: ;//complemento;
+                case 10 :
+                default: echo "Erro";
+            }
+        } else {
+            echo "Erro";
+        }
+    }
 }
 
