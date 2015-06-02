@@ -109,11 +109,42 @@ document.getElementById("cabecalho").innerHTML = " <?php echo $nome; ?>";
 <div id="modalInfo" class="modal white center modal-fixed-footer">
 	<div class="modal-content grey-text text-darken-4">
             <h4>Informações</h4>
-            <p>Informações da página abaixo!</p>
+            
+            <div class="row">
+            <div class="col s12 m6 l6 left-align">
+                <h6>Nome</h6>
+                <h6 class="grey-text"><?php echo $nome; ?></h6>
+            </div>
+            <div class="col s12 m6 l6 left-align">
+                <h6>Slogan</h6>
+                <h6 class="grey-text"><?php echo $slogan; ?></h6>
+            </div>
+            <div class="col s12 m6 l6 left-align">
+                <h6>Ramo</h6>
+                <h6 class="grey-text"><?php echo $ramo; ?></h6>
+            </div>
+            <div class="col s12 m6 l6 left-align">
+                <h6>Contato</h6>
+                <h6 class="grey-text"><?php echo '+000000000000'; ?></h6>
+            </div>
+            <div class="col s12 m6 l6 left-align">
+                <h6>Site</h6>
+                <h6 class="grey-textx"><a href="#"><?php echo $site; ?></a></h6>
+            </div>
+            <div class="col s12 m6 l6 left-align">
+                <h6>Localidade</h6>
+                <h6 class="grey-text"><?php echo $complemento; ?></h6>
+            </div>
+            <div class="col s12 left-align">
+                <h6>Descrição</h6>
+                <h6 class="grey-text"><?php echo $descricao; ?></h6>
+            </div>
+            </div>
+            
         </div>
         <div class="modal-footer grey lighten-4">
-            <a href="#" class="waves-effect waves-green btn-flat modal-action modal-close">Alguma coisa</a>
-        </div>				
+            <a href="#" class="waves-effect waves-green btn-flat modal-action modal-close">Voltar</a>
+        </div>
 </div>
 
 <!--MODAL COMENTAR-->
@@ -123,7 +154,7 @@ document.getElementById("cabecalho").innerHTML = " <?php echo $nome; ?>";
             <p class="center-align">Comentários da página abaixo!</p>
         </div>
         <div class="modal-footer grey lighten-4">
-            <a href="#" class="waves-effect waves-green btn-flat modal-action modal-close">Enviar comentário</a>
+            <a href="#" class="waves-effect waves-green btn-flat modal-action modal-close">Voltar</a>
         </div>				
 </div>
 

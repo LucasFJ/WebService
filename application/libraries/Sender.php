@@ -9,10 +9,10 @@ class Sender{
     }
     
     public $mail;   //Objeto que irá instanciar a classe PHPmailer
-    public $email = "suporte.sniffoo@gmail.com";  //Email utilizado pelo remetente 
-    public $nome =  "DLI Sistemas"; //Nome utilizado pelo remetente
+    public $email = "suporte@sniffoo.com.br";  //Email utilizado pelo remetente 
+    public $nome =  "Sniffoo"; //Nome utilizado pelo remetente
     public $senha = "dli01121920"; //Senha para acessar o email do remetente
-    public $host = "smtp.gmail.com"; //Host responsável por enviar o email
+    public $host = "smtp.sniffoo.com.br"; //Host responsável por enviar o email
     
     public $header_mensagem = " header <br/>"; //INSIRA AQUI O HTML QUE SERÁ EXIBIDO NO HEADER
     public $footer_mensagem = " footer <br/>"; //INSIRA AQUI O HTML QUE SERÁ EXIBIDO NO FOOTER
@@ -51,7 +51,7 @@ class Sender{
         $mail->Host = $this->host;
         $mail->SMTPAuth = true;
         $mail->SMTPSecure = "ssl";
-        $mail->Port = "465";
+        $mail->Port = "587";
         $mail->Username = $this->email;
         $mail->Password = $this->senha;
         $mail->From = $this->email;

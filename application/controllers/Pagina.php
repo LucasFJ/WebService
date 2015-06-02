@@ -31,7 +31,7 @@ class Pagina extends CI_Controller{
             // print_r($dados_pagina);
              $this->load->view('include/head_view');
              $this->load->view('include/header_view');
-             $this->load->view('pagina/minhapagina_view', $dados_pagina);
+             $this->load->view('pagina/pagina_view', $dados_pagina);
              $this->load->view('include/footer_view');
         } else { // nenhum valor foi passado pela url
             redirect('home');
@@ -77,9 +77,14 @@ class Pagina extends CI_Controller{
     //MOSTRA A PAGINA CUJO PROPRIETÁRIO ADMINISTRA
     public function minhapagina(){
         //MEdida provisoria, o usuario visualiza a propria pagina
-        $resultado = $this->pagmod->CarregarPaginaProprietario();
-        if($resultado){
-            redirect("pagina/visualizar/$resultado");
+        $codigo = $this->pagmod->CarregarPaginaProprietario();
+        if($codigo){
+             $dados_pagina = $this->pagmod->CarregarDadosPagina($codigo);
+            // print_r($dados_pagina);
+             $this->load->view('include/head_view');
+             $this->load->view('include/header_view');
+             $this->load->view('pagina/minhapagina_view', $dados_pagina);
+             $this->load->view('include/footer_view');
         } else {
             redirect('home');
         }
