@@ -64,10 +64,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => '',
-	'database' => 'db_webservice',
+	'hostname' => 'xmysql.sniffoo.com.br',
+	'username' => 'sniffoo',
+	'password' => 'dli01121920',
+	'database' => 'sniffoo',
 	'dbdriver' => 'mysqli',
         'dbprefix' => '',
         'pconnect' => FALSE,

@@ -28,6 +28,7 @@ class Pagina extends CI_Controller{
         $codigo = hexdec($codigo);
         if($codigo && is_numeric($codigo) && $codigo > 0){
              $dados_pagina = $this->pagmod->CarregarDadosPagina($codigo);
+             //$dados_pagina['produtos'] = $this->pagmod->CarregarProdutosPagina($codigo);
             // print_r($dados_pagina);
              $this->load->view('include/head_view');
              $this->load->view('include/header_view');

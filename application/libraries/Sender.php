@@ -9,10 +9,12 @@ class Sender{
     }
     
     public $mail;   //Objeto que irá instanciar a classe PHPmailer
-    public $email = "suporte@sniffoo.com.br";  //Email utilizado pelo remetente 
+    //public $email = "suporte@sniffoo.com.br";  //Email utilizado pelo remetente 
+    public $email = "suporte.sniffoo@gmail.com";  //Email utilizado pelo remetente
     public $nome =  "Sniffoo"; //Nome utilizado pelo remetente
     public $senha = "dli01121920"; //Senha para acessar o email do remetente
-    public $host = "smtp.sniffoo.com.br"; //Host responsável por enviar o email
+    //public $host = "smtp.sniffoo.com.br"; //Host responsável por enviar o email
+    public $host = "tls://smtp.gmail.com:587"; //Host responsável por enviar o email
     
     public $header_mensagem = " header <br/>"; //INSIRA AQUI O HTML QUE SERÁ EXIBIDO NO HEADER
     public $footer_mensagem = " footer <br/>"; //INSIRA AQUI O HTML QUE SERÁ EXIBIDO NO FOOTER
@@ -41,34 +43,64 @@ class Sender{
         }
     }
     
+    public function RecuperarSenha($nome_dest = false, $email_dest = false, 
+            $codigo_processo = false, $codigo_chave = false){
+        if($nome_dest && $email_dest && $codigo_chave && $codigo_processo){
+            $assunto = "Sniffoo - Recuperação de senha";
+            $url = base_url("processos/recuperacao/$codigo_processo/$codigo_chave");
+            $mensagem_principal =  "Olá $nome_dest, um pedido de recuperação de senha foi efetuado utilizando esse e-mail."
+                    . " Para realizar a recuperação de sua conta e assim garantir o acesso"
+                    . " completo no sistema clique no link abaixo. <br/><br/>"
+                    . "<a href='$url'>Clique aqui para verificar sua conta.</a> <br/><br/>";
+            $mensagem = $mensagem_principal;
+            $resultado = $this->Enviar($nome_dest, $email_dest, $assunto, $mensagem);
+            if($resultado){
+                return true;
+            } else { //Ocorreu um erro durante o envio do e-mail
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+    
     //FUNÇÃO: ENVIAR UM EMAIL PARA A O USUARIO COM UM ASSUNTO E MENSAGEM
-    public function Enviar($nome_dest = false, $email_dest = false, 
-            $assunto =false, $mensagem = false){
+    private function Enviar($nome_dest = false, $email_dest = false, 
+            $assunto = false, $mensagem = false){
         $mail = new PHPMailer;
-        $mail->setLanguage('pt');
+        //$mail->setLanguage('pt');
         $mail->addAddress($email_dest, $nome_dest);
         $mail->isSMTP();
         $mail->Host = $this->host;
         $mail->SMTPAuth = true;
-        $mail->SMTPSecure = "ssl";
-        $mail->Port = "587";
+        $mail->SMTPSecure = "tls";
+        $mail->Port = 587;
         $mail->Username = $this->email;
         $mail->Password = $this->senha;
         $mail->From = $this->email;
         $mail->FromName = $this->nome;
         $mail->isHTML(true);
         $mail->CharSet = 'UTF-8';
-
+        //resolvendo erro de ssl3_get_server_certificate
+        $mail->SMTPOptions = array('ssl' => array(
+                'verify_peer' => false,
+                'verify_peer_name' => false,
+                'allow_self_signed' => true
+            ));
+        
         $mail->Subject  = $assunto; // Assunto da mensagem
         $mail->Body = $mensagem; // A mensagem em HTML
         $mail->AltBody = trim(strip_tags($mensagem)); // A mesma mensagem em texto puro
     
         $resultado = $mail->send();
         if($resultado){
+            echo "<script> alert('E-mail enviado com sucesso'); </script>";
             $mail->ClearAllRecipients();
             return true;
         } else { //Medida provisória para quando há bugs no envio de e-mail
-            echo "<script> alert('$mensagem'); </script>";
+            echo "<script> alert('$mail->ErrorInfo'); </script>";
+            //echo "<script> alert('$this->host | $this->email | $this->senha'); </script>";
+            //echo "<script> alert('$mensagem'); </script>";
             $mail->ClearAllRecipients();
             return false;
         }

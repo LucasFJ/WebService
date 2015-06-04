@@ -64,4 +64,46 @@ class Processo_model extends CI_Model {
             return false;
         }
     }
+    
+    
+    
+    public function NovaRecuperacaoSenha($email_usuario = false){
+        $resultado_query = $this->db->query("SELECT cd_usuario FROM tb_usuario "
+                . " WHERE nm_email = '$email_usuario' LIMIT 1;");
+        if($resultado_query->num_rows() > 0){
+            foreach($resultado_query->result() as $row){
+                $codigo_usuario = $row->cd_usuario;
+            }
+            
+            $chave = uniqid("$codigo_usuario", true);
+            $this->db->query("INSERT INTO tb_processo"
+                    . " (cd_usuario, cd_chave, cd_tipo) values "
+                    . " ($codigo_usuario, '$chave', 2);");
+            $resultado_query2 = $this->db->query("SELECT p.cd_processo AS 'processo', u.nm_usuario AS 'nome', u.nm_email AS 'email' "
+                    . " FROM tb_processo as p, tb_usuario as u"
+                    . " WHERE  p.cd_chave = '$chave' AND p.cd_tipo = 2 AND "
+                    . " p.cd_usuario = u.cd_usuario AND u.cd_usuario = $codigo_usuario LIMIT 1;");
+            if($resultado_query2->num_rows() > 0){
+                foreach($resultado_query2->result() as $row){
+                    $codigo_processo = $row->processo;
+                    $nome_dest = $row->nome;
+                    $email_dest = $row->email;
+                }
+                /* Enviando o email */
+                $this->load->library('sender');
+                $resultado = $this->sender->RecuperarSenha($nome_dest, $email_dest, $codigo_processo, $chave);
+                if($resultado){
+                    //echo "<script> alert('Enviou'); </script>";
+                    return true;
+                } else { // Falha no envio do email
+                   // echo "<script> alert('Não Enviou'); </script>";
+                    return false;
+                }
+            } else { //email nao cadastrado
+                return false;
+            } 
+        } else { //email nao cadastrado
+                return false;
+        }   
+    }
 }

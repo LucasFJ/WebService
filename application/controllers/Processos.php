@@ -31,4 +31,14 @@ class Processos extends CI_Controller{
             redirect('home');
         }
     }
+    
+    public function recuperacao($codigo_processo = false, $codigo_chave = false){
+        $dados = array('mensagem_erro' => '');
+        if(is_numeric($codigo_processo)  && $codigo_chave){
+        //INSERIR A VIEW COM INPUT DE NOVA SENHA E CONFIRMAR NOVA SENHA
+        } else { // algum dos dois parametros nao foi enviado
+            redirect('home');
+        }
+        
+    }
 }

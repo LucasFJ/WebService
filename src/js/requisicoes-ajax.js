@@ -21,18 +21,19 @@ if(!request){
     }
 } 
 
-
+//VARIAVEL GLOBAL CONTENDO A URL DO SITE ATUALMENTE
+base_url = "http://localhost/WebService/";
 
 function CarregarCartoes(ramo, estado, cidade, bairro, ordenacao, nome){
         //IRÁ RETORNAR AS FAIXADAS DAS PÁGINAS NA HOME
-        xmlreq = CriaRequest();
-        msgErro = document.getElementById("msgErro");
+        var xmlreq = CriaRequest();
+        var msgErro = document.getElementById("msgErro");
         if(!xmlreq){
             msgErro.innerHTML = "Seu navegador não suporta Ajax!";
         } else {
-           containerCartoes = document.getElementById("container-cartoes");
-           $offset = document.getElementsByClassName("cartao").length;
-           xmlreq.open("GET", "http://localhost/WebService/ajax/carregarCartoes/" +
+           var containerCartoes = document.getElementById("container-cartoes");
+           var $offset = document.getElementsByClassName("cartao").length;
+           xmlreq.open("GET", base_url + "ajax/carregarCartoes/" +
                 $offset + "/" + ramo + "/" + estado + "/" + cidade + "/" + bairro + "/" +
                 ordenacao + "/" + nome, false);
            xmlreq.onreadystatechange = function(){
@@ -55,19 +56,17 @@ function CarregarCartoes(ramo, estado, cidade, bairro, ordenacao, nome){
         }
     } 
 function CarregarBoxRamo(){
-    xmlreq = CriaRequest();
-    options_ramo = document.getElementById("container-ramo");
+    var xmlreq = CriaRequest();
+    var options_ramo = document.getElementById("container-ramo");
      if(!xmlreq){
             alert("Seu navegador não suporta Ajax!");
         } else {
-            xmlreq.open("GET", "http://localhost/WebService/ajax/carregarOpcoesRamo", false);
+            xmlreq.open("GET", base_url + "ajax/carregarOpcoesRamo", false);
             xmlreq.onreadystatechange = function(){
             // Verifica se foi concluído com sucesso e a conexão fechada (readyState=4) 
                 if (xmlreq.readyState == 4) {
                        if (xmlreq.status === 200) {
                           options_ramo.innerHTML = xmlreq.responseText;
-                          $('#container-ramo').material_select('destroy');
-                          $('#container-ramo').material_select();
                        } else {
                            alert('Não foi possivel carregar os ramos');
                        }
@@ -77,12 +76,12 @@ function CarregarBoxRamo(){
         }
 }
 function CarregarBoxEstado(){
-    xmlreq = CriaRequest();
-    options_estado = document.getElementById("container-estado");
+    var xmlreq = CriaRequest();
+    var options_estado = document.getElementById("container-estado");
      if(!xmlreq){
             alert("Seu navegador não suporta Ajax!");
         } else {
-            xmlreq.open("GET", "http://localhost/WebService/ajax/carregarOpcoesEstado", false);
+            xmlreq.open("GET",  base_url + "ajax/carregarOpcoesEstado", false);
             xmlreq.onreadystatechange = function(){
             // Verifica se foi concluído com sucesso e a conexão fechada (readyState=4) 
                 if (xmlreq.readyState == 4) {
@@ -97,14 +96,14 @@ function CarregarBoxEstado(){
         }
 }
 function CarregarBoxCidade(){
-    xmlreq = CriaRequest();
-    options_cidade = document.getElementById("container-cidade");
+    var xmlreq = CriaRequest();
+    var options_cidade = document.getElementById("container-cidade");
      if(!xmlreq){
             alert("Seu navegador não suporta Ajax!");
         } else {
-            options_estado = document.getElementById("container-estado");
-            codigo = options_estado.options[options_estado.selectedIndex].value;
-            xmlreq.open("GET", "http://localhost/WebService/ajax/carregarOpcoesCidade/" + codigo, false);
+            var options_estado = document.getElementById("container-estado");
+            var codigo = options_estado.options[options_estado.selectedIndex].value;
+            xmlreq.open("GET", base_url + "ajax/carregarOpcoesCidade/" + codigo, false);
             xmlreq.onreadystatechange = function(){
             // Verifica se foi concluído com sucesso e a conexão fechada (readyState=4) 
                 if (xmlreq.readyState == 4) {
@@ -119,14 +118,14 @@ function CarregarBoxCidade(){
         }
 }
 function CarregarBoxBairro(){
-    xmlreq = CriaRequest();
-    options_bairro = document.getElementById("container-cidade");
+    var xmlreq = CriaRequest();
+    var options_bairro = document.getElementById("container-cidade");
      if(!xmlreq){
             alert("Seu navegador não suporta Ajax!");
         } else {
-            options_cidade = document.getElementById("container-cidade");
-            codigo = options_cidade.options[options_cidade.selectedIndex].value;
-            xmlreq.open("GET", "http://localhost/WebService/ajax/carregarOpcoesBairro/" + codigo, false);
+            var options_cidade = document.getElementById("container-cidade");
+            var codigo = options_cidade.options[options_cidade.selectedIndex].value;
+            xmlreq.open("GET", base_url + "ajax/carregarOpcoesBairro/" + codigo, false);
             xmlreq.onreadystatechange = function(){
             // Verifica se foi concluído com sucesso e a conexão fechada (readyState=4) 
                 if (xmlreq.readyState == 4) {
@@ -144,18 +143,21 @@ function CarregarBoxBairro(){
 function CarregarEndereco(){
     var input_cep = document.getElementById("cep");
     var conteudo_cep = input_cep.value;
+    // Inputs
+     var rua = document.getElementById('rua');
+     var bairro = document.getElementById('bairro');
+     var cidade = document.getElementById('cidade');
+     var uf = document.getElementById('uf');
+     var cod_log = document.getElementById('codigo_logradouro');
+     //Labels
+     var labels_cidade = document.getElementsByClassName('localidade');
     conteudo_cep = conteudo_cep.replace(/[^\d]+/g, "");
     if(conteudo_cep.length == 8){
         var xmlreq = CriaRequest();
         if(!xmlreq){
             alert("Seu navegador não suporta Ajax!");
         } else {
-             rua = document.getElementById('rua');
-             bairro = document.getElementById('bairro');
-             cidade = document.getElementById('cidade');
-             uf = document.getElementById('uf');
-             cod_log = document.getElementById('codigo_logradouro');
-            xmlreq.open("GET", "http://localhost/WebService/ajax/carregarEndereco/" + conteudo_cep, false);
+            xmlreq.open("GET", base_url + "ajax/carregarEndereco/" + conteudo_cep, false);
             xmlreq.onreadystatechange = function(){// Verifica se foi concluído com sucesso e a conexão fechada (readyState=4) 
                 if (xmlreq.readyState == 4) {
                        if (xmlreq.status === 200) {
@@ -167,6 +169,10 @@ function CarregarEndereco(){
                               cidade.value = "";
                               uf.value = "";
                               cod_log.value = "";
+                              labels_cidade.item(0).innerHTML = "Rua";
+                              labels_cidade.item(1).innerHTML = "Bairro";
+                              labels_cidade.item(2).innerHTML = "Cidade";
+                              labels_cidade.item(3).innerHTML = "UF";
                           } else {
                               $array_dados = $resultado.split("+");
                               rua.value = $array_dados[0];
@@ -174,6 +180,9 @@ function CarregarEndereco(){
                               cidade.value = $array_dados[2];
                               uf.value = $array_dados[3];
                               cod_log.value = $array_dados[4];
+                              for (x = 0; x < 4; x++){
+                                  labels_cidade.item(x).innerHTML = "";
+                              }
                           }
                        } else {
                            alert('Não foi possivel carregar os ramos');
@@ -189,5 +198,9 @@ function CarregarEndereco(){
         cidade.value = "";
         uf.value = "";
         cod_log.value = "";
+        labels_cidade.item(0).innerHTML = "Rua";
+        labels_cidade.item(1).innerHTML = "Bairro";
+        labels_cidade.item(2).innerHTML = "Cidade";
+        labels_cidade.item(3).innerHTML = "UF";
     }
 }

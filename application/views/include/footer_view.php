@@ -6,7 +6,12 @@
     <script type="text/javascript" src="<?php echo base_url('src/js/jquery.js'); ?>"></script>
     <script type="text/javascript" src="<?php echo base_url('src/js/materialize.min.js'); ?>"></script>
     <script type="text/javascript" src="<?php echo base_url('src/js/init.js'); ?>"></script>
-
+    
+    <?php 
+        //foreach($javascript as $value){
+         //echo "<script type='text/javascript' src=". base_url("src/js/$value") ."></script>";
+        //}
+    ?>
     
     <footer class="page-footer grey darken-1">
       <div class="rodape footer-copyright grey darken-1 center-align">

@@ -41,7 +41,17 @@ class Login extends CI_Controller{
     }
     
     public function recuperar(){
-       $this->load->view('login/recuperar_view');
+       $dados = array('mensagem_erro' => "");
+       if(isset($_POST['email'])){
+           $this->load->model('processo_model', 'procmod');
+           $resultado = $this->procmod->NovaRecuperacaoSenha($_POST['email']);
+           if($resultado){
+               redirect('login');
+           } else {
+               $dados['mensagem_erro'] = "E-mail não cadastrado no sistema.";
+           }
+       } 
+       $this->load->view('login/recuperar_view', $dados);
        $this->load->view('include/footer_view');
         
     }

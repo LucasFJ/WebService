@@ -28,7 +28,7 @@
 	<br />
 	<h5>Preencha o formulário e enviaremos um e-mail para a recuperação de sua senha.</h5>
         
-                                <span class="red-text" id="erro">E-mail não cadastrado</span><br />
+                                <span class="red-text" id="erro"><?php echo $mensagem_erro; ?></span><br />
         
 	<div class="card left-align grey darken-1 z-depth-2">
 	<form class="col s12" method="post">
@@ -46,7 +46,7 @@
 	<br />
 	<!-- BUTTONS -->
 	  	<div class="containerBtnInicio container">
-                  <button href="<?php echo base_url('login/recuperar'); ?>"  type="submit" class="btnInicio waves-effect waves-light orange darken-2 white-text btn tooltipped" data-position="top" data-delay="200" data-tooltip="Enviar e-mail de recuperação">Enviar</button>
+                  <button value="Enviar" href="<?php echo base_url('login/recuperar'); ?>"  type="submit" class="btnInicio waves-effect waves-light orange darken-2 white-text btn tooltipped" data-position="top" data-delay="200" data-tooltip="Enviar e-mail de recuperação">Enviar</button>
 		   <a href="<?php echo base_url('login'); ?>" class="btnInicio waves-effect waves-light orange darken-2 white-text btn tooltipped" data-position="top" data-delay="200" data-tooltip="Voltar para Tela de Login">Voltar</a>
                 </div>
 	</form>

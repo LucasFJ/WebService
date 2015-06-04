@@ -48,5 +48,15 @@ class Debug extends CI_Controller {
       // $result =  preg_match('/^[A-Za-zá-úÁ=Ú.\s0-9 ]+$/i', $str);
        echo "$result";  
     }
+    
+    public function testarProdutos($codigo = 1){
+        $this->load->model("pagina_model", 'pagmod');
+        $array_resultado = $this->pagmod->CarregarProdutosPagina($codigo);
+        if($array_resultado){
+            print_r($array_resultado);
+        } else {
+            echo "Não há produtos ligados a essa página ainda";
+        }
+    }
 }
 

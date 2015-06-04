@@ -28,7 +28,21 @@ class Pagina_model extends CI_Model {
                     'numero'  => $row->numero, 'complemento'  => $row->complemento,
                     'bairro'  => $row->bairro, 'cidade'  => $row->cidade, 
                     'uf'  => $row->uf, 'imagem'  => $row->imagem, 
-                    'site'  => $row->site, 'cor'  => $row->cor);
+                    'site'  => $row->site, 'cor'  => $row->cor,
+                    'contato1' => false,  'contato2' => false );
+            }
+            $resultado_query = $this->db->query("SELECT nr_contato FROM tb_contato"
+                    . " WHERE cd_pagina = $codigo LIMIT 2;");
+            if($resultado_query->num_rows() > 0){
+                $cont = 1;
+                foreach($resultado_query->result() as $row){
+                    if($cont == 1){
+                        $resultado['contato1'] = $row->nr_contato;
+                        $cont++;
+                    } else {
+                        $resultado['contato2'] = $row->nr_contato;
+                    }
+                }
             }
             return $resultado;
         } else { //nao existe uma pagina com o codigo especificado
@@ -136,14 +150,14 @@ class Pagina_model extends CI_Model {
     public function CarregarBoxLayoutRamo(){
         $opcoes_ramo = "";
         $opcoes_layout = "";
-        $resultado_query = $this->db->query("SELECT cd_layout, nm_cor FROM"
+        $resultado_query = $this->db->query("SELECT cd_layout, nm_cor, nm_cor_portugues FROM"
                 . " tb_layout ORDER BY nm_cor;");
         if($resultado_query->num_rows() > 0){
             foreach($resultado_query->result() as $row){
                 
               $opcoes_layout .= "<div class='col l2 center-align'>
                     <input value='$row->cd_layout' name='layout' type='radio' id='cor$row->cd_layout' class='orange-text'/>
-                    <label for='cor$row->cd_layout'>$row->nm_cor</label>
+                    <label for='cor$row->cd_layout'>$row->nm_cor_portugues</label>
                 </div>";
               
             }
@@ -161,7 +175,7 @@ class Pagina_model extends CI_Model {
         $email = $_SESSION['user_email'];
         $resultado_query = $this->db->query("SELECT P.cd_pagina as 'codigo'"
                 . " FROM tb_pagina as P, tb_usuario as U "
-                . " WHERE P.cd_usuario = U.cd_usuario AND U.nm_email LIKE '$email'"
+                . " WHERE P.cd_usuario = U.cd_usuario AND U.nm_email = '$email'"
                 . " LIMIT 1;");
         if($resultado_query->num_rows() > 0){
             foreach($resultado_query->result()  as $row){

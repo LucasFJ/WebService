@@ -106,22 +106,22 @@ document.getElementById("cabecalho").innerHTML = "Criar Página";
             <div class="row formLine">
             <div class="input-field col l6 m6 s12 inputNome">
               <input id="rua" type="text" class="validate" disabled>
-              <label for="rua">Rua</label>
+              <label for="rua" class="localidade">Rua</label>
             </div>
             <div class="input-field col l6 m6 s12 inputNome">
               <input id="bairro" type="text" class="validate" disabled>
-              <label for="bairro">Bairro</label>
+              <label for="bairro" class="localidade">Bairro</label>
             </div>
             </div>
             <!-- Cidade e Estado -->
             <div class="row formLine">
             <div class="input-field col l6 m6 s12 inputNome">
               <input id="cidade" type="text" class="validate" disabled>
-              <label for="cidade">Cidade</label>
+              <label for="cidade" class="localidade">Cidade</label>
             </div>
             <div class="input-field col l6 m6 s12 inputNome">
               <input id="uf" type="text" class="validate" disabled>
-              <label for="uf">UF</label>
+              <label for="uf" class="localidade">UF</label>
             </div>
             </div>
     </div>
