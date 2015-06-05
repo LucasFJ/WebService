@@ -58,5 +58,10 @@ class Debug extends CI_Controller {
             echo "Não há produtos ligados a essa página ainda";
         }
     }
+    
+    public function mudarsenha(){
+        $this->load->view('login/mudarsenha_view');
+        $this->load->view('include/footer_view');
+    }
 }
 

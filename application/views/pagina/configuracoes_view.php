@@ -7,3 +7,13 @@ document.getElementById("cabecalho").innerHTML = "Configurações";
 <!-- Conteúdo da View abaixo -->
 
 
+<div class="container">
+    <div class="row">
+    <div class="col s6 left-align">
+            
+    </div>
+    <div>
+            
+    </div>
+    </div>
+</div>
