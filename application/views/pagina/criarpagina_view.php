@@ -44,7 +44,7 @@ document.getElementById("cabecalho").innerHTML = "Criar Página";
         <!-- Descrição -->
         <div class="row formLine">
         <div class="input-field col l12 m12 s12 inputNome">
-            <textarea id="descricao" name="descricao" class="materialize-textarea" required></textarea>
+                <textarea id="descricao" name="descricao" class="materialize-textarea" required></textarea>
             <label for="descricao">Descrição</label>
         </div>
         </div>

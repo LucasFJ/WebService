@@ -22,15 +22,22 @@ $(document).ready(function() {
             $('#buscaAdicional').toggle();
     }
     
-        $('.liMenu').click(function(){
-        if($(this).hasClass('active')){
-            $(this).children('.collapsible-body').hide(400);
-            $(this).removeClass('active'); 
-        } else {
-            $(this).removeClass('active');
-            $('.active').children('.collapsible-body').hide(400);
-            $(this).addClass('active');
-            $('.active').removeClass('active');
-        }
+    //Controla o abre/fecha dos itens da SideNav
+    $('.liMenu').click(function(){
+    if($(this).hasClass('active')){
+        $(this).children('.collapsible-body').hide(400);
+        $(this).removeClass('active'); 
+    } else {
+        $(this).removeClass('active');
+        $('.active').children('.collapsible-body').hide(400);
+        $(this).addClass('active');
+        $('.active').removeClass('active');
+    }
     });
+    
+    //Máscaras de formulários com jQuery Mask
+    $('#telefone').mask('(00) 0000-0000');
+    $('#celular').mask('(00) 00000-0000');
+    $('#cep').mask('00000-000');
+
 });

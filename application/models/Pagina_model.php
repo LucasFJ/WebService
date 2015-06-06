@@ -12,7 +12,7 @@ class Pagina_model extends CI_Model {
     public function CarregarDadosPagina($codigo = false){
         $resultado_query = $this->db->query("SELECT P.cd_pagina as 'codigo', P.nm_pagina as 'nome', 
             P.nm_slogan as 'slogan', P.nm_descricao as 'descricao', R.nm_ramo as 'ramo', 
-            E.nm_logradouro as 'logradouro', P.nr_endereco as 'numero', P.nm_complemento_endereco as 'complemento',
+            E.nm_logradouro as 'logradouro', E.cd_cep as 'cep', P.nr_endereco as 'numero', P.nm_complemento_endereco as 'complemento',
             B.nm_bairro as 'bairro', C.nm_cidade as 'cidade', U.sg_uf as 'uf',
             P.nm_caminho_imagem as 'imagem', P.nm_caminho_site as 'site', L.nm_cor as 'cor'
             FROM tb_pagina as P, tb_ramo as R, tb_logradouro as E, tb_bairro as B, tb_cidade as C, tb_uf = U, tb_layout as L
@@ -29,7 +29,8 @@ class Pagina_model extends CI_Model {
                     'bairro'  => $row->bairro, 'cidade'  => $row->cidade, 
                     'uf'  => $row->uf, 'imagem'  => $row->imagem, 
                     'site'  => $row->site, 'cor'  => $row->cor,
-                    'contato1' => false,  'contato2' => false );
+                    'contato1' => false,  'contato2' => false, 
+                    'cep' => $row->cep );
             }
             $resultado_query = $this->db->query("SELECT nr_contato FROM tb_contato"
                     . " WHERE cd_pagina = $codigo LIMIT 2;");
