@@ -172,7 +172,6 @@ document.getElementById("cabecalho").innerHTML = "Configurações";
     </li>
     <li>
         <div class="collapsible-header"><i class="mdi-image-color-lens"></i>Layout <span class="erroLayout red-text"></span>
-        <span class="new badge">4</span>
         </div>
         <div class="collapsible-body container">
         <form class="col s12" method="post">
