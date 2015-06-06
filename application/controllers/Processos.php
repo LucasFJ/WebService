@@ -35,6 +35,27 @@ class Processos extends CI_Controller{
     public function recuperacao($codigo_processo = false, $codigo_chave = false){
         $dados = array('mensagem_erro' => '');
         if(is_numeric($codigo_processo)  && $codigo_chave){
+            //Impedindo SQL injection
+
+            $codigo_chave = html_escape($codigo_chave);
+            $codigo_processo = html_escape($codigo_processo);
+            $codigo_chave = addslashes($codigo_chave);
+            $codigo_processo = addslashes($codigo_processo);
+                            $dados = array("mensagem_erro" => "");
+            if(isset($_POST['senha'])){
+                $this->load->library('form_validation');         
+                $this->form_validation->set_rules('senha', 'senha', 'required');
+                $this->form_validation->set_rules('repeteSenha', 'confirmar senha', 'required|matches[senha]');
+                if($this->form_validation->run()){
+                    $resultado = $this->process->RealizarRecuperacao($codigo_processo, $codigo_chave, $_POST['senha']);
+                    if($resultado){
+                        redirect('login');
+                    }
+                }
+                $dados["mensagem_erro"] = "A senha informada é invalida ou diferente da confirmação.";         
+            }
+            $this->load->view('processos/mudarsenha_view', $dados);
+            $this->load->view('include/footer_view');
         //INSERIR A VIEW COM INPUT DE NOVA SENHA E CONFIRMAR NOVA SENHA
         } else { // algum dos dois parametros nao foi enviado
             redirect('home');

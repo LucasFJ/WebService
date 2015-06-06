@@ -106,4 +106,27 @@ class Processo_model extends CI_Model {
                 return false;
         }   
     }
+    
+    public function RealizarRecuperacao($codigo_processo = false, $codigo_chave = false, $senha){
+        if($codigo_chave && $senha && $codigo_processo){
+            $senha = md5($senha);
+            $resultado_query = $this->db->query("SELECT cd_usuario FROM tb_processo "
+                    . " WHERE cd_processo = $codigo_processo AND cd_chave = '$codigo_chave' AND"
+                    . " cd_tipo = 2 LIMIT 1;");
+            if($resultado_query->num_rows() > 0) {
+                foreach($resultado_query->result() as $row){
+                    $codigo_usuario = $row->cd_usuario;
+                }
+                
+                $this->db->query("UPDATE tb_usuario SET cd_senha = '$senha' WHERE "
+                        . " cd_usuario = $codigo_usuario; ");
+                $this->db->query("DELETE FROM tb_processo WHERE cd_processo = $codigo_processo;");
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
 }
