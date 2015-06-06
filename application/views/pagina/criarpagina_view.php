@@ -76,7 +76,7 @@ document.getElementById("cabecalho").innerHTML = "Criar Página";
             </div>
             <br /><br/><br/>
             <div class="row formLine center-align">
-                <?php echo $opcoes_layout; ?>
+                <?php //echo $opcoes_layout; ?>
             </div>
             <br/>
     </div>
