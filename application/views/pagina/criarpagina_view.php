@@ -77,6 +77,12 @@ document.getElementById("cabecalho").innerHTML = "Criar Página";
             <br /><br/><br/>
             <div class="row formLine center-align">
                 <?php //echo $opcoes_layout; ?>
+            <div class="input-field col l6 m6 s12">
+                <select name="ramo" required>
+                <option value="" disabled selected>Ramo da página</option>
+                <?php echo $opcoes_ramo; ?>
+                </select>
+            </div>
             </div>
             <br/>
     </div>
