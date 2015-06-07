@@ -94,14 +94,15 @@ class Pagina extends CI_Controller{
     public function configuracoes(){
         $codigo = $this->pagmod->CarregarPaginaProprietario();
         if($codigo){
-             $dados_pagina = $this->pagmod->CarregarDadosPagina($codigo);
-             $dados_preload = $this->pagmod->CarregarBoxLayoutRamo();
-            $dados = array('opcoes_ramo' => $dados_preload['opcoes_ramo'], 
-                'opcoes_layout' => $dados_preload['opcoes_layout'] );
+             $dados = $this->pagmod->CarregarDadosPagina($codigo);
+             
+            $dados_preload = $this->pagmod->CarregarBoxLayoutRamo();
+            $dados['opcoes_ramo'] = $dados_preload['opcoes_ramo'];
+            $dados['opcoes_layout'] = $dados_preload['opcoes_layout'];
             // print_r($dados_pagina);
              $this->load->view('include/head_view');
              $this->load->view('include/header_view');
-             $this->load->view('pagina/configuracoes_view', $dados_pagina, $dados);
+             $this->load->view('pagina/configuracoes_view', $dados);
              $this->load->view('include/footer_view');
         } else {
             redirect('home');

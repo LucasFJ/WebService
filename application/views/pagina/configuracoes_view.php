@@ -57,7 +57,16 @@ document.getElementById("cabecalho").innerHTML = "Configurações";
         <form class="col s12" method="post">
         <div class="input-field">
             <select name="ramo" required>
-            <option value="" disabled selected><?php echo $ramo; ?></option>
+            <?php 
+            //<option value="" disabled selected> echo $ramo; </option>
+            foreach($opcoes_ramo as $value){
+                if($value['ramo'] == $ramo){
+                    echo "<option value=". $value['codigo'] ." selected>". $value['ramo'] ."</option>";
+                } else {
+                    echo "<option value=". $value['codigo'] .">". $value['ramo'] ."</option>";
+                }
+            }
+            ?>
             <!-- Aqui o php gera todas as <option ramo> e deixa como 'selected' como default a que está cadastrada na página -->
             </select>
         </div>
@@ -175,8 +184,20 @@ document.getElementById("cabecalho").innerHTML = "Configurações";
         </div>
         <div class="collapsible-body container">
         <form class="col s12" method="post">
-        <div class="input-field">
-            
+        <div class="input-field"> 
+            <select name="ramo" required>
+            <?php 
+            //<option value="" disabled selected> echo $ramo; </option>
+            foreach($opcoes_layout as $value){
+                if($value['cor'] == $cor){
+                    echo "<option value=". $value['codigo'] ." selected>". $value['cor_port'] ."</option>";
+                } else {
+                    echo "<option value=". $value['codigo'] .">". $value['cor_port'] ."</option>";
+                }
+            }
+            ?>
+            <!-- Aqui o php gera todas as <option ramo> e deixa como 'selected' como default a que está cadastrada na página -->
+            </select>      
         </div>
         <div class="right-align">
             <button class="btn btn-floating orange darken-2" type="submit"><i class="mdi-navigation-check"></i></button>
