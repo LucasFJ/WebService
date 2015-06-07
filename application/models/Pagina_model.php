@@ -149,26 +149,41 @@ class Pagina_model extends CI_Model {
     }
     
     public function CarregarBoxLayoutRamo(){
-        $opcoes_ramo = "";
-        $opcoes_layout = "";
+        $opcoes_ramo =  array();
+        $opcoes_layout = array();
         $resultado_query = $this->db->query("SELECT cd_layout, nm_cor, nm_cor_portugues FROM"
                 . " tb_layout ORDER BY nm_cor;");
         if($resultado_query->num_rows() > 0){
+            $index = 0;
             foreach($resultado_query->result() as $row){
-                
-              $opcoes_layout .= "<div class='col l2 center-align'>
+                $opcoes_layout[$index] = array('codigo' => $row->cd_layout,
+                    'cor_port' => $row->nm_cor_portugues,
+                    'cor' => $row->nm_cor);
+                $index += 1;
+              /* $opcoes_layout .= "<div class='col l2 center-align'>
                     <input value='$row->cd_layout' name='layout' type='radio' id='cor$row->cd_layout' class='orange-text'/>
                     <label for='cor$row->cd_layout'>$row->nm_cor_portugues</label>
-                </div>";
+                </div>"; */
               
             }
         }
         $resultado_query2 = $this->db->query("SELECT cd_ramo, nm_ramo FROM"
                 . " tb_ramo ORDER BY nm_ramo;");
         if($resultado_query2->num_rows() > 0){
+            $index = 0;
+            $outro = array('codigo' => null, 'ramo' => null);
             foreach($resultado_query2->result() as $row){
-              $opcoes_ramo .= "<option value='$row->cd_ramo'>$row->nm_ramo</option>";
+              //$opcoes_ramo .= "<option value='$row->cd_ramo'>$row->nm_ramo</option>";
+                if($row->nm_ramo != "Outros"){
+                    $opcoes_ramo[$index] = array("codigo" => $row->cd_ramo, 
+                        'ramo' => $row->nm_ramo);
+                    $index += 1;
+                } else {
+                    $outro['codigo'] = $row->cd_ramo;
+                    $outro['ramo'] = $row->nm_ramo;
+                }
             }
+            $opcoes_ramo[$index] = $outro;
         }
         return array('opcoes_ramo' => $opcoes_ramo, 'opcoes_layout' => $opcoes_layout);
     }

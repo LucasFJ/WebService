@@ -26,7 +26,11 @@ document.getElementById("cabecalho").innerHTML = "Criar Página";
         <div class="input-field col l6 m6 s12">
             <select name="ramo" required>
             <option value="" disabled selected>Ramo da página</option>
-            <?php echo $opcoes_ramo; ?>
+            <?php //echo $opcoes_ramo; 
+                foreach($opcoes_ramo as $value){
+                    echo "<option value='". $value['codigo'] ."'>". $value['ramo'] ."</option>";
+                }
+            ?>
             </select>
         </div>
         </div>
@@ -78,9 +82,13 @@ document.getElementById("cabecalho").innerHTML = "Criar Página";
             <div class="row formLine center-align">
                 <?php //echo $opcoes_layout; ?>
             <div class="input-field col l6 m6 s12">
-                <select name="ramo" required>
-                <option value="" disabled selected>Ramo da página</option>
-                <?php echo $opcoes_ramo; ?>
+                <select name="layout" required>
+                <option value="" disabled selected>Selecione um layout</option>
+                <?php 
+                    foreach($opcoes_layout as $value){
+                        echo "<option value='". $value['codigo'] ."'>". $value['cor_port'] ."</option>";
+                    }
+                ?>
                 </select>
             </div>
             </div>
