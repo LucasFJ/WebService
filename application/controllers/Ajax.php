@@ -67,20 +67,32 @@ class Ajax extends CI_Controller{
     
     public function AlterarDadoPagina($tipo = false, $codigoPagina = false, $valorDado = false){
         $this->load->model("pagina_model", "pagmod");
-        if(!empty($tipo) && !empty($codigoPagina) && !empty($valorDado)){
-            $retorno = false;
+        
+        //verificando se a pessoa que esta alterando a pagina é realmente a dona 
+        //que se encontra logada no servidor ou um SQL injection direto na classe AJAX
+        $isSecure = ($this->pagmod->CarregarPaginaProprietario() == dechex($codigoPagina)) ? true : false;       
+        $retorno = false;
+        if(!empty($tipo) && !empty($codigoPagina) && !empty($valorDado) && $isSecure){        
             switch ($tipo){
-                case 1: $retorno = $this->pagmod->AlterarNome($valorDado, $codigoPagina);
-                case 2: //slogan;
-                case 3: //descrição;
-                case 4: //site;
-                case 5: //ramo TODO;
-                case 6: //layout TODO;
-                case 7: //logradouro TODO;
-                case 8: //nr endereço;
-                case 9: ;//complemento;
-                case 10 :
-                default: echo "Erro";
+               case 1: $retorno = $this->pagmod->AlterarNome($valorDado, $codigoPagina); 
+                    break; //nome
+                case 2: $retorno = $this->pagmod->AlterarSlogan($valorDado, $codigoPagina); 
+                    break; //slogan;
+               case 3:  $retorno = $this->pagmod->AlterarDescricao($valorDado, $codigoPagina);
+                    break;//descrição;
+                //case 4: echo '2'; break;//site;
+               // case 5: echo '2'; break;//ramo TODO;
+               // case 6: echo '2'; break;//layout TODO;
+               // case 7: echo '2'; break; //logradouro TODO;
+               // case 8: echo '2'; break;//nr endereço;
+               // case 9: echo '2'; break;//complemento;
+               // case 10 echo '2'; break;
+                default: $retorno = false; break;
+            }
+            if($retorno) {
+                echo "Funcionou";
+            } else {
+                echo "Erro";
             }
         } else {
             echo "Erro";

@@ -13,7 +13,7 @@ document.getElementById("cabecalho").innerHTML = "Configurações";
     <ul class="collapsible" data-collapsible="accordion">
     <li>
     <div class="collapsible-header">
-        <i class="mdi-maps-store-mall-directory"></i>Nome <span class="erroNome red-text"></span>
+        <i class="mdi-maps-store-mall-directory"></i>Nome <span id="erroNome" class="red-text"></span><span id="sucessoNome" class="green-text"></span>
     </div>
     <div class="collapsible-body container">
         <form class="col s12" method="post">
@@ -22,7 +22,7 @@ document.getElementById("cabecalho").innerHTML = "Configurações";
             <label for="nome">Nome</label>
         </div>
         <div class="right-align">
-            <button class="btn btn-floating orange darken-2" type="submit"><i class="mdi-navigation-check"></i></button>
+            <a class="btn btn-floating orange darken-2"  onclick="AlterarNomePagina(<?php echo $codigo; ?>)"><i class="mdi-navigation-check"></i></a>
             <button class="btn btn-floating orange darken-2" type="reset"><i class="mdi-content-undo"></i></button>
         </div>
         </form>
@@ -35,7 +35,7 @@ document.getElementById("cabecalho").innerHTML = "Configurações";
       <div class="collapsible-body container"><p><?php echo "IMAGEEEEMMM"; ?></p></div>
     </li>
     <li>
-      <div class="collapsible-header"><i class="mdi-action-assignment-ind"></i>Slogan <span class="erroSlogan red-text"></span>
+      <div class="collapsible-header"><i class="mdi-action-assignment-ind"></i>Slogan <span id= "erroSlogan" class="red-text"></span><span id="sucessoSlogan" class="green-text"></span>
       </div>
       <div class="collapsible-body container">
         <form class="col s12" method="post">
@@ -44,7 +44,7 @@ document.getElementById("cabecalho").innerHTML = "Configurações";
             <label for="slogan">Slogan</label>
         </div>
         <div class="right-align">
-            <button class="btn btn-floating orange darken-2" type="submit"><i class="mdi-navigation-check"></i></button>
+            <a class="btn btn-floating orange darken-2" onclick="AlterarSloganPagina(<?php echo $codigo; ?>)"><i class="mdi-navigation-check"></i></a>
             <button class="btn btn-floating orange darken-2" type="reset"><i class="mdi-content-undo"></i></button>
         </div>
         </form>
@@ -69,7 +69,7 @@ document.getElementById("cabecalho").innerHTML = "Configurações";
       </div>
     </li>
     <li>
-      <div class="collapsible-header"><i class="mdi-action-description"></i>Descrição <span class="erroDesc red-text"></span>
+      <div class="collapsible-header"><i class="mdi-action-description"></i>Descrição <span id="erroDesc" class="red-text"></span><span id="sucessoDesc" class="green-text"></span>
       </div>
       <div class="collapsible-body container">
         <form class="col s12" method="post">
@@ -78,7 +78,7 @@ document.getElementById("cabecalho").innerHTML = "Configurações";
           <label for="descricao">Descriçao</label>
         </div>
         <div class="right-align">
-            <button class="btn btn-floating orange darken-2" type="submit"><i class="mdi-navigation-check"></i></button>
+            <a class="btn btn-floating orange darken-2" onclick="AlterarDescricaoPagina(<?php echo $codigo; ?>)"><i class="mdi-navigation-check"></i></a>
             <button class="btn btn-floating orange darken-2" type="reset"><i class="mdi-content-undo"></i></button>
         </div>
         </form>

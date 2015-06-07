@@ -204,3 +204,128 @@ function CarregarEndereco(){
         labels_cidade.item(3).innerHTML = "UF";
     }
 }
+
+
+//CRUD VIA AJAX DOS DADOS DA PÁGINA
+function AlterarNomePagina(codigo){
+   var nome = document.getElementById("nome").value; //valor do novo nome
+   var suces = document.getElementById("sucessoNome");
+   var erro = document.getElementById("erroNome"); //campo de mensagem
+   nome = nome.trim();
+   var rexep = new RegExp(/^['A-Za-zá-úÁ=Ú\s0-9 ]+$/i);
+   if(rexep.test(nome) && nome != ""){
+       nome = nome.replace("'", "%27");
+       nome = encodeURIComponent(nome); // Permitindo o dado a entrar na url
+        var xmlreq = CriaRequest();
+        if(!xmlreq){
+            erro.innerHTML = "Seu navegador não suporta Ajax.";
+            suces.innerHTML = "";
+        } else {
+            xmlreq.open("GET", base_url + "ajax/alterardadopagina/1/" + codigo + "/" + nome, false);
+            xmlreq.onreadystatechange = function(){
+            // Verifica se foi concluído com sucesso e a conexão fechada (readyState=4) 
+                if (xmlreq.readyState == 4) {
+                       if (xmlreq.status === 200) {
+                          var resultado = xmlreq.responseText;
+                          if(resultado === "Erro"){
+                              erro.innerHTML = "Ocorreu um erro durante a alteração.";
+                              suces.innerHTML = "";
+                          } else {
+                              suces.innerHTML = "Nome alterado com sucesso";
+                              erro.innerHTML = "";
+                          }
+                       } else {
+                           erro.innerHTML = "Ocorreu um erro durante a alteração.";
+                           suces.innerHTML = "";
+                       }
+                }
+            };
+            xmlreq.send(null);
+        }
+   } else {
+        erro.innerHTML = "O nome inserído é inválido";
+        suces.innerHTML = "";
+   }
+}
+
+function AlterarSloganPagina(codigo){
+   var slogan = document.getElementById("slogan").value; //valor do novo nome
+   var suces = document.getElementById("sucessoSlogan");
+   var erro = document.getElementById("erroSlogan"); //campo de mensagem
+   slogan = slogan.trim();
+   var rexep = new RegExp(/^[,àÀA-Za-zá-úÁ=Ú.\s0-9 ]+$/i);
+   if(rexep.test(slogan) && slogan != ""){
+       slogan = encodeURIComponent(slogan);
+       var xmlreq = CriaRequest();
+        if(!xmlreq){
+            erro.innerHTML = "Seu navegador não suporta Ajax.";
+            suces.innerHTML = "";
+        } else {
+            xmlreq.open("GET", base_url + "ajax/alterardadopagina/2/" + codigo + "/" + slogan, false);
+            xmlreq.onreadystatechange = function(){
+            // Verifica se foi concluído com sucesso e a conexão fechada (readyState=4) 
+                if (xmlreq.readyState == 4) {
+                       if (xmlreq.status === 200) {
+                          var resultado = xmlreq.responseText;
+                          if(resultado === "Erro"){
+                              erro.innerHTML = "Ocorreu um erro durante a alteração.";
+                              suces.innerHTML = "";
+                          } else {
+                              suces.innerHTML = "Slogan alterado com sucesso";
+                              erro.innerHTML = "";
+                          }
+                       } else {
+                           erro.innerHTML = "Ocorreu um erro durante a alteração.";
+                           suces.innerHTML = "";
+                       }
+                }
+            };
+            xmlreq.send(null);
+        }
+   } else {
+       erro.innerHTML = "O slogan inserído é inválido3";
+       suces.innerHTML = "";
+   }
+}
+
+function AlterarDescricaoPagina(codigo){
+   var desc = document.getElementById("descricao").value; //valor do novo nome
+   var suces = document.getElementById("sucessoDesc");
+   var erro = document.getElementById("erroDesc"); //campo de mensagem
+   desc = desc.trim();
+   var rexep = new RegExp(/^[,àÀA-Za-zá-úÁ=Ú.\s0-9 ]+$/i);
+   if(rexep.test(desc) && desc != ""){
+       //FAZENDO O DADO SER TRANSMITIVEL PELA ULR  
+       desc = encodeURIComponent(desc);
+       var xmlreq = CriaRequest();
+        if(!xmlreq){
+            erro.innerHTML = "Seu navegador não suporta Ajax.";
+            suces.innerHTML = "";
+        } else {
+            xmlreq.open("GET", base_url + "ajax/alterardadopagina/3/" + codigo + "/" + desc, false);
+            xmlreq.onreadystatechange = function(){
+            // Verifica se foi concluído com sucesso e a conexão fechada (readyState=4) 
+                if (xmlreq.readyState == 4) {
+                       if (xmlreq.status === 200) {
+                          var resultado = xmlreq.responseText;
+                          if(resultado === "Erro"){
+                              erro.innerHTML = "Ocorreu um erro durante a alteração.1";
+                              suces.innerHTML = "";
+                          } else {
+                              suces.innerHTML = "Descrição alterado com sucesso";
+                              erro.innerHTML = "";
+                          }
+                       } else {
+                           erro.innerHTML = "Ocorreu um erro durante a alteração.2";
+                           suces.innerHTML = "";
+                       }
+                }
+            };
+            xmlreq.send(null);
+            
+        }
+   } else {
+        erro.innerHTML = "A descrição inserída é inválida";
+        suces.innerHTML = "";
+   }
+}

@@ -74,7 +74,7 @@ class Pagina_model extends CI_Model {
         $nome = addslashes(trim($nome));
         $ramo = (is_numeric($ramo) && $ramo > 0) ? $ramo : 1;
         $slogan = addslashes(trim($slogan));
-        $descricao = str_replace( "\n", '<br/>', addslashes(trim($descricao))); //escapa os espaços
+        $descricao = addslashes(trim($descricao)); //escapa os espaços
         $cep = (is_numeric($cep) && $cep > 0) ? $cep : null;
         $numero = (is_numeric($numero)) ? $numero : '';
         $complemento = addslashes(trim($complemento));
@@ -190,29 +190,31 @@ class Pagina_model extends CI_Model {
     
     //FUNÇÕES DE ALTERAÇÃO CHAMADAS PELOS AJAX
     public function AlterarNome($novoNome = false, $codigoPagina = false){
-        if($novoNome && $codigoPagina && is_numeric($codigoPagina && !empty($novoNome))){
+        if($novoNome && $codigoPagina && is_numeric($codigoPagina) && !empty($novoNome)){
+            $novoNome = urldecode($novoNome);
+            $novoNome = str_replace("%27", "'", $novoNome);
             $novoNome = addslashes(strip_tags(trim($novoNome)));
             $resultado_query = $this->db->query("UPDATE tb_pagina SET "
                     . " nm_pagina = '$novoNome' WHERE cd_pagina = $codigoPagina;");
-            if($resultado_query->num_rows() > 0){
-                return $novoNome;
-            } else
-            {
+            if($resultado_query) {
+                return true;
+            } else {
                 return false;
             }
         } else {
             return false;
         }
     }   
+    
     public function AlterarSlogan($novoSlogan = false, $codigoPagina = false){
-        if($novoSlogan && $codigoPagina && is_numeric($codigoPagina && !empty($novoSlogan))){
+        if($novoSlogan && $codigoPagina && is_numeric($codigoPagina) && !empty($novoSlogan)){
+            $novoSlogan = urldecode($novoSlogan);
             $novoSlogan = addslashes(strip_tags(trim($novoSlogan)));
             $resultado_query = $this->db->query("UPDATE tb_pagina SET "
                     . " nm_slogan = '$novoSlogan' WHERE cd_pagina = $codigoPagina;");
-            if($resultado_query->num_rows() > 0){
-                return $novoSlogan;
-            } else
-            {
+            if($resultado_query){
+                return true;
+            } else {
                 return false;
             }
         } else {
@@ -220,19 +222,19 @@ class Pagina_model extends CI_Model {
         }
     }
     public function AlterarDescricao($novaDesc = false, $codigoPagina = false){
-        if($novaDesc && $codigoPagina && is_numeric($codigoPagina && !empty($novaDesc))){
-            $novaDesc = str_replace("/n", "<br/>", $novaDesc);
-             $novaDesc = str_replace("  ", "&nbs;&nbs;", $novaDesc);
+        if($novaDesc && $codigoPagina && is_numeric($codigoPagina) && !empty($novaDesc)){
+            //$novaDesc = $this->ArrumarStringUrl($novaDesc);
+            $novaDesc = urldecode($novaDesc);
             $novaDesc = addslashes(trim($novaDesc));
             $resultado_query = $this->db->query("UPDATE tb_pagina SET "
                     . " nm_descricao = '$novaDesc' WHERE cd_pagina = $codigoPagina;");
-            if($resultado_query->num_rows() > 0){
-                return $novaDesc;
-            } else
-            {
+            if($resultado_query){
+                return true;
+            } else{
                 return false;
             }
         } else {
+            echo "Aqui";
             return false;
         }
     }
@@ -290,5 +292,6 @@ class Pagina_model extends CI_Model {
             return false;
         }
     }
+    
     
 }
