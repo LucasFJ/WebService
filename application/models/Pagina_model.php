@@ -275,18 +275,9 @@ class Pagina_model extends CI_Model {
         if(is_numeric($novoRamo) && is_numeric($codigoPagina)){
              $resultado_query = $this->db->query("UPDATE tb_pagina SET "
                     . " cd_ramo = $novoRamo WHERE cd_pagina = $codigoPagina;");
-            if($resultado_query->num_rows() > 0){
-                $resultado_query = $this->db->query("SELECT nm_ramo FROM tb_ramo "
-                    . "WHERE cd_ramo = $novoRam LIMIT 1");
-                if($resultado_query->num_rows() > 0){
-                    foreach ($resultado_query->result() as $row){
-                        return $row->nm_ramo;
-                    }
-                } else { 
-                    return false;
-                }   
-            } else
-            {
+            if($resultado_query){
+                return true;
+            } else {
                 return false;
             }
         } else {
@@ -308,5 +299,17 @@ class Pagina_model extends CI_Model {
         }
     }
     
-    
+    public function AlterarLayout($novoLayout = false, $codigoPagina = false){
+        if(is_numeric($novoLayout) && is_numeric($codigoPagina)){
+             $resultado_query = $this->db->query("UPDATE tb_pagina SET "
+                    . " cd_layout = $novoLayout WHERE cd_pagina = $codigoPagina;");
+            if($resultado_query){
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
 }

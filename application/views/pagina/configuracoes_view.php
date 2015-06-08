@@ -51,12 +51,12 @@ document.getElementById("cabecalho").innerHTML = "Configurações";
       </div>
     </li>
     <li>
-      <div class="collapsible-header"><i class="mdi-file-folder-open"></i>Ramo <span class="erroRamo red-text"></span>
+      <div class="collapsible-header"><i class="mdi-file-folder-open"></i>Ramo <span class="erroRamo red-text"></span><span id="sucessoRamo" class="green-text"></span>
       </div>
       <div class="collapsible-body container">
         <form class="col s12" method="post">
         <div class="input-field">
-            <select name="ramo" required>
+            <select name="ramo" id="ramo" required>
             <?php 
             //<option value="" disabled selected> echo $ramo; </option>
             foreach($opcoes_ramo as $value){
@@ -71,7 +71,7 @@ document.getElementById("cabecalho").innerHTML = "Configurações";
             </select>
         </div>
         <div class="right-align">
-            <button class="btn btn-floating orange darken-2" type="submit"><i class="mdi-navigation-check"></i></button>
+            <a class="btn btn-floating orange darken-2" onclick="AlterarRamoPagina(<?php echo $codigo; ?>)"><i class="mdi-navigation-check"></i></a>
             <button class="btn btn-floating orange darken-2" type="reset"><i class="mdi-content-undo"></i></button>
         </div>
         </form>
@@ -180,12 +180,12 @@ document.getElementById("cabecalho").innerHTML = "Configurações";
         </div>
     </li>
     <li>
-        <div class="collapsible-header"><i class="mdi-image-color-lens"></i>Layout <span class="erroLayout red-text"></span>
+        <div class="collapsible-header"><i class="mdi-image-color-lens"></i>Layout <span class="erroLayout red-text"></span></span><span id="sucessoLayout" class="green-text"></span>
         </div>
         <div class="collapsible-body container">
         <form class="col s12" method="post">
         <div class="input-field"> 
-            <select name="ramo" required>
+            <select name="layout" id="layout" required>
             <?php 
             //<option value="" disabled selected> echo $ramo; </option>
             foreach($opcoes_layout as $value){
@@ -200,7 +200,7 @@ document.getElementById("cabecalho").innerHTML = "Configurações";
             </select>      
         </div>
         <div class="right-align">
-            <button class="btn btn-floating orange darken-2" type="submit"><i class="mdi-navigation-check"></i></button>
+            <a class="btn btn-floating orange darken-2" onclick="AlterarLayoutPagina(<?php echo $codigo; ?>)"><i class="mdi-navigation-check"></i></a>
             <button class="btn btn-floating orange darken-2" type="reset"><i class="mdi-content-undo"></i></button>
         </div>
         </form>

@@ -81,8 +81,10 @@ class Ajax extends CI_Controller{
                case 3:  $retorno = $this->pagmod->AlterarDescricao($valorDado, $codigoPagina);
                     break;//descrição;
                 //case 4: echo '2'; break;//site;
-               // case 5: echo '2'; break;//ramo TODO;
-               // case 6: echo '2'; break;//layout TODO;
+               case 5: $retorno = $this->pagmod->AlterarRamo($valorDado, $codigoPagina);
+                   break;//ramo;
+               case 6: $retorno = $this->pagmod->AlterarLayout($valorDado, $codigoPagina); 
+                   break;//layout TODO;
                // case 7: echo '2'; break; //logradouro TODO;
                // case 8: echo '2'; break;//nr endereço;
                // case 9: echo '2'; break;//complemento;

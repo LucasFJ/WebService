@@ -309,14 +309,14 @@ function AlterarDescricaoPagina(codigo){
                        if (xmlreq.status === 200) {
                           var resultado = xmlreq.responseText;
                           if(resultado === "Erro"){
-                              erro.innerHTML = "Ocorreu um erro durante a alteração.1";
+                              erro.innerHTML = "Ocorreu um erro durante a alteração.";
                               suces.innerHTML = "";
                           } else {
                               suces.innerHTML = "Descrição alterado com sucesso";
                               erro.innerHTML = "";
                           }
                        } else {
-                           erro.innerHTML = "Ocorreu um erro durante a alteração.2";
+                           erro.innerHTML = "Ocorreu um erro durante a alteração.";
                            suces.innerHTML = "";
                        }
                 }
@@ -328,4 +328,82 @@ function AlterarDescricaoPagina(codigo){
         erro.innerHTML = "A descrição inserída é inválida";
         suces.innerHTML = "";
    }
+}
+
+function AlterarRamoPagina(codigo){
+    var combo_ramo = document.getElementById("ramo");
+    var ramo = combo_ramo.options[combo_ramo.selectedIndex].value;
+    var suces = document.getElementById("sucessoRamo");
+    var erro = document.getElementById("erroRamo"); 
+    if(ramo > 0){
+        var xmlreq = CriaRequest();
+        if(!xmlreq){
+            erro.innerHTML = "Seu navegador não suporta Ajax.";
+            suces.innerHTML = "";
+        } else {
+            xmlreq.open("GET", base_url + "ajax/alterardadopagina/5/" + codigo + "/" + ramo, false);
+            xmlreq.onreadystatechange = function(){
+            // Verifica se foi concluído com sucesso e a conexão fechada (readyState=4) 
+                if (xmlreq.readyState == 4) {
+                       if (xmlreq.status === 200) {
+                          var resultado = xmlreq.responseText;
+                          if(resultado === "Erro"){
+                              erro.innerHTML = "Ocorreu um erro durante a alteração.";
+                              suces.innerHTML = "";
+                          } else {
+                              suces.innerHTML = "Ramo alterado com sucesso";
+                              erro.innerHTML = "";
+                          }
+                       } else {
+                           erro.innerHTML = "Ocorreu um erro durante a alteração.";
+                           suces.innerHTML = "";
+                       }
+                }
+            };
+            xmlreq.send(null);
+            
+        }
+    } else {
+        erro.innerHTML = "O ramo inserido é inválido";
+        suces.innerHTML = "";
+    }
+}
+
+function AlterarLayoutPagina(codigo){
+    var combo_layout = document.getElementById("layout");
+    var layout = combo_layout.options[combo_layout.selectedIndex].value;
+    var suces = document.getElementById("sucessoLayout");
+    var erro = document.getElementById("erroLayout"); 
+    if(layout > 0){
+        var xmlreq = CriaRequest();
+        if(!xmlreq){
+            erro.innerHTML = "Seu navegador não suporta Ajax.";
+            suces.innerHTML = "";
+        } else {
+            xmlreq.open("GET", base_url + "ajax/alterardadopagina/6/" + codigo + "/" + layout, false);
+            xmlreq.onreadystatechange = function(){
+            // Verifica se foi concluído com sucesso e a conexão fechada (readyState=4) 
+                if (xmlreq.readyState == 4) {
+                       if (xmlreq.status === 200) {
+                          var resultado = xmlreq.responseText;
+                          if(resultado === "Erro"){
+                              erro.innerHTML = "Ocorreu um erro durante a alteração.";
+                              suces.innerHTML = "";
+                          } else {
+                              suces.innerHTML = "Layout alterado com sucesso";
+                              erro.innerHTML = "";
+                          }
+                       } else {
+                           erro.innerHTML = "Ocorreu um erro durante a alteração.";
+                           suces.innerHTML = "";
+                       }
+                }
+            };
+            xmlreq.send(null);
+            
+        }
+    } else {
+        erro.innerHTML = "O layout inserido é inválido";
+        suces.innerHTML = "";
+    }
 }
