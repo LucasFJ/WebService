@@ -207,8 +207,7 @@ class Pagina_model extends CI_Model {
         } else {
             return false;
         }
-    }   
-    
+    }     
     public function AlterarSlogan($novoSlogan = false, $codigoPagina = false){
         if($novoSlogan && $codigoPagina && is_numeric($codigoPagina) && !empty($novoSlogan)){
             $novoSlogan = urldecode($novoSlogan);
@@ -312,5 +311,34 @@ class Pagina_model extends CI_Model {
         } else {
             return false;
         }
+    }
+
+    public function AlterarContato($novoContato = false, $codigoPagina = false){
+        $novoContato = explode("|", urldecode($novoContato));
+        if($novoContato && $codigoPagina && is_numeric($codigoPagina) && !empty($novoContato)){
+            $telefone = trim($novoContato[0]);
+            $celular = trim($novoContato[1]);
+            if(is_numeric($telefone)){
+                $strSetTelefone = " nr_telefone = '$telefone', ";
+            } else {
+                $strSetTelefone = " nr_telefone = null , ";
+            }
+            if(is_numeric($celular)){
+                $strSetCelular = " nr_celular = '$celular' ";
+            } else {
+                $strSetCelular = " nr_celular = null ";
+            }
+             $resultado_query = $this->db->query("UPDATE tb_pagina SET "
+                    . $strSetTelefone . $strSetCelular ." WHERE cd_pagina = $codigoPagina;");
+            if($resultado_query){
+                return true;
+            } else {
+                return false;
+            }
+            
+        } else {
+            return false;
+        }
+            
     }
 }

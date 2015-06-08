@@ -6,8 +6,7 @@ document.getElementById("cabecalho").innerHTML = " <?php echo $nome; ?>";
 <?php 
         $contato = (is_numeric($telefone) && is_numeric($celular)) ? "$telefone | $celular" : false;
         if(!$contato){
-            $contato = (is_numeric($telefone)) ? $telefone : "";
-            $contato = (is_numeric($celular))  ? $celular  : "";
+            $contato = (is_numeric($telefone)) ? $telefone : $contato = (is_numeric($telefone)) ? $telefone : ((is_numeric($celular))  ? $celular  : "");
         }
 ?>
 <!-- Conteúdo da View abaixo -->

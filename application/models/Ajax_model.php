@@ -88,8 +88,7 @@ class Ajax_model extends CI_Model {
         if(!$cor){ $cor = "deep-orange"; }
         $contato = (is_numeric($telefone) && is_numeric($celular)) ? "$telefone | $celular" : false;
         if(!$contato){
-            $contato = (is_numeric($telefone)) ? $telefone : "";
-            $contato = (is_numeric($celular))  ? $celular  : "";
+            $contato = (is_numeric($telefone)) ? $telefone : ((is_numeric($celular))  ? $celular  : "");
         }
         return "<div class='conteudo cartao'>"
                 ."<div class='card-panel $cor lighten-1 z-depth-1'>"

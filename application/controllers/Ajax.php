@@ -88,7 +88,8 @@ class Ajax extends CI_Controller{
                    break;//layout ;
                 case 7: $retorno = $this->pagmod->AlterarLocalidade($valorDado, $codigoPagina); 
                     break; //localidade;
-               // case 8 echo '2'; break;
+               case 8: $retorno = $this->pagmod->AlterarContato($valorDado, $codigoPagina);
+                    break; // telefone e celular
                 default: $retorno = false; break;
             }
             if($retorno) {

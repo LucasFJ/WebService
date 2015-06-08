@@ -509,3 +509,55 @@ function AlterarLocalidadePagina(codigo){
         suces.innerHTML = "";
     }
 }
+
+function AlterarTelefonePagina(codigo){
+    var telefone = document.getElementById("telefone").value;
+    var celular = document.getElementById("celular").value;
+    var suces = document.getElementById("sucessoTele");
+    var erro = document.getElementById("erroTele");
+    telefone = telefone.replace(/[\s( )-]/g,""); //removendo a mask
+    telefone = telefone.trim();
+    celular = celular.replace(/[\s( )-]/g,""); // removendo a mask
+    celular = celular.trim();
+    var regexp1  = new RegExp(/^[0-9]{10}$/);
+    var regexp2  = new RegExp(/^[0-9]{11}$/);
+    if(regexp1.test(telefone) || telefone == ""){
+        if(regexp2.test(celular) || celular == ""){
+            var concat_dados = telefone + " | " + celular;
+            concat_dados = encodeURIComponent(concat_dados);
+            var xmlreq = CriaRequest();
+                        if(!xmlreq){
+                            erro.innerHTML = "Seu navegador não suporta Ajax.";
+                            suces.innerHTML = "";
+                        } else {
+                            xmlreq.open("GET", base_url + "ajax/alterardadopagina/8/" + codigo + "/" + concat_dados, false);
+                            xmlreq.onreadystatechange = function(){
+                            // Verifica se foi concluído com sucesso e a conexão fechada (readyState=4) 
+                                if (xmlreq.readyState == 4) {
+                                       if (xmlreq.status === 200) {
+                                          var resultado = xmlreq.responseText;
+                                          if(resultado === "Erro"){
+                                              erro.innerHTML = "Ocorreu um erro durante a alteração.";
+                                              suces.innerHTML = "";
+                                          } else {
+                                              suces.innerHTML = "Telefone e celular alterados com sucesso";
+                                              erro.innerHTML = "";
+                                          }
+                                       } else {
+                                           erro.innerHTML = "Ocorreu um erro durante a alteração.";
+                                           suces.innerHTML = "";
+                                       }
+                                }
+                            };
+                            xmlreq.send(null);
+
+                        }
+        } else {
+            erro.innerHTML = "O celular inserido é inválido";
+            suces.innerHTML = "";
+        }
+    } else {
+        erro.innerHTML = "O telefone inserido é inválido";
+        suces.innerHTML = "";
+    }
+}

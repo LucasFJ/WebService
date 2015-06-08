@@ -94,7 +94,7 @@ document.getElementById("cabecalho").innerHTML = "Configurações";
       </div>
     </li>
     <li>
-      <div class="collapsible-header"><i class="mdi-communication-call"></i>Telefone <span class="erroTelefone red-text"></span>
+      <div class="collapsible-header"><i class="mdi-communication-call"></i>Telefone <span id="erroTele" class="red-text"></span><span id="sucessoTele" class="green-text"></span>
       </div>
       <div class="collapsible-body container">
         <form class="col s12" method="post">
@@ -107,7 +107,7 @@ document.getElementById("cabecalho").innerHTML = "Configurações";
             <label for="celular" class="active">Celular</label>
         </div>
         <div class="right-align">
-            <button class="btn btn-floating orange darken-2" type="submit"><i class="mdi-navigation-check"></i></button>
+            <a class="btn btn-floating orange darken-2" onclick="AlterarTelefonePagina(<?php echo $codigo; ?>)"><i class="mdi-navigation-check"></i></a>
             <button class="btn btn-floating orange darken-2" type="reset"><i class="mdi-content-undo"></i></button>
         </div>
         </form>
