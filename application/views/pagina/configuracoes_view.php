@@ -130,14 +130,14 @@ document.getElementById("cabecalho").innerHTML = "Configurações";
         </div>
     </li>
     <li>
-        <div class="collapsible-header"><i class="mdi-maps-map"></i>Localidade <span class="erroLocal red-text"></span>
+        <div class="collapsible-header"><i class="mdi-maps-map"></i>Localidade <span id="erroLocal" class="red-text"></span><span id="sucessoLocal" class="green-text"></span>
         </div>
         <div class="collapsible-body container">
         <form class="col s12" method="post">
         <!-- CEP, Número e Complemento -->
         <div class="row formLine">
         <div class="input-field col l4 m4 s8">
-            <input id="codigo_logradouro" type="hidden" name="codigo_cep" value="">
+            <input id="codigo_logradouro" type="hidden" name="codigo_cep" value="<?php echo $codigo_logradouro; ?>">
             <input id="cep" type="text" value='<?php echo $cep; ?>' oninput="CarregarEndereco()">
             <label for="cep" class="active">CEP</label>
         </div>
@@ -173,7 +173,7 @@ document.getElementById("cabecalho").innerHTML = "Configurações";
         </div>
         </div>
         <div class="right-align">
-            <button class="btn btn-floating orange darken-2" type="submit"><i class="mdi-navigation-check"></i></button>
+            <a class="btn btn-floating orange darken-2" onclick="AlterarLocalidadePagina(<?php echo $codigo; ?>)"><i class="mdi-navigation-check"></i></a>
             <button class="btn btn-floating orange darken-2" type="reset"><i class="mdi-content-undo"></i></button>
         </div>
         </form>

@@ -12,7 +12,7 @@ class Pagina_model extends CI_Model {
     public function CarregarDadosPagina($codigo = false){
         $resultado_query = $this->db->query("SELECT P.cd_pagina as 'codigo', P.nm_pagina as 'nome', 
             P.nm_slogan as 'slogan', P.nm_descricao as 'descricao', R.nm_ramo as 'ramo', 
-            E.nm_logradouro as 'logradouro', E.cd_cep as 'cep', P.nr_endereco as 'numero', P.nm_complemento_endereco as 'complemento',
+            E.nm_logradouro as 'logradouro', E.cd_cep as 'cep', E.cd_logradouro as 'codigocep', P.nr_endereco as 'numero', P.nm_complemento_endereco as 'complemento',
             B.nm_bairro as 'bairro', C.nm_cidade as 'cidade', U.sg_uf as 'uf',
             P.nm_caminho_imagem as 'imagem', P.nm_caminho_site as 'site', L.nm_cor as 'cor'
             FROM tb_pagina as P, tb_ramo as R, tb_logradouro as E, tb_bairro as B, tb_cidade as C, tb_uf = U, tb_layout as L
@@ -30,7 +30,7 @@ class Pagina_model extends CI_Model {
                     'uf'  => $row->uf, 'imagem'  => $row->imagem, 
                     'site'  => $row->site, 'cor'  => $row->cor,
                     'contato1' => false,  'contato2' => false, 
-                    'cep' => $row->cep );
+                    'cep' => $row->cep, 'codigo_logradouro' => $row->codigocep );
             }
             $resultado_query = $this->db->query("SELECT nr_contato FROM tb_contato"
                     . " WHERE cd_pagina = $codigo LIMIT 2;");
@@ -286,28 +286,38 @@ class Pagina_model extends CI_Model {
         } else {
             return false;
         }
-    }
-    public function AlterarNumero($novoNumero = false, $codigoPagina = false){
-        if(is_numeric($novoNumero) && is_numeric($codigoPagina)){
-            $resultado_query = $this->db->query("UPDATE tb_pagina SET "
-                    . " nr_endereco = '$novoNumero' WHERE cd_pagina = $codigoPagina;");
-            if($resultado_query->num_rows() > 0){
-                return $novoNumero;
-            } else
-            {
-                return false;
-            }
-        } else {
-            return false;
-        }
-    }
-    
+    }   
     public function AlterarLayout($novoLayout = false, $codigoPagina = false){
         if(is_numeric($novoLayout) && is_numeric($codigoPagina)){
              $resultado_query = $this->db->query("UPDATE tb_pagina SET "
                     . " cd_layout = $novoLayout WHERE cd_pagina = $codigoPagina;");
             if($resultado_query){
                 return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+    public function AlterarLocalidade($novaLocalidade = false, $codigoPagina = false){
+        $novaLocalidade = explode("|", urldecode($novaLocalidade));
+        if(is_numeric($codigoPagina) && is_array($novaLocalidade)){
+            $codigo_cep = $novaLocalidade[0];
+            $numero = $novaLocalidade[1];
+            $complemento = $novaLocalidade[2];
+            if(is_numeric($codigo_cep) && is_numeric($numero) && preg_match("/^[A-Za-zá-úÁ=Ú.\s0-9]+$/i", $complemento)){
+                $resultado_query0 = $this->db->query("UPDATE tb_pagina SET "
+                    . " cd_logradouro = $codigo_cep WHERE cd_pagina = $codigoPagina;");
+                $resultado_query1 = $this->db->query("UPDATE tb_pagina SET "
+                    . " nr_endereco = '$numero' WHERE cd_pagina = $codigoPagina;");
+                $resultado_query2 = $this->db->query("UPDATE tb_pagina SET "
+                    . " nm_complemento_endereco = '$complemento' WHERE cd_pagina = $codigoPagina;");
+                if($resultado_query0 && $resultado_query1 && $resultado_query2){
+                    return true;
+                } else {
+                    return false;
+                }
             } else {
                 return false;
             }

@@ -256,6 +256,7 @@ function AlterarSloganPagina(codigo){
    var rexep = new RegExp(/^[,àÀA-Za-zá-úÁ=Ú.\s0-9 ]+$/i);
    if(rexep.test(slogan) && slogan != ""){
        slogan = encodeURIComponent(slogan);
+       slogan = slogan.replace(/\./g,"%2E");
        var xmlreq = CriaRequest();
         if(!xmlreq){
             erro.innerHTML = "Seu navegador não suporta Ajax.";
@@ -297,6 +298,7 @@ function AlterarDescricaoPagina(codigo){
    if(rexep.test(desc) && desc != ""){
        //FAZENDO O DADO SER TRANSMITIVEL PELA ULR  
        desc = encodeURIComponent(desc);
+       site = site.replace(/\./g,"%2E");
        var xmlreq = CriaRequest();
         if(!xmlreq){
             erro.innerHTML = "Seu navegador não suporta Ajax.";
@@ -449,4 +451,61 @@ function AlterarSitePagina(codigo){
         erro.innerHTML = "O site inserído é inválido";
         suces.innerHTML = "";
    }
+}
+
+function AlterarLocalidadePagina(codigo){
+    var codigo_cep = document.getElementById("codigo_logradouro").value;
+    var numero = document.getElementById("numero").value;
+    numero = numero.trim(numero);
+    var complemento = document.getElementById("complemento").value;
+    complemento = complemento.trim();
+    var suces = document.getElementById("sucessoLocal");
+    var erro = document.getElementById("erroLocal"); //campo de mensagem
+    //var regexp = new RegExp(/^[,àÀA-Za-zá-úÁ=Ú.\s0-9 ]+$/i); 
+    var regexp = new RegExp(/^[\s0-9]+$/i);
+    if(regexp.test(codigo_cep) && codigo_cep != ""){
+        if(regexp.test(numero) || numero == ""){
+            regexp = new RegExp(/^[A-Za-zá-úÁ=Ú.\s0-9]+$/i);
+            if(regexp.test(complemento) || complemento == ""){
+                var concat_dados = codigo_cep + "|" + numero + "|" + complemento;
+                concat_dados = encodeURIComponent(concat_dados);
+                       var xmlreq = CriaRequest();
+                        if(!xmlreq){
+                            erro.innerHTML = "Seu navegador não suporta Ajax.";
+                            suces.innerHTML = "";
+                        } else {
+                            xmlreq.open("GET", base_url + "ajax/alterardadopagina/7/" + codigo + "/" + concat_dados, false);
+                            xmlreq.onreadystatechange = function(){
+                            // Verifica se foi concluído com sucesso e a conexão fechada (readyState=4) 
+                                if (xmlreq.readyState == 4) {
+                                       if (xmlreq.status === 200) {
+                                          var resultado = xmlreq.responseText;
+                                          if(resultado === "Erro"){
+                                              erro.innerHTML = "Ocorreu um erro durante a alteração.";
+                                              suces.innerHTML = "";
+                                          } else {
+                                              suces.innerHTML = "Localidade alterada com sucesso";
+                                              erro.innerHTML = "";
+                                          }
+                                       } else {
+                                           erro.innerHTML = "Ocorreu um erro durante a alteração.";
+                                           suces.innerHTML = "";
+                                       }
+                                }
+                            };
+                            xmlreq.send(null);
+
+                        }
+            } else {
+                erro.innerHTML = "O complemento deve ser alfanumérico ou vazio.";
+                suces.innerHTML = "";
+            }
+        } else {
+            erro.innerHTML = "O número deve ser numérico ou vazio.";
+            suces.innerHTML = "";
+        }
+    } else {
+        erro.innerHTML = "É obrigatório a utilização de um CEP.";
+        suces.innerHTML = "";
+    }
 }
