@@ -407,3 +407,46 @@ function AlterarLayoutPagina(codigo){
         suces.innerHTML = "";
     }
 }
+
+function AlterarSitePagina(codigo){
+   var site = document.getElementById("site").value; //valor do novo nome
+   var suces = document.getElementById("sucessoSite");
+   var erro = document.getElementById("erroSite"); //campo de mensagem
+   site = site.trim();
+   var rexep = new RegExp(/^(http|https|ftp):\/\/(([A-Z0-9][A-Z0-9_-]*)(\.[A-Z0-9][A-Z0-9_-]*)+.(com|org|com.br|.net)$)(:(\d+))?\/?/i);
+   var rexep2 = new RegExp(/^(www)((\.[A-Z0-9][A-Z0-9_-]*)+.(com|org|com.br|.net)$)(:(\d+))?\/?/i);
+   if(rexep.test(site) || site == "" || rexep2.test(site)){
+       site = encodeURIComponent(site); // Permitindo o dado a entrar na url
+       //site = site.replace("'", "%27");
+       site = site.replace(/\./g,"%2E");
+        var xmlreq = CriaRequest();
+        if(!xmlreq){
+            erro.innerHTML = "Seu navegador não suporta Ajax.";
+            suces.innerHTML = "";
+        } else {
+            xmlreq.open("GET", base_url + "ajax/alterardadopagina/4/" + codigo + "/" + site, false);
+            xmlreq.onreadystatechange = function(){
+            // Verifica se foi concluído com sucesso e a conexão fechada (readyState=4) 
+                if (xmlreq.readyState == 4) {
+                       if (xmlreq.status === 200) {
+                          var resultado = xmlreq.responseText;
+                          if(resultado === "Erro"){
+                              erro.innerHTML = "Ocorreu um erro durante a alteração.";
+                              suces.innerHTML = "";
+                          } else {
+                              suces.innerHTML = "Site alterado com sucesso";
+                              erro.innerHTML = "";
+                          }
+                       } else {
+                           erro.innerHTML = "Ocorreu um erro durante a alteração. Evite utilizar 'http://'";
+                           suces.innerHTML = "";
+                       }
+                }
+            };
+            xmlreq.send(null);
+        }
+   } else {
+        erro.innerHTML = "O site inserído é inválido";
+        suces.innerHTML = "";
+   }
+}

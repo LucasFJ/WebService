@@ -255,19 +255,22 @@ class Pagina_model extends CI_Model {
     }
     public function AlterarSite($novaUrl = "", $codigoPagina = false){
         $novaUrl  = trim($novaUrl);
+        $novaUrl = urldecode($novaUrl);
         if($novaUrl && $codigoPagina && is_numeric($codigoPagina) 
-                && (ereg("([a-zA-Z]{3,})://([\w-]+\.)+[\w-]+(/[\w- ./?%&=]*)?", $novaUrl) || 
-                ereg("([a-zA-Z]{3,})://([\w-]+\.)+[\w-]+(/[\w- ./?%&=]*)?", $novaUrl) || $novaUrl == "")){
-            $novaUrl = addslashes(trim($novaUrl));
+                && ( preg_match("/^(www)((\.[A-Z0-9][A-Z0-9_-]*)+.(com|org|com.br|.net)$)(:(\d+))?\/?/i", $novaUrl)
+                ||   preg_match("/^(http|https|ftp):\/\/(([A-Z0-9][A-Z0-9_-]*)(\.[A-Z0-9][A-Z0-9_-]*)+.(com|org|com.br|.net)$)(:(\d+))?\/?/i", $novaUrl)
+                ||   $novaUrl == "")){
+            $novaUrl = addslashes($novaUrl);
             $resultado_query = $this->db->query("UPDATE tb_pagina SET "
-                    . " nm_caminho_imagem = '$novaUrl' WHERE cd_pagina = $codigoPagina;");
-            if($resultado_query->num_rows() > 0){
-                return $novaUrl;
-            } else
-            {
+                    . " nm_caminho_site = '$novaUrl' WHERE cd_pagina = $codigoPagina;");
+            if($resultado_query){
+                return true;
+            } else {
+                echo $novaUrl;
                 return false;
             }
         } else {
+            echo preg_match("/^(http|https|ftp):\/\/(([A-Z0-9][A-Z0-9_-]*)(\.[A-Z0-9][A-Z0-9_-]*)+.(com|org|com.br|.net)$)(:(\d+))?\/?/i", $novaUrl);
             return false;
         }
     }

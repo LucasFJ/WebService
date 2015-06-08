@@ -114,16 +114,16 @@ document.getElementById("cabecalho").innerHTML = "Configurações";
       </div>
     </li>
     <li>
-        <div class="collapsible-header"><i class="mdi-social-public"></i>Site <span class="erroSite red-text"></span>
+        <div class="collapsible-header"><i class="mdi-social-public"></i>Site <span id="erroSite" class="red-text"></span><span id="sucessoSite" class="green-text"></span>
         </div>
         <div class="collapsible-body container">
         <form class="col s12" method="post">
         <div class="input-field">
-            <input id="site" type="text" value="<?php echo $site; ?>" required />
+            <input id="site" type="url" value="<?php echo $site; ?>" required />
             <label for="site">Site</label>
         </div>
         <div class="right-align">
-            <button class="btn btn-floating orange darken-2" type="submit"><i class="mdi-navigation-check"></i></button>
+            <a class="btn btn-floating orange darken-2" onclick="AlterarSitePagina(<?php echo $codigo; ?>)"><i class="mdi-navigation-check"></i></a>
             <button class="btn btn-floating orange darken-2" type="reset"><i class="mdi-content-undo"></i></button>
         </div>
         </form>
