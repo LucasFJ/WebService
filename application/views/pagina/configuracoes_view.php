@@ -99,11 +99,11 @@ document.getElementById("cabecalho").innerHTML = "Configurações";
       <div class="collapsible-body container">
         <form class="col s12" method="post">
         <div class="input-field">
-            <input id="telefone" type="text" class="telefone" value="<?php echo $contato1; ?>" required />
+            <input id="telefone" type="text" class="telefone" value="<?php echo $telefone; ?>" required />
             <label for="telefone" class="active">Telefone</label>
         </div>
         <div class="input-field">
-            <input id="celular" type="text" class="telefone" value="<?php echo $contato2; ?>" required />
+            <input id="celular" type="text" class="telefone" value="<?php echo $celular; ?>" required />
             <label for="celular" class="active">Celular</label>
         </div>
         <div class="right-align">

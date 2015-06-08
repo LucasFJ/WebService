@@ -55,12 +55,12 @@ document.getElementById("cabecalho").innerHTML = "Criar Página";
         <!-- Telefones -->
         <div class="row formLine">
         <div class="input-field col l6 m6 s12 inputNome">
-            <input id="contato1" type="text" name="contato1" class="validate">
-            <label for="contato1">Telefone 1</label>
+            <input id="contato1" type="text" name="telefone" class="validate">
+            <label for="contato1">Telefone</label>
         </div>
         <div class="input-field col l6 m6 s12 inputNome">
-            <input id="contato2" type="text" name="contato2" class="validate">
-            <label for="contato2">Telefone 2</label>
+            <input id="contato2" type="text" name="celular" class="validate">
+            <label for="contato2">Celular</label>
         </div>
         </div>
     </div>
@@ -104,7 +104,7 @@ document.getElementById("cabecalho").innerHTML = "Criar Página";
             <div class="row formLine">
             <div class="input-field col l4 m4 s8 inputNome">
                 <input id="codigo_logradouro" type="hidden" name="codigo_cep" value="">
-                <input id="cep" type="text" name="cep" class="validate" value='' oninput="CarregarEndereco()">
+                <input id="cep" type="text" name="cep" class="validate" value='' oninput="CarregarEndereco()" required>
                 <label for="cep">CEP</label>
             </div>
             <div class="input-field col l2 m2 s4 inputNome">

@@ -54,13 +54,13 @@ class Pagina extends CI_Controller{
             $numero =   isset($_POST['numero']) ? $_POST['numero'] : false;
             $complemento = isset($_POST['complemento']) ? $_POST['complemento'] : false;
             $layout =   isset($_POST['layout']) ? $_POST['layout'] : false;
-            $contato1 = isset($_POST['contato1']) ? $_POST['contato1'] : false;
-            $contato2 = isset($_POST['contato2']) ? $_POST['contato2'] : false;
+            $telefone = isset($_POST['telefone']) ? $_POST['telefone'] : false;
+            $celular = isset($_POST['celular']) ? $_POST['celular'] : false;
             $imagem =   $_FILES['imagem'] ;
             
             
             $resultado = $this->pagmod->CadastrarPagina($nome, $ramo, $slogan , 
-            $site, $descricao, $cep, $numero, $complemento, $layout, $contato1, $contato2, $imagem);
+            $site, $descricao, $cep, $numero, $complemento, $layout, $telefone, $celular, $imagem);
             
             if($resultado){
                 echo "O cadastro foi finalizado e a tela de sucesso será enviada para cá";

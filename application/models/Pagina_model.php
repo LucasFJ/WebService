@@ -11,7 +11,8 @@ class Pagina_model extends CI_Model {
     //adicionais dependendo do tipo de acesso. Tipos:
     public function CarregarDadosPagina($codigo = false){
         $resultado_query = $this->db->query("SELECT P.cd_pagina as 'codigo', P.nm_pagina as 'nome', 
-            P.nm_slogan as 'slogan', P.nm_descricao as 'descricao', R.nm_ramo as 'ramo', 
+            P.nm_slogan as 'slogan', P.nm_descricao as 'descricao', R.nm_ramo as 'ramo',
+            P.nr_telefone as 'telefone', P.nr_celular as 'celular',
             E.nm_logradouro as 'logradouro', E.cd_cep as 'cep', E.cd_logradouro as 'codigocep', P.nr_endereco as 'numero', P.nm_complemento_endereco as 'complemento',
             B.nm_bairro as 'bairro', C.nm_cidade as 'cidade', U.sg_uf as 'uf',
             P.nm_caminho_imagem as 'imagem', P.nm_caminho_site as 'site', L.nm_cor as 'cor'
@@ -29,21 +30,8 @@ class Pagina_model extends CI_Model {
                     'bairro'  => $row->bairro, 'cidade'  => $row->cidade, 
                     'uf'  => $row->uf, 'imagem'  => $row->imagem, 
                     'site'  => $row->site, 'cor'  => $row->cor,
-                    'contato1' => false,  'contato2' => false, 
+                    'telefone' => $row->telefone,  'celular' => $row->celular, 
                     'cep' => $row->cep, 'codigo_logradouro' => $row->codigocep );
-            }
-            $resultado_query = $this->db->query("SELECT nr_contato FROM tb_contato"
-                    . " WHERE cd_pagina = $codigo LIMIT 2;");
-            if($resultado_query->num_rows() > 0){
-                $cont = 1;
-                foreach($resultado_query->result() as $row){
-                    if($cont == 1){
-                        $resultado['contato1'] = $row->nr_contato;
-                        $cont++;
-                    } else {
-                        $resultado['contato2'] = $row->nr_contato;
-                    }
-                }
             }
             return $resultado;
         } else { //nao existe uma pagina com o codigo especificado
@@ -69,18 +57,18 @@ class Pagina_model extends CI_Model {
     }
     
     public function CadastrarPagina($nome, $ramo, $slogan,$site, $descricao, $cep, $numero, 
-            $complemento, $layout, $contato1, $contato2, $imagem){
+            $complemento, $layout, $telefone, $celular, $imagem){
         //primeira etapa >> tratando os dados para serem inseridos
         $nome = addslashes(trim($nome));
-        $ramo = (is_numeric($ramo) && $ramo > 0) ? $ramo : 1;
+        $ramo = (is_numeric($ramo) && $ramo > 0) ? $ramo : 47;
         $slogan = addslashes(trim($slogan));
         $descricao = addslashes(trim($descricao)); //escapa os espaços
         $cep = (is_numeric($cep) && $cep > 0) ? $cep : null;
-        $numero = (is_numeric($numero)) ? $numero : '';
+        $numero = (is_numeric($numero) && $numero > 0) ? $numero : '';
         $complemento = addslashes(trim($complemento));
         $layout = (is_numeric($layout) && $layout > 0) ? $layout : 1;
-        $contato1 = (is_numeric($contato1)) ? $contato1 : null;
-        $contato2 = (is_numeric($contato2)) ? $contato2 : null;
+        $telefone = (is_numeric($telefone)) ? $telefone : null;
+        $celular = (is_numeric($celular)) ? $celular : null;
         //segunda etapa >> adquirir o codigo do usuario proprietário
         $email = $_SESSION['user_email']; $senha = $_SESSION['user_senha'];
         $resultado_query = $this->db->query("SELECT cd_usuario FROM tb_usuario "
@@ -97,7 +85,7 @@ class Pagina_model extends CI_Model {
             }
             //inserir o usuario
             $resultado = $this->efetuarCadastro($nome, $ramo, $slogan, $site, $descricao, $cep, $numero, 
-            $complemento, $layout, $contato1, $contato2, $caminho_imagem, $codigo_prop);
+            $complemento, $layout, $telefone, $celular, $caminho_imagem, $codigo_prop);
             if($resultado){
                 if($caminho_imagem){
                     $this->load->library('imagem');
@@ -114,7 +102,7 @@ class Pagina_model extends CI_Model {
     }
     private function efetuarCadastro($nome = null, $ramo = 1, $slogan = '', 
             $site = '', $descricao = '', $cep = 1, $numero = '', 
-            $complemento = null, $layout = 1, $contato1 = false, $contato2 = false,
+            $complemento = null, $layout = 1, $telefone = false, $celular = false,
             $imagem = null, $codigo_prop = null){
         
         $this->db->query("INSERT INTO tb_pagina (nm_pagina, "
@@ -133,14 +121,14 @@ class Pagina_model extends CI_Model {
             foreach($resultado_query->result() as $row){
                 $codigo_pagina = $row->cd_pagina;
             }
-            if($contato1){
-            $this->db->query("INSERT INTO tb_contato (nr_contato, cd_pagina) VALUES "
-                    . "('$contato1', $codigo_pagina);");
+            if($telefone){
+            $this->db->query("UPDATE tb_pagina SET nr_telefone = '$telefone' WHERE"
+                    . " cd_pagina = $codigo_pagina;");
              }
         
-            if($contato2){
-            $this->db->query("INSERT INTO tb_contato (nr_contato, cd_pagina) VALUES "
-                    . "('$contato2', $codigo_pagina);");
+            if($celular){
+            $this->db->query("UPDATE tb_pagina SET nr_celular = '$celular' WHERE"
+                    . " cd_pagina = $codigo_pagina;");
             }
             return true;
         } else { // por algum motivo o insert deu erro

@@ -3,7 +3,13 @@
 <script>
 document.getElementById("cabecalho").innerHTML = " <?php echo $nome; ?>";
 </script>
-
+<?php 
+        $contato = (is_numeric($telefone) && is_numeric($celular)) ? "$telefone | $celular" : false;
+        if(!$contato){
+            $contato = (is_numeric($telefone)) ? $telefone : "";
+            $contato = (is_numeric($celular))  ? $celular  : "";
+        }
+?>
 <!-- Conteúdo da View abaixo -->
 <!--CARD SERVICO-->
 <div class="conteudo">
@@ -17,7 +23,7 @@ document.getElementById("cabecalho").innerHTML = " <?php echo $nome; ?>";
             <span class="nomeServico"><?php echo $nome;?></span><br />
             <h6 class="sloganServico"><?php echo $slogan; ?></h6>
             <h6 class="enderecoServico"><?php echo "$logradouro, nº $numero, $bairro - $cidade/$uf. $complemento"; ?></h6>
-            <h6 class="enderecoServico"><?php echo "(13) 3472-3044 | (13) 99169-0517 "; ?></h6>
+            <h6 class="enderecoServico"><?php echo "$contato"; ?></h6>
         </div>
         <div class="row  cardRodape valign-wrapper">
         <div class="col s4 left-align  valign-wrapper cardRate">
@@ -125,7 +131,7 @@ document.getElementById("cabecalho").innerHTML = " <?php echo $nome; ?>";
             </div>
             <div class="col s12 m6 l6 left-align">
                 <h6>Contato</h6>
-                <h6 class="grey-text"><?php echo '+000000000000'; ?></h6>
+                <h6 class="grey-text"><?php echo "$contato"; ?></h6>
             </div>
             <div class="col s12 m6 l6 left-align">
                 <h6>Site</h6>

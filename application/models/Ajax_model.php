@@ -12,6 +12,7 @@ class Ajax_model extends CI_Model {
         
         //Conteúdo buscado (Ainda não existe a tabela de avaliação)
         $strConsulta = "SELECT DISTINCT P.nm_pagina as 'nome', P.nm_slogan as 'slogan',"
+                . " P.nr_telefone as 'telefone', P.nr_celular as 'celular', "
                 . " L.nm_logradouro as 'endereco', B.nm_bairro as 'bairro',"
                 . " P.nr_endereco as 'numero',P.nm_caminho_imagem as 'imagem',  "
                 . "P.cd_pagina as 'codigo', C.nm_cidade as 'cidade', UF.sg_uf as 'estado',"
@@ -61,12 +62,14 @@ class Ajax_model extends CI_Model {
                     $cidade = $row->cidade;
                     $estado = $row->estado;
                     $numero = $row->numero;
+                    $telefone = $row->telefone;
+                    $celular = $row->celular;
                     $imagem = $row->imagem;
                     $codigo = $row->codigo;
                     $cor = $row->cor;
                     //chamamos a função que vai inserir os dados no molde da faixada
                     $resultado .= $this->novoCartao($nome, $slogan, $endereco, $bairro, $cidade, $estado, $numero, $imagem, $codigo, 
-                            $cor);
+                            $cor, $telefone, $celular);
                 }
                 echo $resultado;
             } else {
@@ -78,13 +81,16 @@ class Ajax_model extends CI_Model {
     } 
     private function novoCartao($nome = "Nome", $slogan = "Slogan", $endereco = "Endereço",
             $bairro = "Bairro", $cidade = "Cidade", $estado = "Estado", $numero = 1234,
-            $imagem = false, $codigo = 0, $cor = 'deep-purple'){
+            $imagem = false, $codigo = 0, $cor = 'deep-purple', $telefone = null, $celular = null){
         //INSIRA AQUI O CÓDIGO HTML PARA CADA FAIXADA QUE SERÁ EXIBIDA
-        $contato1 = "(13) 3406-3805";
-        $contato2 = "(13) 3406-3805";
         $codigo = dechex($codigo);
-        if(!$imagem){ $imagem = "harry-square.png"; }
+        if($imagem == null || empty($imagem)){ $imagem = "harry-square.png"; }
         if(!$cor){ $cor = "deep-orange"; }
+        $contato = (is_numeric($telefone) && is_numeric($celular)) ? "$telefone | $celular" : false;
+        if(!$contato){
+            $contato = (is_numeric($telefone)) ? $telefone : "";
+            $contato = (is_numeric($celular))  ? $celular  : "";
+        }
         return "<div class='conteudo cartao'>"
                 ."<div class='card-panel $cor lighten-1 z-depth-1'>"
                     ."<div class='row cardConteudo valign-wrapper'>"
@@ -94,8 +100,8 @@ class Ajax_model extends CI_Model {
                         ."<div class='row white-text left-align cardTopo'>"
                             ."<span class='nomeServico'>$nome</span><br />"
                             ."<h6 class='sloganServico'>$slogan</h6>"
-                            ."<h6 class='enderecoServico'>$bairro,$cidade - $estado</h6>"
-                            ."<h6 class='enderecoServico'>$contato1 | $contato2</h6>"
+                            ."<h6 class='enderecoServico'>$bairro, $cidade - $estado</h6>"
+                            ."<h6 class='enderecoServico'> $contato </h6>"
                         ."</div><div class='row cardRodape valign-wrapper'>"
                         ."<div class='col s4 left-align  valign-wrapper cardRate'>"
                             ."<i class='mdi-action-star-rate white-text rateServico'></i>"
