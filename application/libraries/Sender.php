@@ -64,6 +64,28 @@ class Sender{
         }
     }
     
+    public function Exclusao($nome_dest = false, $email_dest = false, 
+            $codigo_processo = false, $codigo_chave = false){
+        if($nome_dest && $email_dest && $codigo_chave && $codigo_processo){    
+            $assunto = "Sniffoo - Excluir página";
+            $url = base_url("processos/excluir/$codigo_processo/$codigo_chave");
+            $mensagem_principal =  "Olá $nome_dest, um pedido para excluir a página que você é proprietário foi solicitado."
+                    . " Para confirmar o processo e remover todos os dados pertinentes a ela do sistema "
+                    . " clique no link abaixo e confirme ou cancele o pedido."
+                    . " Páginas excluidas não podem ser recuperadas e todos os dados serão perdidos permanentementes <br/><br/>"
+                    . "<a href='$url'>Clique aqui para verificar sua conta.</a> <br/><br/>";
+            $mensagem = $mensagem_principal;
+            $resultado = $this->Enviar($nome_dest, $email_dest, $assunto, $mensagem);
+            if($resultado){
+                return true;
+            } else { //Ocorreu um erro durante o envio do e-mail
+                return false;
+            }
+        }  else { //Algum dos parametros não foi enviado corretamente
+         return false;   
+        }
+    }
+    
     //FUNÇÃO: ENVIAR UM EMAIL PARA A O USUARIO COM UM ASSUNTO E MENSAGEM
     private function Enviar($nome_dest = false, $email_dest = false, 
             $assunto = false, $mensagem = false){

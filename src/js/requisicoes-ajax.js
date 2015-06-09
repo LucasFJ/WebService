@@ -561,3 +561,35 @@ function AlterarTelefonePagina(codigo){
         suces.innerHTML = "";
     }
 }
+
+function ExcluirPagina(codigo){
+    var suces = document.getElementById("sucessoExcluir");
+    var erro = document.getElementById("erroExcluir");
+    var xmlreq = CriaRequest();
+    if(!xmlreq){
+        erro.innerHTML = "Seu navegador não suporta Ajax.";
+        suces.innerHTML = "";
+    } else {
+        xmlreq.open("GET", base_url + "ajax/ExcluirPagina/" + codigo, false);
+        xmlreq.onreadystatechange = function(){
+        // Verifica se foi concluído com sucesso e a conexão fechada (readyState=4) 
+            if (xmlreq.readyState == 4) {
+                   if (xmlreq.status === 200) {
+                      var resultado = xmlreq.responseText;
+                      if(resultado === "Erro"){
+                          erro.innerHTML = "Ocorreu um erro durante a operação.";
+                          suces.innerHTML = "";
+                      } else {
+                          suces.innerHTML = "Enviamos um e-mail para confirmar o processo.";
+                          erro.innerHTML = "";
+                      }
+                   } else {
+                       erro.innerHTML = "Ocorreu um erro durante a operação.";
+                       suces.innerHTML = "";
+                   }
+            }
+        };
+        xmlreq.send(null);
+
+    }
+}

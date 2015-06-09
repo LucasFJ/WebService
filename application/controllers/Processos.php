@@ -41,7 +41,7 @@ class Processos extends CI_Controller{
             $codigo_processo = html_escape($codigo_processo);
             $codigo_chave = addslashes($codigo_chave);
             $codigo_processo = addslashes($codigo_processo);
-                            $dados = array("mensagem_erro" => "");
+            $dados = array("mensagem_erro" => "");
             if(isset($_POST['senha'])){
                 $this->load->library('form_validation');         
                 $this->form_validation->set_rules('senha', 'senha', 'required');
@@ -61,5 +61,39 @@ class Processos extends CI_Controller{
             redirect('home');
         }
         
+    }
+
+    public function excluir($codigo_processo = false, $codigo_chave = false){
+        if(is_numeric($codigo_processo)  && $codigo_chave){
+            //Impedindo SQL injection
+            $codigo_chave = html_escape($codigo_chave);
+            $codigo_processo = html_escape($codigo_processo);
+            $codigo_chave = addslashes($codigo_chave);
+            $codigo_processo = addslashes($codigo_processo);
+            $dados = array("mensagem_erro" => "");
+            if(isset($_POST['excluir'])){
+                $desejaExcluir = $_POST['excluir'];
+                if($desejaExcluir == 1){
+                    $resultado = $this->process->RealizarExclusaoPagina($codigo_processo, $codigo_chave);
+                    if($resultado){
+                        redirect('login');
+                    } else {
+                        $dados["mensagem_erro"] = "Ocorreu um erro ou o processo não existe mais.";
+                    }
+                } else {
+                    $resultado = $this->process->CancelarProcesso($codigo_processo, $codigo_chave);
+                    if($resultado){
+                        redirect('login');
+                    } else {
+                        $dados["mensagem_erro"] = "Ocorreu um erro ou o processo não existe mais.";
+                    }
+                }
+            }
+            $this->load->view('processos/excluirpagina_view', $dados);
+            $this->load->view('include/footer_view');
+        //INSERIR A VIEW COM INPUT DE NOVA SENHA E CONFIRMAR NOVA SENHA
+        } else { // algum dos dois parametros nao foi enviado
+            redirect('home');
+        }
     }
 }

@@ -208,6 +208,6 @@ document.getElementById("cabecalho").innerHTML = "Configurações";
     </li>
   </ul>
     <div class="row right-align">
-        <h6><a href="#"><i class="mdi-action-delete tiny"></i> Excluir minha página</a></h6>
+        <span id="erroExcluir" class="red-text"></span><span id="sucessoExcluir" class="green-text"></span><h6><a href="#" onclick="ExcluirPagina(<?php echo $codigo; ?>);"><i class="mdi-action-delete tiny"></i> Excluir minha página</a></h6>
     </div>
 </div>

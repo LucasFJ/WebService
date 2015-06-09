@@ -312,7 +312,6 @@ class Pagina_model extends CI_Model {
             return false;
         }
     }
-
     public function AlterarContato($novoContato = false, $codigoPagina = false){
         $novoContato = explode("|", urldecode($novoContato));
         if($novoContato && $codigoPagina && is_numeric($codigoPagina) && !empty($novoContato)){
@@ -340,5 +339,22 @@ class Pagina_model extends CI_Model {
             return false;
         }
             
+    }
+    
+    public function ExcluirPagina($codigoPagina = false){
+        if(is_numeric($codigoPagina)){
+            //DELETANDO OS PRODUTOS LIGADOS A PÁGINA
+            $this->db->query("DELETE FROM tb_produto WHERE cd_pagina = $codigoPagina;");
+            //DELETANDO A PÁGINA
+            $resultado_query = $this->db->query("DELETE FROM tb_pagina "
+                    . " WHERE cd_pagina = $codigoPagina;");
+            if($resultado_query){
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
     }
 }

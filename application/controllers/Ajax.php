@@ -90,9 +90,24 @@ class Ajax extends CI_Controller{
                     break; //localidade;
                case 8: $retorno = $this->pagmod->AlterarContato($valorDado, $codigoPagina);
                     break; // telefone e celular
-                default: $retorno = false; break;
             }
             if($retorno) {
+                echo "Funcionou";
+            } else {
+                echo "Erro";
+            }
+        } else {
+            echo "Erro";
+        }
+    }
+    
+    public function ExcluirPagina($codigoPagina){
+        $this->load->model("pagina_model", "pagmod");
+        $isSecure = ($this->pagmod->CarregarPaginaProprietario() == dechex($codigoPagina)) ? true : false;
+        if(is_numeric($codigoPagina) && $isSecure){
+            $this->load->model("processo_model", "process");
+            $resultado = $this->process->NovaExclusaoPagina($codigoPagina);
+            if($resultado) {
                 echo "Funcionou";
             } else {
                 echo "Erro";
