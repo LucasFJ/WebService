@@ -71,17 +71,17 @@ document.getElementById("cabecalho").innerHTML = "Criar Página";
     <div class="card-content contentForm center-align">
     <span class="card-title grey-text text-darken-3">Imagem e Tema</span>
             <!-- Imagem e Cores -->
-            <div class="file-field input-field left-align">
+            <div class="row formLine">
+            <div class="file-field input-field left-align col s12">
                 <input class="file-path validate" type="text"/>
             <div class="btn grey darken-2">
                 <span><i class="mdi-image-photo-camera"></i></span>
                 <input type="file" name="imagem[]" multiple />
             </div>
             </div>
-            <br /><br/><br/>
+            </div>
             <div class="row formLine center-align">
-                <?php //echo $opcoes_layout; ?>
-            <div class="input-field col l6 m6 s12">
+            <div class="input-field col l12 m12 s12">
                 <select name="layout" required>
                 <option value="" disabled selected>Selecione um layout</option>
                 <?php 
