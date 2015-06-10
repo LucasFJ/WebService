@@ -298,7 +298,7 @@ function AlterarDescricaoPagina(codigo){
    if(rexep.test(desc) && desc != ""){
        //FAZENDO O DADO SER TRANSMITIVEL PELA ULR  
        desc = encodeURIComponent(desc);
-       site = site.replace(/\./g,"%2E");
+       desc = desc.replace(/\./g,"%2E");
        var xmlreq = CriaRequest();
         if(!xmlreq){
             erro.innerHTML = "Seu navegador não suporta Ajax.";

@@ -79,17 +79,22 @@ class Pagina_model extends CI_Model {
                 $codigo_prop = $row->cd_usuario;
             }
             //preparar a string de imagem para caso ela tenha sido enviada
-            $caminho_imagem = 'null';
-            if(!empty($imagem['name'][0])){
-                $caminho_imagem = uniqid("IPP$codigo_prop") . "." . end(explode('/', $imagem['type'][0]));
+            $nome_imagem = 'null';
+            if(!empty($imagem['name'])){
+                $array_tipo = explode('.', $imagem['name']);
+                $tipo = end($array_tipo);
+                $tipo = strtolower($tipo);
+                $prefixo = "Page$codigo_prop";
+                $nome_imagem = uniqid("$prefixo"); 
+                $nome_imagem = "$nome_imagem.$tipo";
             }
             //inserir o usuario
             $resultado = $this->efetuarCadastro($nome, $ramo, $slogan, $site, $descricao, $cep, $numero, 
-            $complemento, $layout, $telefone, $celular, $caminho_imagem, $codigo_prop);
+            $complemento, $layout, $telefone, $celular, $nome_imagem, $codigo_prop);
             if($resultado){
-                if($caminho_imagem){
+                if($nome_imagem){
                     $this->load->library('imagem');
-                    $this->imagem->RealizarUpload($imagem, base_url("src/imagens/pagina/perfil"), $caminho_imagem);
+                    $this->imagem->salvar("src/imagens/pagina/perfil/", $imagem, $nome_imagem);
                 }
                 return true;
             } else { //ocorreu um erro durante a inserção
