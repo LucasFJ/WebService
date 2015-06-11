@@ -10,7 +10,7 @@ document.getElementById("cabecalho").innerHTML = "Início";
         
  </div>
  <br/>
- <?php  $acao = isset($acao) ? $acao : "CarregarCartoes(0,0,0,0,0,0)"; ?>
+ <?php  $acao = isset($acao) ? $acao : "CarregarCartoes(0,0,0,0,0,0);"; ?>
  <div class="container right-align">
      <a class="btn-floating btn-med orange darken-2 waves-effect waves-light red fixed" onclick="<?php echo $acao;?>"><i class="mdi-content-add"></i></a>
  </div>
@@ -18,3 +18,9 @@ document.getElementById("cabecalho").innerHTML = "Início";
  <div class="container center-align">
  <br/><span id="msgErro" class="grey-text"></span>
  </div>
+ 
+ <script>
+    window.onload = function(){
+         <?php echo $acao;?>
+    }
+ </script>
