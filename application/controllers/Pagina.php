@@ -25,7 +25,6 @@ class Pagina extends CI_Controller{
     //PERMITE AO USUÁRIO VISUALIZAR ALGUMA PAGINA ATRAVÉS DE UM CODIGO PASSADO
     //PELA URL.
     public function visualizar($codigo = false){
-        $codigo = hexdec($codigo);
         if($codigo && is_numeric($codigo) && $codigo > 0){
              $dados_pagina = $this->pagmod->CarregarDadosPagina($codigo);
              //$dados_pagina['produtos'] = $this->pagmod->CarregarProdutosPagina($codigo);
@@ -40,6 +39,9 @@ class Pagina extends CI_Controller{
     }
     //PERMITE AO USUÁRIO CRIAR UMA NOVA PAGINA VINGULADA A SUA CONTA
     public function cadastrar(){
+        if($_SESSION['is_dono'] == true){
+            redirect('home');
+        }
         $this->load->view('include/head_view');
         $this->load->view('include/header_view');
         $this->load->library('form_validation');
@@ -94,7 +96,15 @@ class Pagina extends CI_Controller{
     public function configuracoes(){
         $codigo = $this->pagmod->CarregarPaginaProprietario();
         if($codigo){
-             $dados = $this->pagmod->CarregarDadosPagina($codigo);
+            if(isset($_POST['Enviar'])){
+                $imagem = $_FILES['imagem'];
+                $imagemAntiga = $_POST['imagemantiga'];
+                $this->pagmod->AlterarImagem($codigo, $imagem, $imagemAntiga);
+                //echo "<pre>";
+                //print_r($imagem);
+                //echo "</pre>";
+            }   
+            $dados = $this->pagmod->CarregarDadosPagina($codigo);
              
             $dados_preload = $this->pagmod->CarregarBoxLayoutRamo();
             $dados['opcoes_ramo'] = $dados_preload['opcoes_ramo'];

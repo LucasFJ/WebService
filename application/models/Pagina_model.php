@@ -12,7 +12,7 @@ class Pagina_model extends CI_Model {
     public function CarregarDadosPagina($codigo = false){
         $resultado_query = $this->db->query("SELECT P.cd_pagina as 'codigo', P.nm_pagina as 'nome', 
             P.nm_slogan as 'slogan', P.nm_descricao as 'descricao', R.nm_ramo as 'ramo',
-            P.nr_telefone as 'telefone', P.nr_celular as 'celular',
+            P.nr_telefone as 'telefone', P.nr_celular as 'celular', 
             E.nm_logradouro as 'logradouro', E.cd_cep as 'cep', E.cd_logradouro as 'codigocep', P.nr_endereco as 'numero', P.nm_complemento_endereco as 'complemento',
             B.nm_bairro as 'bairro', C.nm_cidade as 'cidade', U.sg_uf as 'uf',
             P.nm_caminho_imagem as 'imagem', P.nm_caminho_site as 'site', L.nm_cor as 'cor'
@@ -23,7 +23,7 @@ class Pagina_model extends CI_Model {
         
         if($resultado_query->num_rows() > 0){
             foreach($resultado_query->result() as $row){
-                $resultado = array('codigo' => dechex($row->codigo), 'nome' => $row->nome,
+                $resultado = array('codigo' => $row->codigo, 'nome' => $row->nome,
                     'slogan' => $row->slogan, 'descricao'  => $row->descricao, 
                     'ramo'  => $row->ramo, 'logradouro'  => $row->logradouro,
                     'numero'  => $row->numero, 'complemento'  => $row->complemento,
@@ -190,7 +190,7 @@ class Pagina_model extends CI_Model {
             foreach($resultado_query->result()  as $row){
                 $codigo = $row->codigo;
             }
-            return dechex($codigo);
+            return $codigo;
         }else {
             return false;
         }
@@ -358,6 +358,26 @@ class Pagina_model extends CI_Model {
             } else {
                 return false;
             }
+        } else {
+            return false;
+        }
+    }
+    public function AlterarImagem($codigoPagina = false, $imagem = false, $imagemAntiga = false){
+        if(is_numeric($codigoPagina) && isset($imagem)){
+            $array_tipo = explode('.', $imagem['name']);
+            $tipo = end($array_tipo);
+            $tipo = strtolower($tipo);
+            $prefixo = "Page$codigoPagina";
+            $nome_imagem = uniqid("$prefixo"); 
+            $nome_imagem = "$nome_imagem.$tipo";
+            $this->db->query("UPDATE tb_pagina SET nm_caminho_imagem = '$nome_imagem'"
+                    . " WHERE cd_pagina = $codigoPagina;");
+            $this->load->library('imagem');
+            $this->imagem->salvar("src/imagens/pagina/perfil/", $imagem, $nome_imagem);
+            if($imagemAntiga){
+                unlink("src/imagens/pagina/perfil/$imagemAntiga");
+            }
+            return true;
         } else {
             return false;
         }

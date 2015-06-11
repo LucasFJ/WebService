@@ -34,18 +34,19 @@ document.getElementById("cabecalho").innerHTML = "Configurações";
     </div>
       <div class="collapsible-body container"><br/>
       <div class="col s12 center-align cardImagem">
-          <img src="<?php echo base_url('src/imagens/pagina/perfil/total.jpg'); ?>" class="circle imgServico z-depth-1"/>
+          <img src="<?php echo base_url("src/imagens/pagina/perfil/$imagem"); ?>" class="circle imgServico z-depth-1"/>
       </div><br/>
-      <form class="col s12" method="post">
+      <form class="col s12" method="post" enctype="multipart/form-data">
         <div class="file-field input-field left-align col s12">
                 <input class="file-path validate" type="text"/>
             <div class="btn grey darken-2">
                 <span><i class="mdi-image-photo-camera"></i></span>
-                <input type="file" name="imagem[]" multiple />
+                <input type="hidden" name="imagemantiga" value="<?php echo $imagem; ?>">
+                <input type="file" name="imagem" required/>
             </div>
         </div>
         <div class="right-align">
-            <a class="btn btn-floating orange darken-2" onclick="AlterarSloganPagina(<?php echo $codigo; ?>)"><i class="mdi-navigation-check"></i></a>
+            <button type="submit" value="Enviar" name="Enviar" class="btn btn-floating orange darken-2" ><i class="mdi-navigation-check"></i></button>
             <button class="btn btn-floating orange darken-2" type="reset"><i class="mdi-content-undo"></i></button>
         </div>
       </form>

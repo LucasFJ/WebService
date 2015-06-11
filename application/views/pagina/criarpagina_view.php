@@ -76,7 +76,7 @@ document.getElementById("cabecalho").innerHTML = "Criar Página";
                 <input class="file-path validate" type="text"/>
             <div class="btn grey darken-2">
                 <span><i class="mdi-image-photo-camera"></i></span>
-                <input type="file" name="imagem[]" multiple />
+                <input type="file" name="imagem" />
             </div>
             </div>
             </div>
