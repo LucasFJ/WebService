@@ -6,3 +6,7 @@ document.getElementById("cabecalho").innerHTML = "Fale conosco";
 
 <!-- Conteúdo da View abaixo -->
 
+<div class="container">
+<br/>
+
+</div>

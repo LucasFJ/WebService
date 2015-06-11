@@ -21,17 +21,27 @@ document.getElementById("cabecalho").innerHTML = " <?php echo $nome; ?>";
         <div class="row  white-text left-align cardTopo">
             <span class="nomeServico"><?php echo $nome;?></span><br />
             <h6 class="sloganServico"><?php echo $slogan; ?></h6>
-            <h6 class="enderecoServico"><?php echo "$logradouro, nº $numero, $bairro - $cidade/$uf. $complemento"; ?></h6>
-            <h6 class="enderecoServico"><?php echo "$contato"; ?></h6>
+            <h6 class="enderecoServico"><?php echo "$bairro - $cidade / $uf"; ?></h6>
+            <h6 class="enderecoServico"><span class="telefone"><?php echo "$contato"; ?></span> / <span class="telefone"><?php echo "$contato"; ?></span></h6>
         </div>
         <div class="row  cardRodape valign-wrapper">
+        <!-- Testa (usuario já avaliou?)-->
+        <!-- SIM -->
         <div class="col s4 left-align  valign-wrapper cardRate">
-            <i class="mdi-action-star-rate white-text rateServico"></i>
-            <i class="mdi-action-star-rate white-text rateServico"></i>
-            <i class="mdi-action-star-rate white-text rateServico"></i>
-            <i class="mdi-action-star-rate white-text rateServico"></i>
-            <i class="mdi-action-star-rate white-text rateServico"></i>
+                <i class="mdi-action-star-rate white-text rateServico"></i>
+                <i class="mdi-action-star-rate white-text rateServico"></i>
+                <i class="mdi-action-star-rate white-text rateServico"></i>
+                <i class="mdi-action-star-rate white-text rateServico"></i>
+                <i class="mdi-action-star-rate black-text rateServico"></i> 
         </div>
+        <!-- NÃO -->
+        <!--<div class="col s4 left-align  valign-wrapper cardRate modal-trigger" href="#modalInfo">
+                <i class="mdi-action-star-rate black-text rateServico"></i>
+                <i class="mdi-action-star-rate black-text rateServico"></i>
+                <i class="mdi-action-star-rate black-text rateServico"></i>
+                <i class="mdi-action-star-rate black-text rateServico"></i>
+                <i class="mdi-action-star-rate black-text rateServico"></i>
+        </div>-->
         <div class="col s8 right-align  cardBotoes">
             <a href="#modalInfo" class="modal-trigger btn-floating waves-effect waves-light <?php echo $cor; ?> darken-2 btnServico"><i class="mdi-action-info-outline"></i></a>
             <a href="" class="btn-floating waves-effect waves-light  <?php echo $cor; ?> darken-2 btnServico"><i class="mdi-maps-place iconeBotao"></i></a>
@@ -41,10 +51,6 @@ document.getElementById("cabecalho").innerHTML = " <?php echo $nome; ?>";
         </div>
     </div>
     </div> 
-</div>
- <br/>
-<div class="row hide-on-med-and-up btnSite">
-    <a class="<?php echo $cor; ?>  lighten-1 waves-effect waves-light col s12 btn z-depth-1">Acesse o site</a>
 </div>
     
 <div class="contProdutos">

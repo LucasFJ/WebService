@@ -15,7 +15,7 @@ document.getElementById("cabecalho").innerHTML = "Configurações";
     <div class="collapsible-header">
         <i class="mdi-maps-store-mall-directory"></i>Nome <span id="erroNome" class="red-text"></span><span id="sucessoNome" class="green-text"></span>
     </div>
-    <div class="collapsible-body container">
+    <div class="collapsible-body container"><br/>
         <form class="col s12" method="post">
         <div class="input-field">
             <input id="nome" type="text" value="<?php echo $nome; ?>" required />
@@ -32,7 +32,24 @@ document.getElementById("cabecalho").innerHTML = "Configurações";
     <div class="collapsible-header">
         <i class="mdi-image-camera-alt"></i>Imagem <span class="erroImagem red-text"></span>
     </div>
-      <div class="collapsible-body container"><p><?php echo "IMAGEEEEMMM"; ?></p></div>
+      <div class="collapsible-body container"><br/>
+      <div class="col s12 center-align cardImagem">
+          <img src="<?php echo base_url('src/imagens/pagina/perfil/total.jpg'); ?>" class="circle imgServico z-depth-1"/>
+      </div><br/>
+      <form class="col s12" method="post">
+        <div class="file-field input-field left-align col s12">
+                <input class="file-path validate" type="text"/>
+            <div class="btn grey darken-2">
+                <span><i class="mdi-image-photo-camera"></i></span>
+                <input type="file" name="imagem[]" multiple />
+            </div>
+        </div>
+        <div class="right-align">
+            <a class="btn btn-floating orange darken-2" onclick="AlterarSloganPagina(<?php echo $codigo; ?>)"><i class="mdi-navigation-check"></i></a>
+            <button class="btn btn-floating orange darken-2" type="reset"><i class="mdi-content-undo"></i></button>
+        </div>
+      </form>
+      </div>
     </li>
     <li>
       <div class="collapsible-header"><i class="mdi-action-assignment-ind"></i>Slogan <span id= "erroSlogan" class="red-text"></span><span id="sucessoSlogan" class="green-text"></span>
@@ -103,7 +120,7 @@ document.getElementById("cabecalho").innerHTML = "Configurações";
             <label for="telefone" class="active">Telefone</label>
         </div>
         <div class="input-field">
-            <input id="celular" type="text" class="telefone" value="<?php echo $celular; ?>" required />
+            <input id="celular" type="text" class="celular" value="<?php echo $celular; ?>" required />
             <label for="celular" class="active">Celular</label>
         </div>
         <div class="right-align">

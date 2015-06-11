@@ -16,7 +16,7 @@ document.getElementById("cabecalho").innerHTML = " <?php echo $nome; ?>";
         <div class="row  white-text left-align cardTopo">
             <span class="nomeServico"><?php echo $nome;?></span><br />
             <h6 class="sloganServico"><?php echo $slogan; ?></h6>
-            <h6 class="enderecoServico"><?php echo "$logradouro, nº $numero, $bairro - $cidade/$uf. $complemento"; ?></h6>
+            <h6 class="enderecoServico"><?php echo "$bairro - $cidade/$uf"; ?></h6>
             <h6 class="enderecoServico"><?php echo "(13) 3472-3044 | (13) 99169-0517 "; ?></h6>
         </div>
         <div class="row  cardRodape valign-wrapper">

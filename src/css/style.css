@@ -97,7 +97,7 @@ span.brand-logo { font-size: 20px; line-height: 25px; }
     }
     .nomeServico{ font-size: 24px; }
     .sloganServico{ font-size: 14px; margin-top: -2px; margin-left: 5px; }
-    .enderecoServico{ font-size: 12px; margin-top: 0px; margin-left: 5px; margin-bottom: 4px; font-weight: lighter;}
+    .enderecoServico{ font-size: 12px; margin-top: 0px; margin-left: 5px; margin-bottom: 4px; font-weight: 400;}
     .cardRodape{
         margin: 0px;
         margin-top: 3px;
@@ -148,7 +148,7 @@ span.brand-logo { font-size: 20px; line-height: 25px; }
     }
     .nomeServico{ font-size: 18px; }
     .sloganServico{ font-size: 11px; margin-top: -3px; margin-left: 3px; }
-    .enderecoServico{ font-size: 8px; margin-top: -6px; margin-left: 3px; margin-bottom: 4px; font-weight: 300;}
+    .enderecoServico{ font-size: 11px; margin-top: -6px; margin-left: 3px; margin-bottom: 4px; font-weight: 300;}
     .cardRodape{
         margin: 0px;
         margin-top: 5px;

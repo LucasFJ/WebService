@@ -55,12 +55,12 @@ document.getElementById("cabecalho").innerHTML = "Criar Página";
         <!-- Telefones -->
         <div class="row formLine">
         <div class="input-field col l6 m6 s12 inputNome">
-            <input id="contato1" type="text" name="telefone" class="validate">
-            <label for="contato1">Telefone</label>
+            <input id="telefone" type="text" name="telefone" class="validate telefone">
+            <label for="telefone">Telefone</label>
         </div>
         <div class="input-field col l6 m6 s12 inputNome">
-            <input id="contato2" type="text" name="celular" class="validate">
-            <label for="contato2">Celular</label>
+            <input id="celular" type="text" name="celular" class="validate celular">
+            <label for="celular">Celular</label>
         </div>
         </div>
     </div>

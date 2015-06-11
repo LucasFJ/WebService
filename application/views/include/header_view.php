@@ -8,7 +8,7 @@
         <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="mdi-navigation-menu orange-text"></i></a>
       </div>
       <ul id="nav-mobile" class="side-nav fixed">
-          <li class="sideLogo bold orange-text text-darken-2 center">SERVICE</li>
+          <li class="sideLogo bold orange-text text-darken-2 center">SNIFFOO</li>
           <!-- Início -->
           <li><a href="<?php echo base_url('home/index'); ?>">Início</a></li>
           <!-- Buscar -->
