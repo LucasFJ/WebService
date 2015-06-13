@@ -44,7 +44,7 @@ document.getElementById("cabecalho").innerHTML = " <?php echo $nome; ?>";
     <div class="col s12 m4 l4">
     <div class="card">
     <div class="card-image waves-effect waves-block waves-light">
-        <img class="activator" src="<?php echo base_url('src/imagens/pagina/produto/PIO.png'); ?>">
+        <img class="activator" src="<?php echo base_url("src/imagens/pagina/perfil/$imagem"); ?>">
     </div>
     <div class="card-content cardContProduto">
         <span class="card-title activator grey-text text-darken-4"><h6 class="truncate">Punção Intraóssea</h6><i class="mdi-navigation-more-vert right"></i></span>

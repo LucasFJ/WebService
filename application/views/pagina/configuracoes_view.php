@@ -41,6 +41,7 @@ document.getElementById("cabecalho").innerHTML = "Configurações";
                 <input class="file-path validate" type="text"/>
             <div class="btn grey darken-2">
                 <span><i class="mdi-image-photo-camera"></i></span>
+                <input type="hidden" name="MAX_FILE_SIZE" value="3900000" />
                 <input type="hidden" name="imagemantiga" value="<?php echo $imagem; ?>">
                 <input type="file" name="imagem" required/>
             </div>
