@@ -37,11 +37,7 @@ document.getElementById("cabecalho").innerHTML = " <?php echo $nome; ?>";
     </div>
     </div> 
 </div>
- <br/>
-<div class="row hide-on-med-and-up btnSite">
-    <a class="<?php echo $cor; ?>  lighten-1 waves-effect waves-light col s12 btn z-depth-1">Acesse o site</a>
-</div>
-    
+
 <div class="contProdutos">
 <div class="row">
     <!-- PRODUTO -->

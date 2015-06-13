@@ -375,7 +375,7 @@ class Pagina_model extends CI_Model {
             $this->load->library('imagem');
             $this->imagem->salvar("src/imagens/pagina/perfil/", $imagem, $nome_imagem);
             try{
-            if($imagemAntiga != null && $imagemAntiga != "null" && !empty($imagemAntiga)){
+            if($imagemAntiga != null && $imagemAntiga != "null" && !empty($imagemAntiga) && file_exists($imagemAntiga)){
                 unlink("src/imagens/pagina/perfil/$imagemAntiga");
             }
             } catch(Exception $e){
