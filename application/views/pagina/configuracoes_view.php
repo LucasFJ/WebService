@@ -55,7 +55,7 @@ document.getElementById("cabecalho").innerHTML = "Configurações";
     <li>
       <div class="collapsible-header"><i class="mdi-action-assignment-ind"></i>Slogan <span id= "erroSlogan" class="red-text"></span><span id="sucessoSlogan" class="green-text"></span>
       </div>
-      <div class="collapsible-body container">
+      <div class="collapsible-body container"><br/>
         <form class="col s12" method="post">
         <div class="input-field">
             <input id="slogan" type="text" class="validate" value="<?php echo $slogan; ?>" required />
@@ -71,7 +71,7 @@ document.getElementById("cabecalho").innerHTML = "Configurações";
     <li>
       <div class="collapsible-header"><i class="mdi-file-folder-open"></i>Ramo <span class="erroRamo red-text"></span><span id="sucessoRamo" class="green-text"></span>
       </div>
-      <div class="collapsible-body container">
+      <div class="collapsible-body container"><br/>
         <form class="col s12" method="post">
         <div class="input-field">
             <select name="ramo" id="ramo" required>
@@ -98,7 +98,7 @@ document.getElementById("cabecalho").innerHTML = "Configurações";
     <li>
       <div class="collapsible-header"><i class="mdi-action-description"></i>Descrição <span id="erroDesc" class="red-text"></span><span id="sucessoDesc" class="green-text"></span>
       </div>
-      <div class="collapsible-body container">
+      <div class="collapsible-body container"><br/>
         <form class="col s12" method="post">
         <div class="input-field">
           <textarea id="descricao" class="materialize-textarea grey-text"><?php echo strip_tags($descricao); ?></textarea>
@@ -114,7 +114,7 @@ document.getElementById("cabecalho").innerHTML = "Configurações";
     <li>
       <div class="collapsible-header"><i class="mdi-communication-call"></i>Telefone <span id="erroTele" class="red-text"></span><span id="sucessoTele" class="green-text"></span>
       </div>
-      <div class="collapsible-body container">
+      <div class="collapsible-body container"><br/>
         <form class="col s12" method="post">
         <div class="input-field">
             <input id="telefone" type="text" class="telefone" value="<?php echo $telefone; ?>" required />
@@ -134,7 +134,7 @@ document.getElementById("cabecalho").innerHTML = "Configurações";
     <li>
         <div class="collapsible-header"><i class="mdi-social-public"></i>Site <span id="erroSite" class="red-text"></span><span id="sucessoSite" class="green-text"></span>
         </div>
-        <div class="collapsible-body container">
+        <div class="collapsible-body container"><br/>
         <form class="col s12" method="post">
         <div class="input-field">
             <input id="site" type="url" value="<?php echo $site; ?>" required />
@@ -150,7 +150,7 @@ document.getElementById("cabecalho").innerHTML = "Configurações";
     <li>
         <div class="collapsible-header"><i class="mdi-maps-map"></i>Localidade <span id="erroLocal" class="red-text"></span><span id="sucessoLocal" class="green-text"></span>
         </div>
-        <div class="collapsible-body container">
+        <div class="collapsible-body container"><br/>
         <form class="col s12" method="post">
         <!-- CEP, Número e Complemento -->
         <div class="row formLine">
@@ -198,7 +198,7 @@ document.getElementById("cabecalho").innerHTML = "Configurações";
         </div>
     </li>
     <li>
-        <div class="collapsible-header"><i class="mdi-image-color-lens"></i>Layout <span class="erroLayout red-text"></span></span><span id="sucessoLayout" class="green-text"></span>
+        <div class="collapsible-header"><i class="mdi-image-color-lens"></i>Layout <span class="erroLayout red-text"></span><span id="sucessoLayout" class="green-text"></span>
         </div>
         <div class="collapsible-body container">
         <form class="col s12" method="post">
@@ -215,7 +215,10 @@ document.getElementById("cabecalho").innerHTML = "Configurações";
             }
             ?>
             <!-- Aqui o php gera todas as <option ramo> e deixa como 'selected' como default a que está cadastrada na página -->
-            </select>      
+            </select>   
+            <div class="center-align">
+            <a class="btn red large"><i class="mdi-image-color-lens"></i></a><!-- Cor de exemplo dinâmico para Layout TO-DO -->
+            </div>
         </div>
         <div class="right-align">
             <a class="btn btn-floating orange darken-2" onclick="AlterarLayoutPagina(<?php echo $codigo; ?>)"><i class="mdi-navigation-check"></i></a>

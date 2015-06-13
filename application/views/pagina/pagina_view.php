@@ -15,7 +15,7 @@ document.getElementById("cabecalho").innerHTML = " <?php echo $nome; ?>";
 <div class="card-panel <?php echo $cor; ?> lighten-1 z-depth-1">
     <div class="row cardConteudo valign-wrapper">
     <div class="col s3 right-align cardImagem">
-    <img src="<?php echo base_url('src/imagens/pagina/perfil/total.jpg'); ?>" class="circle imgServico z-depth-1"/>
+    <img src='<?php echo base_url("src/imagens/pagina/perfil/$imagem"); ?>' class="circle imgServico z-depth-1"/>
     </div>
     <div class="col s9 center-align cardInfo">
         <div class="row  white-text left-align cardTopo">
@@ -44,7 +44,7 @@ document.getElementById("cabecalho").innerHTML = " <?php echo $nome; ?>";
         </div>-->
         <div class="col s8 right-align  cardBotoes">
             <a href="#modalInfo" class="modal-trigger btn-floating waves-effect waves-light <?php echo $cor; ?> darken-2 btnServico"><i class="mdi-action-info-outline"></i></a>
-            <a href="" class="btn-floating waves-effect waves-light  <?php echo $cor; ?> darken-2 btnServico"><i class="mdi-maps-place iconeBotao"></i></a>
+            <a href="#modalMaps" class="modal-trigger btn-floating waves-effect waves-light  <?php echo $cor; ?> darken-2 btnServico"><i class="mdi-maps-place iconeBotao"></i></a>
             <a href="#modalComentar" class="modal-trigger btn-floating waves-effect waves-light  <?php echo $cor; ?> darken-2 btnServico"><i class="mdi-communication-comment iconeBotao"></i></a>
             <a href="#modalCompartilhar" class="modal-trigger btn-floating waves-effect waves-light  <?php echo $cor; ?> darken-2 btnServico"><i class="mdi-social-share valign-wrapper iconeBotao"></i></a>
         </div>
@@ -156,6 +156,25 @@ document.getElementById("cabecalho").innerHTML = " <?php echo $nome; ?>";
         <div class="modal-footer grey lighten-4">
             <a href="#" class="waves-effect waves-green btn-flat modal-action modal-close">Voltar</a>
         </div>
+</div>
+
+<!--MODAL MAPS-->
+<div id="modalMaps" class="modal white center modal-fixed-footer">
+	<div class="modal-content grey-text text-darken-4">
+            <h4>Localização</h4>
+        <div class="row">
+        <div class="col s12">
+            <span><?php echo "$logradouro $numero $complemento, $bairro, $cidade / $uf CEP: $cep"; ?> </span>
+        </div><br/>
+        <div class="col s12" id="mapa">
+            <!-- O mapa será apresentado aqui -->
+            
+        </div>
+        </div>
+        </div>
+        <div class="modal-footer grey lighten-4">
+            <a href="#" class="waves-effect waves-green btn-flat modal-action modal-close">Voltar</a>
+        </div>				
 </div>
 
 <!--MODAL COMENTAR-->
