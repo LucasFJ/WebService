@@ -116,5 +116,35 @@ class Ajax extends CI_Controller{
             echo "Erro";
         }
     }
+    
+    public function AlterarImagemPagina($codigoPagina){
+        $this->load->model("pagina_model", "pagmod");
+        $isSecure = ($this->pagmod->CarregarPaginaProprietario() == dechex($codigoPagina)) ? true : false;       
+        $retorno = false;
+        if(!empty($codigoPagina) && $isSecure && isset($_POST)){
+            if(isset($_FILES['imagem'])){
+               $imagem = $_FILES['imagem'];
+               $imagemAntiga = $_POST['imagemantiga'];
+               $retorno = $this->pagmod->AlterarImagem($codigoPagina, $imagem, $imagemAntiga);
+               if($retorno){
+                   echo $retorno;
+               } else {
+                   echo "Erro";
+               }
+            } else {
+                echo "Erro";
+            }   
+        } else {
+            echo "Erro";
+        }
+    }
 }
-
+/*
+if(!empty($codigoPagina) && $isSecure && isset($_POST)){
+            if(isset($_FILES['imagem'])){
+                $imagem = $_FILES['imagem'];
+                $imagemAntiga = $_POST['imagemantiga'];
+                $this->pagmod->AlterarImagem($codigo, $imagem, $imagemAntiga);
+                
+            }   
+        } */
