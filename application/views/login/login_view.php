@@ -16,7 +16,7 @@
           <header>
             <nav class="grey lighten-3">
               <div class="nav-wrapper">
-                <span unselectable="on" class="brand-logo center orange-text text-darken-2">Service</span>
+                <span unselectable="on" class="brand-logo center orange-text text-darken-2">Sniffoo</span>
               </div>
             </nav>
           </header> 

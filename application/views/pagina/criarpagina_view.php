@@ -20,8 +20,8 @@ document.getElementById("cabecalho").innerHTML = "Criar Página";
         <!-- Nome e Ramo -->
         <div class="row formLine">
         <div class="input-field col l6 m6 s12 inputNome">
-            <input id="nome" type="text" name="nome" class="validate" required>
-            <label for="nome">Nome da página</label>
+            <input id="nome" placeholder="Nome da página" type="text" name="nome" class="validate" required>
+            <label for="nome" class="active">Nome</label>
         </div>
         <div class="input-field col l6 m6 s12">
             <select name="ramo" required>
@@ -37,30 +37,30 @@ document.getElementById("cabecalho").innerHTML = "Criar Página";
         <!-- Slogan e Site -->
         <div class="row formLine">
         <div class="input-field col l6 m6 s12 inputNome">
-            <input id="slogan" type="text" name="slogan" class="validate" required>
-            <label for="slogan">Slogan</label>
+            <input id="slogan" placeholder="Slogan da página" type="text" name="slogan" class="validate" required>
+            <label for="slogan" class="active">Slogan</label>
         </div>
         <div class="input-field col l6 m6 s12 inputNome">
-            <input id="site" type="text" name="site" class="validate">
-            <label for="site">Site</label>
+            <input id="site" placeholder="Site da página" type="text" name="site" class="validate">
+            <label for="site" class="active">Site</label>
         </div>
         </div>
         <!-- Descrição -->
         <div class="row formLine">
         <div class="input-field col l12 m12 s12 inputNome">
-                <textarea id="descricao" name="descricao" class="materialize-textarea" required></textarea>
-            <label for="descricao">Descrição</label>
+                <textarea id="descricao" placeholder="Descrição da página" name="descricao" class="materialize-textarea" required></textarea>
+            <label for="descricao" class="active">Descrição</label>
         </div>
         </div>
         <!-- Telefones -->
         <div class="row formLine">
         <div class="input-field col l6 m6 s12 inputNome">
-            <input id="telefone" type="text" name="telefone" class="validate telefone">
-            <label for="telefone">Telefone</label>
+            <input id="telefone" placeholder="(00) 0000-0000" type="text" name="telefone" class="validate telefone">
+            <label for="telefone" class="active">Telefone</label>
         </div>
         <div class="input-field col l6 m6 s12 inputNome">
-            <input id="celular" type="text" name="celular" class="validate celular">
-            <label for="celular">Celular</label>
+            <input id="celular" placeholder="(00) 00000-0000" type="text" name="celular" class="validate celular">
+            <label for="celular" class="active">Celular</label>
         </div>
         </div>
     </div>
@@ -104,16 +104,16 @@ document.getElementById("cabecalho").innerHTML = "Criar Página";
             <div class="row formLine">
             <div class="input-field col l4 m4 s8 inputNome">
                 <input id="codigo_logradouro" type="hidden" name="codigo_cep" value="">
-                <input id="cep" type="text" name="cep" class="validate" value='' oninput="CarregarEndereco()" required>
-                <label for="cep">CEP</label>
+                <input id="cep" placeholder="00000-000" type="text" name="cep" class="validate" value='' oninput="CarregarEndereco()" required>
+                <label for="cep" class="active">CEP</label>
             </div>
             <div class="input-field col l2 m2 s4 inputNome">
-              <input id="numero" type="text" name="numero" class="validate" value=''>
-              <label for="numero">Número</label>
+              <input id="numero" placeholder="0000" type="text" name="numero" class="validate" value=''>
+              <label for="numero" class="active">Número</label>
             </div>
             <div class="input-field col l6 m6 s12 inputNome">
-              <input id="complemento" type="text" name="complemento" class="validate" value=''>
-              <label for="complemento">Complemento</label>
+              <input id="complemento" placeholder="Casa 00 / Apto 000" type="text" name="complemento" class="validate" value=''>
+              <label for="complemento" class="active">Complemento</label>
             </div>
         </div>
             <!-- Rua e Bairro -->

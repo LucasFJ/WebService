@@ -15,8 +15,8 @@ document.getElementById("cabecalho").innerHTML = "Buscar";
         <form class="col s12" action="<?php echo base_url('home/buscar'); ?>" method="post">
             <div class="row formLine">
             <div class="input-field col l6 m6 s12 inputNome">
-              <input id="nome" type="text" class="validate" name="nome">
-              <label for="nome">Nome da página</label>
+              <input id="nome" placeholder="Nome da página" type="text" class="validate" name="nome">
+              <label for="nome" class="active">Nome</label>
             </div>
             <div class="input-field col l6 m6 s12">
                 <select  name="ramo"  id='container-ramo'>                 
@@ -69,8 +69,14 @@ document.getElementById("cabecalho").innerHTML = "Buscar";
             </div>
             <!-- ROW ROW ROW --><br />
             <div class="row center-align rowBusca">
-                    <input class="btn btnBusca orange darken-2" type="submit" name="Buscar" id="buscar" value="Buscar" />
-                    <input class="btn btnBusca orange darken-2" type="reset" id="buscar" value="Limpar" />
+            
+            <button class="btn btnBusca orange darken-2" type="submit"  name="Buscar" id="buscar" >
+                Buscar<i class="mdi-action-search right"></i>
+            </button>
+            <button class="btn btnBusca orange darken-2" type="reset" />
+                Limpar<i class="mdi-action-delete right"></i>
+            </button>
+            
             </div>
         </form>
     </div>

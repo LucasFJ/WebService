@@ -111,7 +111,13 @@ class Pagina extends CI_Controller{
         }
     }
     
-    
+    public function criarproduto(){
+        //MEdida provisoria, o usuario visualiza a propria pagina
+        $this->load->view('include/head_view');
+        $this->load->view('include/header_view');
+        $this->load->view('pagina/criarproduto_view');
+        $this->load->view('include/footer_view');
+    }
 
 }
 

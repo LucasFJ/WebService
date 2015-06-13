@@ -15,9 +15,10 @@
 	<body>
           <header>
             <nav class="grey lighten-3">
-              <div class="nav-wrapper">
+              <div class="nav-wrapper container">
                 <span unselectable="on" class="brand-logo center orange-text text-darken-2">Nova Conta</span>
-              </div>
+                <a href="<?php echo base_url('login'); ?>" class="left-align"><i class="mdi-navigation-arrow-back orange-text"></i></a>
+      </div>
             </nav>
           </header> 
 
@@ -29,7 +30,7 @@
 	<h5 class="center-align">Primeira vez por aqui? Preencha alguns campos para lembrarmos de você na próxima visita.</h5>
 	<br />
             <!-- CARD LOGIN -->
-            <div class="card center-align orange lighten-2 z-depth-2">
+            <div class="card center-align orange z-depth-2">
                 <br /><span class="card-title">Cadastro</span>
             <form class="col s12" method="post">
             <div class="card-content center-align contForm">
@@ -91,8 +92,8 @@
                 <!-- BUTTONS -->
                 <div class="container containerBtnCadastro">
                     <button href="<?php base_url('cadastro')?>" type="submit" class="btnCadastro waves-effect waves-light white orange-text text-darken-4 btn tooltipped" data-position="top" data-delay="200" data-tooltip="Cadastrar-se">Cadastrar</button>
-                <button href="" type="reset" class="btnCadastro waves-effect waves-light white orange-text text-darken-4 btn tooltipped" data-position="top" data-delay="200" data-tooltip="Limpar dados inseridos">Limpar</button>
-                </div>
+                    <button href="" type="reset" class="btnCadastro waves-effect waves-light white orange-text text-darken-4 btn tooltipped" data-position="top" data-delay="200" data-tooltip="Limpar dados inseridos">Limpar</button>
+                    </div>
                 <!-- /BUTTONS -->
             </form>
             </div>
