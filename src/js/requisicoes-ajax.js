@@ -231,7 +231,8 @@ function AlterarNomePagina(codigo){
                               erro.innerHTML = "Ocorreu um erro durante a alteração.";
                               suces.innerHTML = "";
                           } else {
-                              suces.innerHTML = "Nome alterado com sucesso";
+                              suces.innerHTML = "alterado com sucesso";
+                              //desaparecendo com a mensagem depois de 4 segundos
                               erro.innerHTML = "";
                           }
                        } else {
@@ -246,6 +247,12 @@ function AlterarNomePagina(codigo){
         erro.innerHTML = "O nome inserído é inválido";
         suces.innerHTML = "";
    }
+   $("#sucessoNome").fadeIn(100, "swing");
+   $("#erroNome").fadeIn(100, "swing");
+   setTimeout(function(){
+        $("#sucessoNome").fadeOut("slow", "swing");
+        $("#erroNome").fadeOut("slow", "swing");
+    }, 5000);
 }
 
 function AlterarSloganPagina(codigo){
@@ -272,7 +279,7 @@ function AlterarSloganPagina(codigo){
                               erro.innerHTML = "Ocorreu um erro durante a alteração.";
                               suces.innerHTML = "";
                           } else {
-                              suces.innerHTML = "Slogan alterado com sucesso";
+                              suces.innerHTML = " alterado com sucesso";
                               erro.innerHTML = "";
                           }
                        } else {
@@ -284,9 +291,15 @@ function AlterarSloganPagina(codigo){
             xmlreq.send(null);
         }
    } else {
-       erro.innerHTML = "O slogan inserído é inválido3";
+       erro.innerHTML = "O slogan inserído é inválido";
        suces.innerHTML = "";
    }
+   $("#sucessoSlogan").fadeIn(100, "swing");
+   $("#erroSlogan").fadeIn(100, "swing");
+   setTimeout(function(){
+        $("#sucessoSlogan").fadeOut("slow", "swing");
+        $("#erroSlogan").fadeOut("slow", "swing");
+    }, 5000);
 }
 
 function AlterarDescricaoPagina(codigo){
@@ -314,7 +327,7 @@ function AlterarDescricaoPagina(codigo){
                               erro.innerHTML = "Ocorreu um erro durante a alteração.";
                               suces.innerHTML = "";
                           } else {
-                              suces.innerHTML = "Descrição alterado com sucesso";
+                              suces.innerHTML = " alterada com sucesso";
                               erro.innerHTML = "";
                           }
                        } else {
@@ -330,6 +343,12 @@ function AlterarDescricaoPagina(codigo){
         erro.innerHTML = "A descrição inserída é inválida";
         suces.innerHTML = "";
    }
+   $("#sucessoDesc").fadeIn(100, "swing");
+   $("#erroDesc").fadeIn(100, "swing");
+   setTimeout(function(){
+        $("#sucessoDesc").fadeOut("slow", "swing");
+        $("#erroDesc").fadeOut("slow", "swing");
+    }, 5000);
 }
 
 function AlterarRamoPagina(codigo){
@@ -353,7 +372,7 @@ function AlterarRamoPagina(codigo){
                               erro.innerHTML = "Ocorreu um erro durante a alteração.";
                               suces.innerHTML = "";
                           } else {
-                              suces.innerHTML = "Ramo alterado com sucesso";
+                              suces.innerHTML = " alterado com sucesso";
                               erro.innerHTML = "";
                           }
                        } else {
@@ -369,6 +388,12 @@ function AlterarRamoPagina(codigo){
         erro.innerHTML = "O ramo inserido é inválido";
         suces.innerHTML = "";
     }
+   $("#sucessoRamo").fadeIn(100, "swing");
+   $("#erroRamo").fadeIn(100, "swing");
+   setTimeout(function(){
+        $("#sucessoRamo").fadeOut("slow", "swing");
+        $("#erroRamo").fadeOut("slow", "swing");
+    }, 5000);
 }
 
 function AlterarLayoutPagina(codigo){
@@ -392,7 +417,7 @@ function AlterarLayoutPagina(codigo){
                               erro.innerHTML = "Ocorreu um erro durante a alteração.";
                               suces.innerHTML = "";
                           } else {
-                              suces.innerHTML = "Layout alterado com sucesso";
+                              suces.innerHTML = " alterado com sucesso";
                               erro.innerHTML = "";
                           }
                        } else {
@@ -408,6 +433,12 @@ function AlterarLayoutPagina(codigo){
         erro.innerHTML = "O layout inserido é inválido";
         suces.innerHTML = "";
     }
+   $("#sucessoLayout").fadeIn(100, "swing");
+   $("#erroLayout").fadeIn(100, "swing");
+   setTimeout(function(){
+        $("#sucessoLayout").fadeOut("slow", "swing");
+        $("#erroLayout").fadeOut("slow", "swing");
+    }, 5000);
 }
 
 function AlterarSitePagina(codigo){
@@ -436,7 +467,7 @@ function AlterarSitePagina(codigo){
                               erro.innerHTML = "Ocorreu um erro durante a alteração.";
                               suces.innerHTML = "";
                           } else {
-                              suces.innerHTML = "Site alterado com sucesso";
+                              suces.innerHTML = " alterado com sucesso";
                               erro.innerHTML = "";
                           }
                        } else {
@@ -451,6 +482,12 @@ function AlterarSitePagina(codigo){
         erro.innerHTML = "O site inserído é inválido";
         suces.innerHTML = "";
    }
+   $("#sucessoSite").fadeIn(100, "swing");
+   $("#erroSite").fadeIn(100, "swing");
+   setTimeout(function(){
+        $("#sucessoSite").fadeOut("slow", "swing");
+        $("#erroSite").fadeOut("slow", "swing");
+    }, 5000);
 }
 
 function AlterarLocalidadePagina(codigo){
@@ -484,7 +521,7 @@ function AlterarLocalidadePagina(codigo){
                                               erro.innerHTML = "Ocorreu um erro durante a alteração.";
                                               suces.innerHTML = "";
                                           } else {
-                                              suces.innerHTML = "Localidade alterada com sucesso";
+                                              suces.innerHTML = " alterada com sucesso";
                                               erro.innerHTML = "";
                                           }
                                        } else {
@@ -508,6 +545,12 @@ function AlterarLocalidadePagina(codigo){
         erro.innerHTML = "É obrigatório a utilização de um CEP.";
         suces.innerHTML = "";
     }
+    $("#sucessoLocal").fadeIn(100, "swing");
+    $("#erroLocal").fadeIn(100, "swing");
+    setTimeout(function(){
+        $("#sucessoLocal").fadeOut("slow", "swing");
+        $("#erroLocal").fadeOut("slow", "swing");
+    }, 5000);
 }
 
 function AlterarTelefonePagina(codigo){
@@ -540,7 +583,7 @@ function AlterarTelefonePagina(codigo){
                                               erro.innerHTML = "Ocorreu um erro durante a alteração.";
                                               suces.innerHTML = "";
                                           } else {
-                                              suces.innerHTML = "Telefone e celular alterados com sucesso";
+                                              suces.innerHTML = "Contatos alterados com sucesso";
                                               erro.innerHTML = "";
                                           }
                                        } else {
@@ -560,6 +603,12 @@ function AlterarTelefonePagina(codigo){
         erro.innerHTML = "O telefone inserido é inválido";
         suces.innerHTML = "";
     }
+   $("#sucessoTele").fadeIn(100, "swing");
+   $("#erroTele").fadeIn(100, "swing");
+   setTimeout(function(){
+        $("#sucessoTele").fadeOut("slow", "swing");
+        $("#erroTele").fadeOut("slow", "swing");
+    }, 5000);
 }
 
 function ExcluirPagina(codigo){
@@ -590,6 +639,12 @@ function ExcluirPagina(codigo){
             }
         };
         xmlreq.send(null);
-
+        
     }
+   $("#sucessoExcluir").fadeIn(100, "swing");
+   $("#erroExcluir").fadeIn(100, "swing");
+   setTimeout(function(){
+        $("#sucessoExcluir").fadeOut("slow", "swing");
+        $("#erroExcluir").fadeOut("slow", "swing");
+    }, 5000);
 }

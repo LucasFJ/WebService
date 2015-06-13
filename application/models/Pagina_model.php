@@ -145,7 +145,7 @@ class Pagina_model extends CI_Model {
         $opcoes_ramo =  array();
         $opcoes_layout = array();
         $resultado_query = $this->db->query("SELECT cd_layout, nm_cor, nm_cor_portugues FROM"
-                . " tb_layout ORDER BY nm_cor;");
+                . " tb_layout ORDER BY nm_cor_portugues;");
         if($resultado_query->num_rows() > 0){
             $index = 0;
             foreach($resultado_query->result() as $row){
@@ -374,8 +374,12 @@ class Pagina_model extends CI_Model {
                     . " WHERE cd_pagina = $codigoPagina;");
             $this->load->library('imagem');
             $this->imagem->salvar("src/imagens/pagina/perfil/", $imagem, $nome_imagem);
-            if($imagemAntiga){
+            try{
+            if($imagemAntiga != null && $imagemAntiga != "null" && !empty($imagemAntiga)){
                 unlink("src/imagens/pagina/perfil/$imagemAntiga");
+            }
+            } catch(Exception $e){
+                
             }
             return true;
         } else {

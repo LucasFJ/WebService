@@ -46,6 +46,28 @@ class Imagem {
         } elseif (!move_uploaded_file($file['tmp_name'], $uploadfile)){
             return false; //erro durante o upload
         } else {
+            //
+            if($tipo === "jpeg"){
+                $image = imagecreatefromstring(file_get_contents($uploadfile));
+                $exif = exif_read_data($uploadfile);
+                if(!empty($exif['Orientation'])) {
+                    switch($exif['Orientation']) {
+                        case 8:
+                            $image = imagerotate($image,90,0);
+                            imagejpeg($image, $uploadfile);
+                            break;
+                        case 3:
+                            $image = imagerotate($image,180,0);
+                            imagejpeg($image, $uploadfile);
+                            break;
+                        case 6:
+                            $image = imagerotate($image,-90,0);
+                            imagejpeg($image, $uploadfile);
+                            break;
+                    }
+                }
+            }
+            //
             //verificando se é necessario o redimensionamento
             list($width_orig, $height_orig) = getimagesize($uploadfile); 
             if($width_orig > $this->width || $height_orig > $this->height){
@@ -62,14 +84,28 @@ class Imagem {
         list($width_orig, $height_orig, $tipo, $atributo) = getimagesize($caminho.$nomearquivo);
         // Se largura é maior que altura, dividimos a largura determinada pela original e 
         // multiplicamos a altura pelo resultado, para manter a proporção da imagem 
-        if($width_orig > $height_orig){ 
-            $height = ($width/$width_orig)*$height_orig;
-        } elseif($width_orig < $height_orig) {
-            $width = ($height/$height_orig)*$width_orig; 
-        }
+        //if($width_orig > $height_orig){ 
+        //    $height = ($width/$width_orig)*$height_orig;
+        //} elseif($width_orig < $height_orig) {
+        //    $width = ($height/$height_orig)*$width_orig; 
+        //}
         
-        // Criando a imagem com o novo tamanho
+        
+        // Transformando imagens retangulares em quadradas
         $novaimagem = imagecreatetruecolor($width, $height); 
+        //Testando: qual lado é maior que o outro
+        if($height_orig > $width_orig){
+            $orgY = ($height_orig - $width_orig) / 2;
+            $orgX = 0;
+            $height_orig = $width_orig;
+        } elseif($width_orig > $height_orig) {
+            $orgY = 0;
+            $orgX = ($width_orig - $height_orig) / 2;
+            $width_orig = $height_orig;
+        } else {
+            $orgX = 0;
+            $orgY = 0;
+        }
         switch($tipo){
             //TIPO GIF
             case 1: return false;
@@ -77,13 +113,13 @@ class Imagem {
             //TIPO JPG
             case 2:
                 $origem = imagecreatefromjpeg($caminho.$nomearquivo); 
-                imagecopyresampled($novaimagem, $origem, 0, 0, 0, 0, $width, $height, $width_orig, $height_orig); 
+                imagecopyresampled($novaimagem, $origem, 0, 0, $orgX, $orgY, $width, $height, $width_orig, $height_orig); 
                 imagejpeg($novaimagem, $caminho.$nomearquivo); 
                 break;
             //IMAGEM PNG
             case 3:
                 $origem = imagecreatefrompng($caminho.$nomearquivo);
-                imagecopyresampled($novaimagem, $origem, 0, 0, 0, 0, $width, $height, $width_orig, $height_orig);
+                imagecopyresampled($novaimagem, $origem, 0, 0, $orgX, $orgY, $width, $height, $width_orig, $height_orig);
                 imagepng($novaimagem, $caminho.$nomearquivo); 
                 break;
         } 
@@ -93,3 +129,4 @@ class Imagem {
         imagedestroy($origem); 
     } 
 }
+        
