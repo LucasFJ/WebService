@@ -369,19 +369,20 @@ class Pagina_model extends CI_Model {
             $tipo = strtolower($tipo);
             $prefixo = "Page$codigoPagina";
             $nome_imagem = uniqid("$prefixo"); 
-            $nome_imagem = "$nome_imagem.$tipo";
-            $this->db->query("UPDATE tb_pagina SET nm_caminho_imagem = '$nome_imagem'"
-                    . " WHERE cd_pagina = $codigoPagina;");
+            $nome_imagem = "$nome_imagem". "." ."$tipo";
+            
             $this->load->library('imagem');
-            $this->imagem->salvar("src/imagens/pagina/perfil/", $imagem, $nome_imagem);
-            try{
-            if($imagemAntiga != null && $imagemAntiga != "null" && !empty($imagemAntiga) && file_exists($imagemAntiga)){
-                unlink("src/imagens/pagina/perfil/$imagemAntiga");
+            $resultado = $this->imagem->salvar("src/imagens/pagina/perfil/", $imagem, $nome_imagem);
+            if($resultado){
+                $this->db->query("UPDATE tb_pagina SET nm_caminho_imagem = '$nome_imagem'"
+                    . " WHERE cd_pagina = $codigoPagina;");
+                if(file_exists("src/imagens/pagina/perfil/$imagemAntiga")){
+                    unlink("src/imagens/pagina/perfil/$imagemAntiga");
+                }
+                return $nome_imagem;
+            } else {
+                return false;
             }
-            } catch(Exception $e){
-                
-            }
-            return true;
         } else {
             return false;
         }

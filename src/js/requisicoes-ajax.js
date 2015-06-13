@@ -648,3 +648,36 @@ function ExcluirPagina(codigo){
         $("#erroExcluir").fadeOut("slow", "swing");
     }, 5000);
 }
+
+
+
+function AlterarImagemPagina(codigo){
+    //var imagemAntiga = document.getElementById("imagemantiga").value;
+    var suces = document.getElementById("sucessoImagem");
+    var erro = document.getElementById("erroImagem");
+    $('#alterarimagem').ajaxForm({ 
+        //target: 
+        success:function(data) 
+        {
+            if(data === "Erro"){
+                erro.innerHTML = "Não foi possivel alterar a imagem.";
+                suces.innerHTML = "";
+            } else {
+               $("#imagempagina").attr("src", base_url + "src/imagens/pagina/perfil/" + data);
+               //atualiza tambem o value do imagem antiga para nao deixar de deletar
+               var imagemantiga = document.getElementById("imagemantiga");
+               imagemantiga.value = data;
+               //exibindo as menasgens de sucesso
+               erro.innerHTML = "";
+               suces.innerHTML = "alterada com sucesso.";
+           }
+        }
+        // o callback será no elemento com o id #visualizar 
+        }).submit();
+        $("#sucessoImagem").fadeIn(100, "swing");
+        $("#erroImagem").fadeIn(100, "swing");
+        setTimeout(function(){
+             $("#sucessoImagem").fadeOut("slow", "swing");
+             $("#erroImagem").fadeOut("slow", "swing");
+         }, 5000);
+}

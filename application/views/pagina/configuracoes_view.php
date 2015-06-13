@@ -30,24 +30,24 @@ document.getElementById("cabecalho").innerHTML = "Configurações";
     </li>
     <li>
     <div class="collapsible-header">
-        <i class="mdi-image-camera-alt"></i>Imagem <span class="erroImagem red-text"></span>
+        <i class="mdi-image-camera-alt"></i>Imagem <span id="erroImagem" class="red-text"></span><span id="sucessoImagem" class="green-text"></span>
     </div>
       <div class="collapsible-body container"><br/>
-      <div class="col s12 center-align cardImagem">
-          <img src="<?php echo base_url("src/imagens/pagina/perfil/$imagem"); ?>" class="circle imgServico z-depth-1"/>
+      <div class="col s12 center-align cardImagem"> 
+          <img id="imagempagina" src="<?php echo base_url("src/imagens/pagina/perfil/$imagem"); ?>" class="circle imgServico z-depth-1"/>    
       </div><br/>
-      <form class="col s12" method="post" enctype="multipart/form-data">
+      <form id="alterarimagem" action="<?php echo base_url("ajax/AlterarImagemPagina/$codigo")?>" class="col s12" method="post" enctype="multipart/form-data">
         <div class="file-field input-field left-align col s12">
                 <input class="file-path validate" type="text"/>
             <div class="btn grey darken-2">
                 <span><i class="mdi-image-photo-camera"></i></span>
                 <input type="hidden" name="MAX_FILE_SIZE" value="3900000" />
-                <input type="hidden" name="imagemantiga" value="<?php echo $imagem; ?>">
-                <input type="file" name="imagem" required/>
+                <input type="hidden" id="imagemantiga" name="imagemantiga" value="<?php echo $imagem; ?>">
+                <input type="file" id="imagem" name="imagem" required/>
             </div>
         </div>
         <div class="right-align">
-            <button type="submit" value="Enviar" name="Enviar" class="btn btn-floating orange darken-2" ><i class="mdi-navigation-check"></i></button>
+            <a onclick=" AlterarImagemPagina(<?php echo $codigo; ?>)" class="btn btn-floating orange darken-2" ><i class="mdi-navigation-check"></i></a>
             <button class="btn btn-floating orange darken-2" type="reset"><i class="mdi-content-undo"></i></button>
         </div>
       </form>

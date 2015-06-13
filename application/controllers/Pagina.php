@@ -96,14 +96,6 @@ class Pagina extends CI_Controller{
     public function configuracoes(){
         $codigo = $this->pagmod->CarregarPaginaProprietario();
         if($codigo){
-            if(isset($_POST['Enviar'])){
-                $imagem = $_FILES['imagem'];
-                $imagemAntiga = $_POST['imagemantiga'];
-                $this->pagmod->AlterarImagem($codigo, $imagem, $imagemAntiga);
-                //echo "<pre>";
-                //print_r($imagem);
-                //echo "</pre>";
-            }   
             $dados = $this->pagmod->CarregarDadosPagina($codigo);
              
             $dados_preload = $this->pagmod->CarregarBoxLayoutRamo();
