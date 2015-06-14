@@ -184,5 +184,26 @@ class Ajax_model extends CI_Model {
             echo "<script> alert('Não foi possivel carregar os ramos');</script>";
         }
     }
+    
+    
+    public function CriarImagemTemp($imagem, $imagemAntiga){
+        $array_tipo = explode('.', $imagem['name']);
+        $tipo = end($array_tipo);
+        $tipo = strtolower($tipo);
+        $nome_imagem = uniqid("Temp"); 
+        $nome_imagem = "$nome_imagem". "." ."$tipo";
+        $this->load->library('imagem');
+        $resultado = $this->imagem->salvar("src/imagens/temp/", $imagem, $nome_imagem);
+        if($resultado){
+            if(!empty($imagemAntiga)){
+                if(file_exists("src/imagens/temp/$imagemAntiga")){
+                    unlink("src/imagens/temp/$imagemAntiga");
+                }
+            }
+            return $nome_imagem;
+        } else {
+            return false;
+        }
+    }
 }
 

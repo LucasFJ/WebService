@@ -119,7 +119,7 @@ class Ajax extends CI_Controller{
     
     public function AlterarImagemPagina($codigoPagina){
         $this->load->model("pagina_model", "pagmod");
-        $isSecure = ($this->pagmod->CarregarPaginaProprietario() == dechex($codigoPagina)) ? true : false;       
+        $isSecure = ($this->pagmod->CarregarPaginaProprietario() == $codigoPagina) ? true : false;       
         $retorno = false;
         if(!empty($codigoPagina) && $isSecure && isset($_POST)){
             if(isset($_FILES['imagem'])){
@@ -134,6 +134,25 @@ class Ajax extends CI_Controller{
             } else {
                 echo "Erro";
             }   
+        } else {
+            echo "Erro";
+        }
+    }
+    
+    public function UploadImagemProduto($codigoPagina){
+        $this->load->model("pagina_model", "pagmod");
+        $prop = $this->pagmod->CarregarPaginaProprietario();
+        $isSecure = ($this->pagmod->CarregarPaginaProprietario() == $codigoPagina) ? true : false;       
+        $retorno = false;
+        if($isSecure && isset($_FILES)){
+            $imagem = $_FILES['imgProduto'];
+            $imagemantiga = !empty($_POST['imagemantiga']) ? $_POST['imagemantiga'] : false ;
+            $resultado = $this->ajaxmod->CriarImagemTemp($imagem, $imagemantiga);
+            if($resultado){
+                echo $resultado;
+            } else {
+                echo "Erro";
+            }
         } else {
             echo "Erro";
         }

@@ -14,22 +14,22 @@ document.getElementById("cabecalho").innerHTML = "Criar Produto";
     </div>
     <br/>
     
-<form class="col s12" method="post" enctype="multipart/form-data">
+<form id="formImagem" action="<?php echo base_url("pagina/POSTcriarproduto");?>" class="col s12" method="post" enctype="multipart/form-data">    
 <div class="card grey lighten-4">
-<div class="card-content contentForm center-align"><br/>
+<div class="card-content contentForm center-align"><br/>  
     <!-- Exemplo Imagem -->
     <div class="row formLine">
     <div class="col s12 m4 l4 center-align cardImagem">
-        <img src="<?php echo base_url("src/imagens/pagina/perfil/harry-square.png"); ?>" class="materialboxed imgServico z-depth-1"/>
+        <img id="imagemproduto" src="<?php echo base_url("src/imagens/pagina/perfil/harry-square.png"); ?>" class="materialboxed imgServico z-depth-1"/>
     </div><br/><br/>
     <!-- Input Imagem -->
     <div class="file-field input-field left-align col s12 m8 l8">
-        <input class="file-path validate" type="text"/>
+        <input class="file-path validate" id="filepath" type="text" onchange="CarregarImagemProduto(<?php echo $codigo;?>);"/>
     <div class="btn grey darken-2">
         <span><i class="mdi-image-photo-camera"></i></span>
         <input type="hidden" name="MAX_FILE_SIZE" value="3900000" />
-        <input type="hidden" name="imgAntigaProduto" value="<?php //echo $imagem; ?>">
-        <input type="file" name="imgProduto" required/>
+        <input type="hidden" id="imagemantiga" name="imagemantiga" value=""/>
+        <input type="file" name="imgProduto"  required/>
     </div>
     </div>
     
@@ -46,10 +46,11 @@ document.getElementById("cabecalho").innerHTML = "Criar Produto";
         <label for="descProduto" class="active">Descrição</label>
     </div>
     </div><br/>
+    <input type="hidden" id="imagemUpload" name="imagemUpload" required/>
     <!-- Botões -->
     <div class="row formLine">
     <div class="row center-align rowBusca">
-        <input class="btn btnBusca orange darken-2" type="submit" id="buscar" value="Cadastrar" name="Cadastrar"/>
+        <input id="btnEnviar" class="btn btnBusca orange darken-2" type="submit" id="buscar" value="Cadastrar" name="Cadastrar"/>
         <input class="btn btnBusca orange darken-2" type="reset" id="buscar" value="Limpar" />
     </div>  
     </div>  

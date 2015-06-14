@@ -111,13 +111,57 @@ class Pagina extends CI_Controller{
         }
     }
     
-    public function criarproduto(){
-        //MEdida provisoria, o usuario visualiza a propria pagina
+    public function criarproduto($erro = false){
+        
+        //Carrega o codigo da pagina cujo usuario atual é proprietário
+        $codigo = $this->pagmod->CarregarPaginaProprietario();
+        if($codigo){
+            $dados = array('codigo' => $codigo);
         $this->load->view('include/head_view');
         $this->load->view('include/header_view');
-        $this->load->view('pagina/criarproduto_view');
+        $this->load->view('pagina/criarproduto_view', $dados);
         $this->load->view('include/footer_view');
+        } else {
+            redirect('login');
+        }
     }
-
+    
+    public function POSTcriarproduto(){
+        //insere e valida os dados vindos do criarproduto
+        $codigo = $this->pagmod->CarregarPaginaProprietario();
+        if($codigo || (!isset($_POST))){
+            $nome = addslashes(trim($_POST['nmProduto']));
+            $desc = addslashes(trim($_POST['descProduto']));
+            $this->load->library("validacao");
+            if(!$this->validacao->ValidNomeProd($nome)){
+                redirect("pagina/criarproduto/nomeinvalido");
+            } elseif (!$this->validacao->ValidDescProd($desc)){
+                redirect("pagina/criarproduto/descricaoinvalida");
+            } elseif((!$this->validacao->ValidImagem($_POST['imagemUpload'])) || 
+                    (!file_exists("src/imagens/temp/" + $_POST['imagemUpload']))){
+                redirect("pagina/criarproduto/imageminvalida");
+            } else {
+                $resultado = $this->pagmod->CadastrarProduto($codigo, 
+                        $_POST['imagemUpload'], $nome, $codigo);
+                if($resultado){
+                    redirect("pagina/minhapagina");
+                } else {
+                    redirect("pagina/criarproduto/falhacadastro");
+                }
+            }
+        } else {
+            redirect("home");
+        }
+    }
+    
+    public function deletarproduto($codigoProduto){
+        $codigoPagina = $this->pagmod->CarregarPaginaProprietario();
+        if(is_numeric($codigoPagina) && is_numeric($codigoProduto)){
+            $this->pagmod->DeletarProduto($codigoPagina, $codigoProduto);
+            redirect("pagina/minhapagina");
+        } else {
+            redirect("home");
+        }
+    }
 }
 

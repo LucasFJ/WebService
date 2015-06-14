@@ -387,4 +387,46 @@ class Pagina_model extends CI_Model {
             return false;
         }
     }
+    
+    //FUNCOES LIGADAS AO PRODUTO DA PAGINA
+    public function CadastrarProduto($codigoPagina = false, $caminhoImagem = false, $nomeProduto, $descricaoProduto){
+        if(is_numeric($codigoPagina) && (!empty($caminhoImagem)) && (!empty($nomeProduto)) && (!empty($descricaoProduto))){
+            $resultado_query = $this->db->query("SELECT cd_produto as 'codigo' FROM tb_produto "
+                    . "WHERE cd_pagina = $codigoPagina;");
+            if($resultado_query->num_rows() < 9){
+                $array_tipo = (explode('.', $caminhoImagem));
+                $tipo = end($array_tipo);
+                $tipo = strtolower($tipo);
+                $novaImagem = uniqid("Prod");
+                $novaImagem += "." + $tipo;
+                $resultado_query = $this->db->query("INSERT INTO tb_produto (nm_produto, nm_descricao, cd_pagina, nm_caminho_imagem) "
+                        . " VALUES ('$nomeProduto', '$descricaoProduto', $codigoPagina, '$novaImagem');");
+                if($resultado_query){
+                    copy("src/imagens/temp/$caminhoImagem", "src/imagens/pagina/produto/$caminhoImagem");
+                    rename("src/imagens/pagina/produto/$caminhoImagem", "src/imagens/pagina/produto/$novaImagem");
+                    unlink("src/imagens/temp/$caminhoImagem");
+                    return true;
+                } else { //ocorreu um erro durante a inserção
+                    return false;
+                }
+            } else { // o usuario ja possui 9 produtos no sistema e precisa deletar algum
+                return false;
+            }
+        } else {
+            return false; 
+        }    
+    }
+    public function DeletarProduto($codigoPagina = false, $codigoProduto = false){
+        if($codigoPagina && $codigoProduto){
+            $resultado_query = $this->db->query("DELETE FROM tb_produto WHERE"
+                    . " cd_produto = $codigoProduto AND cd_pagina = $codigoPagina;");
+            if($resultado_query){
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
 }

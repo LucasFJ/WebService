@@ -41,7 +41,7 @@ class Imagem {
         $array_tipo = (explode('/', $file['type']));
         $tipo = end($array_tipo);
         $tipo = strtolower($tipo);
-        if (array_search($tipo, $this->tipos) === false){ 
+        if (array_search($tipo, $this->tipos) === false || $file['size'] > 3900000){ 
             return false; //arquivo de tipo nao permitido
         } elseif (!move_uploaded_file($file['tmp_name'], $uploadfile)){
             return false; //erro durante o upload
