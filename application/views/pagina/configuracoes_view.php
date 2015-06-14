@@ -8,7 +8,7 @@ document.getElementById("cabecalho").innerHTML = "Configurações";
 <textarea class="materialize-textarea" style="display: none;"></textarea>
 <br/>
 <div class="container">
-    <h6 class="center-align">Configure suas informações de forma simples e rápida.</h6><br/>
+    <h6 class="center-align grey-text text-darken-2">Configure suas informações de forma simples e rápida.</h6><br/>
 
     <ul class="collapsible" data-collapsible="accordion">
     <li>
