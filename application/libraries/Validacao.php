@@ -15,7 +15,7 @@ class Validacao {
         $conta = "/^[a-zA-Z0-9\._-]+@";
         $dominio = "[a-zA-Z0-9\._-]+.";
         $extensao = "([a-zA-Z]{2,4})$/";
-        $expressao = $conta.$dominio.extensao;
+        $expressao = $conta.$dominio.$extensao;
         $resultado = preg_match($expressao, $str);
         return $resultado;
         //return filter_var($str, FILTER_VALIDATE_EMAIL);
@@ -39,7 +39,8 @@ class Validacao {
     //senha de no minimo 6 digitos e maximo 25
     //contendo  pelo menos uma letra minuscula, uma letra maiuscula e um algarismo: 
     public function ValidSenha($str){
-        $resultado = preg_match("/^.*(?=.{6,25})(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/", $str);
+        //$resultado = preg_match("/^.*(?=.{6,25})(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/", $str);
+        $resultado = preg_match("/^[A-Za-z0-9_-]{4,40}$/i", $str);
         return $resultado;
     }
     
@@ -71,6 +72,11 @@ class Validacao {
     
     public function ValidComplementoEndereco($str){
         $resultado = preg_match("/^[\.-ºª A-Za-zá-úÁ=Ú\sàÀ0-9]{2,25}$/i", $str);
+        return $resultado;
+    }
+    
+    public function ValidDataNascimento($str){
+        $resultado = preg_match("/^[, A-Za-z\s0-9]{10,30}$/i", $str);
         return $resultado;
     }
         

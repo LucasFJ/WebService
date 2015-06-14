@@ -29,7 +29,7 @@
 	<br />
 	<br />
             <!-- CARD SUCESSO -->
-            <div class="card center-align orange lighten-2 z-depth-2">
+            <div class="card center-align orange z-depth-2">
                 <br />
                 <span class="card-title">Cadastro realizado com sucesso!</span>
                 <br /><br/>
