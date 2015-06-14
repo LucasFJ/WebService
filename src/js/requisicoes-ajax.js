@@ -649,8 +649,6 @@ function ExcluirPagina(codigo){
     }, 5000);
 }
 
-
-
 function AlterarImagemPagina(codigo){
     //var imagemAntiga = document.getElementById("imagemantiga").value;
     var suces = document.getElementById("sucessoImagem");
@@ -680,4 +678,13 @@ function AlterarImagemPagina(codigo){
              $("#sucessoImagem").fadeOut("slow", "swing");
              $("#erroImagem").fadeOut("slow", "swing");
          }, 5000);
+}
+
+//FUNÇÃO LIGADA AO BOX LAYOUT
+function AlterarCardExemplo(cores){
+    var arrayCores = cores.split(" ");
+    var container_layout = document.getElementById("layout");
+    var index = container_layout.selectedIndex;
+    var cardTeste = document.getElementById("cardTeste");
+    cardTeste.className = "btn "+ arrayCores[index] +" large" ;
 }

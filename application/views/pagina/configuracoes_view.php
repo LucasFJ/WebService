@@ -203,12 +203,23 @@ document.getElementById("cabecalho").innerHTML = "Configurações";
         </div>
         <div class="collapsible-body container">
         <form class="col s12" method="post">
-        <div class="input-field"> 
-            <select name="layout" id="layout" required>
+        <div class="input-field">
+            <?php //juntando todas as cores em ingles para trocarem o valor do cardExemplo
+                $cores = "";
+                foreach($opcoes_layout as $value){
+                    if(empty($cores)){
+                        $cores = $value['cor'];
+                    } else {
+                        $cores = "$cores " . $value['cor'];
+                    }
+                }
+            ?>
+            <select name="layout" id="layout" onchange="AlterarCardExemplo('<?php echo $cores; ?>')" required>
             <?php 
             //<option value="" disabled selected> echo $ramo; </option>
             foreach($opcoes_layout as $value){
                 if($value['cor'] == $cor){
+                    $corAtual = $value['cor'];
                     echo "<option value=". $value['codigo'] ." selected>". $value['cor_port'] ."</option>";
                 } else {
                     echo "<option value=". $value['codigo'] .">". $value['cor_port'] ."</option>";
@@ -218,7 +229,7 @@ document.getElementById("cabecalho").innerHTML = "Configurações";
             <!-- Aqui o php gera todas as <option ramo> e deixa como 'selected' como default a que está cadastrada na página -->
             </select>   
             <div class="center-align">
-            <a class="btn red large"><i class="mdi-image-color-lens"></i></a><!-- Cor de exemplo dinâmico para Layout TO-DO -->
+            <a id="cardTeste" class="btn <?php echo $corAtual; ?> large"><i class="mdi-image-color-lens"></i></a><!-- Cor de exemplo dinâmico para Layout TO-DO -->
             </div>
         </div>
         <div class="right-align">
