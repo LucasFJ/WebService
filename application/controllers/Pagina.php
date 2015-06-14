@@ -26,12 +26,13 @@ class Pagina extends CI_Controller{
     //PELA URL.
     public function visualizar($codigo = false){
         if($codigo && is_numeric($codigo) && $codigo > 0){
-             $dados_pagina = $this->pagmod->CarregarDadosPagina($codigo);
+             $dados = $this->pagmod->CarregarDadosPagina($codigo);
+             $dados['proprietario'] = false; 
              //$dados_pagina['produtos'] = $this->pagmod->CarregarProdutosPagina($codigo);
             // print_r($dados_pagina);
              $this->load->view('include/head_view');
              $this->load->view('include/header_view');
-             $this->load->view('pagina/pagina_view', $dados_pagina);
+             $this->load->view('pagina/pagina_view', $dados);
              $this->load->view('include/footer_view');
         } else { // nenhum valor foi passado pela url
             redirect('home');
@@ -82,11 +83,12 @@ class Pagina extends CI_Controller{
         //MEdida provisoria, o usuario visualiza a propria pagina
         $codigo = $this->pagmod->CarregarPaginaProprietario();
         if($codigo){
-             $dados_pagina = $this->pagmod->CarregarDadosPagina($codigo);
+            $dados = $this->pagmod->CarregarDadosPagina($codigo);
+            $dados['proprietario'] = true;
             // print_r($dados_pagina);
              $this->load->view('include/head_view');
              $this->load->view('include/header_view');
-             $this->load->view('pagina/minhapagina_view', $dados_pagina);
+             $this->load->view('pagina/pagina_view', $dados);
              $this->load->view('include/footer_view');
         } else {
             redirect('home');

@@ -62,4 +62,24 @@ class Cadastro extends CI_Controller{
         $this->load->view('cadastro/sucesso_view');
         $this->load->view('include/footer_view');
     }
+    
+    public function POSTcadastro(){
+        if(isset($_POST['CadastroUsuario'])){
+            $nome = trim($_POST['nome']);
+            $sobrenome =  trim($_POST['sobrenome']);
+            $email =  trim($_POST['email']);
+            $genero =  trim($_POST['genero']);
+            $senha =  trim($_POST['senha']);
+            $repeteSenha =  trim($_POST['repeteSenha']);
+            $nascimento =  trim($_POST['nascimento']);
+            $concorda =  trim($_POST['concorda']); //recebe 'on' se selecionado
+            //iniciando a classe de validação
+            $this->load->library("validacao");
+            if($this->validacao->ValidNome($nome)){
+                echo $nome;
+            } 
+        } else {
+            redirect('login');
+        }
+    }
 }

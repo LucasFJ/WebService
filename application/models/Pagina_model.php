@@ -40,14 +40,14 @@ class Pagina_model extends CI_Model {
     }
     public function CarregarProdutosPagina($codigo = false){
         $resultado_query = $this->db->query("SELECT nm_produto as 'nome', cd_produto as 'codigo', "
-                . "nm_descricao as 'descricao' "
+                . "nm_descricao as 'descricao', nm_caminho_imagem as 'imagem' "
                 . "FROM tb_produto as PR WHERE cd_pagina = $codigo");
        $produtos = null;
        if($resultado_query->num_rows() > 0){
            $index = 0;
            foreach($resultado_query->result() as $row){
                $produtos[0] = array('nome' => $row->nome, 'descricao' => $row->descricao,
-                   'codigo' => $row->codigo);
+                   'codigo' => $row->codigo, 'imagem' => $row->imagem);
                $index += 1;
            }
        } else {
