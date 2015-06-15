@@ -40,21 +40,36 @@ class Login extends CI_Controller{
        $this->load->view('include/footer_view');
     }
     
-    public function recuperar(){
-       $dados = array('mensagem_erro' => "");
-       if(isset($_POST['email'])){
-           $this->load->model('processo_model', 'procmod');
-           $resultado = $this->procmod->NovaRecuperacaoSenha($_POST['email']);
-           if($resultado){
-               redirect('login');
-           } else {
-               $dados['mensagem_erro'] = "E-mail não cadastrado no sistema.";
-           }
-       } 
+    public function recuperar($msgErro = ""){
+        $mensagem_erro = " ";
+        switch($msgErro){
+            case "emailinvalido": $mensagem_erro = "Digite um email válido";
+                break;
+            case "containvalida": $mensagem_erro = "O e-mail digitado se encontra cadastrado";
+                break;
+        }
+       $dados = array('mensagem_erro' => $mensagem_erro);
        $this->load->view('login/recuperar_view', $dados);
        $this->load->view('include/footer_view');
-        
     }
+    
+    public function POSTrecuperar($msgErro = " "){
+        if($_POST['RecuperarSenha']){
+            $this->load->library("validacao");
+            $this->load->model('processo_model', 'procmod');
+            $email = $_POST['email'];
+            if(!$this->validacao->ValidEmail($email)){
+                redirect("login/recuperar/emailinvalido");
+            } elseif(!$this->procmod->NovaRecuperacaoSenha($email)) {
+                redirect("login/recuperar/containvalida");
+            } else {
+               redirect("login");
+            }
+        } else {
+            redirect("login/recuperar");
+        }
+    }
+    
 } /* EXIBIÇÃO DE ERROS:
  *   --> De acordo com o a form_validation: validation_errors();
  *      *OBS: retorna uma array, logo pode exibir mais de uma linha de erros;

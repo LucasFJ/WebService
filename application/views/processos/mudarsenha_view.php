@@ -31,27 +31,29 @@
         <span class="red-text" id="erro"><?php echo $mensagem_erro; ?></span><br />
         
 	<div class="card left-align grey darken-1 z-depth-2">
-	<form class="col s12" method="post">
+            <form action="<?php echo base_url("processos/POSTrecuperacao")?>" class="col s12" method="post">
 	<div class="card-content center-align white-text">
 	<span class="card-title">Recuperar senha</span>
         <!-- FORM LOGIN -->
         <div class="formLogin">
             <div class="input-field login">
                 <i class="mdi-social-person prefix"></i>
-                <input id="icon_prefix" type="password" class="validate" name="senha" required>
-                <label for="icon_prefix" class="inputLabel">Senha</label>
+                <input maxlength="40" id="icon_prefix" type="password" class="validate" name="senha" required>
+                <label for="icon_prefix" class="inputLabel">Senha *</label>
             </div>
             <div class="input-field login">
                 <i class="mdi-social-person prefix"></i>
                 <input id="icon_prefix" type="password" class="validate" name="repeteSenha" required>
-                <label for="icon_prefix" class="inputLabel">Confirmar senha</label>
+                <label maxlength="40" for="icon_prefix" class="inputLabel">Confirmar senha *</label>
+                <input type="hidden" name="codigoProcesso" value="<?php echo $codigoProcesso;?>"/>
+                <input type="hidden" name="chaveProcesso" value="<?php echo $chaveProcesso;?>"/>
             </div>
         </div>
 	<!-- /FORM LOGIN -->
 	<br />
 	<!-- BUTTONS -->
 	  	<div class="containerBtnInicio container">
-                  <button value="Enviar" href="<?php echo base_url('login/mudarsenha'); ?>"  type="submit" class="btnInicio waves-effect waves-light orange darken-2 white-text btn tooltipped" data-position="top" data-delay="200" data-tooltip="Enviar e-mail de recuperação">Enviar</button>
+                  <button name="AlterarSenha" value="Enviar" href="<?php echo base_url('login/mudarsenha'); ?>"  type="submit" class="btnInicio waves-effect waves-light orange darken-2 white-text btn tooltipped" data-position="top" data-delay="200" data-tooltip="Enviar e-mail de recuperação">Enviar</button>
 		   <a href="<?php echo base_url('login'); ?>" class="btnInicio waves-effect waves-light orange darken-2 white-text btn tooltipped" data-position="top" data-delay="200" data-tooltip="Voltar para Tela de Login">Voltar</a>
                 </div>
 	</form>
