@@ -14,10 +14,11 @@ document.getElementById("cabecalho").innerHTML = "Criar Produto";
     </div>
     <br/>
     
-<form id="formImagem" action="<?php echo base_url("pagina/POSTcriarproduto");?>" class="col s12" method="post" enctype="multipart/form-data">    
+<span class='red-text' id='erro'><?php echo $mensagem_erro;?></span><br/>
 <div class="card grey lighten-4">
 <div class="card-content contentForm center-align"><br/>  
     <!-- Exemplo Imagem -->
+    <form id="formImagem" class="col s12" method="post" enctype="multipart/form-data">    
     <div class="row formLine">
     <div class="col s12 m4 l4 center-align cardImagem">
         <img id="imagemproduto" src="<?php echo base_url("src/imagens/pagina/perfil/harry-square.png"); ?>" class="materialboxed imgServico z-depth-1"/>
@@ -32,30 +33,34 @@ document.getElementById("cabecalho").innerHTML = "Criar Produto";
         <input type="file" name="imgProduto"  required/>
     </div>
     </div>
-    
+    </div>
+    </form>
+        
     <!-- Input Nome -->
-    <div class="input-field col l12 m12 s12 inputNome">
-        <input id="nmProduto" placeholder="Nome do produto" type="text" name="nmProduto" class="validate" required>
-        <label for="nmProduto" class="active">Nome</label>
-    </div>
-    </div>
-    <!-- Input Descrição -->
+    <form id="formProduto" action="<?php echo base_url("pagina/POSTcriarproduto");?>" class="col s12" method="post">
     <div class="row formLine">
     <div class="input-field col l12 m12 s12 inputNome">
-        <textarea id="descProduto" placeholder="Descrição do produto" name="descProduto" class="materialize-textarea" required></textarea>
+        <input maxlength="30" id="nmProduto" placeholder="Nome do produto" type="text" name="nmProduto" class="validate" required>
+        <label for="nmProduto" class="active">Nome</label>
+    </div>
+    
+    <!-- Input Descrição -->
+    
+    <div class="input-field col l12 m12 s12 inputNome">
+        <textarea maxlength="200" id="descProduto" placeholder="Descrição do produto" name="descProduto" class="materialize-textarea" required></textarea>
         <label for="descProduto" class="active">Descrição</label>
+        <input type="hidden" id="imagemUpload" name="imagemUpload" required/>
     </div>
     </div><br/>
-    <input type="hidden" id="imagemUpload" name="imagemUpload" required/>
     <!-- Botões -->
     <div class="row formLine">
     <div class="row center-align rowBusca">
-        <input id="btnEnviar" class="btn btnBusca orange darken-2" type="submit" id="buscar" value="Cadastrar" name="Cadastrar"/>
+        <input id="btnEnviar" class="btn btnBusca orange darken-2" type="submit" id="buscar" value="Cadastrar" name="CadastrarProduto"/>
         <input class="btn btnBusca orange darken-2" type="reset" id="buscar" value="Limpar" />
     </div>  
-    </div>  
+    </div> 
+    </form>
 </div>
 </div>    
-</form>
     
 </div>

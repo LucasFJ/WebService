@@ -397,7 +397,7 @@ class Pagina_model extends CI_Model {
                 $tipo = end($array_tipo);
                 $tipo = strtolower($tipo);
                 $novaImagem = uniqid("Prod");
-                $novaImagem += "." + $tipo;
+                $novaImagem = "$novaImagem.$tipo";
                 $resultado_query = $this->db->query("INSERT INTO tb_produto (nm_produto, nm_descricao, cd_pagina, nm_caminho_imagem) "
                         . " VALUES ('$nomeProduto', '$descricaoProduto', $codigoPagina, '$novaImagem');");
                 if($resultado_query){

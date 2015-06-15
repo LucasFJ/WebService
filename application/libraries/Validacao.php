@@ -51,17 +51,17 @@ class Validacao {
     
     //VALIDAR DADOS DA PÁGINA
     public function ValidNomePagina($str){
-        $resultado = preg_match("/^[ªº\.,'!?&+-A-Za-zá-úÁ=Ú\sàÀ0-9]{2,25}$/i", $str);
+        $resultado = preg_match("/^[ªº\.,'!?&+\-A-Za-zá-úÁ=Ú\sàÀ0-9]{2,25}$/i", $str);
         return $resultado; //
     }
     
     public function ValidSloganPagina($str){
-        $resultado = preg_match("/^[\.,'!?ªº&+-A-Za-zá-úÁ=ÚàÀ0-9\s]{2,40}$/i", $str);
+        $resultado = preg_match("/^[\.,'!?ªº&+\-A-Za-zá-úÁ=ÚàÀ0-9\s]{2,40}$/i", $str);
         return $resultado;
     }
     
     public function ValidDescPagina($str){
-        $resultado = preg_match("/^[,\.'!?&\+\-A-Za-zá-úÁ=ÚàÀ0-9\s]{2,180}$/", $str);
+        $resultado = preg_match("/^[,\.'!?&+\-A-Za-zá-úÁ=ÚàÀ0-9\s]{2,180}$/", $str);
         return $resultado;
     }
     
@@ -76,7 +76,7 @@ class Validacao {
     }
     
     public function ValidComplementoEndereco($str){
-        $resultado = preg_match("/^[\.-ºª A-Za-zá-úÁ=Ú\sàÀ0-9]{2,25}$/i", $str);
+        $resultado = preg_match("/^[\.\-ºª A-Za-zá-úÁ=Ú\sàÀ0-9]{2,25}$/i", $str);
         return $resultado;
     }
     
@@ -87,7 +87,7 @@ class Validacao {
         
     //VALIDAR DADOS DO PRODUTO
     public function ValidNomeProd($str){
-        $resultado = preg_match("/^[A-Za-zá-úÁ=Ú\s0-9]{1,35}$/i", $str);
+        $resultado = preg_match("/^[A-Za-zá-úÁ=Ú\s0-9àÀ']{1,35}$/i", $str);
         return $resultado;
     }
     

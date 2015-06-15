@@ -171,12 +171,24 @@ class Pagina extends CI_Controller{
         }
     }
     
-    public function criarproduto($erro = false){
-        
+    public function criarproduto($msgErro = " "){
         //Carrega o codigo da pagina cujo usuario atual é proprietário
         $codigo = $this->pagmod->CarregarPaginaProprietario();
         if($codigo){
-            $dados = array('codigo' => $codigo);
+            //validando os erros
+            $mensagem_erro = " ";
+            switch ($msgErro){
+                case "nomeinvalido": $mensagem_erro = "Insira um nome válido.";
+                    break;
+                case "descricaoinvalida": $mensagem_erro = "Insira uma descrição válida.";
+                    break;
+                case "imageminvalida": $mensagem_erro = "Insira uma imagem PNG ou JPG com menos de 3,9MB de tamanho.";
+                    break;
+                case "falhacadastro": $mensagem_erro = "Falha ao cadastrar, verifique se você já não possui 9 produtos cadastrados";
+                    break;
+            }
+        $dados = array('codigo' => $codigo, 
+            'mensagem_erro' => $mensagem_erro);
         $this->load->view('include/head_view');
         $this->load->view('include/header_view');
         $this->load->view('pagina/criarproduto_view', $dados);
@@ -189,24 +201,25 @@ class Pagina extends CI_Controller{
     public function POSTcriarproduto(){
         //insere e valida os dados vindos do criarproduto
         $codigo = $this->pagmod->CarregarPaginaProprietario();
-        if($codigo || (!isset($_POST))){
-            $nome = addslashes(trim($_POST['nmProduto']));
-            $desc = addslashes(trim($_POST['descProduto']));
+        if($codigo || (!isset($_POST["CadastrarProduto"]))){
             $this->load->library("validacao");
+            $nome = trim($_POST['nmProduto']);
+            $desc = trim($_POST['descProduto']);
+            $imagem = $_POST['imagemUpload'];
             if(!$this->validacao->ValidNomeProd($nome)){
                 redirect("pagina/criarproduto/nomeinvalido");
             } elseif (!$this->validacao->ValidDescProd($desc)){
                 redirect("pagina/criarproduto/descricaoinvalida");
-            } elseif((!$this->validacao->ValidImagem($_POST['imagemUpload'])) || 
-                    (!file_exists("src/imagens/temp/" + $_POST['imagemUpload']))){
+            } elseif((!$this->validacao->ValidImagem($imagem)) && 
+                    (!file_exists("src/imagens/temp/" + $imagem))){
                 redirect("pagina/criarproduto/imageminvalida");
             } else {
                 $resultado = $this->pagmod->CadastrarProduto($codigo, 
-                        $_POST['imagemUpload'], $nome, $codigo);
+                        $imagem, $nome, $desc);
                 if($resultado){
                     redirect("pagina/minhapagina");
                 } else {
-                    redirect("pagina/criarproduto/falhacadastro");
+                   redirect("pagina/criarproduto/falhacadastro");
                 }
             }
         } else {
