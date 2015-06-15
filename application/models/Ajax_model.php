@@ -40,12 +40,19 @@ class Ajax_model extends CI_Model {
         }
         //modo de ordenação
         if($ordenacao) {
-            $strConsulta .= "ORDER BY $ordenacao ";
+            switch ($ordenacao){
+                default :
+                case 1: 
+                case 2: $strConsulta .= "ORDER BY 1 ";
+                    break;
+                case 3: $strConsulta .= "ORDER BY 1 DESC ";
+                    break;
+            }
         } else {
             $strConsulta .= "ORDER BY 1 ";
         }
         //limite e offset
-        $strConsulta .= "LIMIT 5 OFFSET $offset;";
+        $strConsulta .= " LIMIT 5 OFFSET $offset;";
         
         $this->efetuarCarregamento($strConsulta);
     }   

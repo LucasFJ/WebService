@@ -42,7 +42,7 @@ document.getElementById("cabecalho").innerHTML = "Criar Página";
             <label for="slogan" class="active">Slogan *</label>
         </div>
         <div class="input-field col l6 m6 s12 inputNome">
-            <input maxlength="50" id="site" placeholder="Site da página" type="text" name="site" class="validate">
+            <input maxlength="50" id="site" placeholder="www.site.com.br" type="text" name="site" class="validate">
             <label for="site" class="active">Site</label>
         </div>
         </div>

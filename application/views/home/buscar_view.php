@@ -12,14 +12,14 @@ document.getElementById("cabecalho").innerHTML = "Buscar";
     <!-- Formulário de Busca -->
     <div class="container">
     <div class="row">
-        <form class="col s12" action="<?php echo base_url('home/buscar'); ?>" method="post">
+        <form class="col s12" action="<?php echo base_url('home/POSTbuscar'); ?>" method="post">
             <div class="row formLine">
             <div class="input-field col l6 m6 s12 inputNome">
-              <input id="nome" placeholder="Nome da página" type="text" class="validate" name="nome">
+              <input maxlength="25" id="nome" placeholder="Nome da página" type="text" class="validate" name="nome">
               <label for="nome" class="active">Nome</label>
             </div>
             <div class="input-field col l6 m6 s12">
-                <select  name="ramo"  id='container-ramo'>                 
+                <select  name="ramo"  id='container-ramo' required>                 
                 </select>
             </div>
             </div>
@@ -28,7 +28,7 @@ document.getElementById("cabecalho").innerHTML = "Buscar";
             <div id="buscaAdicional">
             <div class="row formLine">
             <div class="input-field col l6 m6 s12">
-              <select name="ordenacao">
+                <select name="ordenacao" required>
                 <option value="0" selected>Ordenação</option>
                 <option value="1">Melhores avaliadas</option>
                 <option value="2">Nome de A a Z</option>
@@ -36,33 +36,21 @@ document.getElementById("cabecalho").innerHTML = "Buscar";
               </select>
             </div>
             <div class="input-field col l6 m6 s12">
-                <select name="estado" id="container-estado" onchange="CarregarBoxCidade()">
+                <select name="estado" id="container-estado" required>
                 <option value="0" selected>Estado</option>
-                <option value="1">São Paulo</option>
-                <option value="2">Rio de Janeiro</option>
-                <option value="3">Paraná</option>
-                <option value="3">Rio Grande do Sul</option>
-                <option value="3">Santa Catarina</option>
-                <option value="3">Bahia</option>
               </select>
             </div>
             </div>
             <!-- ROW ROW ROW -->
             <div class="row formLine">
             <div class="input-field col l6 m6 s12">
-                <select name="cidade" id="container-cidade">
+                <select name="cidade" id="container-cidade" required>
                 <option value="0" selected>Cidade</option>
-                <option value="1">Praia Grande</option>
-                <option value="2">Santos</option>
-                <option value="3">São Vicente</option>
               </select>
             </div>
             <div class="input-field col l6 m6 s12">
-              <select name="bairro" id="container-bairro">
+                <select name="bairro" id="container-bairro" required>
                 <option value="0" selected>Bairro</option>
-                <option value="1">Cidade Ocian</option>
-                <option value="2">Canto do Forte</option>
-                <option value="3">Boqueirão</option>
               </select>
             </div>
             </div>
@@ -70,7 +58,7 @@ document.getElementById("cabecalho").innerHTML = "Buscar";
             <!-- ROW ROW ROW --><br />
             <div class="row center-align rowBusca">
             
-            <button class="btn btnBusca orange darken-2" type="submit"  name="Buscar" id="buscar" >
+            <button class="btn btnBusca orange darken-2" type="submit"  name="Buscar" value="Enviar" id="buscar" >
                 Buscar<i class="mdi-action-search right"></i>
             </button>
             <button class="btn btnBusca orange darken-2" type="reset" />

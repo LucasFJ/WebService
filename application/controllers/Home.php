@@ -15,31 +15,45 @@ class Home extends CI_Controller{
         $this->load->view('include/footer_view');
     }
     
-    public function buscar(){
+    public function buscar($msgErro = " ", $acao = false){
         $this->load->library('form_validation'); //Validar formularios
         $this->load->view('include/head_view');
         $this->load->view('include/header_view');
-        if(isset($_POST['Buscar'])){
-            //inicia as regras de validação
-            $this->form_validation->set_rules('nome', 'nome', 'alpha_numeric_spaces');
-            $this->form_validation->set_rules('ramo', 'ramo', 'is_natural|required');
-            $this->form_validation->set_rules('ordenacao', 'ordenação', 'is_natural|required');
-            $this->form_validation->set_rules('estado', 'estado', 'is_natural|required');
-            $this->form_validation->set_rules('cidade', 'cidade', 'is_natural|required');
-            $this->form_validation->set_rules('bairro', 'bairro', 'is_natural|required');
-            
-            if($this->form_validation->run()){
-                $acao = "CarregarCartoes(" . $_POST['ramo'] . "," . $_POST['estado'] . "," . 
-                        $_POST['cidade'] . "," . $_POST['bairro'] . "," . $_POST['ordenacao'] . ",'" . $_POST['nome'] . "')";
-                $dados = array('acao' => $acao);
-                $this->load->view('home/inicio_view', $dados);
-            } else { //Os dados não passaram pela validação
-                $this->load->view('home/buscar_view');
-            }
-        } else { // A ação de busca ainda não ocorreu
+        //Verificando se ja foi efetuada a busca
+        $acao = urldecode($acao);
+        $regex = "/^CarregarCartoes[(]{1}[\d]{1,2},[\d]{1,2},[\d]{1,2},[\d]{1,2},[\d]{1,2},[ªº\.,'!?&+-A-Za-zá-úÁ=Ú\sàÀ0]{1,27}[)]{1}$/i";
+        if(preg_match($regex, $acao)){
+            $dados = array("acao" => $acao);
+            $this->load->view('home/inicio_view', $dados);
+            $this->load->view('include/footer_view');
+        } else {
             $this->load->view('home/buscar_view');
+            $this->load->view('include/footer_view');
         }
-        $this->load->view('include/footer_view');
+        //$dados = array('acao' => $acao);
+        //$this->load->view('home/inicio_view', $dados);
+
+    }
+    
+    public function POSTbuscar(){
+        if(isset($_POST["Buscar"])){
+            $this->load->library("validacao");
+            $nome =  trim($_POST['nome']);
+            $ramo = $_POST['ramo'];
+            $ordem = $_POST["ordenacao"];
+            $estado = $_POST["estado"];
+            $cidade = $_POST["cidade"];
+            $bairro = $_POST["bairro"];
+            if((!$this->validacao->ValidNomePagina($nome)) && (!empty($nome))){
+                redirect("home/buscar/nomeinvalido");
+            } else {
+                $acao = urlencode("CarregarCartoes($ramo,$estado,$cidade,$bairro,$ordem,'$nome')");
+                $acao = str_replace("+", "%20", $acao);
+                redirect("home/buscar/clean/$acao");
+            }
+        } else{
+            redirect("home/buscar");
+        }      
     }
     
     public function favoritos(){

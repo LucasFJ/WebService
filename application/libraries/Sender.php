@@ -51,7 +51,7 @@ class Sender{
             $mensagem_principal =  "Olá $nome_dest, um pedido de recuperação de senha foi efetuado utilizando esse e-mail."
                     . " Para realizar a recuperação de sua conta e assim garantir o acesso"
                     . " completo no sistema clique no link abaixo. <br/><br/>"
-                    . "<a href='$url'>Clique aqui para verificar sua conta.</a> <br/><br/>";
+                    . "<a href='$url'>Clique aqui para recuperar sua senha.</a> <br/><br/>";
             $mensagem = $mensagem_principal;
             $resultado = $this->Enviar($nome_dest, $email_dest, $assunto, $mensagem);
             if($resultado){
@@ -73,7 +73,7 @@ class Sender{
                     . " Para confirmar o processo e remover todos os dados pertinentes a ela do sistema "
                     . " clique no link abaixo e confirme ou cancele o pedido."
                     . " Páginas excluidas não podem ser recuperadas e todos os dados serão perdidos permanentementes <br/><br/>"
-                    . "<a href='$url'>Clique aqui para verificar sua conta.</a> <br/><br/>";
+                    . "<a href='$url'>Clique aqui para excluir sua página.</a> <br/><br/>";
             $mensagem = $mensagem_principal;
             $resultado = $this->Enviar($nome_dest, $email_dest, $assunto, $mensagem);
             if($resultado){

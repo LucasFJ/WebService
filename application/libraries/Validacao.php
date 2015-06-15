@@ -51,7 +51,7 @@ class Validacao {
     
     //VALIDAR DADOS DA PÁGINA
     public function ValidNomePagina($str){
-        $resultado = preg_match("/^[ªº\.,'!?&+-A-Za-zá-úÁ=Ú\sàÀ]{2,25}$/i", $str);
+        $resultado = preg_match("/^[ªº\.,'!?&+-A-Za-zá-úÁ=Ú\sàÀ0-9]{2,25}$/i", $str);
         return $resultado; //
     }
     
