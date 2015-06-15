@@ -40,4 +40,30 @@ $(document).ready(function() {
     $('.celular').mask('(00) 00000-0000');
     $('#cep').mask('00000-000');
 
+   
+    //Range modifica estrelas no modalAvalia
+    $('#rangeAvalia').change(function(){
+        alteraEstrela();    
+    });
+    
+    $('#rangeAvalia').click(function(){
+        alteraEstrela();    
+    });
+    
+    function alteraEstrela(){
+        var valor = parseInt($('.thumb').children('.value').text());
+        var estrela = document.getElementsByClassName('estrela');
+        var index = 0;
+        while(index<5){
+            if(index < valor){
+                estrela[index].className = 'mdi-action-star-rate estrela amber-text text-darken-2 rateServico';
+            } else {
+                estrela[index].className = 'mdi-action-star-rate estrela black-text rateServico';
+            }
+            index++;
+        }
+    }
+    
+    
+    
 });

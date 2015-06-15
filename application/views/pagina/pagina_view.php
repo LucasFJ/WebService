@@ -27,21 +27,21 @@ document.getElementById("cabecalho").innerHTML = " <?php echo $nome; ?>";
         <div class="row  cardRodape valign-wrapper">
         <!-- Testa (usuario já avaliou?)-->
         <!-- SIM -->
-        <div class="col s4 left-align  valign-wrapper cardRate">
+        <!--<div class="col s4 left-align  valign-wrapper cardRate">
                 <i class="mdi-action-star-rate white-text rateServico"></i>
                 <i class="mdi-action-star-rate white-text rateServico"></i>
                 <i class="mdi-action-star-rate white-text rateServico"></i>
                 <i class="mdi-action-star-rate white-text rateServico"></i>
                 <i class="mdi-action-star-rate black-text rateServico"></i> 
-        </div>
-        <!-- NÃO -->
-        <!--<div class="col s4 left-align  valign-wrapper cardRate modal-trigger" href="#modalInfo">
-                <i class="mdi-action-star-rate black-text rateServico"></i>
-                <i class="mdi-action-star-rate black-text rateServico"></i>
-                <i class="mdi-action-star-rate black-text rateServico"></i>
-                <i class="mdi-action-star-rate black-text rateServico"></i>
-                <i class="mdi-action-star-rate black-text rateServico"></i>
         </div>-->
+        <!-- NÃO -->
+        <div class="col s4 left-align  valign-wrapper cardRate modal-trigger" href="#modalAvaliar">
+                <i class="mdi-action-star-rate black-text rateServico"></i>
+                <i class="mdi-action-star-rate black-text rateServico"></i>
+                <i class="mdi-action-star-rate black-text rateServico"></i>
+                <i class="mdi-action-star-rate black-text rateServico"></i>
+                <i class="mdi-action-star-rate black-text rateServico"></i>
+        </div>
         <div class="col s8 right-align  cardBotoes">
             <a href="#modalInfo" class="modal-trigger btn-floating waves-effect waves-light <?php echo $cor; ?> darken-2 btnServico"><i class="mdi-action-info-outline"></i></a>
             <a href="#modalMaps" class="modal-trigger btn-floating waves-effect waves-light  <?php echo $cor; ?> darken-2 btnServico"><i class="mdi-maps-place iconeBotao"></i></a>
@@ -192,10 +192,41 @@ document.getElementById("cabecalho").innerHTML = " <?php echo $nome; ?>";
 <div id="modalCompartilhar" class="modal white center modal-fixed-footer">
     <div class="modal-content grey-text text-darken-4">
         <h4>Compartilhar</h4>
-        <p class="center-align">Caixa de opções para compartilhamento.</p>
+        <p class="center-align">Caixa de opções para compartilhamento.</p><div id="fb-root"></div>
+        
+        
     </div>
     <div class="modal-footer grey lighten-4">
         <a href="#" class="waves-effect waves-green btn-flat modal-action modal-close">Compartilhar</a>
+    </div>				
+</div>
+
+
+<!--MODAL AVALIAR-->
+<div id="modalAvaliar" class="modal white center modal-fixed-footer">
+    <div class="modal-content grey-text text-darken-4">
+        <h4 class="sapoha">Avaliar</h4><br/>
+        <div class="container">
+            
+        <p class="center-align">Escolha uma nota para <strong><?php echo $nome; ?></strong></p><br/>
+        <!-- Estrelas -->
+        <i class="mdi-action-star-rate estrela black-text rateServico"></i>
+        <i class="mdi-action-star-rate estrela black-text rateServico"></i>
+        <i class="mdi-action-star-rate estrela black-text rateServico"></i>
+        <i class="mdi-action-star-rate estrela black-text rateServico"></i>
+        <i class="mdi-action-star-rate estrela black-text rateServico sapoha" ></i>
+        <!-- Barra de range -->
+        <form action="#">
+          <p class="range-field">
+          <input type="range" id="rangeAvalia" onchange="mudaEstrelas()" value="3" min="0" max="5" />
+          </p>
+        </form>
+        
+        </div>
+        
+    </div>
+    <div class="modal-footer grey lighten-4" style="margin:0px; padding: 0px;">
+        <a href="#" class="waves-effect waves-green btn-flat modal-action modal-close">Enviar Avaliação</a>
     </div>				
 </div>
 
