@@ -50,53 +50,12 @@ document.getElementById("cabecalho").innerHTML = " <?php echo $nome; ?>";
         </div>
         </div>
     </div>
-    </div> 
+    </div>
 </div>
-    
+
+
 <div class="contProdutos">
 <div class="row">
-    <!-- PRODUTO -->
-    <div class="col s12 m4 l4">
-    <div class="card">
-    <div class="card-image waves-effect waves-block waves-light">
-        <img class="activator" src="<?php echo base_url('src/imagens/pagina/produto/PIO.png'); ?>">
-    </div>
-    <div class="card-content cardContProduto">
-        <span class="card-title activator grey-text text-darken-4"><h6 class="truncate">Punção Intraóssea</h6><i class="mdi-navigation-more-vert right"></i></span>
-    </div>
-    <div class="card-reveal">
-        <span class="card-title grey-text text-darken-4">Punção Intraóssea<i class="mdi-navigation-close right"></i></span>
-        <p>1. Anatomia e fisiologia óssea<br />
-        2. Aspectos éticos e legais<br />
-        3. Os tipos de dispositivos<br />
-        4. Indicações e contra-indicações<br />
-        5. Aula prática em manequim<br /><br />
-        <a href="#">totalsaudesp.com.br/pio</a>
-        </p>
-    </div>
-    </div>
-    </div>
-<!-- PRODUTO -->
-    <div class="col s12 m4 l4">
-    <div class="card">
-    <div class="card-image waves-effect waves-block waves-light">
-        <img class="activator" src="<?php echo base_url('src/imagens/pagina/produto/APH.png'); ?>">
-    </div>
-    <div class="card-content cardContProduto valign-wrapper">
-        <span class="card-title activator grey-text text-darken-4"><h6 class="truncate">Atendimento Pré Hospitalar</h6><i class="mdi-navigation-more-vert right"></i></span>
-    </div>
-    <div class="card-reveal">
-       <span class="card-title grey-text text-darken-4">Atendimento Pré Hospitalar<i class="mdi-navigation-close right"></i></span>
-       <p>1. Anatomia e fisiologia óssea<br />
-        2. Aspectos éticos e legais<br />
-        3. Os tipos de dispositivos<br />
-        4. Indicações e contra-indicações<br />
-        5. Aula prática em manequim<br /><br />
-        <a href="#">totalsaudesp.com.br/pio</a>
-        </p>
-    </div>
-    </div>
-    </div>
 <!-- PRODUTO -->
     <div class="col s12 m4 l4">
     <div class="card">
@@ -111,10 +70,39 @@ document.getElementById("cabecalho").innerHTML = " <?php echo $nome; ?>";
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat.</p>
     </div>
     </div>
+        <a href="#modalExcluir" class="btn modal-trigger red lighten-1 waves-effect waves-light white-text btn-excluir-produto">Excluir Produto</a>
     </div>
+
+<?php
+//    foreach($produtos as $value){
+//    echo    '<div class="col s12 m4 l4"><div class="card">'
+//           .'<div class="card-image waves-effect waves-block waves-light">'
+//           .'<img class="activator" src="'. base_url("src/imagens/pagina/produto/" . $value['imagem']) .'"></div>'
+//           .'<div class="card-content cardContProduto">'
+//           .'<span class="card-title activator grey-text text-darken-4"><h6 class="truncate">'. $value['nome'] .'</h6><i class="mdi-navigation-more-vert right"></i></span></div>'
+//           .'<div class="card-reveal">'
+//           .'<span class="card-title grey-text text-darken-4">'.$value['nome'].'<i class="mdi-navigation-close right"></i></span>'
+//           .'<p>'.$value['descricao'].'</p></div></div></div></div></div>';
+//    if($proprietario){
+//        echo '<a href="#modalExcluir" class="btn modal-trigger red lighten-1 waves-effect waves-light white-text btn-excluir-produto">Excluir Produto</a>';
+//    }
+//    echo '</div>';
+//    }
+?>
+
+</div>
+    <?php 
+    
+    if($proprietario){
+        echo "<div class='row right-align'><div class='container'>"
+            ."<a href='". base_url('pagina/criarproduto') ."' class='btn-floating btn-med waves-effect waves-light $cor darken-1'><i class='mdi-content-add'></i></a><br/>"
+            ."</div></div>";
+    }
+    ?>
 </div>
 </div>
-</div>
+
+
 
 <!--MODAL INFORMAÇÕES-->
 <div id="modalInfo" class="modal white center modal-fixed-footer">
@@ -218,7 +206,7 @@ document.getElementById("cabecalho").innerHTML = " <?php echo $nome; ?>";
         <!-- Barra de range -->
         <form action="#">
           <p class="range-field">
-          <input type="range" id="rangeAvalia" onchange="mudaEstrelas()" value="3" min="0" max="5" />
+          <input type="range" id="rangeAvalia" value="0" min="0" max="5" />
           </p>
         </form>
         
@@ -228,5 +216,17 @@ document.getElementById("cabecalho").innerHTML = " <?php echo $nome; ?>";
     <div class="modal-footer grey lighten-4" style="margin:0px; padding: 0px;">
         <a href="#" class="waves-effect waves-green btn-flat modal-action modal-close">Enviar Avaliação</a>
     </div>				
+</div>
+
+<!--MODAL EXLUIR PRODUTO-->
+<div id="modalExcluir" class="modal white center modal-fixed-footer">
+    <div class="modal-content grey-text text-darken-4">
+        <h4 class="sapoha">Excluir Produto</h4><br/><br/>
+        <p class="center-align">Deseja realmente exluir o produto <strong><?php echo "Nome do Produto"; ?></strong>?</p><br/>
+    </div>
+    <div class="modal-footer grey lighten-4" style="margin:0px; padding: 0px;">
+        <a href="#" class="waves-effect waves-green btn-flat modal-action modal-close">Cancelar</a>
+        <a href="#" class="waves-effect waves-green btn-flat modal-action modal-close">Ok</a>
+    </div>
 </div>
 

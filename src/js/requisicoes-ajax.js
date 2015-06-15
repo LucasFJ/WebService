@@ -248,7 +248,7 @@ function AlterarDescricaoPagina(codigo){
    var suces = document.getElementById("sucessoDesc");
    var erro = document.getElementById("erroDesc"); //campo de mensagem
    desc = desc.trim();
-   var rexep = new RegExp(/^[.,'!?&+-A-Za-zá-úÁ=ÚàÀ0-9\s]{2,180}$/);
+   var rexep = new RegExp(/^[.,'!?&+-A-Za-zá-úÁ=ÚàÀ0-9\s]{2,180}$/i);
    if(rexep.test(desc) && desc != ""){
        //FAZENDO O DADO SER TRANSMITIVEL PELA ULR
        desc = encodeURIComponent(desc);

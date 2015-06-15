@@ -339,3 +339,7 @@ span.brand-logo { font-size: 20px; line-height: 25px; }
 .cardCor{
     margin: 3px;
 }
+
+.btn-excluir-produto{
+    width: 100%;
+}

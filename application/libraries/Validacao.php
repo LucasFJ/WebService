@@ -61,7 +61,7 @@ class Validacao {
     }
     
     public function ValidDescPagina($str){
-        $resultado = preg_match("/^[,\.'!?&+\-A-Za-zá-úÁ=ÚàÀ0-9\s]{2,180}$/", $str);
+        $resultado = preg_match("/^[,\.'!?&+\-A-Za-zá-úÁ=ÚàÀ0-9\s]{2,180}$/i", $str);
         return $resultado;
     }
     
