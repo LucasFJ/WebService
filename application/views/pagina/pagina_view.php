@@ -56,11 +56,11 @@ document.getElementById("cabecalho").innerHTML = " <?php echo $nome; ?>";
 
 <div class="contProdutos">
 <div class="row">
-<!-- PRODUTO -->
+<!-- PRODUTO 
     <div class="col s12 m4 l4">
     <div class="card">
     <div class="card-image waves-effect waves-block waves-light">
-        <img class="activator" src="<?php echo base_url('src/imagens/pagina/produto/ECG.png'); ?>">
+        <img class="activator" src="<?php //echo base_url('src/imagens/pagina/produto/ECG.png'); ?>">
     </div>
     <div class="card-content cardContProduto">
         <span class="card-title activator grey-text text-darken-4"><h6 class="truncate">Interpretação de Eletrocardiograma</h6><i class="mdi-navigation-more-vert right"></i></span>
@@ -71,23 +71,25 @@ document.getElementById("cabecalho").innerHTML = " <?php echo $nome; ?>";
     </div>
     </div>
         <a href="#modalExcluir" class="btn modal-trigger red lighten-1 waves-effect waves-light white-text btn-excluir-produto">Excluir Produto</a>
-    </div>
+    </div>-->
 
 <?php
-//    foreach($produtos as $value){
-//    echo    '<div class="col s12 m4 l4"><div class="card">'
-//           .'<div class="card-image waves-effect waves-block waves-light">'
-//           .'<img class="activator" src="'. base_url("src/imagens/pagina/produto/" . $value['imagem']) .'"></div>'
-//           .'<div class="card-content cardContProduto">'
-//           .'<span class="card-title activator grey-text text-darken-4"><h6 class="truncate">'. $value['nome'] .'</h6><i class="mdi-navigation-more-vert right"></i></span></div>'
-//           .'<div class="card-reveal">'
-//           .'<span class="card-title grey-text text-darken-4">'.$value['nome'].'<i class="mdi-navigation-close right"></i></span>'
-//           .'<p>'.$value['descricao'].'</p></div></div></div></div></div>';
-//    if($proprietario){
-//        echo '<a href="#modalExcluir" class="btn modal-trigger red lighten-1 waves-effect waves-light white-text btn-excluir-produto">Excluir Produto</a>';
-//    }
-//    echo '</div>';
-//    }
+if(is_array($produtos)){
+    foreach($produtos as $value){
+    echo    '<div class="col s12 m4 l4"><div class="card">'
+           .'<div class="card-image waves-effect waves-block waves-light">'
+           .'<img class="activator" src="'. base_url("src/imagens/pagina/produto/" . $value['imagem']) .'"></div>'
+           .'<div class="card-content cardContProduto">'
+           .'<span class="card-title activator grey-text text-darken-4"><h6 class="truncate">'. $value['nome'] .'</h6><i class="mdi-navigation-more-vert right"></i></span></div>'
+           .'<div class="card-reveal">'
+           .'<span class="card-title grey-text text-darken-4">'.$value['nome'].'<i class="mdi-navigation-close right"></i></span>'
+           .'<p>'.$value['descricao'].'</p></div></div>';
+    if($proprietario){
+        echo '<a href="'. base_url("pagina/deletarproduto/".$value['codigo']) .'" class="btn modal-trigger red lighten-1 waves-effect waves-light white-text btn-excluir-produto">Excluir Produto</a>';
+    }
+    echo '</div>';
+    }
+}
 ?>
 
 </div>

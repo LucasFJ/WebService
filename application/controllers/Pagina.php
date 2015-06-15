@@ -142,6 +142,7 @@ class Pagina extends CI_Controller{
         $codigo = $this->pagmod->CarregarPaginaProprietario();
         if($codigo){
             $dados = $this->pagmod->CarregarDadosPagina($codigo);
+            $dados['produtos'] = $this->pagmod->CarregarProdutosPagina($codigo);
             $dados['proprietario'] = true;
             // print_r($dados_pagina);
              $this->load->view('include/head_view');
