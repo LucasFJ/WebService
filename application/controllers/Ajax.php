@@ -67,15 +67,15 @@ class Ajax extends CI_Controller{
     
     public function AlterarDadoPagina($tipo = false, $codigoPagina = false, $valorDado = false){
         $this->load->model("pagina_model", "pagmod");
-        
         //verificando se a pessoa que esta alterando a pagina é realmente a dona 
         //que se encontra logada no servidor ou um SQL injection direto na classe AJAX
-        $isSecure = ($this->pagmod->CarregarPaginaProprietario() == dechex($codigoPagina)) ? true : false;       
+        $isSecure = ($this->pagmod->CarregarPaginaProprietario() == $codigoPagina) ? true : false;       
         $retorno = false;
-        if(!empty($tipo) && !empty($codigoPagina) && !empty($valorDado) && $isSecure){        
+        if((!empty($tipo)) && (!empty($codigoPagina)) && (!empty($valorDado)) && $isSecure){        
             switch ($tipo){
                case 1: $retorno = $this->pagmod->AlterarNome($valorDado, $codigoPagina); 
-                    break; //nome
+                    echo $retorno;
+                   break; //nome
                 case 2: $retorno = $this->pagmod->AlterarSlogan($valorDado, $codigoPagina); 
                     break; //slogan;
                case 3:  $retorno = $this->pagmod->AlterarDescricao($valorDado, $codigoPagina);

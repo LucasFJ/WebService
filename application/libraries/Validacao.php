@@ -31,6 +31,11 @@ class Validacao {
         return $resultado;
     }
     
+    public function ValidNatural($str){
+        $resultado = preg_match("/^[0-9]{1,11}$/i", $str);
+        return $resultado;
+    }
+    
     //VALIDAR DADOS DO USUARIO
     public function ValidNome($str){
         $resultado = preg_match("/^[A-Za-zá-úÁ=Ú\s]{2,20}$/i", $str);
@@ -46,17 +51,17 @@ class Validacao {
     
     //VALIDAR DADOS DA PÁGINA
     public function ValidNomePagina($str){
-        $resultado = preg_match("/^[\.,'!?ªº&+- A-Za-zá-úÁ=Ú\sàÀ]{2,25}$/i", $str);
-        return $resultado;
+        $resultado = preg_match("/^[ªº\.,'!?&+-A-Za-zá-úÁ=Ú\sàÀ]{2,25}$/i", $str);
+        return $resultado; //
     }
     
     public function ValidSloganPagina($str){
-        $resultado = preg_match("/^[\.,'!?ªº&+- A-Za-zá-úÁ=Ú\sàÀ0-9]{2,40}$/i", $str);
+        $resultado = preg_match("/^[\.,'!?ªº&+-A-Za-zá-úÁ=ÚàÀ0-9\s]{2,40}$/i", $str);
         return $resultado;
     }
     
     public function ValidDescPagina($str){
-        $resultado = preg_match("/^[\.,'!?ªº&+- A-Za-zá-úÁ=Ú\sàÀ0-9]{2,180}$/i", $str);
+        $resultado = preg_match("/^[,\.'!?&\+\-A-Za-zá-úÁ=ÚàÀ0-9\s]{2,180}$/", $str);
         return $resultado;
     }
     
@@ -87,7 +92,7 @@ class Validacao {
     }
     
     public function ValidDescProd($str){
-        $resultado = preg_match("/^[A-Za-zá-úÁ=Ú\s0-9]{1,35}$/i", $str);
+        $resultado = preg_match("/^[,\.'!?&\+\-A-Za-zá-úÁ=ÚàÀ0-9\s]{2,200}$/", $str);
         return $resultado;
     }
     

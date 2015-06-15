@@ -149,8 +149,6 @@ function CarregarEndereco(){
      var cidade = document.getElementById('cidade');
      var uf = document.getElementById('uf');
      var cod_log = document.getElementById('codigo_logradouro');
-     //Labels
-     var labels_cidade = document.getElementsByClassName('localidade');
     conteudo_cep = conteudo_cep.replace(/[^\d]+/g, "");
     if(conteudo_cep.length == 8){
         var xmlreq = CriaRequest();
@@ -161,7 +159,7 @@ function CarregarEndereco(){
             xmlreq.onreadystatechange = function(){// Verifica se foi concluído com sucesso e a conexão fechada (readyState=4) 
                 if (xmlreq.readyState == 4) {
                        if (xmlreq.status === 200) {
-                          $resultado = xmlreq.responseText;
+                          var $resultado = xmlreq.responseText;
                           if($resultado == "Erro"){
                               alert('O CEP indicado é invalido')
                               rua.value = "";
@@ -169,12 +167,8 @@ function CarregarEndereco(){
                               cidade.value = "";
                               uf.value = "";
                               cod_log.value = "";
-                              labels_cidade.item(0).innerHTML = "Rua";
-                              labels_cidade.item(1).innerHTML = "Bairro";
-                              labels_cidade.item(2).innerHTML = "Cidade";
-                              labels_cidade.item(3).innerHTML = "UF";
                           } else {
-                              $array_dados = $resultado.split("+");
+                              var $array_dados = $resultado.split("+");
                               rua.value = $array_dados[0];
                               bairro.value = $array_dados[1];
                               cidade.value = $array_dados[2];
@@ -198,10 +192,6 @@ function CarregarEndereco(){
         cidade.value = "";
         uf.value = "";
         cod_log.value = "";
-        labels_cidade.item(0).innerHTML = "Rua";
-        labels_cidade.item(1).innerHTML = "Bairro";
-        labels_cidade.item(2).innerHTML = "Cidade";
-        labels_cidade.item(3).innerHTML = "UF";
     }
 }
 
@@ -212,10 +202,12 @@ function AlterarNomePagina(codigo){
    var suces = document.getElementById("sucessoNome");
    var erro = document.getElementById("erroNome"); //campo de mensagem
    nome = nome.trim();
-   var rexep = new RegExp(/^['A-Za-zá-úÁ=Ú\s0-9 ]+$/i);
+   var rexep = new RegExp(/^[ªº\.,'!?&+-A-Za-zá-úÁ=Ú\sàÀ]{2,25}$/i);
    if(rexep.test(nome) && nome != ""){
-       nome = nome.replace("'", "%27");
        nome = encodeURIComponent(nome); // Permitindo o dado a entrar na url
+       nome = nome.replace("!", "%21");
+       nome = nome.replace("'", "%27");
+       nome = nome.replace(/\./g,"%2E");
         var xmlreq = CriaRequest();
         if(!xmlreq){
             erro.innerHTML = "Seu navegador não suporta Ajax.";
@@ -226,9 +218,9 @@ function AlterarNomePagina(codigo){
             // Verifica se foi concluído com sucesso e a conexão fechada (readyState=4) 
                 if (xmlreq.readyState == 4) {
                        if (xmlreq.status === 200) {
-                          var resultado = xmlreq.responseText;
-                          if(resultado === "Erro"){
-                              erro.innerHTML = "Ocorreu um erro durante a alteração.";
+                         var resultado = xmlreq.responseText;
+                         if(resultado === "Erro"){
+                              erro.innerHTML = "Ocorreu um erro durante a alteração.2";
                               suces.innerHTML = "";
                           } else {
                               suces.innerHTML = "alterado com sucesso";
@@ -236,7 +228,7 @@ function AlterarNomePagina(codigo){
                               erro.innerHTML = "";
                           }
                        } else {
-                           erro.innerHTML = "Ocorreu um erro durante a alteração.";
+                           erro.innerHTML = "Ocorreu um erro durante a alteração.1";
                            suces.innerHTML = "";
                        }
                 }
@@ -260,9 +252,11 @@ function AlterarSloganPagina(codigo){
    var suces = document.getElementById("sucessoSlogan");
    var erro = document.getElementById("erroSlogan"); //campo de mensagem
    slogan = slogan.trim();
-   var rexep = new RegExp(/^[,àÀA-Za-zá-úÁ=Ú.\s0-9 ]+$/i);
+   var rexep = new RegExp(/^[\.,'!?ªº&+-A-Za-zá-úÁ=ÚàÀ0-9\s]{2,40}$/i);
    if(rexep.test(slogan) && slogan != ""){
        slogan = encodeURIComponent(slogan);
+       slogan = slogan.replace("!", "%21");
+       slogan = slogan.replace("'", "%27");
        slogan = slogan.replace(/\./g,"%2E");
        var xmlreq = CriaRequest();
         if(!xmlreq){
@@ -307,10 +301,12 @@ function AlterarDescricaoPagina(codigo){
    var suces = document.getElementById("sucessoDesc");
    var erro = document.getElementById("erroDesc"); //campo de mensagem
    desc = desc.trim();
-   var rexep = new RegExp(/^[,àÀA-Za-zá-úÁ=Ú.\s0-9 ]+$/i);
+   var rexep = new RegExp(/^[.,'!?&+-A-Za-zá-úÁ=ÚàÀ0-9\s]{2,180}$/);
    if(rexep.test(desc) && desc != ""){
-       //FAZENDO O DADO SER TRANSMITIVEL PELA ULR  
+       //FAZENDO O DADO SER TRANSMITIVEL PELA ULR
        desc = encodeURIComponent(desc);
+       desc = desc.replace("!", "%21");
+       desc = desc.replace("'", "%27");
        desc = desc.replace(/\./g,"%2E");
        var xmlreq = CriaRequest();
         if(!xmlreq){
@@ -499,10 +495,10 @@ function AlterarLocalidadePagina(codigo){
     var suces = document.getElementById("sucessoLocal");
     var erro = document.getElementById("erroLocal"); //campo de mensagem
     //var regexp = new RegExp(/^[,àÀA-Za-zá-úÁ=Ú.\s0-9 ]+$/i); 
-    var regexp = new RegExp(/^[\s0-9]+$/i);
+    var regexp = new RegExp(/^[0-9]{1,7}$/i);
     if(regexp.test(codigo_cep) && codigo_cep != ""){
         if(regexp.test(numero) || numero == ""){
-            regexp = new RegExp(/^[A-Za-zá-úÁ=Ú.\s0-9]+$/i);
+            regexp = new RegExp(/^[\.-ºª A-Za-zá-úÁ=Ú\sàÀ0-9]{2,25}$/i);
             if(regexp.test(complemento) || complemento == ""){
                 var concat_dados = codigo_cep + "|" + numero + "|" + complemento;
                 concat_dados = encodeURIComponent(concat_dados);
@@ -688,7 +684,6 @@ function AlterarCardExemplo(cores){
     var cardTeste = document.getElementById("cardTeste");
     cardTeste.className = "btn "+ arrayCores[index] +" large" ;
 }
-
 
 //INPUT IMAGEM CRIARPRODUTO
 function CarregarImagemProduto(codigo){
