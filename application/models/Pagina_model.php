@@ -41,12 +41,12 @@ class Pagina_model extends CI_Model {
     public function CarregarProdutosPagina($codigo = false){
         $resultado_query = $this->db->query("SELECT nm_produto as 'nome', cd_produto as 'codigo', "
                 . "nm_descricao as 'descricao', nm_caminho_imagem as 'imagem' "
-                . "FROM tb_produto as PR WHERE cd_pagina = $codigo");
-       $produtos = null;
+                . "FROM tb_produto WHERE cd_pagina = $codigo");
+       $produtos = array();
        if($resultado_query->num_rows() > 0){
            $index = 0;
            foreach($resultado_query->result() as $row){
-               $produtos[0] = array('nome' => $row->nome, 'descricao' => $row->descricao,
+               $produtos[$index] = array('nome' => $row->nome, 'descricao' => $row->descricao,
                    'codigo' => $row->codigo, 'imagem' => $row->imagem);
                $index += 1;
            }
@@ -249,7 +249,6 @@ class Pagina_model extends CI_Model {
         $novaUrl = urldecode($novaUrl);
         if($novaUrl && $codigoPagina && is_numeric($codigoPagina) 
                 && ( preg_match("/^(www)((\.[A-Z0-9][A-Z0-9_-]*)+.(com|org|com.br|.net)$)(:(\d+))?\/?/i", $novaUrl)
-                ||   preg_match("/^(http|https|ftp):\/\/(([A-Z0-9][A-Z0-9_-]*)(\.[A-Z0-9][A-Z0-9_-]*)+.(com|org|com.br|.net)$)(:(\d+))?\/?/i", $novaUrl)
                 ||   $novaUrl == "")){
             $novaUrl = addslashes($novaUrl);
             $resultado_query = $this->db->query("UPDATE tb_pagina SET "

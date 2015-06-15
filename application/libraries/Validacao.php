@@ -92,8 +92,12 @@ class Validacao {
     }
     
     public function ValidDescProd($str){
-        $resultado = preg_match("/^[,\.'!?&\+\-A-Za-zá-úÁ=ÚàÀ0-9\s]{2,200}$/", $str);
+        $resultado = preg_match("/^[,\.'!?&\+\-A-Za-zá-úÁ=ÚàÀ0-9\s]{2,200}$/i", $str);
         return $resultado;
     }
     
+    public function ValidMensagemContato($str){
+        $resultado = preg_match("/^[,\.'!?&\+\-A-Za-zá-úÁ=ÚàÀ0-9\s]{2,500}$/i", $str);
+        return $resultado;
+    }
 }

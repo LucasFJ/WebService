@@ -72,7 +72,7 @@ class Ajax extends CI_Controller{
         //que se encontra logada no servidor ou um SQL injection direto na classe AJAX
         $isSecure = ($this->pagmod->CarregarPaginaProprietario() == $codigoPagina) ? true : false;       
         $retorno = false;
-        if((!empty($tipo)) && (!empty($codigoPagina)) && (!empty($valorDado)) && $isSecure){        
+        if((!empty($tipo)) && (!empty($codigoPagina)) && $isSecure){        
             switch ($tipo){
                case 1: $retorno = $this->pagmod->AlterarNome($valorDado, $codigoPagina); 
                     echo $retorno;

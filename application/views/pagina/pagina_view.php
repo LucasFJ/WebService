@@ -22,7 +22,7 @@ document.getElementById("cabecalho").innerHTML = " <?php echo $nome; ?>";
             <span class="nomeServico"><?php echo $nome;?></span><br />
             <h6 class="sloganServico"><?php echo $slogan; ?></h6>
             <h6 class="enderecoServico"><?php echo "$bairro - $cidade / $uf"; ?></h6>
-            <h6 class="enderecoServico"><span class="telefone"><?php echo "$contato"; ?></span> / <span class="telefone"><?php echo "$contato"; ?></span></h6>
+            <h6 class="enderecoServico"><span class="telefone"><?php echo "$telefone"; ?></span>  <span class="telefone"><?php echo "$celular"; ?></span></h6>
         </div>
         <div class="row  cardRodape valign-wrapper">
         <!-- Testa (usuario já avaliou?)-->
@@ -126,7 +126,7 @@ if(is_array($produtos)){
             </div>
             <div class="col s12 m6 l6 left-align">
                 <h6>Contato</h6>
-                <h6 class="grey-text"><?php echo "$contato"; ?></h6>
+                <h6 class="grey-text"><?php echo "$telefone $celular"; ?></h6>
             </div>
             <div class="col s12 m6 l6 left-align">
                 <h6>Site</h6>
@@ -134,7 +134,7 @@ if(is_array($produtos)){
             </div>
             <div class="col s12 m6 l6 left-align">
                 <h6>Localidade</h6>
-                <h6 class="grey-text"><?php echo $complemento; ?></h6>
+                <h6 class="grey-text"><?php echo "$logradouro, $numero, $complemento"; ?></h6>
             </div>
             <div class="col s12 left-align">
                 <h6>Descrição</h6>

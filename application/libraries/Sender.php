@@ -86,9 +86,31 @@ class Sender{
         }
     }
     
+    
+    public function Contato($nome = false, $assunto = false, $email = false, 
+            $mensagem = false){
+        if($nome && $assunto && $email && $mensagem){
+            $assunto = "$assunto";
+            $mensagem_principal =  "Nome: $nome. <br/>"
+                    . "Assunto: $assunto. <br/>"
+                    . "E-mail: $email. <br/>"
+                    . "Mensagem: <br/> $mensagem";
+            $nome_dest = "suporte@sniffoo.com.br";
+            $email_dest = "suporte@sniffoo.com.br";
+            $fromName = "Fale conosco";
+            if($this->Enviar($nome_dest, $email_dest, $assunto, $mensagem_principal, $fromName)){
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+    
     //FUNÇÃO: ENVIAR UM EMAIL PARA A O USUARIO COM UM ASSUNTO E MENSAGEM
     private function Enviar($nome_dest = false, $email_dest = false, 
-            $assunto = false, $mensagem = false){
+            $assunto = false, $mensagem = false, $fromName = false){
         $mail = new PHPMailer;
         //$mail->setLanguage('pt');
         $mail->addAddress($email_dest, $nome_dest);
@@ -100,7 +122,12 @@ class Sender{
         $mail->Username = $this->email;
         $mail->Password = $this->senha;
         $mail->From = $this->email;
-        $mail->FromName = $this->nome;
+        if($fromName){
+            $mail->FromName = $fromName;
+        } else {
+            $mail->FromName = $this->nome;
+        }
+        
         $mail->isHTML(true);
         $mail->CharSet = 'UTF-8';
         //resolvendo erro de ssl3_get_server_certificate
