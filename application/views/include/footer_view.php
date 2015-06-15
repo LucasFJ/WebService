@@ -2,17 +2,23 @@
 
     </main>
     
-    <script type="text/javascript" src="<?php echo base_url('src/js/requisicoes-ajax.js'); ?>"></script>
-    <script type="text/javascript" src="<?php echo base_url('src/js/jquery.js'); ?>"></script>
-    <script type="text/javascript" src="<?php echo base_url('src/js/jquery.mask.js'); ?>"></script>
-    <script type="text/javascript" src="<?php echo base_url('src/js/jquery.form.js'); ?>"></script>
-    <script type="text/javascript" src="<?php echo base_url('src/js/materialize.min.js'); ?>"></script>
-    <script type="text/javascript" src="<?php echo base_url('src/js/init.js'); ?>"></script>
-    
     <?php 
-        //foreach($javascript as $value){
-         //echo "<script type='text/javascript' src=". base_url("src/js/$value") ."></script>";
-        //}
+    $javascript = isset($javascript) ? $javascript : null;
+    if(is_array($javascript)){
+        echo "<script type='text/javascript' src='".base_url("src/js/jquery.js")."'></script>";
+        echo "<script type='text/javascript' src='".base_url("src/js/materialize.min.js")."'></script>";
+        echo "<script type='text/javascript' src='".base_url("src/js/config.js")."'></script>";
+        foreach($javascript as $src){
+         echo "<script type='text/javascript' src=". $src ."></script>";
+        }
+    } else {
+        echo "<script type='text/javascript' src='". base_url('src/js/requisicoes-ajax.js') ."'></script>
+    <script type='text/javascript' src='". base_url('src/js/jquery.js') ."'></script>
+    <script type='text/javascript' src='". base_url('src/js/jquery.mask.js') ."'></script>
+    <script type='text/javascript' src='". base_url('src/js/jquery.form.js') ."'></script>
+    <script type='text/javascript' src='". base_url('src/js/materialize.min.js') ."'></script>
+    <script type='text/javascript' src='". base_url('src/js/init.js') ."'></script>";
+    }
     ?>
     
     <footer class="page-footer grey darken-1">

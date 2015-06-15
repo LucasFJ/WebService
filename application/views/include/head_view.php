@@ -8,11 +8,12 @@
     <link href="<?php echo base_url('src/css/materialize.min.css'); ?>" type="text/css" rel="stylesheet" media="screen,projection" />
     <link href="<?php echo base_url('src/css/style.css'); ?>" type="text/css" rel="stylesheet" media="screen,projection" />
     
-    <?php   
+    <?php
+    $titulo = (isset($titulo)) ? $titulo : "Sniffoo";
     //foreach($javascript as $value){
     //   echo "<script type='text/javascript' src=". base_url("src/js/$value") ."></script>";
     //}
     ?>
     
-    <title><?php echo 'TO DO'; ?></title>
+    <title><?php echo $titulo; ?></title>
   </head>
