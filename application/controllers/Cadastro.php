@@ -23,7 +23,7 @@ class Cadastro extends CI_Controller{
                 break;
             case "repetesenhainvalida": $mensagem_erro = "O campo de senha não é igual ao de confirmar senha";
                 break;
-            case "senhainvalida": $mensagem_erro = "A senha inserido é inválido";
+            case "senhainvalida": $mensagem_erro = "A senha inserida é inválida";
                 break;
             case "nascimentoinvalido": $mensagem_erro = "A data de nascimento inserida é inválido";
                 break;

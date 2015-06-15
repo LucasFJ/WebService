@@ -8,6 +8,7 @@ class Status {
          $this->CI =& get_instance();
          $this->CI->load->database();
          session_start();
+         unset($_COOKIE);
     }
     
     //Função: verificar se o usuario está cadastrado no sistema seguindo uma 
@@ -68,21 +69,21 @@ class Status {
     //de tempo pré-definido
     public function iniciarCookie($user_email = null, $user_senha = null){
         $expira = time() + ( 60 * 60 * 2); // Tempo Unix: 2 horas
-        //setcookie('user_email', $user_email, $expira);
-        //setcookie('user_senha', $user_senha, $expira);
+        setcookie('user_email', $user_email, $expira);
+        setcookie('user_senha', $user_senha, $expira);
         return true;
     }
     // Função: destroi os cookies que possuem dados de login do usuário
     public function fecharCookie(){
         //setcookie('user_email');
         //setcookie('user_senha');
-        $expira = time() + ( 60 * 60 * 2); // Tempo Unix: 2 horas
+        $expira = time() - ( 60 * 60 * 2); // Tempo Unix: 2 horas
         setcookie("user_email", "email usuario", $expira);
         setcookie("user_senha", "senha usuario", $expira);
            //unset($_COOKIE['user_email']);
           // unset($_COOKIE['user_senha']);
-            $_COOKIE['user_email'] = 'email usuario';
-           $_COOKIE['user_senha'] = 'senha usuario';
+           //$_COOKIE['user_email'] = 'email usuario';
+           //$_COOKIE['user_senha'] = 'senha usuario';
             return true;
     }
     //Função: verificar se os dados de login são condizentes com os 

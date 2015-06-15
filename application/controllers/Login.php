@@ -8,36 +8,40 @@ class Login extends CI_Controller{
             redirect('home');
         }
         $this->load->model('login_model','logmodel');
-        $this->load->library('form_validation');
     }
     
-    public function index(){
-        $mensagem_erro = false;
-        $login = isset($_POST['email']) ? $_POST['email']: "";
-        //verificando se foram enviados os valores de login ou senha via POST
-        if( isset($_POST['email']) && isset($_POST['senha'])){
-            //definindo as regras de validação e executando
-            $this->form_validation->set_rules('email', 'E-mail', 'required|valid_email');
-            $this->form_validation->set_rules('senha', 'Senha', 'required');
-            if($this->form_validation->run()){
-                $email = $_POST['email'];
-                $senha = $_POST['senha'];
-                
-                $resultado = $this->logmodel->efetuarLogin($email, $senha);
-                if($resultado){
-                    redirect('home');
-                } else { // erro durante a verificação de login e senha
-                $mensagem_erro = "Email ou senha incorretos";
-                }
-            } else {// erro durante a validação dos formulários
-                $mensagem_erro = "E-mail ou senha inválidos";
-            }
-        } // email ou senha se encontram vazios
-       
-       $dados = array('mensagem_erro' => $mensagem_erro, 
-           'conteudo_login' => $login); 
+    public function index($msgErro = " "){
+       $mensagem_erro = " ";
+       switch($msgErro){
+           case "emailinvalido": $mensagem_erro = "O email inserido é inválido";
+               break;
+           case "senhainvalida": $mensagem_erro = "A senha inserida é inválida";
+               break;
+           case "combinacaoincorreta": $mensagem_erro = "A combinação está errada.";
+               break;
+       }
+       $dados = array('mensagem_erro' => $mensagem_erro); 
        $this->load->view('login/login_view', $dados);
        $this->load->view('include/footer_view');
+    }
+    
+    public function POSTindex(){
+        if(isset($_POST["RealizarLogin"])){
+            $this->load->library("validacao");
+            $email = $_POST['email'];
+            $senha = $_POST['senha'];
+            if(!$this->validacao->ValidEmail($email)){
+                redirect("login/index/emailinvalido");
+            } elseif(!$this->validacao->ValidSenha($senha)){
+                redirect("login/index/senhainvalida");
+            } elseif(!$this->logmodel->efetuarLogin($email, $senha)){
+                redirect("login/index/combinacaoincorreta");
+            } else {
+                redirect("home");
+            }
+        } else {
+            redirect("login");
+        }
     }
     
     public function recuperar($msgErro = ""){
@@ -53,7 +57,7 @@ class Login extends CI_Controller{
        $this->load->view('include/footer_view');
     }
     
-    public function POSTrecuperar($msgErro = " "){
+    public function POSTrecuperar(){
         if($_POST['RecuperarSenha']){
             $this->load->library("validacao");
             $this->load->model('processo_model', 'procmod');
