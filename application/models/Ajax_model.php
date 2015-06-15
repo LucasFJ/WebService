@@ -90,7 +90,6 @@ class Ajax_model extends CI_Model {
             $bairro = "Bairro", $cidade = "Cidade", $estado = "Estado", $numero = 1234,
             $imagem = false, $codigo = 0, $cor = 'deep-purple', $telefone = null, $celular = null){
         //INSIRA AQUI O CÓDIGO HTML PARA CADA FAIXADA QUE SERÁ EXIBIDA
-        $codigo = dechex($codigo);
         if($imagem == null || empty($imagem)){ $imagem = "harry-square.png"; }
         if(!$cor){ $cor = "deep-orange"; }
         $contato = (is_numeric($telefone) && is_numeric($celular)) ? "$telefone | $celular" : false;
@@ -200,7 +199,7 @@ class Ajax_model extends CI_Model {
         $nome_imagem = uniqid("Temp"); 
         $nome_imagem = "$nome_imagem". "." ."$tipo";
         $this->load->library('imagem');
-        $resultado = $this->imagem->salvar("src/imagens/temp/", $imagem, $nome_imagem);
+        $resultado = $this->imagem->salvar("src/imagens/temp/", $imagem, $nome_imagem, "retangulo");
         if($resultado){
             if(!empty($imagemAntiga)){
                 if(file_exists("src/imagens/temp/$imagemAntiga")){

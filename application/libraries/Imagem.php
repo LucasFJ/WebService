@@ -29,10 +29,17 @@ class Imagem {
         }
     }
     
-    public $width = 300;
-    public $height = 300;
+    public $width;
+    public $height;
     
-    public function salvar($caminho, $file, $novoNome){
+    public function salvar($caminho, $file, $novoNome, $corte = "qdr"){
+        if($corte == "retangulo"){
+            $this->width = 440;
+            $this->height = 330;
+        } else {
+            $this->width = 300;
+            $this->height = 300;
+        }
         //mudando o nome que o arquiva irá utilizar
         $file['name'] = $novoNome;
         //definindo o caminho de upload
@@ -89,22 +96,32 @@ class Imagem {
         //} elseif($width_orig < $height_orig) {
         //    $width = ($height/$height_orig)*$width_orig; 
         //}
-        
-        
-        // Transformando imagens retangulares em quadradas
-        $novaimagem = imagecreatetruecolor($width, $height); 
-        //Testando: qual lado é maior que o outro
-        if($height_orig > $width_orig){
-            $orgY = ($height_orig - $width_orig) / 2;
-            $orgX = 0;
-            $height_orig = $width_orig;
-        } elseif($width_orig > $height_orig) {
-            $orgY = 0;
-            $orgX = ($width_orig - $height_orig) / 2;
-            $width_orig = $height_orig;
+        $novaimagem = imagecreatetruecolor($width, $height);
+        if($width == $height){        
+            // Transformando imagens retangulares em quadradas
+            //Testando: qual lado é maior que o outro
+            if($height_orig > $width_orig){
+                $orgY = ($height_orig - $width_orig) / 2;
+                $orgX = 0;
+                $height_orig = $width_orig;
+            } elseif($width_orig > $height_orig) {
+                $orgY = 0;
+                $orgX = ($width_orig - $height_orig) / 2;
+                $width_orig = $height_orig;
+            } else {
+                $orgX = 0;
+                $orgY = 0;
+            }
         } else {
-            $orgX = 0;
-            $orgY = 0;
+            if($width_orig > $height_orig){
+                $orgY = 0;
+                $orgX = ($width_orig - (($height_orig / 3) * 4)) / 2;
+                $width_orig = (($height_orig / 3) * 4);
+            } else {          
+                $orgY = ($height_orig - (($width_orig / 4) * 3)) / 2;
+                $orgX = 0;
+                $height_orig = (($width_orig / 4) * 3);
+            }
         }
         switch($tipo){
             //TIPO GIF
