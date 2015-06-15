@@ -18,6 +18,7 @@ class Ajax extends CI_Controller{
             $cidade = false, $bairro = false, $ordenacao = false, $nome = 0){
         if(is_numeric($offset) && is_numeric($ramo) && is_numeric($estado) && is_numeric($cidade) 
                 && is_numeric($bairro) && is_numeric($ordenacao)){
+            $nome = urldecode($nome);
             if($nome != 0){
                 $nome = addslashes($nome);
             }
@@ -67,15 +68,15 @@ class Ajax extends CI_Controller{
     
     public function AlterarDadoPagina($tipo = false, $codigoPagina = false, $valorDado = false){
         $this->load->model("pagina_model", "pagmod");
-        
         //verificando se a pessoa que esta alterando a pagina é realmente a dona 
         //que se encontra logada no servidor ou um SQL injection direto na classe AJAX
-        $isSecure = ($this->pagmod->CarregarPaginaProprietario() == dechex($codigoPagina)) ? true : false;       
+        $isSecure = ($this->pagmod->CarregarPaginaProprietario() == $codigoPagina) ? true : false;       
         $retorno = false;
-        if(!empty($tipo) && !empty($codigoPagina) && !empty($valorDado) && $isSecure){        
+        if((!empty($tipo)) && (!empty($codigoPagina)) && (!empty($valorDado)) && $isSecure){        
             switch ($tipo){
                case 1: $retorno = $this->pagmod->AlterarNome($valorDado, $codigoPagina); 
-                    break; //nome
+                    echo $retorno;
+                   break; //nome
                 case 2: $retorno = $this->pagmod->AlterarSlogan($valorDado, $codigoPagina); 
                     break; //slogan;
                case 3:  $retorno = $this->pagmod->AlterarDescricao($valorDado, $codigoPagina);
@@ -103,7 +104,7 @@ class Ajax extends CI_Controller{
     
     public function ExcluirPagina($codigoPagina){
         $this->load->model("pagina_model", "pagmod");
-        $isSecure = ($this->pagmod->CarregarPaginaProprietario() == dechex($codigoPagina)) ? true : false;
+        $isSecure = ($this->pagmod->CarregarPaginaProprietario() == $codigoPagina) ? true : false;
         if(is_numeric($codigoPagina) && $isSecure){
             $this->load->model("processo_model", "process");
             $resultado = $this->process->NovaExclusaoPagina($codigoPagina);
@@ -158,12 +159,3 @@ class Ajax extends CI_Controller{
         }
     }
 }
-/*
-if(!empty($codigoPagina) && $isSecure && isset($_POST)){
-            if(isset($_FILES['imagem'])){
-                $imagem = $_FILES['imagem'];
-                $imagemAntiga = $_POST['imagemantiga'];
-                $this->pagmod->AlterarImagem($codigo, $imagem, $imagemAntiga);
-                
-            }   
-        } */

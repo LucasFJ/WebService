@@ -59,13 +59,13 @@ class Pagina_model extends CI_Model {
     public function CadastrarPagina($nome, $ramo, $slogan,$site, $descricao, $cep, $numero, 
             $complemento, $layout, $telefone, $celular, $imagem){
         //primeira etapa >> tratando os dados para serem inseridos
-        $nome = addslashes(trim($nome));
+        $nome = addslashes($nome);
         $ramo = (is_numeric($ramo) && $ramo > 0) ? $ramo : 47;
-        $slogan = addslashes(trim($slogan));
-        $descricao = addslashes(trim($descricao)); //escapa os espaços
+        $slogan = addslashes($slogan);
+        $descricao = addslashes($descricao); //escapa os espaços
         $cep = (is_numeric($cep) && $cep > 0) ? $cep : null;
         $numero = (is_numeric($numero) && $numero > 0) ? $numero : '';
-        $complemento = addslashes(trim($complemento));
+        $complemento = addslashes($complemento);
         $layout = (is_numeric($layout) && $layout > 0) ? $layout : 1;
         $telefone = (is_numeric($telefone)) ? $telefone : null;
         $celular = (is_numeric($celular)) ? $celular : null;
@@ -241,7 +241,6 @@ class Pagina_model extends CI_Model {
                 return false;
             }
         } else {
-            echo "Aqui";
             return false;
         }
     }
@@ -398,7 +397,7 @@ class Pagina_model extends CI_Model {
                 $tipo = end($array_tipo);
                 $tipo = strtolower($tipo);
                 $novaImagem = uniqid("Prod");
-                $novaImagem += "." + $tipo;
+                $novaImagem = "$novaImagem.$tipo";
                 $resultado_query = $this->db->query("INSERT INTO tb_produto (nm_produto, nm_descricao, cd_pagina, nm_caminho_imagem) "
                         . " VALUES ('$nomeProduto', '$descricaoProduto', $codigoPagina, '$novaImagem');");
                 if($resultado_query){

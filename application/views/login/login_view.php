@@ -27,27 +27,23 @@
 	<div class="container center">
 	<br />
 	<h5>No Service você encontra o que precisa com apenas alguns cliques.</h5>
-            <!-- MENSAGEM ERRO -->
-            <?php
-                 if($mensagem_erro){
-                    echo "<span class='red-text' id='erro'>$mensagem_erro</span><br/>";
-                 }
-            ?>
-            <!-- /MENSAGEM ERRO -->                   
+       <!-- MENSAGEM ERRO -->
+               <span class='red-text' id='erro'><?php echo $mensagem_erro; ?></span><br/>
+       <!-- /MENSAGEM ERRO -->                   
 	<div class="card left-align grey darken-1 z-depth-2">
-	<form class="col s12" method="post">
+	<form action="<?php echo base_url("login/POSTindex");?>" class="col s12" method="post">
 	<div class="card-content center-align white-text">
 	<span class="card-title">Painel de acesso</span>
         <!-- FORM LOGIN -->
         <div class="formLogin">
 	<div class="input-field login">
 	<i class="mdi-social-person prefix"></i>
-	<input id="icon_prefix" type="email" class="validate" name="email" value="<?php echo $conteudo_login;?>" required>
+	<input maxlength="50" id="icon_prefix" type="email" class="validate" name="email" value=" " required/>
 	<label for="icon_prefix" class="inputLabel">E-mail</label>
 	</div>
 	<div class="input-field login">
 	<i class="mdi-action-lock-outline prefix"></i>
-	<input id="icon_prefix" type="password" class="validate" name="senha" required>
+	<input  maxlength="40" id="icon_prefix" type="password" class="validate" name="senha" required/>
 	<label for="icon_prefix" class="inputLabel">Senha</label>
 	</div>
         </div>
@@ -55,7 +51,7 @@
 	<br />
 	<!-- BUTTONS -->
 	  	<div class="containerBtnInicio container">
-                  <button href="<?php echo base_url('login'); ?>"  type="submit" class="btnInicio waves-effect waves-light orange darken-2 white-text btn tooltipped" data-position="top" data-delay="200" data-tooltip="Entrar no Service">Entrar<i class="mdi-content-send right"></i></button>
+                  <button name="RealizarLogin" value="Enviar" type="submit" class="btnInicio waves-effect waves-light orange darken-2 white-text btn tooltipped" data-position="top" data-delay="200" data-tooltip="Entrar no Service">Entrar<i class="mdi-content-send right"></i></button>
 		   <a href="<?php echo base_url('cadastro'); ?>" class="btnInicio waves-effect waves-light orange darken-2 white-text btn tooltipped" data-position="top" data-delay="200" data-tooltip="Criar nova conta">Nova Conta</a>
                 </div>
 	</form>

@@ -32,37 +32,54 @@ class Processos extends CI_Controller{
         }
     }
     
-    public function recuperacao($codigo_processo = false, $codigo_chave = false){
+    public function recuperacao($codigo_processo = " ", $codigo_chave =" ", $msgErro = " "){
         $dados = array('mensagem_erro' => '');
         if(is_numeric($codigo_processo)  && $codigo_chave){
-            //Impedindo SQL injection
-
-            $codigo_chave = html_escape($codigo_chave);
-            $codigo_processo = html_escape($codigo_processo);
-            $codigo_chave = addslashes($codigo_chave);
-            $codigo_processo = addslashes($codigo_processo);
-            $dados = array("mensagem_erro" => "");
-            if(isset($_POST['senha'])){
-                $this->load->library('form_validation');         
-                $this->form_validation->set_rules('senha', 'senha', 'required');
-                $this->form_validation->set_rules('repeteSenha', 'confirmar senha', 'required|matches[senha]');
-                if($this->form_validation->run()){
-                    $resultado = $this->process->RealizarRecuperacao($codigo_processo, $codigo_chave, $_POST['senha']);
-                    if($resultado){
-                        redirect('login');
-                    }
-                }
-                $dados["mensagem_erro"] = "A senha informada é invalida ou diferente da confirmação.";         
+            $mensagem_erro = " ";
+            switch ($msgErro){
+                case "senhainvalida": $mensagem_erro = "A senha escolhida é inválida";
+                    break;
+                case "repetesenhainvalida": $mensagem_erro = "O campo de senha não é igual ao de confirmar senha";
+                    break;
+                case "processoinvalido": $mensagem_erro = "O processo ja foi utilizado ou a URL foi modificada";
+                    break;
+                
             }
+            $codigo_chave = html_escape(addslashes($codigo_chave));
+            $codigo_processo = html_escape(addslashes($codigo_processo));
+            $dados = array("mensagem_erro" => $mensagem_erro,
+                "codigoProcesso" => $codigo_processo, 
+                'chaveProcesso' => $codigo_chave);
             $this->load->view('processos/mudarsenha_view', $dados);
             $this->load->view('include/footer_view');
-        //INSERIR A VIEW COM INPUT DE NOVA SENHA E CONFIRMAR NOVA SENHA
         } else { // algum dos dois parametros nao foi enviado
             redirect('home');
         }
         
     }
 
+    public function POSTrecuperacao(){
+        if(isset($_POST["AlterarSenha"])){
+            $this->load->library("validacao");
+            $senha = $_POST['senha'];
+            $repeteSenha = $_POST['repeteSenha'];
+            $codigoProcesso = $_POST['codigoProcesso'];
+            $chaveProcesso  = $_POST['chaveProcesso'];
+            echo str_replace(".", "%2E", $chaveProcesso);
+            if(!$this->validacao->ValidSenha($senha)){
+                redirect("processos/recuperacao/$codigoProcesso/$chaveProcesso/senhainvalida");
+            } elseif($senha != $repeteSenha){
+                redirect("processos/recuperacao/$codigoProcesso/$chaveProcesso/repetesenhainvalida");
+            } elseif(!$this->process->RealizarRecuperacao($codigoProcesso, $chaveProcesso, $senha)){
+               redirect("processos/recuperacao/$codigoProcesso/$chaveProcesso/processoinvalido");
+            } else {
+                redirect("login");
+            }
+        } else {
+            redirect("login");
+        }
+    }
+    
     public function excluir($codigo_processo = false, $codigo_chave = false){
         if(is_numeric($codigo_processo)  && $codigo_chave){
             //Impedindo SQL injection

@@ -8,54 +8,33 @@ class Cadastro extends CI_Controller{
             redirect('home');
        }
        $this->load->model('cadastro_model', 'cadmodel');
-       $this->load->library('form_validation');
    }
     
-    public function index(){ 
-        // SETANDO AS REGRAS DE VALIDAÇÃO DO FORM
-        $this->form_validation->set_rules('nome', 'nome', 'required|alpha');
-        $this->form_validation->set_rules('sobrenome', 'sobrenome', 'required|alpha');
-        $this->form_validation->set_rules('email', 'e-mail', 'required|valid_email');
-        $this->form_validation->set_rules('genero', 'gênero', 'required|is_natural_no_zero');
-        $this->form_validation->set_message('is_natural_no_zero', 'Selecione um gênero.');
-        $this->form_validation->set_rules('senha', 'senha', 'required');
-        $this->form_validation->set_rules('repeteSenha', 'confirmar senha', 'required|matches[senha]');
-        $this->form_validation->set_rules('nascimento', 'data de nascimento', 'required');
-        $this->form_validation->set_rules('concorda', 'concordar com os termos de uso', 'required');
-        
-        $mensagem_erro = '';
-        $nome = isset($_POST['nome']) ? $_POST['nome']: "";
-        $sobrenome = isset($_POST['sobrenome']) ? $_POST['sobrenome']: "";
-        $email = isset($_POST['email']) ? $_POST['email'] : "";
-        
-        if($this->form_validation->run()){
-            $resultado = $this->cadmodel->cadastrarConta($_POST['email'], 
-                    $_POST['senha'], $_POST['nome'], $_POST['sobrenome'],
-                    $_POST['nascimento'], $_POST['genero']);
-            if($resultado) {
-                $this->load->view('cadastro/sucesso_view');
-                $this->load->view('include/footer_view');
-            } else {
-                $mensagem_erro = 'O e-mail informado já se encontra cadastrado!';
-                $dados = array('conteudo_nome' => $nome,
-                 'conteudo_sobrenome' => $sobrenome, 
-                'conteudo_email' => $email);
-            
-                  echo validation_errors(); 
-                  $this->load->view('cadastro/cadastro_view', $dados);
-                  $this->load->view('include/footer_view');
-            }
-        } else {
-           $dados = array('conteudo_nome' => $nome,
-           'conteudo_sobrenome' => $sobrenome, 
-           'conteudo_email' => $email);
-            
-            echo validation_errors(); 
-            $this->load->view('cadastro/cadastro_view', $dados);
-            $this->load->view('include/footer_view');
-        } 
-        
-        
+    public function index($msgErro = " "){ 
+        $mensagem_erro = " ";
+        switch($msgErro){
+            case "nomeinvalido": $mensagem_erro = "O nome inserido é inválido";
+                break;
+            case "sobrenomeinvalido": $mensagem_erro = "O sobrenome inserido é inválido";
+                break;
+            case "emailinvalido": $mensagem_erro = "O email inserido é inválido";
+                break;
+            case "generoinvalido": $mensagem_erro = "Selecione um gênero";
+                break;
+            case "repetesenhainvalida": $mensagem_erro = "O campo de senha não é igual ao de confirmar senha";
+                break;
+            case "senhainvalida": $mensagem_erro = "A senha inserida é inválida";
+                break;
+            case "nascimentoinvalido": $mensagem_erro = "A data de nascimento inserida é inválido";
+                break;
+            case "termosinvalido": $mensagem_erro = "É necessário aceitar os termos de uso";
+                break;
+            case "emailindisponivel": $mensagem_erro = "O email inserido já se encontra cadastrado";
+                break;
+        }
+        $dados = array('mensagem_erro' => $mensagem_erro);
+        $this->load->view('cadastro/cadastro_view', $dados);
+        $this->load->view('include/footer_view');          
     }
     
     public function sucesso(){
@@ -75,9 +54,27 @@ class Cadastro extends CI_Controller{
             $concorda =  trim($_POST['concorda']); //recebe 'on' se selecionado
             //iniciando a classe de validação
             $this->load->library("validacao");
-            if($this->validacao->ValidNome($nome)){
-                echo $nome;
-            } 
+            if(!$this->validacao->ValidNome($nome)){
+                redirect("cadastro/index/nomeinvalido");
+            } elseif(!$this->validacao->ValidNome($sobrenome)) {
+                redirect("cadastro/index/sobrenomeinvalido");
+            } elseif(!$this->validacao->ValidEmail($email)){
+                redirect("cadastro/index/emailinvalido");
+            } elseif($genero != 1 && $genero != 2) {
+                redirect("cadastro/index/generoinvalido");
+            } elseif(!$this->validacao->ValidSenha($senha)) {
+                redirect("cadastro/index/senhainvalida");
+            } elseif($senha != $repeteSenha){
+                redirect("cadastro/index/repetesenhainvalida");
+            } elseif(!$this->validacao->ValidDataNascimento($nascimento)){
+                redirect("cadastro/index/nascimentoinvalido");
+            } elseif($concorda != "on"){
+                redirect("cadastro/index/termosinvalido");
+            } elseif(!$this->cadmodel->cadastrarConta($email, $senha, $nome, $nome, $nascimento, $genero)) {
+                redirect("cadastro/index/emailindisponivel");   
+            } else {
+                redirect("cadastro/sucesso");
+            }
         } else {
             redirect('login');
         }

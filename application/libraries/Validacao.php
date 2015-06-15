@@ -15,7 +15,7 @@ class Validacao {
         $conta = "/^[a-zA-Z0-9\._-]+@";
         $dominio = "[a-zA-Z0-9\._-]+.";
         $extensao = "([a-zA-Z]{2,4})$/";
-        $expressao = $conta.$dominio.extensao;
+        $expressao = $conta.$dominio.$extensao;
         $resultado = preg_match($expressao, $str);
         return $resultado;
         //return filter_var($str, FILTER_VALIDATE_EMAIL);
@@ -31,6 +31,11 @@ class Validacao {
         return $resultado;
     }
     
+    public function ValidNatural($str){
+        $resultado = preg_match("/^[0-9]{1,11}$/i", $str);
+        return $resultado;
+    }
+    
     //VALIDAR DADOS DO USUARIO
     public function ValidNome($str){
         $resultado = preg_match("/^[A-Za-zá-úÁ=Ú\s]{2,20}$/i", $str);
@@ -39,23 +44,24 @@ class Validacao {
     //senha de no minimo 6 digitos e maximo 25
     //contendo  pelo menos uma letra minuscula, uma letra maiuscula e um algarismo: 
     public function ValidSenha($str){
-        $resultado = preg_match("/^.*(?=.{6,25})(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/", $str);
+        //$resultado = preg_match("/^.*(?=.{6,25})(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/", $str);
+        $resultado = preg_match("/^[A-Za-z0-9_-]{4,40}$/i", $str);
         return $resultado;
     }
     
     //VALIDAR DADOS DA PÁGINA
     public function ValidNomePagina($str){
-        $resultado = preg_match("/^[\.,'!?ªº&+- A-Za-zá-úÁ=Ú\sàÀ]{2,25}$/i", $str);
-        return $resultado;
+        $resultado = preg_match("/^[ªº\.,'!?&+\-A-Za-zá-úÁ=Ú\sàÀ0-9]{2,25}$/i", $str);
+        return $resultado; //
     }
     
     public function ValidSloganPagina($str){
-        $resultado = preg_match("/^[\.,'!?ªº&+- A-Za-zá-úÁ=Ú\sàÀ0-9]{2,40}$/i", $str);
+        $resultado = preg_match("/^[\.,'!?ªº&+\-A-Za-zá-úÁ=ÚàÀ0-9\s]{2,40}$/i", $str);
         return $resultado;
     }
     
     public function ValidDescPagina($str){
-        $resultado = preg_match("/^[\.,'!?ªº&+- A-Za-zá-úÁ=Ú\sàÀ0-9]{2,180}$/i", $str);
+        $resultado = preg_match("/^[,\.'!?&+\-A-Za-zá-úÁ=ÚàÀ0-9\s]{2,180}$/", $str);
         return $resultado;
     }
     
@@ -70,18 +76,23 @@ class Validacao {
     }
     
     public function ValidComplementoEndereco($str){
-        $resultado = preg_match("/^[\.-ºª A-Za-zá-úÁ=Ú\sàÀ0-9]{2,25}$/i", $str);
+        $resultado = preg_match("/^[\.\-ºª A-Za-zá-úÁ=Ú\sàÀ0-9]{2,25}$/i", $str);
+        return $resultado;
+    }
+    
+    public function ValidDataNascimento($str){
+        $resultado = preg_match("/^[, A-Za-z\s0-9]{10,30}$/i", $str);
         return $resultado;
     }
         
     //VALIDAR DADOS DO PRODUTO
     public function ValidNomeProd($str){
-        $resultado = preg_match("/^[A-Za-zá-úÁ=Ú\s0-9]{1,35}$/i", $str);
+        $resultado = preg_match("/^[A-Za-zá-úÁ=Ú\s0-9àÀ']{1,35}$/i", $str);
         return $resultado;
     }
     
     public function ValidDescProd($str){
-        $resultado = preg_match("/^[A-Za-zá-úÁ=Ú\s0-9]{1,35}$/i", $str);
+        $resultado = preg_match("/^[,\.'!?&\+\-A-Za-zá-úÁ=ÚàÀ0-9\s]{2,200}$/", $str);
         return $resultado;
     }
     
