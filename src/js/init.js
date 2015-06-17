@@ -1,6 +1,19 @@
 // Initialize collapse button
 $('.button-collapse').sideNav();
  
+//Controla o abre/fecha dos itens da SideNav
+$('.liMenu').click(function(){
+if($(this).hasClass('active')){
+    $(this).children('.collapsible-body').hide(400);
+    $(this).removeClass('active'); 
+} else {
+    $(this).removeClass('active');
+    $('.active').children('.collapsible-body').hide(400);
+    $(this).addClass('active');
+    $('.active').removeClass('active');
+}
+});
+    
 $('.datepicker').pickadate({
     selectMonths: true, // Creates a dropdown to control month
    selectYears: 180 // Creates a dropdown of 15 years to control year
@@ -11,8 +24,9 @@ $(document).ready(function() {
     $('.modal-trigger').leanModal();
     
     // Inicializa o elemento Form Select do Materialize
-    CarregarBoxRamo();
-    CarregarBoxEstado();
+    
+        CarregarBoxRamo();
+        CarregarBoxEstado();
     $('select').material_select();
     
     // Oculta e permite Exibir/Ocultar a busca aprimorada
@@ -22,18 +36,6 @@ $(document).ready(function() {
             $('#buscaAdicional').toggle();
     }
     
-    //Controla o abre/fecha dos itens da SideNav
-    $('.liMenu').click(function(){
-    if($(this).hasClass('active')){
-        $(this).children('.collapsible-body').hide(400);
-        $(this).removeClass('active'); 
-    } else {
-        $(this).removeClass('active');
-        $('.active').children('.collapsible-body').hide(400);
-        $(this).addClass('active');
-        $('.active').removeClass('active');
-    }
-    });
     
     //Máscaras de formulários com jQuery Mask
     $('.telefone').mask('(00) 0000-0000');

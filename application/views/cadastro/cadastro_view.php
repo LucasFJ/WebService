@@ -31,7 +31,7 @@
 	<br />
         <span class='red-text' id='erro'><?php echo $mensagem_erro;?></span><br/>
             <!-- CARD LOGIN -->
-            <div class="card center-align orange z-depth-2">
+            <div class="card center-align grey darken-2 z-depth-2">
                 <br /><span class="card-title">Cadastro</span>
                 <form action="<?php echo base_url("cadastro/POSTcadastro");?>" class="col s12" method="post">
             <div class="card-content center-align contForm">

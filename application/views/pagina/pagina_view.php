@@ -15,7 +15,7 @@ document.getElementById("cabecalho").innerHTML = " <?php echo $nome; ?>";
 <div class="card-panel <?php echo $cor; ?> lighten-1 z-depth-1">
     <div class="row cardConteudo valign-wrapper">
     <div class="col s3 right-align cardImagem">
-    <img src='<?php echo base_url("src/imagens/pagina/perfil/$imagem"); ?>' class="circle imgServico z-depth-1"/>
+    <img src='<?php echo base_url("src/imagens/pagina/perfil/$imagem"); ?>' class="materialboxed circle imgServico z-depth-1"/>
     </div>
     <div class="col s9 center-align cardInfo">
         <div class="row  white-text left-align cardTopo">

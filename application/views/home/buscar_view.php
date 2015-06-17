@@ -71,7 +71,7 @@ document.getElementById("cabecalho").innerHTML = "Buscar";
     </div>
 
 <script>
-    $(document).ready(function() {
-        CarregarBoxRamo();
-    });
+    document.onload = function(){
+        
+    }
 </script>

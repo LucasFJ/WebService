@@ -158,10 +158,10 @@ class Pagina extends CI_Controller{
         $codigo = $this->pagmod->CarregarPaginaProprietario();
         if($codigo){
             $dados = $this->pagmod->CarregarDadosPagina($codigo);
-             
             $dados_preload = $this->pagmod->CarregarBoxLayoutRamo();
             $dados['opcoes_ramo'] = $dados_preload['opcoes_ramo'];
             $dados['opcoes_layout'] = $dados_preload['opcoes_layout'];
+            $dados['javascript'] = array('src/js/jquery.mask.js','src/js/jquery.form.js','src/js/crudpagina_req.js');
             // print_r($dados_pagina);
              $this->load->view('include/head_view');
              $this->load->view('include/header_view');
