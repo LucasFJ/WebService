@@ -2,6 +2,14 @@
 
 <script>
 document.getElementById("cabecalho").innerHTML = "Criar Página";
+window.onload = function(){
+        $('select').material_select();
+        //Máscaras de formulários com jQuery Mask
+        $('.telefone').mask('(00) 0000-0000');
+        $('.celular').mask('(00) 00000-0000');
+        $('#cep').mask('00000-000');
+
+    }
 </script>
 
 <!-- Conteúdo da View abaixo -->
@@ -150,3 +158,7 @@ document.getElementById("cabecalho").innerHTML = "Criar Página";
     </div>          
 </form>
 </div>
+
+ <script>
+    
+ </script>

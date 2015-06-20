@@ -253,8 +253,6 @@ document.getElementById("cabecalho").innerHTML = "Configurações";
         $('#cep').mask('00000-000');
     // Inicializa o elemento Form Select do Materialize
     
-        CarregarBoxRamo();
-        CarregarBoxEstado();
     $('select').material_select();
     }
  </script>
