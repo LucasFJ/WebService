@@ -99,7 +99,7 @@ class Pagina extends CI_Controller{
             $complemento = trim($_POST['complemento']);
             $layout = $_POST['layout'];
             $telefone = preg_replace("/[()\s-]+/", "",$_POST['telefone']);
-            $celular = $_POST['celular'];
+            $celular =  preg_replace("/[()\s-]+/", "",$_POST['celular']);
             $imagem =  $_FILES['imagem'];
             if(!$this->validacao->ValidNomePagina($nome)){
                 redirect("pagina/cadastrar/nomeinvalido");
@@ -161,7 +161,6 @@ class Pagina extends CI_Controller{
             $dados_preload = $this->pagmod->CarregarBoxLayoutRamo();
             $dados['opcoes_ramo'] = $dados_preload['opcoes_ramo'];
             $dados['opcoes_layout'] = $dados_preload['opcoes_layout'];
-            $dados['javascript'] = array('src/js/jquery.mask.js','src/js/jquery.form.js','src/js/crudpagina_req.js');
             // print_r($dados_pagina);
              $this->load->view('include/head_view');
              $this->load->view('include/header_view');

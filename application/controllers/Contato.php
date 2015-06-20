@@ -4,27 +4,27 @@ class Contato extends CI_Controller{
     public function __construct() {
         parent::__construct();
         if(!$this->status->verificarLogin()){
-            redirect('login');
+            //redirect('login');
+            $dados['css'] = array('login.css');
+            $this->load->view('include/head_view', $dados);
+            $this->load->view('include/headeroff_view');
+        } else {
+            $this->load->view('include/head_view');
+            $this->load->view('include/header_view');
         }
     }
     
     public function index(){
-        $this->load->view('include/head_view');
-        $this->load->view('include/header_view');
         $this->load->view('contato/sobrenos_view');
         $this->load->view('include/footer_view');
     }
     
     public function sobrenos(){
-        $this->load->view('include/head_view');
-        $this->load->view('include/header_view');
         $this->load->view('contato/sobrenos_view');
         $this->load->view('include/footer_view');
     }
     
     public function faleconosco(){
-        $this->load->view('include/head_view');
-        $this->load->view('include/header_view');
         $this->load->view('contato/faleconosco_view');
         $this->load->view('include/footer_view');
     }
@@ -56,8 +56,6 @@ class Contato extends CI_Controller{
         }
     }
     public function termosdeuso(){
-        $this->load->view('include/head_view');
-        $this->load->view('include/header_view');
         $this->load->view('contato/termosdeuso_view');
         $this->load->view('include/footer_view');
     }

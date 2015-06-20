@@ -1,29 +1,9 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" />
-<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" />
+<script>
+document.getElementById("cabecalho").innerHTML = "Cadastro";
+</script>
 
-		<link href="<?php echo base_url('src/css/materialize.min.css'); ?>" type="text/css" rel="stylesheet" media="screen,projection" />
-		<link href="<?php echo base_url('src/css/cadastro.css'); ?>" type="text/css" rel="stylesheet" media="screen,projection" />
-
-		<title>Service</title>
-	</head>
-
-	<body>
-          <header>
-            <nav class="grey lighten-3">
-              <div class="nav-wrapper container">
-                <span unselectable="on" class="brand-logo center orange-text text-darken-2">Nova Conta</span>
-                <a href="<?php echo base_url('login'); ?>" class="left-align"><i class="mdi-navigation-arrow-back orange-text"></i></a>
-      </div>
-            </nav>
-          </header> 
-
-	<main>
-            
 	<div class="no-pad-bot">
 	<div class="container center">
 	<br />
@@ -102,3 +82,16 @@
 	</div>
 	<br /><br />
 	</div>
+            
+<script>
+    window.onload = function(){
+        // Inicializa o elemento Form Select do Materialize
+        $('select').material_select();
+        
+        // Inicialização de datas
+        $('.datepicker').pickadate({
+            selectMonths: true, // Creates a dropdown to control month
+           selectYears: 180 // Creates a dropdown of 15 years to control year
+        });
+    }
+</script>

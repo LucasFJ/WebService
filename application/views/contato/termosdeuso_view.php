@@ -8,7 +8,10 @@ document.getElementById("cabecalho").innerHTML = "Termos de uso";
 <br/>
 <div class="container">
 
-<h5>Bem-vindo ao <strong>Sniffoo</strong>!</h5><br/>
+
+<h5 class="hide-on-med-and-up grey-text text-darken-2 center-align">Bem-vindo ao <strong>Sniffoo</strong>!</h5>
+<h5 class="hide-on-small-only grey-text text-darken-2 left-align">Bem-vindo ao <strong>Sniffoo</strong>!</h5>
+<br/>
 <p align="justify">Agradecemos por usar nossos produtos e serviços. Os Serviços serão fornecidos 
 pela <strong>DLI Sistemas Ltda.</strong> <br/><br/>
 Ao usar nossos serviços, você estará concordando com estes termos. Leia-os com atenção. <br/><br/>

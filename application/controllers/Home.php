@@ -55,13 +55,6 @@ class Home extends CI_Controller{
             redirect("home/buscar");
         }      
     }
-    
-    public function favoritos(){
-        $this->load->view('include/head_view');
-        $this->load->view('include/header_view');
-            $this->load->view('home/favoritos_view');
-        $this->load->view('include/footer_view');
-    }
 
     public function Sair(){
         $this->status->fecharSessao();

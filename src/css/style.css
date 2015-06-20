@@ -2,7 +2,8 @@
 /* SideNav Fixa */ @media only screen and (min-width : 993px) {
     header, main, footer { padding-left: 240px; }
 }
-.sideLogo       { border-bottom: 1px solid #ddd; } 
+.sideLogo       { border-bottom: 1px solid #ddd; }
+.imgLogo        { width: 80px; margin: auto;}
 span.brand-logo { font-size: 20px; line-height: 25px; }
 .side-nav       { overflow: scroll; }
 /* Dizer após cabeçalho */ h5 { font-size: 20px; }

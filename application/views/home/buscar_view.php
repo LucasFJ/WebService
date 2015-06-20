@@ -71,7 +71,18 @@ document.getElementById("cabecalho").innerHTML = "Buscar";
     </div>
 
 <script>
-    document.onload = function(){
+    window.onload = function(){
         
+        // Inicializa o elemento Form Select do Materialize
+        CarregarBoxRamo();
+        CarregarBoxEstado();
+        $('select').material_select();
+        
+        // Oculta e permite Exibir/Ocultar a busca aprimorada
+        $('#buscaAdicional').hide();
+        $('#btnAdicional').click(mostrarAdicional);
+        function mostrarAdicional(){
+                $('#buscaAdicional').toggle();
+        }
     }
 </script>

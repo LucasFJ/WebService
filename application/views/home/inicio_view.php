@@ -22,5 +22,10 @@ document.getElementById("cabecalho").innerHTML = "Início";
  <script>
     window.onload = function(){
          <?php echo $acao;?>
+        //Máscaras de formulários com jQuery Mask
+        $('.telefone').mask('(00) 0000-0000');
+        $('.celular').mask('(00) 00000-0000');
+        $('#cep').mask('00000-000');
+
     }
  </script>

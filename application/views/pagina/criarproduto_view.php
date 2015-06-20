@@ -21,7 +21,7 @@ document.getElementById("cabecalho").innerHTML = "Criar Produto";
     <form id="formImagem" class="col s12" method="post" enctype="multipart/form-data">    
     <div class="row formLine">
     <div class="col s12 m4 l4 center-align cardImagem">
-        <img id="imagemproduto" src="<?php echo base_url("src/imagens/pagina/perfil/harry-square.png"); ?>" class="materialboxed imgServico z-depth-1"/>
+        <img id="imagemproduto" src="<?php echo base_url("src/imagens/default/default.png"); ?>" class="materialboxed imgServico z-depth-1"/>
     </div><br/><br/>
     <!-- Input Imagem -->
     <div class="file-field input-field left-align col s12 m8 l8">

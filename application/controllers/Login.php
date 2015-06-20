@@ -21,6 +21,8 @@ class Login extends CI_Controller{
                break;
        }
        $dados = array('mensagem_erro' => $mensagem_erro); 
+       $dados['css'] = array('login.css');
+       $this->load->view('include/head_view', $dados); 
        $this->load->view('login/login_view', $dados);
        $this->load->view('include/footer_view');
     }
@@ -52,9 +54,12 @@ class Login extends CI_Controller{
             case "containvalida": $mensagem_erro = "O e-mail digitado se encontra cadastrado";
                 break;
         }
-       $dados = array('mensagem_erro' => $mensagem_erro);
-       $this->load->view('login/recuperar_view', $dados);
-       $this->load->view('include/footer_view');
+        $dados = array('mensagem_erro' => $mensagem_erro);
+        $dados['css'] = array('login.css');
+        $this->load->view('include/head_view', $dados);
+        $this->load->view('include/headeroff_view');
+        $this->load->view('login/recuperar_view', $dados);
+        $this->load->view('include/footer_view');
     }
     
     public function POSTrecuperar(){

@@ -22,7 +22,14 @@ document.getElementById("cabecalho").innerHTML = " <?php echo $nome; ?>";
             <span class="nomeServico"><?php echo $nome;?></span><br />
             <h6 class="sloganServico"><?php echo $slogan; ?></h6>
             <h6 class="enderecoServico"><?php echo "$bairro - $cidade / $uf"; ?></h6>
-            <h6 class="enderecoServico"><span class="telefone"><?php echo "$telefone"; ?></span>  <span class="telefone"><?php echo "$celular"; ?></span></h6>
+            <h6 class="enderecoServico"><span class="telefone"><?php echo "$telefone"; ?></span>  
+                <?php 
+                if(isset($celular))
+                    {
+                        echo "<span class='celular'>| $celular</span>";        
+                    } 
+                ?>
+            </h6>
         </div>
         <div class="row  cardRodape valign-wrapper">
         <!-- Testa (usuario já avaliou?)-->
@@ -184,7 +191,7 @@ if(is_array($produtos)){
         <h4>Compartilhar</h4>
         <p class="center-align">Caixa de opções para compartilhamento.</p><div id="fb-root"></div>
         
-        
+        <div class="fb-share-button" data-href="<?php base_url('pagina/visualizar/9'); ?>" data-layout="button"></div>
     </div>
     <div class="modal-footer grey lighten-4">
         <a href="#" class="waves-effect waves-green btn-flat modal-action modal-close">Compartilhar</a>
@@ -232,3 +239,33 @@ if(is_array($produtos)){
     </div>
 </div>
 
+<script>
+    window.onload = function(){
+        $('.modal-trigger').leanModal();        
+        //Máscaras de formulários com jQuery Mask
+        $('.telefone').mask('(00) 0000-0000');
+        $('.celular').mask('(00) 00000-0000');
+        $('#cep').mask('00000-000');
+        
+        //Range modifica estrelas no modalAvalia
+        $('#rangeAvalia').change(function(){
+            alteraEstrela();    
+        });
+        $('#rangeAvalia').click(function(){
+            alteraEstrela();    
+        });
+        function alteraEstrela(){
+            var valor = parseInt($('.thumb').children('.value').text());
+            var estrela = document.getElementsByClassName('estrela');
+            var index = 0;
+            while(index<5){
+                if(index < valor){
+                    estrela[index].className = 'mdi-action-star-rate estrela amber-text text-darken-2 rateServico';
+                } else {
+                    estrela[index].className = 'mdi-action-star-rate estrela black-text rateServico';
+                }
+                index++;
+            }
+        }
+    }
+</script>

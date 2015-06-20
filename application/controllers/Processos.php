@@ -50,6 +50,9 @@ class Processos extends CI_Controller{
             $dados = array("mensagem_erro" => $mensagem_erro,
                 "codigoProcesso" => $codigo_processo, 
                 'chaveProcesso' => $codigo_chave);
+            $dados['css'] = array('login.css');
+            $this->load->view('include/head_view', $dados); 
+            $this->load->view('include/headeroff_view');
             $this->load->view('processos/mudarsenha_view', $dados);
             $this->load->view('include/footer_view');
         } else { // algum dos dois parametros nao foi enviado
@@ -106,6 +109,8 @@ class Processos extends CI_Controller{
                     }
                 }
             }
+            $this->load->view('include/head_view', $dados); 
+            $this->load->view('include/headeroff_view');
             $this->load->view('processos/excluirpagina_view', $dados);
             $this->load->view('include/footer_view');
         //INSERIR A VIEW COM INPUT DE NOVA SENHA E CONFIRMAR NOVA SENHA

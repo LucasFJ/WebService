@@ -1,5 +1,6 @@
 base_url = "http://localhost/WebService/";
 
+window.onload = function(){
 //Funções básicas partilhadas por todos os arquivos ou quase.
 // Initialize collapse button
 $('.button-collapse').sideNav();
@@ -16,6 +17,14 @@ if($(this).hasClass('active')){
     $('.active').removeClass('active');
 }
 });
+
+//Máscaras de formulários com jQuery Mask
+$('.telefone').mask('(00) 0000-0000');
+$('.celular').mask('(00) 00000-0000');
+$('#cep').mask('00000-000');
+
+$('.select').material_select();
+}
 
 function CriaRequest() {
     try{

@@ -33,11 +33,17 @@ class Cadastro extends CI_Controller{
                 break;
         }
         $dados = array('mensagem_erro' => $mensagem_erro);
+        $dados['css'] = array('cadastro.css');
+        $this->load->view('include/head_view', $dados);
+        $this->load->view('include/headeroff_view');
         $this->load->view('cadastro/cadastro_view', $dados);
         $this->load->view('include/footer_view');          
     }
     
     public function sucesso(){
+        $dados['css'] = array('cadastro.css');
+        $this->load->view('include/head_view', $dados);
+        $this->load->view('include/headeroff_view');
         $this->load->view('cadastro/sucesso_view');
         $this->load->view('include/footer_view');
     }

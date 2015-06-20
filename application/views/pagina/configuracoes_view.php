@@ -244,3 +244,17 @@ document.getElementById("cabecalho").innerHTML = "Configurações";
         <span id="erroExcluir" class="red-text"></span><span id="sucessoExcluir" class="green-text"></span><h6><a href="#" onclick="ExcluirPagina(<?php echo $codigo; ?>);"><i class="mdi-action-delete tiny"></i> Excluir minha página</a></h6>
     </div>
 </div>
+
+ <script>
+    window.onload = function(){
+        //Máscaras de formulários com jQuery Mask
+        $('.telefone').mask('(00) 0000-0000');
+        $('.celular').mask('(00) 00000-0000');
+        $('#cep').mask('00000-000');
+    // Inicializa o elemento Form Select do Materialize
+    
+        CarregarBoxRamo();
+        CarregarBoxEstado();
+    $('select').material_select();
+    }
+ </script>
