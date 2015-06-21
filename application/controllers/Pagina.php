@@ -206,6 +206,10 @@ class Pagina extends CI_Controller{
             $this->load->library("validacao");
             $nome = trim($_POST['nmProduto']);
             $desc = trim($_POST['descProduto']);
+            $desc = str_replace("\n", "\\n", $desc);
+            $desc = str_replace("\r", "\\n", $desc);
+            $desc = str_replace("\r\n", "\\n", $desc);
+            echo $desc;
             $imagem = $_POST['imagemUpload'];
             if(!$this->validacao->ValidNomeProd($nome)){
                 redirect("pagina/criarproduto/nomeinvalido");
@@ -222,7 +226,7 @@ class Pagina extends CI_Controller{
                 } else {
                    redirect("pagina/criarproduto/falhacadastro");
                 }
-            }
+            } 
         } else {
             redirect("home");
         }

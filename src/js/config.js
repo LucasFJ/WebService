@@ -52,5 +52,7 @@ function codificarUrl(str){
     str = str.replace(/\./g,"%2E");
     str = str.replace(/\(/g,"%28");
     str = str.replace(/\)/g,"%29");
+    str = str.replace(/\*/g,"%2A");
+    str = str.replace(/\\/g, "%5C");
     return str;
 }

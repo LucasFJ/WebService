@@ -102,7 +102,7 @@ document.getElementById("cabecalho").innerHTML = "Configurações";
       <div class="collapsible-body container"><br/>
         <form class="col s12" method="post">
         <div class="input-field">
-            <textarea id="descricao" class="materialize-textarea grey-text"><?php echo str_replace("\\n","<br/>",$descricao); ?></textarea>
+            <textarea id="descricao" class="materialize-textarea grey-text"><?php echo str_replace("\\n","\n",$descricao); ?></textarea>
           <label for="descricao">Descriçao</label>
         </div>
         <div class="right-align">

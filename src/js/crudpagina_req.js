@@ -69,12 +69,10 @@ function AlterarNomePagina(codigo){
    var suces = document.getElementById("sucessoNome");
    var erro = document.getElementById("erroNome"); //campo de mensagem
    nome = nome.trim();
-   var rexep = new RegExp(/^[ªº\.,'!?&+-A-Za-zá-úÁ=Ú\sàÀ]{2,25}$/i);
+   var rexep = new RegExp(/^[ªº\.,'!?&+\-A-Za-zà-úÀ-Ú\s0-9]{2,25}$/i);
    if(rexep.test(nome) && nome != ""){
        nome = encodeURIComponent(nome); // Permitindo o dado a entrar na url
-       nome = nome.replace("!", "%21");
-       nome = nome.replace("'", "%27");
-       nome = nome.replace(/\./g,"%2E");
+       nome = codificarUrl(nome);
         var xmlreq = CriaRequest();
         if(!xmlreq){
             erro.innerHTML = "Seu navegador não suporta Ajax.";
@@ -118,12 +116,10 @@ function AlterarSloganPagina(codigo){
    var suces = document.getElementById("sucessoSlogan");
    var erro = document.getElementById("erroSlogan"); //campo de mensagem
    slogan = slogan.trim();
-   var rexep = new RegExp(/^[\.,'!?ªº&+-A-Za-zá-úÁ=ÚàÀ0-9\s]{2,40}$/i);
+   var rexep = new RegExp(/^[ªº\.,'!?&+\-A-Za-zà-úÀ-Ú\s0-9]{2,40}$/i);
    if(rexep.test(slogan) && slogan != ""){
        slogan = encodeURIComponent(slogan);
-       slogan = slogan.replace("!", "%21");
-       slogan = slogan.replace("'", "%27");
-       slogan = slogan.replace(/\./g,"%2E");
+       slogan = codificarUrl(slogan);
        var xmlreq = CriaRequest();
         if(!xmlreq){
             erro.innerHTML = "Seu navegador não suporta Ajax.";
@@ -166,15 +162,13 @@ function AlterarDescricaoPagina(codigo){
    var suces = document.getElementById("sucessoDesc");
    var erro = document.getElementById("erroDesc"); //campo de mensagem
    desc = desc.trim();
-   var rexep = new RegExp(/^[\(\)\\/ªº\.,'"!?@#$%*&+\-A-Za-zà-úÀ-Ú\s0-9]{2,180}$/i);
+   var rexep = new RegExp(/^[\(\)\\/ªº\.,"'!?@#$%*&+\-A-Za-zà-úÀ-Ú\s0-9]{2,180}$/i);
   // desc = desc.replace("\r", "ROW");
    desc = desc.replace(/\r?\n/g, "%5Cn"); 
     if(rexep.test(desc) && desc != ""){
        //FAZENDO O DADO SER TRANSMITIVEL PELA ULR
        desc = encodeURIComponent(desc);
-       desc = desc.replace("!", "%21");
-       desc = desc.replace("'", "%27");
-       desc = desc.replace(/\./g,"%2E");
+       desc = codificarUrl(desc);
        var xmlreq = CriaRequest();
         if(!xmlreq){
             erro.innerHTML = "Seu navegador não suporta Ajax.";
@@ -187,14 +181,14 @@ function AlterarDescricaoPagina(codigo){
                        if (xmlreq.status === 200) {
                           var resultado = xmlreq.responseText;
                           if(resultado === "Erro"){
-                              erro.innerHTML = "Ocorreu um erro durante a alteração.";
+                              erro.innerHTML = "Ocorreu um erro durante a alteração.1";
                               suces.innerHTML = "";
                           } else {
                               suces.innerHTML = " alterada com sucesso";
                               erro.innerHTML = "";
                           }
                        } else {
-                           erro.innerHTML = "Ocorreu um erro durante a alteração.";
+                           erro.innerHTML = "Ocorreu um erro durante a alteração.2";
                            suces.innerHTML = "";
                        }
                 }
@@ -306,12 +300,10 @@ function AlterarSitePagina(codigo){
    var suces = document.getElementById("sucessoSite");
    var erro = document.getElementById("erroSite"); //campo de mensagem
    site = site.trim();
-   var rexep = new RegExp(/^(http|https|ftp):\/\/(([A-Z0-9][A-Z0-9_-]*)(\.[A-Z0-9][A-Z0-9_-]*)+.(com|org|com.br|.net)$)(:(\d+))?\/?/i);
    var rexep2 = new RegExp(/^(www)((\.[A-Z0-9][A-Z0-9_-]*)+.(com|org|com.br|.net)$)(:(\d+))?\/?/i);
-   if(rexep.test(site) || site == "" || rexep2.test(site)){
+   if(site == "" || rexep2.test(site)){
        site = encodeURIComponent(site); // Permitindo o dado a entrar na url
-       //site = site.replace("'", "%27");
-       site = site.replace(/\./g,"%2E");
+       site = codificarUrl(site);
         var xmlreq = CriaRequest();
         if(!xmlreq){
             erro.innerHTML = "Seu navegador não suporta Ajax.";
@@ -361,10 +353,10 @@ function AlterarLocalidadePagina(codigo){
     var regexp = new RegExp(/^[0-9]{1,7}$/i);
     if(regexp.test(codigo_cep) && codigo_cep != ""){
         if(regexp.test(numero)){
-            regexp = new RegExp(/^[\.-ºª A-Za-zá-úÁ=Ú\sàÀ0-9]{2,25}$/i);
+            regexp = new RegExp(/^[\.\-ºªA-Za-zà-úÀ-Ú\s0-9]{2,25}$/i);
             if(regexp.test(complemento) || complemento == ""){
                 //Colocando um valor vazio para impedir erro no explode do PHP
-                complemento = (complemento != "") ? complemento : " ";
+                complemento = (complemento != "") ? codificarUrl(complemento) : " ";
                 numero = (numero != "") ? numero : " ";
                 var concat_dados = codigo_cep + "|" + numero + "|" + complemento;
                 concat_dados = encodeURIComponent(concat_dados);

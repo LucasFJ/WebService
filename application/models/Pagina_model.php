@@ -296,7 +296,7 @@ class Pagina_model extends CI_Model {
         if(is_numeric($codigoPagina) && is_array($novaLocalidade)){
             $codigo_cep = $novaLocalidade[0];
             $numero = $novaLocalidade[1];
-            $complemento = $novaLocalidade[2];
+            $complemento = urldecode($novaLocalidade[2]);
             if(is_numeric($codigo_cep) && (is_numeric($numero) || $numero == " ") && (preg_match("/^[A-Za-zá-úÁ=Ú\.\s0-9]+$/i", $complemento) || $complemento == " ")){
                 $resultado_query = $this->db->query("UPDATE tb_pagina SET "
                     . " cd_logradouro = $codigo_cep,  nr_endereco = '$numero', "
@@ -345,8 +345,28 @@ class Pagina_model extends CI_Model {
     public function ExcluirPagina($codigoPagina = false){
         if(is_numeric($codigoPagina)){
             //DELETANDO OS PRODUTOS LIGADOS A PÁGINA
+            $resultado_query = $this->db->query("SELECT nm_caminho_imagem FROM"
+                    . " tb_produto WHERE cd_pagina = $codigoPagina;");
+            if($resultado_query->num_rows() > 0){
+                foreach($resultado_query->result() as $row){
+                    $caminho_imagem = $row->nm_caminho_imagem;
+                    if(file_exists("src/imagens/pagina/produto/$caminho_imagem")){
+                    unlink("src/imagens/pagina/produto/$caminho_imagem");
+                    }
+                } 
+            }
             $this->db->query("DELETE FROM tb_produto WHERE cd_pagina = $codigoPagina;");
             //DELETANDO A PÁGINA
+            $resultado_query = $this->db->query("SELECT nm_caminho_imagem FROM"
+                    . " tb_pagina WHERE cd_pagina = $codigoPagina LIMIT 1;");
+            if($resultado_query->num_rows() > 0){
+                foreach($resultado_query->result() as $row){
+                    $caminho_imagem = $row->nm_caminho_imagem;
+                    if(file_exists("src/imagens/pagina/perfil/$caminho_imagem")){
+                        unlink("src/imagens/pagina/perfil/$caminho_imagem");
+                    }
+                } 
+            }
             $resultado_query = $this->db->query("DELETE FROM tb_pagina "
                     . " WHERE cd_pagina = $codigoPagina;");
             if($resultado_query){
@@ -414,6 +434,16 @@ class Pagina_model extends CI_Model {
     }
     public function DeletarProduto($codigoPagina = false, $codigoProduto = false){
         if($codigoPagina && $codigoProduto){
+            $resultado_query = $this->db->query("SELECT nm_caminho_imagem FROM"
+                    . " tb_produto WHERE cd_produto = $codigoProduto AND cd_pagina = $codigoPagina LIMIT 1;");
+            if($resultado_query->num_rows() > 0){
+                foreach($resultado_query->result() as $row){
+                    $caminho_imagem = $row->nm_caminho_imagem;
+                    if(file_exists("src/imagens/pagina/produto/$caminho_imagem")){
+                    unlink("src/imagens/pagina/produto/$caminho_imagem");
+                    }
+                } 
+            }
             $resultado_query = $this->db->query("DELETE FROM tb_produto WHERE"
                     . " cd_produto = $codigoProduto AND cd_pagina = $codigoPagina;");
             if($resultado_query){

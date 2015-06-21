@@ -61,7 +61,7 @@ class Validacao {
     }
     
     public function ValidDescPagina($str){
-        $resultado = preg_match("/^[\(\)\\/ªº\.,'!?@#$%*&+\-A-Za-zà-úÀ-Ú\s0-9]{2,180}$/i", $str);
+        $resultado = preg_match("/^[\(\)\\/ªº\.,'\"!?@#$%*&+\-A-Za-zà-úÀ-Ú\s0-9]{2,180}$/i", $str);
         return $resultado;
     }
     
@@ -92,7 +92,7 @@ class Validacao {
     }
     
     public function ValidDescProd($str){
-        $resultado = preg_match("/^[\(\)\\/ªº\.,'!?@#$%*&+\-A-Za-zà-úÀ-Ú\s0-9]{2,200}$/i", $str);
+        $resultado = preg_match("/^[\(\)\\/ªº\.,'\"!?@#$%*&+\-A-Za-zà-úÀ-Ú\s0-9]{2,200}$/i", $str);
         return $resultado;
     }
     
