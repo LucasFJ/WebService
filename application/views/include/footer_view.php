@@ -23,11 +23,15 @@
     ?>
     
     
-    <footer class="page-footer grey darken-1">
-      <div class="rodape footer-copyright grey darken-1 center-align">
-            Todos direitos reservados à DLI Sistemas <?php echo date('Y') ?>
-      </div>
+    <footer class="page-footer grey darken-1 center-align white-text">
+        <a class="grey-text text-lighten-4" href="<?php echo base_url('contato/sobrenos') ?>">Sobre nós</a> |
+        <a class="grey-text text-lighten-4" href="<?php echo base_url('contato/faleconosco') ?>">Fale Conosco</a> |
+        <a class="grey-text text-lighten-4" href="<?php echo base_url('contato/termosdeuso') ?>">Termos de Uso</a>
+    <div class="rodape footer-copyright grey darken-1 center-align">
+    <div class="container">
+        Todos direitos reservados à DLI Sistemas <?php echo date('Y'); ?>
+    </div>
+    </div>
     </footer>
-
 </body>
 </html>

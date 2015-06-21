@@ -14,7 +14,7 @@ body{
     flex: 1 0 auto;
       alignment-adjust: auto;
   }
-
+span.brand-logo { font-size: 20px; line-height: 25px; }
 /* Tamanho do dizer acima do card de login */
 h5 { font-size: 20px; }
 
