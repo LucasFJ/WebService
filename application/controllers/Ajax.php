@@ -158,4 +158,40 @@ class Ajax extends CI_Controller{
             echo "Erro";
         }
     }
+    
+    public function InserirComentario($codigoPagina = false, $comentario = false){
+        $codigoUsuario = $this->ajaxmod->CarregarCodigoUsuario();
+        if(is_numeric($codigoUsuario) && (!empty($comentario) && is_numeric($codigoPagina))){
+            $this->ajaxmod->InserirComentario( $codigoUsuario,$codigoPagina, $comentario);
+        } else {
+            echo "Erro";
+        }
+    }
+    
+    public function ExcluirComentario($codigoPagina = false){
+        $codigoUsuario = $this->ajaxmod->CarregarCodigoUsuario();
+        if(is_numeric($codigoUsuario) && is_numeric($codigoPagina)){
+            $this->ajaxmod->ExcluirComentario($codigoUsuario, $codigoPagina);
+        } else {
+            echo "Erro";
+        }
+    }
+    
+    public function CarregarMeuComentario($codigoPagina = false){
+        $codigoUsuario = $this->ajaxmod->CarregarCodigoUsuario();
+        if(is_numeric($codigoUsuario) && is_numeric($codigoPagina)){
+            $this->ajaxmod-> CarregarComentarios($codigoPagina, 0, $codigoUsuario, true);
+        } else {
+            echo "Vazio";
+        }
+    }
+    
+    public function CarregarComentarios($codigoPagina = false, $offset = 0){
+        $codigoUsuario = $this->ajaxmod->CarregarCodigoUsuario();
+        if(is_numeric($codigoUsuario) && is_numeric($codigoPagina) && is_numeric($offset)){
+            $this->ajaxmod-> CarregarComentarios($codigoPagina, $offset, $codigoUsuario, false);
+        } else {
+            echo "Vazio";
+        }
+    }
 }

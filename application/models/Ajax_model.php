@@ -211,5 +211,109 @@ class Ajax_model extends CI_Model {
             return false;
         }
     }
-}
+    
+    public function InserirComentario($codigoUsuario, $codigoPagina = false, $comentario = false){
+        $comentario = urldecode($comentario);
+        $resultado_query = $this->db->query("SELECT C.cd_usuario "
+                . " FROM comenta as C "
+                . " WHERE C.cd_usuario = $codigoUsuario AND C.cd_pagina = $codigoPagina LIMIT 1;");
+        if($resultado_query->num_rows() > 0){ //substitui o comentario
+            $resultado_query = $this->db->query("UPDATE comenta SET ds_comentario = '$comentario', "
+                    . " dt_comentario = NOW() WHERE cd_usuario = $codigoUsuario AND cd_pagina = $codigoPagina;");
 
+        } else { // cria um comentario
+            $resultado_query = $this->db->query("INSERT INTO comenta (cd_usuario, cd_pagina, ds_comentario, dt_comentario) "
+                    . " values ($codigoUsuario, $codigoPagina, '$comentario', NOW());"); 
+        }
+        //verificando se a criação ou alteração foi bem sucedida
+        if($resultado_query){
+            $this->CarregarComentarios($codigoPagina, 0, $codigoUsuario, true);
+        } else {
+            echo "Erro";
+        }
+    }
+    
+    public function CarregarComentarios($codigoPagina = false, $offset = 0, $codigoUsuario = false, $Proprio = false){
+        $strSelect = "SELECT U.nm_usuario as 'nome', U.nm_caminho_imagem as 'imagem', "
+                . " C.ds_comentario as 'comentario', C.dt_comentario as 'data'"
+                . " FROM tb_usuario as U, comenta as C, tb_pagina as P"
+                . " WHERE U.cd_usuario = C.cd_usuario AND C.cd_pagina = P.cd_pagina ";
+        if(is_numeric($codigoUsuario) && $Proprio == true){
+            $strSelect .= "AND C.cd_usuario = $codigoUsuario LIMIT 1;";
+        } else {
+            $strSelect .= "AND C.cd_usuario <> $codigoUsuario ORDER BY 4 LIMIT 2 OFFSET $offset ;";
+        }
+        $resultado_query = $this->db->query($strSelect);
+        if($resultado_query->num_rows() > 0){
+            $retorno = " ";
+            foreach($resultado_query->result() as $row){
+                $nome = $row->nome;
+                $data = date('H:i d/m/Y', strtotime($row->data));
+                $imagem = $row->imagem;
+                $comentario = $row->comentario;
+                $retorno .= $this->NovoComentario($nome, $imagem, $comentario, $data, $Proprio, $codigoPagina);
+            }
+            echo $retorno;
+        } else {
+            echo "Vazio";
+        }
+    }
+    
+    public function NovoComentario($nome, $imagem, $comentario, $data, $isDono = false, $codigoPagina = 0){
+    $imagem = (file_exists(base_url("src/imagens/usuario/$imagem"))) ? base_url("src/imagens/usuario/$imagem") : base_url("src/imagens/default/default.png"); 
+    if($isDono){
+        $retorno = "<div class='card-panel z-depth-1 card-comentario'>";
+    }else {
+        $retorno = "<div class='card-panel z-depth-1 card-comentario comentario'>";
+    }
+    $retorno .= "<div class='row'>
+        <div class='col s3 m3 l3 center-align'>
+            <img src='$imagem' class='responsive-img materialboxed circle' />
+        </div>  
+        <div class='col s9 m9 l9col-informacoes'>
+        <div class='row valign-wrapper row-informacoes'>
+            <div class='col s10 m10 l10 left-align grey-text text-darken-4 comentario-nome'><strong>$nome</strong></div>";
+            if($isDono){
+                $retorno .= "<div class='col s2 m2 l2 right-align grey-text text-darken-3 comentario-excluir'><a href='#' onclick='ExcluirComentario($codigoPagina);'><i class='mdi-content-clear red-text small'></i></a></div>";
+            }
+            
+    $retorno .= "</div><br/>
+        <div class='row'>
+            <div class='col s12 m12 l12 comentario-texto'>$comentario</div>
+        </div><br/>
+        <div class='row row-data'>
+            <div class='col s12 m12 l12 left-align grey-text text-darken-2 comentario-data'>$data</div>
+        </div>
+        </div> 
+    </div>
+    </div>";
+    return $retorno;
+    }
+    
+    public function ExcluirComentario($codigoUsuario, $codigoPagina){
+        $resultado_query = $this->db->query("DELETE FROM comenta "
+                . " WHERE cd_usuario = $codigoUsuario AND cd_pagina = $codigoPagina;");
+        if($resultado_query){
+            echo " ";
+        } else {
+            echo "Erro";
+        }
+    }
+    
+    public function CarregarCodigoUsuario(){
+        $email = $_SESSION['user_email'];
+        $resultado_query = $this->db->query("SELECT cd_usuario as 'codigo'"
+                . " FROM tb_usuario "
+                . " WHERE nm_email = '$email' "
+                . " LIMIT 1;");
+        if($resultado_query->num_rows() > 0){
+            foreach($resultado_query->result()  as $row){
+                $codigoUsuario = $row->codigo;
+            }
+            return $codigoUsuario;
+        } else {
+            return false;
+        } 
+            
+    }
+} 

@@ -155,16 +155,17 @@ document.getElementById("cabecalho").innerHTML = " <?php echo $nome; ?>";
 <form>
 <div class="row">
 <div class="input-field col s10 m10 l10">
-    <input id="comentario" type="text" class="validate" placeholder="Conte-nos o que achou da <?php echo $nome; ?>?">
+    <input maxlength="150" id="comentario" type="text" class="validate" placeholder="Conte-nos o que achou da <?php echo $nome; ?>?">
     <label for="comentario" class="active">Comentário</label>
 </div>
 <div class="input-field col s2 m2 l2 center-align">
-    <a class="btn-floating btn-med <?php echo $cor; ?> darken-1"><i class="mdi-content-send"></i></a>
+    <a onclick="InserirComentario(<?php echo "$codigo"; ?>)" class="btn-floating btn-med <?php echo $cor; ?> darken-1"><i class="mdi-content-send"></i></a>
 </div>
 </div>
 </form>
-
-<!-- CORPO DO COMENTÁRIO -->
+    <div id="meucomentario"></div>
+    <div id="outroscomentarios"></div>
+    <!-- 
     <div class="card-panel z-depth-1 card-comentario">
     <div class="row">
         <div class="col s3 m3 l3 center-align">
@@ -183,7 +184,7 @@ document.getElementById("cabecalho").innerHTML = " <?php echo $nome; ?>";
         </div>
         </div> 
     </div>
-    </div>
+    </div> CORPO DO COMENTÁRIO -->
 </div>
 </div>
 
@@ -298,37 +299,9 @@ document.getElementById("cabecalho").innerHTML = " <?php echo $nome; ?>";
         $('#rangeAvalia').click(function(){
             alteraEstrela();    
         });
-        function alteraEstrela(){
-            var valor = parseInt($('.thumb').children('.value').text());
-            var estrela = document.getElementsByClassName('estrela');
-            var index = 0;
-            while(index<5){
-                if(index < valor){
-                    estrela[index].className = 'mdi-action-star-rate estrela amber-text text-darken-2 rateServico';
-                } else {
-                    estrela[index].className = 'mdi-action-star-rate estrela black-text rateServico';
-                }
-                index++;
-            }
-        }
         
         IniciarMapa(<?php echo "$lat,$long";?>);
-
+        CarregarMeuComentario(<?php echo $codigo; ?>);
+        CarregarComentarios(<?php echo $codigo; ?>);
     }
-    var map;
-    function IniciarMapa(lat, long){
-                    var latlng = new google.maps.LatLng(lat,long);
-                    var options = {
-                        zoom: 16,
-                        center: latlng,
-                        mapTypeId: google.maps.MapTypeId.ROADMAP
-                    };
-                    map = new google.maps.Map(document.getElementById("mapa"), options);
-                    //Colocando um marcador
-                     var marker = new google.maps.Marker({
-                     position: new google.maps.LatLng(lat, long),
-                     title: "Local da empresa",
-                        map: map
-                });
-            }
 </script>

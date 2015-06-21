@@ -88,7 +88,7 @@ function AlterarNomePagina(codigo){
                               erro.innerHTML = "Ocorreu um erro durante a alteração.2";
                               suces.innerHTML = "";
                           } else {
-                              suces.innerHTML = "alterado com sucesso";
+                              suces.innerHTML = "ALTERADO";
                               //desaparecendo com a mensagem depois de 4 segundos
                               erro.innerHTML = "";
                           }
@@ -135,7 +135,7 @@ function AlterarSloganPagina(codigo){
                               erro.innerHTML = "Ocorreu um erro durante a alteração.";
                               suces.innerHTML = "";
                           } else {
-                              suces.innerHTML = " alterado com sucesso";
+                              suces.innerHTML = "ALTERADO";
                               erro.innerHTML = "";
                           }
                        } else {
@@ -184,7 +184,7 @@ function AlterarDescricaoPagina(codigo){
                               erro.innerHTML = "Ocorreu um erro durante a alteração.1";
                               suces.innerHTML = "";
                           } else {
-                              suces.innerHTML = " alterada com sucesso";
+                              suces.innerHTML = "ALTERADO";
                               erro.innerHTML = "";
                           }
                        } else {
@@ -228,7 +228,7 @@ function AlterarRamoPagina(codigo){
                               erro.innerHTML = "Ocorreu um erro durante a alteração.";
                               suces.innerHTML = "";
                           } else {
-                              suces.innerHTML = " alterado com sucesso";
+                              suces.innerHTML = "ALTERADO";
                               erro.innerHTML = "";
                           }
                        } else {
@@ -272,7 +272,7 @@ function AlterarLayoutPagina(codigo){
                               erro.innerHTML = "Ocorreu um erro durante a alteração.";
                               suces.innerHTML = "";
                           } else {
-                              suces.innerHTML = " alterado com sucesso";
+                              suces.innerHTML = "ALTERADO";
                               erro.innerHTML = "";
                           }
                        } else {
@@ -319,7 +319,7 @@ function AlterarSitePagina(codigo){
                               erro.innerHTML = "Ocorreu um erro durante a alteração.";
                               suces.innerHTML = "";
                           } else {
-                              suces.innerHTML = " alterado com sucesso";
+                              suces.innerHTML = "ALTERADO";
                               erro.innerHTML = "";
                           }
                        } else {
@@ -375,7 +375,7 @@ function AlterarLocalidadePagina(codigo){
                                               erro.innerHTML = "Ocorreu um erro durante a alteração.";
                                               suces.innerHTML = "";
                                           } else {
-                                              suces.innerHTML = " alterada com sucesso";
+                                              suces.innerHTML = "ALTERADO";
                                               erro.innerHTML = "";
                                           }
                                        } else {
@@ -436,7 +436,7 @@ function AlterarTelefonePagina(codigo){
                                               erro.innerHTML = "Ocorreu um erro durante a alteração.";
                                               suces.innerHTML = "";
                                           } else {
-                                              suces.innerHTML = "Contatos alterados com sucesso";
+                                              suces.innerHTML = "ALTERADO";
                                               erro.innerHTML = "";
                                           }
                                        } else {
