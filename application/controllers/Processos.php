@@ -91,6 +91,7 @@ class Processos extends CI_Controller{
             $codigo_chave = addslashes($codigo_chave);
             $codigo_processo = addslashes($codigo_processo);
             $dados = array("mensagem_erro" => "");
+            
             if(isset($_POST['excluir'])){
                 $desejaExcluir = $_POST['excluir'];
                 if($desejaExcluir == 1){
@@ -109,8 +110,15 @@ class Processos extends CI_Controller{
                     }
                 }
             }
-            $this->load->view('include/head_view', $dados); 
+            if(!$this->status->verificarLogin()){
+            //redirect('login');
+            $dados['css'] = array('login.css');
+            $this->load->view('include/head_view', $dados);
             $this->load->view('include/headeroff_view');
+            } else {
+            $this->load->view('include/head_view');
+            $this->load->view('include/header_view');
+            }
             $this->load->view('processos/excluirpagina_view', $dados);
             $this->load->view('include/footer_view');
         //INSERIR A VIEW COM INPUT DE NOVA SENHA E CONFIRMAR NOVA SENHA

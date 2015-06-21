@@ -19,7 +19,8 @@ document.getElementById("cabecalho").innerHTML = "Buscar";
               <label for="nome" class="active">Nome</label>
             </div>
             <div class="input-field col l6 m6 s12">
-                <select  name="ramo"  id='container-ramo' required>                 
+                <select  name="ramo"  id='container-ramo' required>
+                    <?php echo $ramos; ?>
                 </select>
             </div>
             </div>
@@ -36,22 +37,18 @@ document.getElementById("cabecalho").innerHTML = "Buscar";
               </select>
             </div>
             <div class="input-field col l6 m6 s12">
-                <select name="estado" id="container-estado" required>
-                <option value="0" selected>Estado</option>
+                <select name="estado" id="container-estado" required onchange="CarregarBoxCidade();">
+                <?php echo $estados; ?>
               </select>
             </div>
             </div>
             <!-- ROW ROW ROW -->
             <div class="row formLine">
-            <div class="input-field col l6 m6 s12">
-                <select name="cidade" id="container-cidade" required>
-                <option value="0" selected>Cidade</option>
-              </select>
+            <div id="container-cidade" class="input-field col l6 m6 s12">
+               
             </div>
-            <div class="input-field col l6 m6 s12">
-                <select name="bairro" id="container-bairro" required>
-                <option value="0" selected>Bairro</option>
-              </select>
+            <div id="container-bairro" class="input-field col l6 m6 s12">
+                
             </div>
             </div>
             </div>
@@ -74,8 +71,6 @@ document.getElementById("cabecalho").innerHTML = "Buscar";
     window.onload = function(){
         
         // Inicializa o elemento Form Select do Materialize
-        CarregarBoxRamo();
-        CarregarBoxEstado();
         $('select').material_select();
         
         // Oculta e permite Exibir/Ocultar a busca aprimorada

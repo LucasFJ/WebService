@@ -30,7 +30,7 @@ class Ajax_model extends CI_Model {
             $strConsulta .= "AND P.cd_ramo = $ramo ";
         }
         if($estado){ // algum estado foi especificado?
-            $strConsulta .= "AND E.cd_estado = $estado ";
+            $strConsulta .= "AND UF.cd_uf = $estado ";
         }
         if($cidade){ // alguma cidade foi especificada?
             $strConsulta .= "AND C.cd_cidade = $cidade ";
@@ -133,9 +133,9 @@ class Ajax_model extends CI_Model {
                 $codigo = $row->codigo;
                 $resultado .= "<option value='$codigo'>$nome</option>";
             }
-            echo $resultado;
+            return $resultado;
         } else {
-            echo "<script> alert('Não foi possivel carregar os ramos');</script>";
+            return "<option value='0' selected>Ramo da página</option>";
         }
     }
     public function carregarOpcoesEstado(){
@@ -150,9 +150,9 @@ class Ajax_model extends CI_Model {
                 $codigo = $row->codigo;
                 $resultado .= "<option value='$codigo'>$nome</option>";
             }
-            echo $resultado;
+            return $resultado;
         } else {
-            echo "<script> alert('Não foi possivel carregar os ramos');</script>";
+            return "<option value='0' selected>Estado</option>";
         }
     }
     public function carregarOpcoesCidade($codigo = 1){
@@ -161,15 +161,15 @@ class Ajax_model extends CI_Model {
          	 WHERE U.cd_uf = C.cd_uf AND C.cd_cidade = B.cd_cidade AND  
              	B.cd_bairro = L.cd_Bairro and P.cd_logradouro = L.cd_logradouro AND U.cd_uf = $codigo ORDER BY 2;");
         if($resultado_query->num_rows() > 0){
-            $resultado = "<option value='0' selected>Cidade</option>";
+            $resultado = "<select name='cidade'  id='cidade' required onchange='CarregarBoxBairro()'><option value='0' selected>Cidade</option>";
             foreach($resultado_query->result() as $row){
                 $nome = $row->nome;
                 $codigo = $row->codigo;
                 $resultado .= "<option value='$codigo'>$nome</option>";
             }
-            echo $resultado;
+            echo "$resultado </select>";
         } else {
-            echo "<script> alert('Não foi possivel carregar os ramos');</script>";
+            echo " ";
         }
     } 
     public function carregarOpcoesBairro($codigo = 1){
@@ -179,15 +179,15 @@ class Ajax_model extends CI_Model {
                 . " C.cd_cidade = B.cd_cidade AND B.cd_bairro = L.cd_Bairro and P.cd_logradouro = L.cd_logradouro "
                 . " AND C.cd_cidade = $codigo ORDER BY 2;");
         if($resultado_query->num_rows() > 0){
-            $resultado = "<option value='0' selected>Bairro</option>";
+            $resultado = "<select name='bairro' id='bairro' required><option value='0' selected>Bairro</option>";
             foreach($resultado_query->result() as $row){
                 $nome = $row->nome;
                 $codigo = $row->codigo;
                 $resultado .= "<option value='$codigo'>$nome</option>";
             }
-            echo $resultado;
+            echo "$resultado </select>";
         } else {
-            echo "<script> alert('Não foi possivel carregar os ramos');</script>";
+            echo " ";
         }
     }
     

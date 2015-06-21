@@ -94,6 +94,9 @@ class Pagina extends CI_Controller{
             $slogan =   trim($_POST['slogan']);
             $site =     trim($_POST['site']);
             $descricao = trim($_POST['descricao']);
+            //$descricao  = str_replace("\n", "\\n", $descricao );
+            //$descricao  = str_replace("\r", "\\n", $descricao );
+            //$descricao  = str_replace("\r\n", "\\n", $descricao );
             $cep =      $_POST['codigo_cep'];
             $numero =   trim($_POST['numero']);
             $complemento = trim($_POST['complemento']);
@@ -206,9 +209,9 @@ class Pagina extends CI_Controller{
             $this->load->library("validacao");
             $nome = trim($_POST['nmProduto']);
             $desc = trim($_POST['descProduto']);
-            $desc = str_replace("\n", "\\n", $desc);
-            $desc = str_replace("\r", "\\n", $desc);
-            $desc = str_replace("\r\n", "\\n", $desc);
+            //$desc = str_replace("\n", "\\n", $desc);
+            //$desc = str_replace("\r", "\\n", $desc);
+            //$desc = str_replace("\r\n", "\\n", $desc);
             echo $desc;
             $imagem = $_POST['imagemUpload'];
             if(!$this->validacao->ValidNomeProd($nome)){
