@@ -11,7 +11,7 @@ document.getElementById("cabecalho").innerHTML = "Cadastro";
 	<br />
         <span class='red-text' id='erro'><?php echo $mensagem_erro;?></span><br/>
             <!-- CARD LOGIN -->
-            <div class="card center-align grey darken-2 z-depth-2">
+            <div class="card center-align grey darken-1 z-depth-2">
                 <br /><span class="card-title">Cadastro</span>
                 <form action="<?php echo base_url("cadastro/POSTcadastro");?>" class="col s12" method="post">
             <div class="card-content center-align contForm">
@@ -19,19 +19,19 @@ document.getElementById("cabecalho").innerHTML = "Cadastro";
                 
                 <div class="row">
                 <div class="input-field col l6 s12">
-                    <input maxlength="20" id="nome" name="nome" type="text" class="validate" required value=""/>
-		  <label for="nome" class="inputLabel">Nome *</label>
+                    <input maxlength="20" placeholder="João" id="nome" name="nome" type="text" class="validate" required value=""/>
+		  <label for="nome" class="inputLabel active">Nome *</label>
 		</div>
                 <div class="input-field col l6 s12">
-                    <input maxlength="20" id="sobrenome" name="sobrenome" type="text" class="validate" required  value=""/>
-                <label for="last_name">Sobrenome *</label>
+                    <input maxlength="20" placeholder="Ramalho" id="sobrenome" name="sobrenome" type="text" class="validate" required  value=""/>
+                <label for="last_name" class="active">Sobrenome *</label>
                 </div>
                 </div>
                 
                 <div class="row">
                 <div class="input-field col l6 s12">
-                    <input maxlength="50" id="email" name="email" type="email" class="validate" required value=""/>
-                    <label for="first_name">E-mail *</label>
+                    <input maxlength="50" id="email" placeholder="exemplo@exemplo.com" name="email" type="email" class="validate" required value=""/>
+                    <label for="email" class="active">E-mail *</label>
                 </div>
                 <div class="input-field col l6 s12 genero">
                   <select name="genero" required>
@@ -44,19 +44,19 @@ document.getElementById("cabecalho").innerHTML = "Cadastro";
                 
                 <div class="row">
                 <div class="input-field col l6 s12">
-                    <input maxlength="40" id="senha" name="senha" type="password" class="validate" required />
-                <label for="first_name">Senha *</label>
+                    <input maxlength="40" placeholder="Digite sua senha" id="senha" name="senha" type="password" class="validate" required />
+                <label for="senha" class="active">Senha *</label>
                 </div>
                 <div class="input-field col l6 s12">
-                    <input maxlength="40" id="repeteSenha" name="repeteSenha" type="password" class="validate" required />
-                <label for="last_name">Senha Novamente *</label>
+                    <input maxlength="40" placeholder="Repita sua senha" id="repeteSenha" name="repeteSenha" type="password" class="validate" required />
+                <label for="repeteSenha" class="active">Senha Novamente *</label>
                 </div>
                 </div>
                 
                 <div class="row">
                 <div class="input-field col l6 s12">
-                    <input id="nascimento" name="nascimento" type="date" class="datepicker" required />
-                <label for="first_name">Data de Nascimento *</label>
+                    <input id="nascimento" placeholder="00 Mês, 0000" name="nascimento" type="date" class="datepicker" required />
+                <label for="nascimento" class="active">Data de Nascimento *</label>
                 </div>
                 <div class="input-field col l6 s12">
                     <p>
@@ -71,9 +71,9 @@ document.getElementById("cabecalho").innerHTML = "Cadastro";
                 <!--/FORM-->
                 
                 <!-- BUTTONS -->
-                <div class="container containerBtnCadastro">
-                    <button name="CadastroUsuario" value="Enviar" type="submit" class="btnCadastro waves-effect waves-light white orange-text text-darken-4 btn tooltipped" data-position="top" data-delay="200" data-tooltip="Cadastrar-se">Cadastrar</button>
-                    <button type="reset" class="btnCadastro waves-effect waves-light white orange-text text-darken-4 btn tooltipped" data-position="top" data-delay="200" data-tooltip="Limpar dados inseridos">Limpar</button>
+                <div class="container contAction">
+                    <button name="CadastroUsuario" value="Enviar" type="submit" class="btnAction waves-effect waves-light white orange-text text-darken-4 btn tooltipped" data-position="top" data-delay="200" data-tooltip="Cadastrar-se">Cadastrar</button>
+                    <button type="reset" class="btnAction waves-effect waves-light white orange-text text-darken-4 btn tooltipped" data-position="top" data-delay="200" data-tooltip="Limpar dados inseridos">Limpar</button>
                     </div>
                 <!-- /BUTTONS -->
             </form>

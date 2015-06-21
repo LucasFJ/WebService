@@ -33,7 +33,7 @@ class Cadastro extends CI_Controller{
                 break;
         }
         $dados = array('mensagem_erro' => $mensagem_erro);
-        $dados['css'] = array('cadastro.css');
+        $dados['css'] = array('login.css');
         $this->load->view('include/head_view', $dados);
         $this->load->view('include/headeroff_view');
         $this->load->view('cadastro/cadastro_view', $dados);
@@ -41,7 +41,7 @@ class Cadastro extends CI_Controller{
     }
     
     public function sucesso(){
-        $dados['css'] = array('cadastro.css');
+        $dados['css'] = array('login.css');
         $this->load->view('include/head_view', $dados);
         $this->load->view('include/headeroff_view');
         $this->load->view('cadastro/sucesso_view');

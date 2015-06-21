@@ -19,11 +19,11 @@ document.getElementById("cabecalho").innerHTML = "Informações";
         <form class="col s12" method="post">
         <div class="input-field">
             <input id="nome" type="text" value="" required />
-            <label for="nome">Nome</label>
+            <label for="nome" class="active">Nome</label>
         </div>
         <div class="input-field">
             <input id="sobrenome" type="text" value="" required />
-            <label for="sobrenome">Sobrenome</label>
+            <label for="sobrenome" class="active">Sobrenome</label>
         </div><br/>
         <div class="right-align">
             <a class="btn btn-floating orange darken-2"><i class="mdi-navigation-check"></i></a>
@@ -70,7 +70,7 @@ document.getElementById("cabecalho").innerHTML = "Informações";
         <form class="col s12" method="post">
         <div class="input-field">
             <input id="email" type="email" value="<?php echo $_SESSION['user_email']; ?>" required disabled />
-            <label for="email">E-mail</label>
+            <label for="email" class="active">E-mail</label>
         </div><br/>
         <div class="center-align">
             <?php 

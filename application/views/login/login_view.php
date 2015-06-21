@@ -39,9 +39,9 @@
 	<!-- /FORM LOGIN -->
 	<br />
 	<!-- BUTTONS -->
-	  	<div class="containerBtnInicio container">
-                  <button name="RealizarLogin" value="Enviar" type="submit" class="btnInicio waves-effect waves-light orange darken-2 white-text btn tooltipped" data-position="top" data-delay="200" data-tooltip="Entrar no Service">Entrar<i class="mdi-content-send right"></i></button>
-		   <a href="<?php echo base_url('cadastro'); ?>" class="btnInicio waves-effect waves-light orange darken-2 white-text btn tooltipped" data-position="top" data-delay="200" data-tooltip="Criar nova conta">Nova Conta</a>
+	  	<div class="contAction container">
+                  <button name="RealizarLogin" value="Enviar" type="submit" class="btnAction waves-effect waves-light orange darken-2 white-text btn tooltipped" data-position="top" data-delay="200" data-tooltip="Entrar no Service">Entrar<i class="mdi-content-send right"></i></button>
+		   <a href="<?php echo base_url('cadastro'); ?>" class="btnAction waves-effect waves-light orange darken-2 white-text btn tooltipped" data-position="top" data-delay="200" data-tooltip="Criar nova conta">Nova Conta</a>
                 </div>
 	</form>
 		

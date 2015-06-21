@@ -12,23 +12,23 @@ document.getElementById("cabecalho").innerHTML = "Fale conosco";
 <div class="row">
     <form class="col s12" method="post" action="<?php echo base_url("contato/POSTfaleconosco");?>">
     <div class="row">
-    <div class="input-field col s6">
-        <input maxlength="20" name="nome" placeholder="Digite seu nome" id="nome" type="text" class="validate" maxlength="20" required>
+    <div class="input-field input-contato col s6">
+        <input maxlength="20" name="nome" placeholder="Digite seu nome" id="nome" type="text" class="validate" maxlength="20" required />
         <label for="nome" class="active">Nome *</label>
     </div>
-      <div class="input-field col s6">
+      <div class="input-field input-contato col s6">
         <input maxlength="50" name="email" placeholder="Digite seu e-mail" id="email" type="email" class="validate" maxlength="45" required>
         <label for="email" class="active">E-mail *</label>
       </div>
     </div>
     <div class="row">
-      <div class="input-field col s12">
+      <div class="input-field input-contato col s12">
         <input maxlength="20" name="assunto" placeholder="Assunto da mensagem" id="assunto" type="text" maxlength="50" class="validate" required>
         <label for="assunto" class="active">Assunto *</label>
       </div>
     </div>
     <div class="row">
-    <div class="input-field col s12">
+    <div class="input-field input-contato col s12">
         <textarea maxlength="500" name="mensagem" id="mensagem" class="materialize-textarea" required ></textarea>
         <label for="mensagem">Mensagem *</label>
     </div>

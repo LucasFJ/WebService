@@ -1,21 +1,17 @@
 body{ 
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;	
-}
-
- body {
+   -webkit-user-select: none;
+   -moz-user-select: none;
+   -ms-user-select: none;
     display: flex;
     min-height: 100vh;
-    flex-direction: column;
-  }
-
-  main {
+    flex-direction: column;	
+ }
+main {
     flex: 1 0 auto;
-      alignment-adjust: auto;
-  }
+    alignment-adjust: auto;
+}
+
 span.brand-logo { font-size: 20px; line-height: 25px; }
-/* Tamanho do dizer acima do card de login */
 h5 { font-size: 20px; }
 
 @media only screen and (min-width : 1200px) {
@@ -24,40 +20,118 @@ h5 { font-size: 20px; }
         margin-right: 120px;
    }
 }
+@media only screen and (min-width : 750px) {
+    .contForm{
+        margin-left: 70px;
+        margin-right: 70px;
+    }
+}
+
 @media only screen and (min-width : 700px) {
    .formLogin{
         margin-left: 40px;
         margin-right: 40px;
    }
 }
-/* LOGIN label color = label não focada */
-.login label { color: #fff;}
-/* LOGIN icon prefix focus color = icone do campo quando focado */
-.login .prefix.active { color: #fff; }
-/* LOGIN label underline focus color = linhas do campo focado */
-.login input[type="password"]:focus, .login input[type="email"]:focus {
- border-bottom: 1px solid #fff; /* linha superior do campo */
- box-shadow: 0 1px 0 0 #fff; /* linha inferior do campo */
+/* input text color */
+    .input-field input{
+        color: #fff;
+        font-weight: 300;
+        font-size: 16px;
+    }
+/* label color */
+   .input-field label {
+     color: #fff;
+   }
+   /* label focus color */
+   .input-field input[type=text]:focus + label, .input-field input[type=email]:focus + label, .input-field input[type=password]:focus + label {
+     color: #fff;
+   }
+   /* label underline color */
+   .input-field input[type=text], .input-field input[type=email], .input-field input[type=password] {
+     border-bottom: 1px solid #fff;
+     box-shadow: 0 1px 0 0 #fff;
+   }
+   /* label underline focus color */
+   .input-field input[type=text]:focus, .input-field input[type=email]:focus, .input-field input[type=password]:focus {
+     border-bottom: 1px solid #fff;
+     box-shadow: 0 1px 0 0 #fff;
+   }
+   /* icon prefix focus color */
+   .input-field .prefix.active {
+     color: #fff;
+   }
+   
+  .genero{
+   margin-top: 0px;
+} .select-wrapper input.select-dropdown{
+        color: #fff;
+        font-size: 16px;
+} .select-wrapper i{
+        color: #fff;
+} .dropdown-content li>a, .dropdown-content li>span{
+        color: #f57c00;
 }
-/* LOGIN label focus color = label focada*/
-.login input:focus + label.inputLabel { color: #fff; }
 
-.containerBtnInicio{
-	width: 395px;
-}	@media only screen and (max-width : 520px) {
-		.containerBtnInicio {
-		  width: 200px;
-		}
-	  }
+.picker__date-display{
+    background-color: #757575;
+} .picker__weekday-display{
+        background-color: #424242;
+} .picker__footer{
+        opacity: 0;
+} .picker__select--month.browser-default{
+    font-size: 14px;
+    height: 40px;
+} .picker__select--year.browser-default{
+    font-size: 14px;
+    height: 40px;
+}
+
+/* Formulário Fale Conosco */
+/* input text color */
+    .input-contato input{
+        color: #888;
+        font-weight: 300;
+        font-size: 16px;
+    }
+/* label color */
+   .input-contato label {
+     color: #888;
+   }
+   /* label focus color */
+   .input-contato input[type=text]:focus + label, .input-field input[type=email]:focus + label, .input-field input[type=password]:focus + label {
+     color: #888;
+   }
+   /* label underline focus color */
+   .input-contato input[type=text]:focus, .input-field input[type=email]:focus, .input-field input[type=password]:focus{
+     border-bottom: 1px solid #888;
+     box-shadow: 0 1px 0 0 #888;
+   }
+   /* label underline color */
+   .input-contato input[type=text], .input-contato input[type=email] {
+     border-bottom: 1px solid #888;
+     box-shadow: 0 1px 0 0 rgba(0,0,0,0);
+   }
+   .input-contato input[type=textarea]:focus + label {
+     color: #888;
+   }
+   .input-contato input[type=textarea]:focus{
+     border-bottom: 1px solid #888;
+     box-shadow: 0 1px 0 0 #888;
+   }
+   
+
+.contAction{
+    width: 395px;
+}   @media only screen and (max-width : 520px) {
+                .contAction {
+                  width: 200px;
+                }
+          }        
 /* Correção de proporção dos botões de login*/
-.btnInicio{
+.btnAction{
 	width: 160px;
 	margin-bottom: 15px;
 	margin-left: -5px;  
         margin-right: 10px;
-}
-/* Mantém rodapé sempre embaixo */
-footer {
-	width: 100%;
-	margin-bottom: -21px;
 }
