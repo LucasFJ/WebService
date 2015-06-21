@@ -22,7 +22,7 @@ document.getElementById("cabecalho").innerHTML = " <?php echo $nome; ?>";
             <span class="nomeServico"><?php echo $nome;?></span><br />
             <h6 class="sloganServico"><?php echo $slogan; ?></h6>
             <h6 class="enderecoServico"><?php echo "$bairro - $cidade / $uf"; ?></h6>
-            <h6 class="enderecoServico"><span class="telefone"><?php echo "$telefone"; ?></span>  
+            <h6 class="enderecoServico"><a class="telefone white-text" href="tel:<?php echo "$telefone"; ?>"><?php echo "$telefone"; ?></a>  
                 <?php 
                 if(isset($celular))
                     {
@@ -51,8 +51,6 @@ document.getElementById("cabecalho").innerHTML = " <?php echo $nome; ?>";
         </div>
         <div class="col s8 right-align  cardBotoes">
             <a href="#modalInfo" class="modal-trigger btn-floating waves-effect waves-light <?php echo $cor; ?> darken-2 btnServico"><i class="mdi-action-info-outline"></i></a>
-            <a href="#modalMaps" class="modal-trigger btn-floating waves-effect waves-light  <?php echo $cor; ?> darken-2 btnServico"><i class="mdi-maps-place iconeBotao"></i></a>
-            <a href="#modalComentar" class="modal-trigger btn-floating waves-effect waves-light  <?php echo $cor; ?> darken-2 btnServico"><i class="mdi-communication-comment iconeBotao"></i></a>
             <a href="#modalCompartilhar" class="modal-trigger btn-floating waves-effect waves-light  <?php echo $cor; ?> darken-2 btnServico"><i class="mdi-social-share valign-wrapper iconeBotao"></i></a>
         </div>
         </div>
@@ -60,56 +58,76 @@ document.getElementById("cabecalho").innerHTML = " <?php echo $nome; ?>";
     </div>
 </div>
 
+    <style type="text/css"> 
+        .tabs .indicator{
+            background-color: <?php echo "$cor_hexa"; ?>;
+        }
+    </style>
+        <ul class="tabs">
+        <li class="tab"><a class="active <?php echo "$cor"; ?>-text"href="#produtos">Produtos</a></li>
+        <li class="tab"><a class="<?php echo "$cor"; ?>-text"href="#localizacao">Localização</a></li>
+        <li class="tab"><a class="<?php echo "$cor"; ?>-text"href="#comentarios">Comentários</a></li>
+      </ul>
 
-<div class="contProdutos">
-<div class="row">
-<!-- PRODUTO 
-    <div class="col s12 m4 l4">
-    <div class="card">
-    <div class="card-image waves-effect waves-block waves-light">
-        <img class="activator" src="<?php //echo base_url('src/imagens/pagina/produto/ECG.png'); ?>">
-    </div>
-    <div class="card-content cardContProduto">
-        <span class="card-title activator grey-text text-darken-4"><h6 class="truncate">Interpretação de Eletrocardiograma</h6><i class="mdi-navigation-more-vert right"></i></span>
-    </div>
-    <div class="card-reveal">
-        <span class="card-title grey-text text-darken-4">Interpretação de Eletrocardiograma<i class="mdi-navigation-close right"></i></span>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat.</p>
-    </div>
-    </div>
-        <a href="#modalExcluir" class="btn modal-trigger red lighten-1 waves-effect waves-light white-text btn-excluir-produto">Excluir Produto</a>
-    </div>-->
-
-<?php
-if(is_array($produtos)){
-    foreach($produtos as $value){
-    echo    '<div class="col s12 m4 l4"><div class="card">'
-           .'<div class="card-image waves-effect waves-block waves-light">'
-           .'<img class="activator" src="'. base_url("src/imagens/pagina/produto/" . $value['imagem']) .'"></div>'
-           .'<div class="card-content cardContProduto">'
-           .'<span class="card-title activator grey-text text-darken-4"><h6 class="truncate">'. $value['nome'] .'</h6><i class="mdi-navigation-more-vert right"></i></span></div>'
-           .'<div class="card-reveal">'
-           .'<span class="card-title grey-text text-darken-4">'.$value['nome'].'<i class="mdi-navigation-close right"></i></span>'
-           .'<p>'.$value['descricao'].'</p></div></div>';
-    if($proprietario){
-        echo '<a href="'. base_url("pagina/deletarproduto/".$value['codigo']) .'" class="btn modal-trigger red lighten-1 waves-effect waves-light white-text btn-excluir-produto">Excluir Produto</a>';
-    }
-    echo '</div>';
-    }
-}
-?>
-
-</div>
-    <?php 
+    <div id="produtos">
     
-    if($proprietario){
-        echo "<div class='row right-align'><div class='container'>"
-            ."<a href='". base_url('pagina/criarproduto') ."' class='btn-floating btn-med waves-effect waves-light $cor darken-1'><i class='mdi-content-add'></i></a><br/>"
-            ."</div></div>";
-    }
-    ?>
-</div>
-</div>
+        <div class="contProdutos">
+        <div class="row">
+        <!-- PRODUTO 
+            <div class="col s12 m4 l4">
+            <div class="card">
+            <div class="card-image waves-effect waves-block waves-light">
+                <img class="activator" src="<?php //echo base_url('src/imagens/pagina/produto/ECG.png'); ?>">
+            </div>
+            <div class="card-content cardContProduto">
+                <span class="card-title activator grey-text text-darken-4"><h6 class="truncate">Interpretação de Eletrocardiograma</h6><i class="mdi-navigation-more-vert right"></i></span>
+            </div>
+            <div class="card-reveal">
+                <span class="card-title grey-text text-darken-4">Interpretação de Eletrocardiograma<i class="mdi-navigation-close right"></i></span>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat.</p>
+            </div>
+            </div>
+                <a href="#modalExcluir" class="btn modal-trigger red lighten-1 waves-effect waves-light white-text btn-excluir-produto">Excluir Produto</a>
+            </div>-->
+
+        <?php
+        if(is_array($produtos)){
+            foreach($produtos as $value){
+            echo    '<div class="col s12 m4 l4"><div class="card">'
+                   .'<div class="card-image waves-effect waves-block waves-light">'
+                   .'<img class="activator" src="'. base_url("src/imagens/pagina/produto/" . $value['imagem']) .'"></div>'
+                   .'<div class="card-content cardContProduto">'
+                   .'<span class="card-title activator grey-text text-darken-4"><h6 class="truncate">'. $value['nome'] .'</h6><i class="mdi-navigation-more-vert right"></i></span></div>'
+                   .'<div class="card-reveal">'
+                   .'<span class="card-title grey-text text-darken-4">'.$value['nome'].'<i class="mdi-navigation-close right"></i></span>'
+                   .'<p>'.$value['descricao'].'</p></div></div>';
+            if($proprietario){
+                echo '<a href="'. base_url("pagina/deletarproduto/".$value['codigo']) .'" class="btn modal-trigger red lighten-1 waves-effect waves-light white-text btn-excluir-produto">Excluir Produto</a>';
+            }
+            echo '</div>';
+            }
+        }
+        ?>
+
+        </div>
+            <?php 
+
+            if($proprietario){
+                echo "<div class='row right-align'><div class='container'>"
+                    ."<a href='". base_url('pagina/criarproduto') ."' class='btn-floating btn-med waves-effect waves-light $cor darken-1'><i class='mdi-content-add'></i></a><br/>"
+                    ."</div></div>";
+            }
+            ?>
+        </div>
+        </div>
+        
+    </div>
+    <div id="localizacao"></div>
+    <div id="comentarios"></div>
+
+    
+
+
 
 
 
@@ -133,7 +151,7 @@ if(is_array($produtos)){
             </div>
             <div class="col s12 m6 l6 left-align">
                 <h6>Contato</h6>
-                <h6 class="grey-text"><?php echo "$telefone $celular"; ?></h6>
+                <h6 class="grey-text"><span class="telefone"><?php echo "$telefone"; ?></span> <span class="celular"><?php echo "$celular"; ?></span></h6>
             </div>
             <div class="col s12 m6 l6 left-align">
                 <h6>Site</h6>
@@ -145,7 +163,7 @@ if(is_array($produtos)){
             </div>
             <div class="col s12 left-align">
                 <h6>Descrição</h6>
-                <h6 class="grey-text"><?php echo $descricao; ?></h6>
+                <h6 class="grey-text"><?php echo str_replace('\\n','<br/>',$descricao); ?></h6>
             </div>
             </div>
             
@@ -153,36 +171,6 @@ if(is_array($produtos)){
         <div class="modal-footer grey lighten-4">
             <a href="#" class="waves-effect waves-green btn-flat modal-action modal-close">Voltar</a>
         </div>
-</div>
-
-<!--MODAL MAPS-->
-<div id="modalMaps" class="modal white center modal-fixed-footer">
-	<div class="modal-content grey-text text-darken-4">
-            <h4>Localização</h4>
-        <div class="row">
-        <div class="col s12">
-            <span><?php echo "$logradouro $numero $complemento, $bairro, $cidade / $uf CEP: $cep"; ?> </span>
-        </div><br/>
-        <div class="col s12" id="mapa">
-            <!-- O mapa será apresentado aqui -->
-            
-        </div>
-        </div>
-        </div>
-        <div class="modal-footer grey lighten-4">
-            <a href="#" class="waves-effect waves-green btn-flat modal-action modal-close">Voltar</a>
-        </div>				
-</div>
-
-<!--MODAL COMENTAR-->
-<div id="modalComentar" class="modal white center modal-fixed-footer">
-	<div class="modal-content grey-text text-darken-4">
-            <h4>Comentários</h4>
-            <p class="center-align">Comentários da página abaixo!</p>
-        </div>
-        <div class="modal-footer grey lighten-4">
-            <a href="#" class="waves-effect waves-green btn-flat modal-action modal-close">Voltar</a>
-        </div>				
 </div>
 
 <!--MODAL COMPARTILHAR-->
