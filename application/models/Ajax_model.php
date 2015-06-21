@@ -106,7 +106,7 @@ class Ajax_model extends CI_Model {
                             ."<span class='nomeServico'>$nome</span><br />"
                             ."<h6 class='sloganServico'>$slogan</h6>"
                             ."<h6 class='enderecoServico'>&nbsp;$bairro, $cidade - $estado</h6>"
-                            ."<h6 class='enderecoServico'> &nbsp;$contato </h6>"
+                            ."<h6 class='enderecoServico'> &nbsp;<span class='telefone'>$telefone</span> <span class='celular'>$celular</span> </h6>"
                         ."</div><div class='row cardRodape valign-wrapper'>"
                         ."<div class='col s4 left-align  valign-wrapper cardRate'>"
                             ."<i class='mdi-action-star-rate white-text rateServico'></i>"
