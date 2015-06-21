@@ -79,6 +79,8 @@ class Imagem {
             list($width_orig, $height_orig) = getimagesize($uploadfile); 
             if($width_orig > $this->width || $height_orig > $this->height){
                 $this->redimensionar($caminho, $file['name']);
+            } elseif( $width_orig < $this->width || $height_orig < $this->height){
+                $this->aumentar($caminho, $file['name']);
             }
             return true; //ocorreu tudo como planejado.
         }
@@ -113,6 +115,63 @@ class Imagem {
                 $orgY = 0;
             }
         } else {
+            if($width_orig > $height_orig){
+                $orgY = 0;
+                $orgX = ($width_orig - (($height_orig / 3) * 4)) / 2;
+                $width_orig = (($height_orig / 3) * 4);
+            } else {          
+                $orgY = ($height_orig - (($width_orig / 4) * 3)) / 2;
+                $orgX = 0;
+                $height_orig = (($width_orig / 4) * 3);
+            }
+        }
+        switch($tipo){
+            //TIPO GIF
+            case 1: return false;
+                break;
+            //TIPO JPG
+            case 2:
+                $origem = imagecreatefromjpeg($caminho.$nomearquivo); 
+                imagecopyresampled($novaimagem, $origem, 0, 0, $orgX, $orgY, $width, $height, $width_orig, $height_orig); 
+                imagejpeg($novaimagem, $caminho.$nomearquivo); 
+                break;
+            //IMAGEM PNG
+            case 3:
+                $origem = imagecreatefrompng($caminho.$nomearquivo);
+                imagecopyresampled($novaimagem, $origem, 0, 0, $orgX, $orgY, $width, $height, $width_orig, $height_orig);
+                imagepng($novaimagem, $caminho.$nomearquivo); 
+                break;
+        } 
+        // Destrói a imagem nova criada e já salva no lugar da original 
+        imagedestroy($novaimagem); 
+        // Destrói a cópia de nossa imagem original 
+        imagedestroy($origem); 
+    } 
+    
+    protected function aumentar($caminho, $nomearquivo){
+        $width = $this->width; 
+        $height = $this->height;
+        // Pegamos a largura e altura originais, além do tipo de imagem 
+        list($width_orig, $height_orig, $tipo, $atributo) = getimagesize($caminho.$nomearquivo);
+        // Se largura é maior que altura, dividimos a largura determinada pela original e 
+        // multiplicamos a altura pelo resultado, para manter a proporção da imagem 
+        $novaimagem = imagecreatetruecolor($width, $height);
+        if($width == $height){   //IMAGEM QUADRADA     
+            // Transformando imagens retangulares em quadradas
+            //Testando: qual lado é maior que o outro
+            if($height_orig > $width_orig){
+                $orgY = ($height_orig - $width_orig) / 2;
+                $orgX = 0;
+                $height_orig = $width_orig;
+            } elseif($width_orig > $height_orig) {
+                $orgY = 0;
+                $orgX = ($width_orig - $height_orig) / 2;
+                $width_orig = $height_orig;
+            } else {
+                $orgX = 0;
+                $orgY = 0;
+            }
+        } else { //IMAGEM RETANGULAR
             if($width_orig > $height_orig){
                 $orgY = 0;
                 $orgX = ($width_orig - (($height_orig / 3) * 4)) / 2;
