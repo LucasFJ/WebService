@@ -15,12 +15,13 @@ class Perfil extends CI_Controller{
         $this->load->view('include/footer_view');
     }
     
-    public function configuracoes(){
+    public function informacoes(){
         $this->load->view('include/head_view');
         $this->load->view('include/header_view');
-        $this->load->view('perfil/configuracoes_view');
+        $this->load->view('perfil/informacoes_view');
         $this->load->view('include/footer_view');
     }
+    
 
 }
 

@@ -38,7 +38,7 @@ span.brand-logo { font-size: 20px; line-height: 25px; }
 }
 
 /* Card-Página Desktop */   @media only screen and (min-width : 871px) {
-    .card-panel{
+    .conteudo .card-panel{
         margin-left: 0px;
         margin-right: 0px;
         padding: 7px;
@@ -76,7 +76,7 @@ span.brand-logo { font-size: 20px; line-height: 25px; }
     }
 }
 /* Card-Página Tablet */    @media only screen and (max-width : 870px) {
-    .card-panel{
+    .conteudo .card-panel{
         margin-left: 0px;
         margin-right: 0px;
         padding: 7px;
@@ -125,7 +125,7 @@ span.brand-logo { font-size: 20px; line-height: 25px; }
 
 }
 /* Card-Página Mobile */    @media only screen and (max-width : 600px) {
-    .card-panel{
+    .conteudo .card-panel{
         margin-left: 0px;
         margin-right: 0px;
         padding: 7px;
@@ -343,4 +343,31 @@ span.brand-logo { font-size: 20px; line-height: 25px; }
 
 .btn-excluir-produto{
     width: 100%;
+}
+
+/* Página-Comentário */          @media only screen and (min-width : 1px) {
+    
+    .card-comentario{
+        padding: 5px;
+    }
+    .card-comentario .row{
+        margin: 0px;
+    }
+    .card-comentario .row .col-informacoes{
+        padding: 0px 0rem;
+    }
+    .card-comentario .row .col-informacoes .row .comentario-excluir{
+        padding: 0px 0rem;
+    }
+    .comentario-nome{
+        padding: 0px;
+        font-size: 14px;
+    }
+    .row-data{
+        float: bottom;
+    }
+    .comentario-data{
+        font-size: 12px;
+    }
+    
 }

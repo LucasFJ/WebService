@@ -57,16 +57,28 @@ document.getElementById("cabecalho").innerHTML = " <?php echo $nome; ?>";
     </div>
     </div>
 </div>
+<?php 
+            $address = "$logradouro+$numero,$bairro,$cidade,$uf,brasil";
+            $address = strtolower($address);
+            $address = urlencode($address);
+            $address = str_replace(" ", "+", $address);
+            //$address = "Alameda+Dois+215,Parque+Continental,Sao+Vicente,Brasil";
+            $geocode = file_get_contents('http://maps.google.com/maps/api/geocode/json?address='.$address.'&sensor=false');
 
+            $output= json_decode($geocode);
+
+            $lat = $output->results[0]->geometry->location->lat;
+            $long = $output->results[0]->geometry->location->lng;
+        ?>
     <style type="text/css"> 
         .tabs .indicator{
             background-color: <?php echo "$cor_hexa"; ?>;
         }
     </style>
         <ul class="tabs">
-        <li class="tab"><a class="active <?php echo "$cor"; ?>-text"href="#produtos">Produtos</a></li>
-        <li class="tab"><a class="<?php echo "$cor"; ?>-text"href="#localizacao">Localização</a></li>
-        <li class="tab"><a class="<?php echo "$cor"; ?>-text"href="#comentarios">Comentários</a></li>
+        <li class="tab"><a class="active <?php echo "$cor"; ?>-text"href="#produtos"><i class="mdi-navigation-apps tiny"></i> Produtos</a></li>
+        <li class="tab"><a class="<?php echo "$cor"; ?>-text"href="#localizacao"><i class="mdi-maps-place tiny"></i> Localização</a></li>
+        <li class="tab"><a class="<?php echo "$cor"; ?>-text"href="#comentarios"><i class="mdi-communication-comment tiny"></i> Comentários</a></li>
       </ul>
 
     <div id="produtos">
@@ -100,7 +112,7 @@ document.getElementById("cabecalho").innerHTML = " <?php echo $nome; ?>";
                    .'<span class="card-title activator grey-text text-darken-4"><h6 class="truncate">'. $value['nome'] .'</h6><i class="mdi-navigation-more-vert right"></i></span></div>'
                    .'<div class="card-reveal">'
                    .'<span class="card-title grey-text text-darken-4">'.$value['nome'].'<i class="mdi-navigation-close right"></i></span>'
-                   .'<p>'.$value['descricao'].'</p></div></div>';
+                   .'<p>'. nl2br($value['descricao']) .'</p></div></div>';
             if($proprietario){
                 echo '<a href="'. base_url("pagina/deletarproduto/".$value['codigo']) .'" class="btn modal-trigger red lighten-1 waves-effect waves-light white-text btn-excluir-produto">Excluir Produto</a>';
             }
@@ -122,14 +134,58 @@ document.getElementById("cabecalho").innerHTML = " <?php echo $nome; ?>";
         </div>
         
     </div>
-    <div id="localizacao"></div>
-    <div id="comentarios"></div>
 
-    
+<div id="localizacao"><br/>
+    <div class="container">
+    <div class="row center-align">
+    <div class="col s12">
+        <span><?php echo "$logradouro $numero $complemento, $bairro, $cidade / $uf CEP: $cep"; ?></span><br/>
+    </div>
+        <!-- O mapa será apresentado aqui -->
+        <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyC58cXWKOECkK7cENYOkA7JpIv7T3WrYxo&amp;sensor=false"></script>
+        <div id="mapa" onmouseover="google.maps.event.trigger(map, 'resize');" class="col s12" style="height: 300px; width: 100%;">a</div>
+    </div>
+    </div>
+</div>
 
+<div id="comentarios"><br/>
+<div class="container">
+<!-- Formulário de Envio -->    
 
+<form>
+<div class="row">
+<div class="input-field col s10 m10 l10">
+    <input id="comentario" type="text" class="validate" placeholder="Conte-nos o que achou da <?php echo $nome; ?>?">
+    <label for="comentario" class="active">Comentário</label>
+</div>
+<div class="input-field col s2 m2 l2 center-align">
+    <a class="btn-floating btn-med <?php echo $cor; ?> darken-1"><i class="mdi-content-send"></i></a>
+</div>
+</div>
+</form>
 
-
+<!-- CORPO DO COMENTÁRIO -->
+    <div class="card-panel z-depth-1 card-comentario">
+    <div class="row">
+        <div class="col s3 m3 l3 center-align">
+            <img src="<?php echo base_url('src/imagens/default/lucas.jpg'); ?>" class="responsive-img materialboxed circle" />
+        </div>  
+        <div class="col s9 m9 l9col-informacoes">
+        <div class="row valign-wrapper row-informacoes">
+            <div class="col s10 m10 l10 left-align grey-text text-darken-4 comentario-nome"><strong>Lucas Figueiredo</strong></div>
+            <div class="col s2 m2 l2 right-align grey-text text-darken-3 comentario-excluir"><a href="#"><i class="mdi-content-clear red-text small"></i></a></div>
+        </div><br/>
+        <div class="row">
+            <div class="col s12 m12 l12 comentario-texto">Eu gostei muito da página e acredito que esta deveria crescer e muito! Sucesso à todos vocês! Um forte abraço!</div>
+        </div><br/>
+        <div class="row row-data">
+            <div class="col s12 m12 l12 left-align grey-text text-darken-2 comentario-data"><?php echo date("H") . 'h' . date("i d/m/Y"); ?></div>
+        </div>
+        </div> 
+    </div>
+    </div>
+</div>
+</div>
 
 <!--MODAL INFORMAÇÕES-->
 <div id="modalInfo" class="modal white center modal-fixed-footer">
@@ -155,7 +211,7 @@ document.getElementById("cabecalho").innerHTML = " <?php echo $nome; ?>";
             </div>
             <div class="col s12 m6 l6 left-align">
                 <h6>Site</h6>
-                <h6 class="grey-textx"><a href="#"><?php echo $site; ?></a></h6>
+                <h6 class="grey-textx"><a href="<?php echo $site; ?>"><?php echo $site; ?></a></h6>
             </div>
             <div class="col s12 m6 l6 left-align">
                 <h6>Localidade</h6>
@@ -255,5 +311,24 @@ document.getElementById("cabecalho").innerHTML = " <?php echo $nome; ?>";
                 index++;
             }
         }
+        
+        IniciarMapa(<?php echo "$lat,$long";?>);
+
     }
+    var map;
+    function IniciarMapa(lat, long){
+                    var latlng = new google.maps.LatLng(lat,long);
+                    var options = {
+                        zoom: 16,
+                        center: latlng,
+                        mapTypeId: google.maps.MapTypeId.ROADMAP
+                    };
+                    map = new google.maps.Map(document.getElementById("mapa"), options);
+                    //Colocando um marcador
+                     var marker = new google.maps.Marker({
+                     position: new google.maps.LatLng(lat, long),
+                     title: "Local da empresa",
+                        map: map
+                });
+            }
 </script>
