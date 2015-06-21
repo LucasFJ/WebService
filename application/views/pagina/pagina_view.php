@@ -219,7 +219,7 @@ document.getElementById("cabecalho").innerHTML = " <?php echo $nome; ?>";
             </div>
             <div class="col s12 left-align">
                 <h6>Descrição</h6>
-                <h6 class="grey-text"><?php echo str_replace('\\n','<br/>',$descricao); ?></h6>
+                <h6 class="grey-text"><?php echo nl2br(str_replace('\\n','<br/>',$descricao)); ?></h6>
             </div>
             </div>
             

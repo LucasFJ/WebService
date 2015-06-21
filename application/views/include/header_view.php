@@ -31,8 +31,7 @@
                 <a class="collapsible-header waves-effect waves-orange aMenu"><strong>Perfil</strong></a>
             <div class="collapsible-body">
             <ul>
-                <li><a href="<?php echo base_url('perfil/index'); ?>">Informações</a></li>
-                <li><a href="<?php echo base_url('perfil/configuracoes'); ?>">Configurações</a></li>
+                <li><a href="<?php echo base_url('perfil/informacoes'); ?>">Informações</a></li>
             </ul>
             </div>
             </li>
