@@ -10,7 +10,7 @@
         echo "<script type='text/javascript' src='".base_url("src/js/materialize.min.js")."'></script>";
         echo "<script type='text/javascript' src='".base_url("src/js/config.js")."'></script>";
         foreach($javascript as $src){
-         echo "<script type='text/javascript' src=". base_url($src) ."></script>";
+         echo "<script type='text/javascript' src=". base_url("src/js/$src") ."></script>";
         }
     } else {
         echo "<script type='text/javascript' src='". base_url('src/js/requisicoes-ajax.js') ."'></script>

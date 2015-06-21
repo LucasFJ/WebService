@@ -12,7 +12,7 @@ class Pagina_model extends CI_Model {
     public function CarregarDadosPagina($codigo = false){
         $resultado_query = $this->db->query("SELECT P.cd_pagina as 'codigo', P.nm_pagina as 'nome', 
             P.nm_slogan as 'slogan', P.nm_descricao as 'descricao', R.nm_ramo as 'ramo',
-            P.nr_telefone as 'telefone', P.nr_celular as 'celular', 
+            P.nr_telefone as 'telefone', P.nr_celular as 'celular', L.cd_hexadecimal as 'corhexa',
             E.nm_logradouro as 'logradouro', E.cd_cep as 'cep', E.cd_logradouro as 'codigocep', P.nr_endereco as 'numero', P.nm_complemento_endereco as 'complemento',
             B.nm_bairro as 'bairro', C.nm_cidade as 'cidade', U.sg_uf as 'uf',
             P.nm_caminho_imagem as 'imagem', P.nm_caminho_site as 'site', L.nm_cor as 'cor'
@@ -29,7 +29,7 @@ class Pagina_model extends CI_Model {
                     'numero'  => $row->numero, 'complemento'  => $row->complemento,
                     'bairro'  => $row->bairro, 'cidade'  => $row->cidade, 
                     'uf'  => $row->uf, 'imagem'  => $row->imagem, 
-                    'site'  => $row->site, 'cor'  => $row->cor,
+                    'site'  => $row->site, 'cor'  => $row->cor,'cor_hexa' => $row->corhexa,
                     'telefone' => $row->telefone,  'celular' => $row->celular, 
                     'cep' => $row->cep, 'codigo_logradouro' => $row->codigocep );
             }
@@ -64,7 +64,7 @@ class Pagina_model extends CI_Model {
         $slogan = addslashes($slogan);
         $descricao = addslashes($descricao); //escapa os espaços
         $cep = (is_numeric($cep) && $cep > 0) ? $cep : null;
-        $numero = (is_numeric($numero) && $numero > 0) ? $numero : '';
+        $numero = (is_numeric($numero) && $numero > 0) ? $numero : 1;
         $complemento = addslashes($complemento);
         $layout = (is_numeric($layout) && $layout > 0) ? $layout : 1;
         $telefone = (is_numeric($telefone)) ? $telefone : null;
@@ -232,6 +232,7 @@ class Pagina_model extends CI_Model {
         if($novaDesc && $codigoPagina && is_numeric($codigoPagina) && !empty($novaDesc)){
             //$novaDesc = $this->ArrumarStringUrl($novaDesc);
             $novaDesc = urldecode($novaDesc);
+            $novaDesc = str_replace("%5C", "\\", $novaDesc);
             $novaDesc = addslashes(trim($novaDesc));
             $resultado_query = $this->db->query("UPDATE tb_pagina SET "
                     . " nm_descricao = '$novaDesc' WHERE cd_pagina = $codigoPagina;");
@@ -296,14 +297,11 @@ class Pagina_model extends CI_Model {
             $codigo_cep = $novaLocalidade[0];
             $numero = $novaLocalidade[1];
             $complemento = $novaLocalidade[2];
-            if(is_numeric($codigo_cep) && is_numeric($numero) && preg_match("/^[A-Za-zá-úÁ=Ú.\s0-9]+$/i", $complemento)){
-                $resultado_query0 = $this->db->query("UPDATE tb_pagina SET "
-                    . " cd_logradouro = $codigo_cep WHERE cd_pagina = $codigoPagina;");
-                $resultado_query1 = $this->db->query("UPDATE tb_pagina SET "
-                    . " nr_endereco = '$numero' WHERE cd_pagina = $codigoPagina;");
-                $resultado_query2 = $this->db->query("UPDATE tb_pagina SET "
-                    . " nm_complemento_endereco = '$complemento' WHERE cd_pagina = $codigoPagina;");
-                if($resultado_query0 && $resultado_query1 && $resultado_query2){
+            if(is_numeric($codigo_cep) && (is_numeric($numero) || $numero == " ") && (preg_match("/^[A-Za-zá-úÁ=Ú\.\s0-9]+$/i", $complemento) || $complemento == " ")){
+                $resultado_query = $this->db->query("UPDATE tb_pagina SET "
+                    . " cd_logradouro = $codigo_cep,  nr_endereco = '$numero', "
+                        . "nm_complemento_endereco = '$complemento' WHERE cd_pagina = $codigoPagina;"); 
+                if($resultado_query){
                     return true;
                 } else {
                     return false;

@@ -166,8 +166,10 @@ function AlterarDescricaoPagina(codigo){
    var suces = document.getElementById("sucessoDesc");
    var erro = document.getElementById("erroDesc"); //campo de mensagem
    desc = desc.trim();
-   var rexep = new RegExp(/^[.,'!?&+-A-Za-zá-úÁ=ÚàÀ0-9\s]{2,180}$/i);
-   if(rexep.test(desc) && desc != ""){
+   var rexep = new RegExp(/^[\(\)\\/ªº\.,'"!?@#$%*&+\-A-Za-zà-úÀ-Ú\s0-9]{2,180}$/i);
+  // desc = desc.replace("\r", "ROW");
+   desc = desc.replace(/\r?\n/g, "%5Cn"); 
+    if(rexep.test(desc) && desc != ""){
        //FAZENDO O DADO SER TRANSMITIVEL PELA ULR
        desc = encodeURIComponent(desc);
        desc = desc.replace("!", "%21");
@@ -358,9 +360,12 @@ function AlterarLocalidadePagina(codigo){
     //var regexp = new RegExp(/^[,àÀA-Za-zá-úÁ=Ú.\s0-9 ]+$/i); 
     var regexp = new RegExp(/^[0-9]{1,7}$/i);
     if(regexp.test(codigo_cep) && codigo_cep != ""){
-        if(regexp.test(numero) || numero == ""){
+        if(regexp.test(numero)){
             regexp = new RegExp(/^[\.-ºª A-Za-zá-úÁ=Ú\sàÀ0-9]{2,25}$/i);
             if(regexp.test(complemento) || complemento == ""){
+                //Colocando um valor vazio para impedir erro no explode do PHP
+                complemento = (complemento != "") ? complemento : " ";
+                numero = (numero != "") ? numero : " ";
                 var concat_dados = codigo_cep + "|" + numero + "|" + complemento;
                 concat_dados = encodeURIComponent(concat_dados);
                        var xmlreq = CriaRequest();
@@ -395,7 +400,7 @@ function AlterarLocalidadePagina(codigo){
                 suces.innerHTML = "";
             }
         } else {
-            erro.innerHTML = "O número deve ser numérico ou vazio.";
+            erro.innerHTML = "O número deve ser numérico.";
             suces.innerHTML = "";
         }
     } else {

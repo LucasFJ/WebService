@@ -102,7 +102,7 @@ document.getElementById("cabecalho").innerHTML = "Configurações";
       <div class="collapsible-body container"><br/>
         <form class="col s12" method="post">
         <div class="input-field">
-          <textarea id="descricao" class="materialize-textarea grey-text"><?php echo strip_tags($descricao); ?></textarea>
+            <textarea id="descricao" class="materialize-textarea grey-text"><?php echo str_replace("\\n","<br/>",$descricao); ?></textarea>
           <label for="descricao">Descriçao</label>
         </div>
         <div class="right-align">
@@ -247,12 +247,11 @@ document.getElementById("cabecalho").innerHTML = "Configurações";
 
  <script>
     window.onload = function(){
-        //Máscaras de formulários com jQuery Mask
-        $('.telefone').mask('(00) 0000-0000');
-        $('.celular').mask('(00) 00000-0000');
-        $('#cep').mask('00000-000');
+    //Máscaras de formulários com jQuery Mask
+    $('.telefone').mask('(00) 0000-0000');
+    $('.celular').mask('(00) 00000-0000');
+    $('#cep').mask('00000-000');
     // Inicializa o elemento Form Select do Materialize
-    
     $('select').material_select();
     }
  </script>

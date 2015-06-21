@@ -113,7 +113,7 @@ class Pagina extends CI_Controller{
                 redirect("pagina/cadastrar/descinvalido");
             } elseif(!$this->validacao->ValidNatural($cep)){
                 redirect("pagina/cadastrar/cepinvalido");
-            } elseif(!$this->validacao->ValidNumeroEnderecoPagina($numero) && $numero != ""){
+            } elseif(!$this->validacao->ValidNumeroEnderecoPagina($numero)){
                 redirect("pagina/cadastrar/numeroinvalido");
             } elseif(!$this->validacao->ValidComplementoEndereco($complemento) && $complemento != ""){
                 redirect("pagina/cadastrar/compinvalido");
@@ -161,11 +161,12 @@ class Pagina extends CI_Controller{
             $dados_preload = $this->pagmod->CarregarBoxLayoutRamo();
             $dados['opcoes_ramo'] = $dados_preload['opcoes_ramo'];
             $dados['opcoes_layout'] = $dados_preload['opcoes_layout'];
+            $dados_footer = array('javascript' => array('jquery.form.js','crudpagina_req.js'));
             // print_r($dados_pagina);
              $this->load->view('include/head_view');
              $this->load->view('include/header_view');
              $this->load->view('pagina/configuracoes_view', $dados);
-             $this->load->view('include/footer_view');
+             $this->load->view('include/footer_view', $dados_footer);
         } else {
             redirect('home');
         }
