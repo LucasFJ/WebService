@@ -151,7 +151,7 @@ document.getElementById("cabecalho").innerHTML = " <?php echo $nome; ?>";
 <div id="comentarios"><br/>
 <div class="container">
 <!-- Formulário de Envio -->    
-
+<div id="formcomentario">
 <form>
 <div class="row">
 <div class="input-field col s10 m10 l10">
@@ -163,6 +163,7 @@ document.getElementById("cabecalho").innerHTML = " <?php echo $nome; ?>";
 </div>
 </div>
 </form>
+</div>
     <div id="meucomentario"></div>
     <div id="outroscomentarios"></div>
     <!-- 

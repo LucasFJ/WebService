@@ -17,9 +17,10 @@ function InserirComentario(codigoPagina){
                           var meu_comentario = document.getElementById("meucomentario");
                           var resultado = xmlreq.responseText;
                           if(resultado === "Vazio"){
-                              //nada ocorreu
                           } else {
                               meu_comentario.innerHTML = resultado;
+                              var formcomentario = document.getElementById("formcomentario");
+                              formcomentario.innerHTML = "";
                           }
                        } else {
                            //erro.innerHTML = "Ocorreu um erro durante a alteração.";
@@ -50,6 +51,7 @@ function ExcluirComentario(codigoPagina){
                               //nada ocorreu
                           } else {
                               meu_comentario.innerHTML = resultado;
+                              window.location.reload();
                           }
                        } else {
                            //erro.innerHTML = "Ocorreu um erro durante a alteração.";
@@ -72,10 +74,11 @@ function CarregarMeuComentario(codigoPagina){
                        if (xmlreq.status === 200) {
                           var meu_comentario = document.getElementById("meucomentario");
                           var resultado = xmlreq.responseText;
-                          if(resultado === "Vazio"){
-                              //nada ocorreu
+                          if(resultado == "Vazio"){
                           } else {
                               meu_comentario.innerHTML = resultado;
+                              var formcomentario = document.getElementById("formcomentario");
+                              formcomentario.innerHTML = "";
                           }
                        } else {
                            //erro.innerHTML = "Ocorreu um erro durante a alteração.";
