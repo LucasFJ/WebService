@@ -41,21 +41,25 @@ document.getElementById("cabecalho").innerHTML = "Informações";
     </div>
     <div class="collapsible-body container"><br/>
         <div class="col s12 center-align cardImagem"> 
+            <?php
+                $imagemantiga = $imagem;
+                $imagem = (preg_match("/.png|.jpg$/i", $imagem)) ? base_url("src/imagens/usuario/$imagem") : "http://localhost/WebService/src/imagens/default/default.png";
+            ?>
           <img id="imagem-usuario" src="<?php echo $imagem; ?>" class="circle imgServico z-depth-1"/>
         </div><br/>
         
-        <form class="col s12" method="post">
+        <form id="alterarimagem" action="<?php echo base_url("ajax/AlterarImagemUsuario")?>" class="col s12" method="post" enctype="multipart/form-data">
         <div class="file-field input-field left-align col s12">
             <input class="file-path validate" type="text" />
         <div class="btn grey darken-2">
             <span><i class="mdi-image-photo-camera"></i></span>
             <input type="hidden" name="MAX_FILE_SIZE" value="3900000" />
-            <input type="hidden" id="imagemantiga" name="imagemantiga" value="">
+            <input type="hidden" id="imagemantiga" name="imagemantiga" value="<?php echo $imagemantiga; ?>">
             <input type="file" id="imagem" name="imagem" required/>
         </div>
         </div>
         <div class="right-align">
-            <a class="btn btn-floating orange darken-2"><i class="mdi-navigation-check"></i></a>
+            <a onclick="AlterarImagemUsuario();" class="btn btn-floating orange darken-2"><i class="mdi-navigation-check"></i></a>
             <button class="btn btn-floating orange darken-2" type="reset"><i class="mdi-content-undo"></i></button>
         </div>
         </form>

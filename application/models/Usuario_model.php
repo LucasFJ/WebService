@@ -24,8 +24,7 @@ class Usuario_model extends CI_Model {
                 $dados_usuario['email'] = $row->email;
                 $dados_usuario['ativo'] = $row->nm_ativo;
                 $dados_usuario['data'] = $this->ConverterDataNascimento($row->data);
-                $dados_usuario['imagem'] = (file_exists("src/imagens/usuario/" + $row->imagem)) ?
-                base_url("src/imagens/usuario/" . $row->imagem) : base_url("src/imagens/default/default.png");
+                $dados_usuario['imagem'] = $row->imagem;
                 $dados_usuario['genero'] = $row->genero;
             }
             
@@ -145,6 +144,34 @@ class Usuario_model extends CI_Model {
                     . " SET cd_senha = '$novaSenha' WHERE cd_usuario = $codigoUsuario"
                     . " AND cd_Senha = '$senhaAntiga';");
                 return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+    
+    public function AlterarImagemUsuario($codigoUsuario = false, $imagem = false, $imagemAntiga = false){
+        if(is_numeric($codigoUsuario) && isset($imagem)){
+            $array_tipo = explode('.', $imagem['name']);
+            $tipo = end($array_tipo);
+            $tipo = strtolower($tipo);
+            $prefixo = "User$codigoUsuario";
+            $nome_imagem = uniqid("$prefixo"); 
+            $nome_imagem = "$nome_imagem". "." ."$tipo";
+            
+            $this->load->library('imagem');
+            $resultado = $this->imagem->salvar("src/imagens/usuario/", $imagem, $nome_imagem);
+            if($resultado){
+                $this->db->query("UPDATE tb_usuario SET nm_caminho_imagem = '$nome_imagem'"
+                    . " WHERE cd_usuario = $codigoUsuario;");
+                if(preg_match("/.png|.jpg$/i", $imagemAntiga)){
+                    if(file_exists("src/imagens/usuario/$imagemAntiga")){
+                        unlink("src/imagens/usuario/$imagemAntiga");
+                    }
+                }
+                return $nome_imagem;
             } else {
                 return false;
             }

@@ -10,7 +10,6 @@ function CarregarImagemProduto(codigo){
         url: base_url + "/ajax/UploadImagemProduto/" + codigo,
         success:function(data) 
         {
-            alert(data);
                if(data != "Erro"){
                $("#imagemproduto").attr("src", base_url + "src/imagens/temp/" + data);
                //atualiza tambem o value do imagem antiga para nao deixar de deletar

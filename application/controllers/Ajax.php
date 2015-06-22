@@ -217,4 +217,21 @@ class Ajax extends CI_Controller{
             echo "Erro";
         }
     }
+    
+    public function AlterarImagemUsuario(){
+        $codigoUsuario = $this->ajaxmod->CarregarCodigoUsuario();
+        if(isset($_FILES['imagem']) && is_numeric($codigoUsuario)){
+               $imagem = $_FILES['imagem'];
+               $imagemAntiga = $_POST['imagemantiga'];
+               $this->load->model("usuario_model", "usermod");
+               $retorno = $this->usermod->AlterarImagemUsuario($codigoUsuario, $imagem, $imagemAntiga);
+               if($retorno){
+                   echo $retorno;
+               } else {
+                   echo "Erro";
+               }
+        } else {
+            echo "Erro";
+        }   
+    }
 }
