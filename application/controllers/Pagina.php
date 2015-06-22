@@ -148,11 +148,12 @@ class Pagina extends CI_Controller{
             $dados = $this->pagmod->CarregarDadosPagina($codigo);
             $dados['produtos'] = $this->pagmod->CarregarProdutosPagina($codigo);
             $dados['proprietario'] = true;
+            $dados_footer = array('javascript' => array("pagina_req.js"));
             // print_r($dados_pagina);
              $this->load->view('include/head_view');
              $this->load->view('include/header_view');
              $this->load->view('pagina/pagina_view', $dados);
-             $this->load->view('include/footer_view');
+             $this->load->view('include/footer_view', $dados_footer);
         } else {
             redirect('home');
         }
