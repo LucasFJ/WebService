@@ -34,9 +34,9 @@ document.getElementById("cabecalho").innerHTML = "Mudar Senha";
 	<!-- /FORM LOGIN -->
 	<br />
 	<!-- BUTTONS -->
-	  	<div class="containerBtnInicio container">
-                  <button name="AlterarSenha" value="Enviar" href="<?php echo base_url('login/mudarsenha'); ?>"  type="submit" class="btnInicio waves-effect waves-light orange darken-2 white-text btn tooltipped" data-position="top" data-delay="200" data-tooltip="Enviar e-mail de recuperação">Enviar</button>
-		   <a href="<?php echo base_url('login'); ?>" class="btnInicio waves-effect waves-light orange darken-2 white-text btn tooltipped" data-position="top" data-delay="200" data-tooltip="Voltar para Tela de Login">Voltar</a>
+	  	<div class="contAction container">
+                  <button name="AlterarSenha" value="Enviar" href="<?php echo base_url('login/mudarsenha'); ?>"  type="submit" class="btnAction waves-effect waves-light orange darken-2 white-text btn tooltipped" data-position="top" data-delay="200" data-tooltip="Enviar e-mail de recuperação">Enviar</button>
+		   <a href="<?php echo base_url('login'); ?>" class="btnAction waves-effect waves-light orange darken-2 white-text btn tooltipped" data-position="top" data-delay="200" data-tooltip="Voltar para Tela de Login">Voltar</a>
                 </div>
 	</form>
 		

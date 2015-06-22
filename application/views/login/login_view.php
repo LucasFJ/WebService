@@ -15,7 +15,7 @@
 	<div class="section no-pad-bot" id="index-banner">
 	<div class="container center">
 	<br />
-	<h5>No Service você encontra o que precisa com apenas alguns cliques.</h5>
+	<h5>No Sniffoo você encontra o que precisa com apenas alguns cliques.</h5>
        <!-- MENSAGEM ERRO -->
                <span class='red-text' id='erro'><?php echo $mensagem_erro; ?></span><br/>
        <!-- /MENSAGEM ERRO -->                   

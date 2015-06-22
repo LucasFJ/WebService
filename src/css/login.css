@@ -78,7 +78,7 @@ h5 { font-size: 20px; }
 } .picker__weekday-display{
         background-color: #424242;
 } .picker__footer{
-        opacity: 0;
+        opacity: 1;
 } .picker__select--month.browser-default{
     font-size: 14px;
     height: 40px;

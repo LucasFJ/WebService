@@ -136,11 +136,12 @@ function IniciarMapa(lat, long){
  }
  
  function alteraEstrela(){
-            var valor = parseInt($('.thumb').children('.value').text());
+            var select = document.getElementById('select-nota');
+            var nota = select.selectedIndex;
             var estrela = document.getElementsByClassName('estrela');
             var index = 0;
             while(index<5){
-                if(index < valor){
+                if(index < nota){
                     estrela[index].className = 'mdi-action-star-rate estrela amber-text text-darken-2 rateServico';
                 } else {
                     estrela[index].className = 'mdi-action-star-rate estrela black-text rateServico';

@@ -12,7 +12,7 @@ document.getElementById("cabecalho").innerHTML = " <?php echo $nome; ?>";
 <!-- Conteúdo da View abaixo -->
 <!--CARD SERVICO-->
 <div class="conteudo">
-<div class="card-panel <?php echo $cor; ?> lighten-1 z-depth-1">
+<div class="card-panel <?php echo $cor; ?> darken-1 lighten-1 z-depth-1">
     <div class="row cardConteudo valign-wrapper">
     <div class="col s3 right-align cardImagem">
     <img src='<?php echo base_url("src/imagens/pagina/perfil/$imagem"); ?>' class="materialboxed circle imgServico z-depth-1"/>
@@ -22,7 +22,7 @@ document.getElementById("cabecalho").innerHTML = " <?php echo $nome; ?>";
             <span class="nomeServico"><?php echo $nome;?></span><br />
             <h6 class="sloganServico"><?php echo $slogan; ?></h6>
             <h6 class="enderecoServico"><?php echo "$bairro - $cidade / $uf"; ?></h6>
-            <h6 class="enderecoServico"><a class="telefone white-text" href="tel:<?php echo "$telefone"; ?>"><?php echo "$telefone"; ?></a>  
+            <h6 class="enderecoServico"><span class='telefone'><?php echo "$telefone"; ?></span>  
                 <?php 
                 if(isset($celular))
                     {
@@ -34,30 +34,28 @@ document.getElementById("cabecalho").innerHTML = " <?php echo $nome; ?>";
         <div class="row  cardRodape valign-wrapper">
         <!-- Testa (usuario já avaliou?)-->
         <!-- SIM -->
-        <!--<div class="col s4 left-align  valign-wrapper cardRate">
+<!--        <div class="col s4 left-align valign-wrapper cardRate">
                 <i class="mdi-action-star-rate white-text rateServico"></i>
                 <i class="mdi-action-star-rate white-text rateServico"></i>
                 <i class="mdi-action-star-rate white-text rateServico"></i>
                 <i class="mdi-action-star-rate white-text rateServico"></i>
                 <i class="mdi-action-star-rate black-text rateServico"></i> 
+                <span id="nota" class="nota"><?php echo "4,3" . "&nbsp;" . "(1.786)"; ?></span>
         </div>-->
         <!-- NÃO -->
-        <div class="col s4 left-align  valign-wrapper cardRate modal-trigger" href="#modalAvaliar">
-                <i class="mdi-action-star-rate black-text rateServico"></i>
-                <i class="mdi-action-star-rate black-text rateServico"></i>
-                <i class="mdi-action-star-rate black-text rateServico"></i>
-                <i class="mdi-action-star-rate black-text rateServico"></i>
-                <i class="mdi-action-star-rate black-text rateServico"></i>
+        <div class="col s5 left-align valign-wrapper cardRate">
+            <a href="#modalAvaliar" class="modal-trigger white-text">Avaliar página!</a>
         </div>
-        <div class="col s8 right-align  cardBotoes">
-            <a href="#modalInfo" class="modal-trigger btn-floating waves-effect waves-light <?php echo $cor; ?> darken-2 btnServico"><i class="mdi-action-info-outline"></i></a>
-            <a href="#modalCompartilhar" class="modal-trigger btn-floating waves-effect waves-light  <?php echo $cor; ?> darken-2 btnServico"><i class="mdi-social-share valign-wrapper iconeBotao"></i></a>
+        <div class="col s7 right-align  cardBotoes">
+            <a href="#modalInfo" class="modal-trigger btn-floating waves-effect waves-light <?php echo $cor; ?> darken-4 btnServico"><i class="mdi-action-info-outline"></i></a>
+            <a href="#modalCompartilhar" class="modal-trigger btn-floating waves-effect waves-light  <?php echo $cor; ?> darken-4 btnServico"><i class="mdi-social-share valign-wrapper iconeBotao"></i></a>
+            <a href="tel:<?php echo $telefone; ?>" class="hide-on-med-and-up btn-floating waves-effect waves-light  <?php echo $cor; ?> darken-4 btnServico"><i class="mdi-communication-call valign-wrapper iconeBotao"></i></a>
         </div>
         </div>
     </div>
     </div>
 </div>
-<?php 
+        <?php 
             $address = "$logradouro+$numero,$bairro,$cidade,$uf,brasil";
             $address = strtolower($address);
             $address = urlencode($address);
@@ -76,9 +74,9 @@ document.getElementById("cabecalho").innerHTML = " <?php echo $nome; ?>";
         }
     </style>
         <ul class="tabs">
-        <li class="tab"><a class="active <?php echo "$cor"; ?>-text"href="#produtos"><i class="mdi-navigation-apps tiny"></i> Produtos</a></li>
-        <li class="tab"><a class="<?php echo "$cor"; ?>-text"href="#localizacao"><i class="mdi-maps-place tiny"></i> Localização</a></li>
-        <li class="tab"><a class="<?php echo "$cor"; ?>-text"href="#comentarios"><i class="mdi-communication-comment tiny"></i> Comentários</a></li>
+        <li class="tab"><a class="active <?php echo "$cor"; ?>-text" href="#produtos">Produtos</a></li>
+        <li class="tab"><a class="<?php echo "$cor"; ?>-text" href="#localizacao" onclick="setTimeout(function (){google.maps.event.trigger(map, 'resize')}, 2000);">Localização</a></li>
+        <li class="tab"><a class="<?php echo "$cor"; ?>-text" href="#comentarios">Comentários</a></li>
       </ul>
 
     <div id="produtos">
@@ -132,18 +130,17 @@ document.getElementById("cabecalho").innerHTML = " <?php echo $nome; ?>";
             ?>
         </div>
         </div>
-        
     </div>
 
 <div id="localizacao"><br/>
     <div class="container">
     <div class="row center-align">
     <div class="col s12">
-        <span><?php echo "$logradouro $numero $complemento, $bairro, $cidade / $uf CEP: $cep"; ?></span><br/>
-    </div>
+        <span><?php echo "$logradouro $numero $complemento, $bairro, $cidade / $uf CEP: $cep"; ?></span><br/><br/>
         <!-- O mapa será apresentado aqui -->
         <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyC58cXWKOECkK7cENYOkA7JpIv7T3WrYxo&amp;sensor=false"></script>
-        <div id="mapa" onmouseover="google.maps.event.trigger(map, 'resize');" class="col s12" style="height: 300px; width: 100%;">a</div>
+        <div id="mapa" class="col s12" style="height: 300px; width: 100%;">a</div>
+    </div>
     </div>
     </div>
 </div>
@@ -166,69 +163,48 @@ document.getElementById("cabecalho").innerHTML = " <?php echo $nome; ?>";
 </div>
     <div id="meucomentario"></div>
     <div id="outroscomentarios"></div>
-    <!-- 
-    <div class="card-panel z-depth-1 card-comentario">
-    <div class="row">
-        <div class="col s3 m3 l3 center-align">
-            <img src="<?php echo base_url('src/imagens/default/lucas.jpg'); ?>" class="responsive-img materialboxed circle" />
-        </div>  
-        <div class="col s9 m9 l9col-informacoes">
-        <div class="row valign-wrapper row-informacoes">
-            <div class="col s10 m10 l10 left-align grey-text text-darken-4 comentario-nome"><strong>Lucas Figueiredo</strong></div>
-            <div class="col s2 m2 l2 right-align grey-text text-darken-3 comentario-excluir"><a href="#"><i class="mdi-content-clear red-text small"></i></a></div>
-        </div><br/>
-        <div class="row">
-            <div class="col s12 m12 l12 comentario-texto">Eu gostei muito da página e acredito que esta deveria crescer e muito! Sucesso à todos vocês! Um forte abraço!</div>
-        </div><br/>
-        <div class="row row-data">
-            <div class="col s12 m12 l12 left-align grey-text text-darken-2 comentario-data"><?php echo date("H") . 'h' . date("i d/m/Y"); ?></div>
-        </div>
-        </div> 
-    </div>
-    </div> CORPO DO COMENTÁRIO -->
 </div>
 </div>
 
 <!--MODAL INFORMAÇÕES-->
 <div id="modalInfo" class="modal white center modal-fixed-footer">
-	<div class="modal-content grey-text text-darken-4">
-            <h4>Informações</h4>
-            
-            <div class="row">
-            <div class="col s12 m6 l6 left-align">
-                <h6>Nome</h6>
-                <h6 class="grey-text"><?php echo $nome; ?></h6>
-            </div>
-            <div class="col s12 m6 l6 left-align">
-                <h6>Slogan</h6>
-                <h6 class="grey-text"><?php echo $slogan; ?></h6>
-            </div>
-            <div class="col s12 m6 l6 left-align">
-                <h6>Ramo</h6>
-                <h6 class="grey-text"><?php echo $ramo; ?></h6>
-            </div>
-            <div class="col s12 m6 l6 left-align">
-                <h6>Contato</h6>
-                <h6 class="grey-text"><span class="telefone"><?php echo "$telefone"; ?></span> <span class="celular"><?php echo "$celular"; ?></span></h6>
-            </div>
-            <div class="col s12 m6 l6 left-align">
-                <h6>Site</h6>
-                <h6 class="grey-textx"><a href="<?php echo $site; ?>"><?php echo $site; ?></a></h6>
-            </div>
-            <div class="col s12 m6 l6 left-align">
-                <h6>Localidade</h6>
-                <h6 class="grey-text"><?php echo "$logradouro, $numero, $complemento"; ?></h6>
-            </div>
-            <div class="col s12 left-align">
-                <h6>Descrição</h6>
-                <h6 class="grey-text"><?php echo nl2br(str_replace('\\n','<br/>',$descricao)); ?></h6>
-            </div>
-            </div>
-            
-        </div>
-        <div class="modal-footer grey lighten-4">
-            <a href="#" class="waves-effect waves-green btn-flat modal-action modal-close">Voltar</a>
-        </div>
+    <div class="modal-content grey-text text-darken-4">
+    <h4>Informações</h4>
+
+    <div class="row">
+    <div class="col s12 m6 l6 left-align">
+        <h6>Nome</h6>
+        <h6 class="grey-text"><?php echo $nome; ?></h6>
+    </div>
+    <div class="col s12 m6 l6 left-align">
+        <h6>Slogan</h6>
+        <h6 class="grey-text"><?php echo $slogan; ?></h6>
+    </div>
+    <div class="col s12 m6 l6 left-align">
+        <h6>Ramo</h6>
+        <h6 class="grey-text"><?php echo $ramo; ?></h6>
+    </div>
+    <div class="col s12 m6 l6 left-align">
+        <h6>Contato</h6>
+        <h6 class="grey-text"><span class="telefone"><?php echo "$telefone"; ?></span> <span class="celular"><?php echo "$celular"; ?></span></h6>
+    </div>
+    <div class="col s12 m6 l6 left-align">
+        <h6>Site</h6>
+        <h6 class="grey-textx"><a href="<?php echo $site; ?>"><?php echo $site; ?></a></h6>
+    </div>
+    <div class="col s12 m6 l6 left-align">
+        <h6>Localidade</h6>
+        <h6 class="grey-text"><?php echo "$logradouro $numero $complemento, $bairro, $cidade / $uf"; ?></h6>
+    </div>
+    <div class="col s12 left-align">
+        <h6>Descrição</h6>
+        <h6 class="grey-text"><?php echo nl2br(str_replace('\\n','<br/>',$descricao)); ?></h6>
+    </div>
+    </div>
+    </div>
+    <div class="modal-footer grey lighten-4">
+        <a href="#" class="waves-effect waves-green btn-flat modal-action modal-close">Voltar</a>
+    </div>
 </div>
 
 <!--MODAL COMPARTILHAR-->
@@ -247,30 +223,35 @@ document.getElementById("cabecalho").innerHTML = " <?php echo $nome; ?>";
 
 <!--MODAL AVALIAR-->
 <div id="modalAvaliar" class="modal white center modal-fixed-footer">
+<form>
     <div class="modal-content grey-text text-darken-4">
-        <h4 class="sapoha">Avaliar</h4><br/>
-        <div class="container">
-            
-        <p class="center-align">Escolha uma nota para <strong><?php echo $nome; ?></strong></p><br/>
-        <!-- Estrelas -->
-        <i class="mdi-action-star-rate estrela black-text rateServico"></i>
-        <i class="mdi-action-star-rate estrela black-text rateServico"></i>
-        <i class="mdi-action-star-rate estrela black-text rateServico"></i>
-        <i class="mdi-action-star-rate estrela black-text rateServico"></i>
-        <i class="mdi-action-star-rate estrela black-text rateServico sapoha" ></i>
-        <!-- Barra de range -->
-        <form action="#">
-          <p class="range-field">
-          <input type="range" id="rangeAvalia" value="0" min="0" max="5" />
-          </p>
-        </form>
+    <h4 class="sapoha">Avaliar</h4><br/>
+    <div class="container">
         
-        </div>
-        
-    </div>
-    <div class="modal-footer grey lighten-4" style="margin:0px; padding: 0px;">
-        <a href="#" class="waves-effect waves-green btn-flat modal-action modal-close">Enviar Avaliação</a>
-    </div>				
+    <p class="center-align">Escolha uma nota para <strong><?php echo $nome; ?></strong></p><br/>
+    <!-- Escolha da nota -->
+    
+        <select id="select-nota" onchange="alteraEstrela()">
+        <option value="0" disabled selected>Selecione uma nota</option>
+        <option value="1">Muito Ruim</option>
+        <option value="2">Ruim</option>
+        <option value="3">Médio</option>
+        <option value="4">Bom</option>
+        <option value="5">Muito Bom</option>
+        </select>
+    <!-- Estrelas -->
+    <i class="mdi-action-star-rate estrela black-text rateServico"></i>
+    <i class="mdi-action-star-rate estrela black-text rateServico"></i>
+    <i class="mdi-action-star-rate estrela black-text rateServico"></i>
+    <i class="mdi-action-star-rate estrela black-text rateServico"></i>
+    <i class="mdi-action-star-rate estrela black-text rateServico"></i>
+    </div>  
+</div>
+<div class="modal-footer grey lighten-4" style="margin:0px; padding: 0px;">
+    <a href="#" class="waves-effect waves-green btn-flat modal-action modal-close">Enviar Avaliação</a>
+</div>
+    
+    </form>
 </div>
 
 <!--MODAL EXLUIR PRODUTO-->
@@ -300,6 +281,8 @@ document.getElementById("cabecalho").innerHTML = " <?php echo $nome; ?>";
         $('#rangeAvalia').click(function(){
             alteraEstrela();    
         });
+        
+        $('select').material_select();
         
         IniciarMapa(<?php echo "$lat,$long";?>);
         CarregarMeuComentario(<?php echo $codigo; ?>);
