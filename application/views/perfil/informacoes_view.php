@@ -7,7 +7,8 @@ document.getElementById("cabecalho").innerHTML = "Informações";
 <!-- Conteúdo da View abaixo -->
 <br/>
 <div class="container">
-<h6 class="center-align grey-text text-darken-2">Configurar uma imagem faz</h6><br/>
+<h6 class="center-align grey-text text-darken-2">Configurar uma imagem faz toda a diferença para a visualização de seu perfil.</h6><br/>
+<span id="msgErro" class="red-text"><?php echo "$mensagem_erro";?></span><span id="msgSucesso" class="green-text"><?php echo "$mensagem_sucesso";?></span>
 <ul class="collapsible" data-collapsible="accordion">
     
     <!-- Nome -->
@@ -18,15 +19,15 @@ document.getElementById("cabecalho").innerHTML = "Informações";
     <div class="collapsible-body container"><br/>
         <form class="col s12" method="post">
         <div class="input-field">
-            <input id="nome" type="text" value="" required />
+            <input maxlength="20" id="nome" type="text" value="<?php echo $nome;?>" required />
             <label for="nome" class="active">Nome</label>
         </div>
         <div class="input-field">
-            <input id="sobrenome" type="text" value="" required />
+            <input maxlength="20" id="sobrenome" type="text" value="<?php echo $sobrenome;?>" required />
             <label for="sobrenome" class="active">Sobrenome</label>
         </div><br/>
         <div class="right-align">
-            <a class="btn btn-floating orange darken-2"><i class="mdi-navigation-check"></i></a>
+            <a onclick="AlterarNomeUsuario();" class="btn btn-floating orange darken-2"><i class="mdi-navigation-check"></i></a>
             <button class="btn btn-floating orange darken-2" type="reset"><i class="mdi-content-undo"></i></button>
         </div>
         </form>
@@ -40,7 +41,7 @@ document.getElementById("cabecalho").innerHTML = "Informações";
     </div>
     <div class="collapsible-body container"><br/>
         <div class="col s12 center-align cardImagem"> 
-          <img id="imagem-usuario" src="<?php echo base_url("src/imagens/default/default.png"); ?>" class="circle imgServico z-depth-1"/>
+          <img id="imagem-usuario" src="<?php echo $imagem; ?>" class="circle imgServico z-depth-1"/>
         </div><br/>
         
         <form class="col s12" method="post">
@@ -74,10 +75,10 @@ document.getElementById("cabecalho").innerHTML = "Informações";
         </div><br/>
         <div class="center-align">
             <?php 
-                if($_SESSION['is_ativo']){
+                if($ativo){
                     echo "<a id='btn-ativo' class='btn green'>Verificado <i class='mdi-action-done'></i></a>";
                 } else {
-                    echo "<a id='btn-ativo' class='btn red'>Não verificado</i></a><br/><a href='#'>Enviar novamente</a>";
+                    echo "<a id='btn-ativo' class='btn red'>Não verificado</i></a><br/><a href='#' onclick='NovaVerificacao();'>Enviar novamente</a>";
                 }
             ?>
         </div><br/>
@@ -88,24 +89,25 @@ document.getElementById("cabecalho").innerHTML = "Informações";
     <!-- Segurança -->
     <li>
     <div class="collapsible-header">
-        <i class="mdi-action-lock"></i>Segurança <span id="erroSeguranca" class="red-text"></span><span id="sucessoSeguranca" class="green-text"></span>
+        <i class="mdi-action-lock"></i>Segurança 
     </div>
     <div class="collapsible-body container"><br/>
-        <form class="col s12" method="post">
+        <form action="<?php echo base_url("perfil/POSTalterarsenha");?>" class="col s12" method="post">
         <div class="input-field">
-            <input id="senha-atual" type="password" placeholder="Digite sua senha atual" value="" required />
+            <input type="hidden" name="codigoUsuario" value="<?php echo $codigo;?>"/>
+            <input maxlength="40" name="senha-atual" id="senha-atual" type="password" placeholder="Digite sua senha atual" value="" required />
             <label for="senha-atual" class="active">Senha Atual</label>
         </div><br/>
         <div class="input-field">
-            <input id="senha-nova" type="password" placeholder="Digite sua nova senha" value="" required />
+            <input maxlength="40" id="senha-nova" name="senha-nova" type="password" placeholder="Digite sua nova senha" value="" required />
             <label for="senha-nova" class="active">Nova Senha</label>
         </div><br/>
         <div class="input-field">
-            <input id="senha-repete" type="password" placeholder="Repita sua nova senha" value="" required />
+            <input maxlength="40" id="senha-repete" name="senha-repete" type="password" placeholder="Repita sua nova senha" value="" required />
             <label for="senha-repete" class="active">Digite Novamente</label>
         </div><br/>
         <div class="right-align">
-            <a class="btn btn-floating orange darken-2"><i class="mdi-navigation-check"></i></a>
+            <button type="submit" name="AlterarSenha" value="Enviar" class="btn btn-floating orange darken-2"><i class="mdi-navigation-check"></i></button>
             <button class="btn btn-floating orange darken-2" type="reset"><i class="mdi-content-undo"></i></button>
         </div>
         </form>
@@ -120,10 +122,10 @@ document.getElementById("cabecalho").innerHTML = "Informações";
     <div class="collapsible-body container"><br/>
         <form class="col s12" method="post">
         <div class="input-field">
-            <input type="date" class="datepicker">
+            <input id="data" type="date" value="<?php echo $data; ?>" class="datepicker"/>
         </div><br/>
         <div class="right-align">
-            <a class="btn btn-floating orange darken-2"><i class="mdi-navigation-check"></i></a>
+            <a onclick="AlterarDataNascimento();" class="btn btn-floating orange darken-2"><i class="mdi-navigation-check"></i></a>
             <button class="btn btn-floating orange darken-2" type="reset"><i class="mdi-content-undo"></i></button>
         </div>
         </form>

@@ -22,10 +22,9 @@ class Processos extends CI_Controller{
             
             $resultado = $this->process->RealizarVerificacao($codigo_processo, $codigo_chave);
             if($resultado) {
-                echo "Conta verificada com sucesso, você já pode usufluir de todas"
-                . " as funcionalidades do projeto!!";
+                redirect("perfil/informacoes/none/verificacaosucesso");
             } else { //A validação não ocorreu
-                echo "Não foi possivel realizar a verificação";
+                redirect('home');
             }
         } else { // algum dos dois parametros nao foi enviado
             redirect('home');

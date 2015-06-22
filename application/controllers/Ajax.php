@@ -194,4 +194,27 @@ class Ajax extends CI_Controller{
             echo "Vazio";
         }
     }
+    
+    public function AlterarDadosUsuario($tipo = false, $valorDado = false){
+        $codigoUsuario = $this->ajaxmod->CarregarCodigoUsuario();
+        if(is_numeric($tipo) && is_numeric($codigoUsuario)){
+            $this->load->model("usuario_model", "usermod");
+            switch ($tipo){
+                case 1: $retorno = $this->usermod->AlterarNome($codigoUsuario, $valorDado);
+                    break;
+                case 2: $retorno = $this->usermod->AlterarDataNascimento($codigoUsuario, $valorDado);
+                    break;
+                case 4: $this->load->model("processo_model", "promod");
+                    $retorno = $this->promod->NovaVerificacao($codigoUsuario);
+                    break;
+            }
+            if($retorno){
+                echo "Funcionou";
+            } else {
+                echo "Erro";
+            }
+        } else {
+            echo "Erro";
+        }
+    }
 }
