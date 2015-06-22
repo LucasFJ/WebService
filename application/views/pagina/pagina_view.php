@@ -31,10 +31,11 @@ document.getElementById("cabecalho").innerHTML = " <?php echo $nome; ?>";
                 ?>
             </h6>
         </div>
-        <div class="row  cardRodape valign-wrapper">
+        <div class="row cardRodape valign-wrapper">
+        <div class="col s12 m12 l12">
         <!-- Testa (usuario já avaliou?)-->
         <!-- SIM -->
-<!--        <div class="col s4 left-align valign-wrapper cardRate">
+<!--        <div class="col s7 left-align valign-wrapper cardRate">
                 <i class="mdi-action-star-rate white-text rateServico"></i>
                 <i class="mdi-action-star-rate white-text rateServico"></i>
                 <i class="mdi-action-star-rate white-text rateServico"></i>
@@ -43,13 +44,14 @@ document.getElementById("cabecalho").innerHTML = " <?php echo $nome; ?>";
                 <span id="nota" class="nota"><?php echo "4,3" . "&nbsp;" . "(1.786)"; ?></span>
         </div>-->
         <!-- NÃO -->
-        <div class="col s5 left-align valign-wrapper cardRate">
-            <a href="#modalAvaliar" class="modal-trigger white-text">Avaliar página!</a>
+        <div class="col s4 left-align valign-wrapper cardRate">
+            <a href="#modalAvaliar" class="modal-trigger white-text">Avaliar!</a>
         </div>
-        <div class="col s7 right-align  cardBotoes">
+        <div class="col s5 right-align right cardBotoes">
             <a href="#modalInfo" class="modal-trigger btn-floating waves-effect waves-light <?php echo $cor; ?> darken-4 btnServico"><i class="mdi-action-info-outline"></i></a>
-            <a href="#modalCompartilhar" class="modal-trigger btn-floating waves-effect waves-light  <?php echo $cor; ?> darken-4 btnServico"><i class="mdi-social-share valign-wrapper iconeBotao"></i></a>
-            <a href="tel:<?php echo $telefone; ?>" class="hide-on-med-and-up btn-floating waves-effect waves-light  <?php echo $cor; ?> darken-4 btnServico"><i class="mdi-communication-call valign-wrapper iconeBotao"></i></a>
+<!--            <a href="#modalCompartilhar" class="modal-trigger btn-floating waves-effect waves-light  <?php echo $cor; ?> darken-4 btnServico"><i class="mdi-social-share valign-wrapper iconeBotao"></i></a>
+            <a href="tel:<?php echo $telefone; ?>" class="hide-on-med-and-up btn-floating waves-effect waves-light  <?php echo $cor; ?> darken-4 btnServico"><i class="mdi-communication-call valign-wrapper iconeBotao"></i></a>-->
+        </div>
         </div>
         </div>
     </div>

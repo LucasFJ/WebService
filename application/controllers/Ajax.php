@@ -234,4 +234,8 @@ class Ajax extends CI_Controller{
             echo "Erro";
         }   
     }
+    
+    public function TestandoAvg(){
+        $this->ajaxmod->TestandoAvg();
+    }
 }

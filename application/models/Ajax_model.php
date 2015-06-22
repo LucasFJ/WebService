@@ -97,7 +97,7 @@ class Ajax_model extends CI_Model {
             $contato = (is_numeric($telefone)) ? $telefone : ((is_numeric($celular))  ? $celular  : "");
         }
         return "<div class='conteudo cartao'>"
-                ."<div class='card-panel $cor lighten-1 z-depth-1'>"
+                ."<div class='card-panel $cor darken-1 z-depth-1'>"
                     ."<div class='row cardConteudo valign-wrapper'>"
                     ."<div class='col s3 right-align cardImagem'>"
                     ."<img src='". base_url("src/imagens/pagina/perfil/$imagem") ."' class='circle imgServico z-depth-1'/>"
@@ -115,7 +115,7 @@ class Ajax_model extends CI_Model {
                             ."<i class='mdi-action-star-rate white-text rateServico'></i>"
                             ."<i class='mdi-action-star-rate white-text rateServico'></i>"
                         ."</div><div class='col s8 right-align cardBotoes'>"
-                            ."<a href='". base_url("pagina/visualizar/$codigo")."' class='modal-trigger btn-floating waves-effect waves-light $cor darken-2 btnServico'><i class='mdi-action-info-outline'></i></a>"
+                            ."<a href='". base_url("pagina/visualizar/$codigo")."' class='modal-trigger btn-floating waves-effect waves-light $cor darken-4 btnServico'><i class='mdi-action-info-outline'></i></a>"
                            // ."<a href='' class='btn-floating waves-effect waves-light  $cor darken-2 btnServico'><i class='mdi-maps-place iconeBotao'></i></a>"
                           //  ."<a href='#modalComentar' class='modal-trigger btn-floating waves-effect waves-light $cor darken-2 btnServico'><i class='mdi-communication-comment iconeBotao'></i></a>"
                           //  ."<a href='#modalCompartilhar' class='modal-trigger btn-floating waves-effect waves-light $cor darken-2 btnServico'><i class='mdi-social-share valign-wrapper iconeBotao'></i></a>"
@@ -234,10 +234,10 @@ class Ajax_model extends CI_Model {
     }
     
     public function CarregarComentarios($codigoPagina = false, $offset = 0, $codigoUsuario = false, $Proprio = false){
-        $strSelect = "SELECT U.nm_usuario as 'nome', U.nm_caminho_imagem as 'imagem', "
+        $strSelect = "SELECT U.nm_usuario as 'nome', U.nm_sobrenome as 'sobrenome', U.nm_caminho_imagem as 'imagem', "
                 . " C.ds_comentario as 'comentario', C.dt_comentario as 'data'"
                 . " FROM tb_usuario as U, comenta as C, tb_pagina as P"
-                . " WHERE U.cd_usuario = C.cd_usuario AND C.cd_pagina = P.cd_pagina ";
+                . " WHERE U.cd_usuario = C.cd_usuario AND C.cd_pagina = P.cd_pagina AND C.cd_pagina = $codigoPagina ";
         if(is_numeric($codigoUsuario) && $Proprio == true){
             $strSelect .= "AND C.cd_usuario = $codigoUsuario LIMIT 1;";
         } else {
@@ -247,7 +247,7 @@ class Ajax_model extends CI_Model {
         if($resultado_query->num_rows() > 0){
             $retorno = " ";
             foreach($resultado_query->result() as $row){
-                $nome = $row->nome;
+                $nome = $row->nome ." ". $row->sobrenome;
                 $data = date('H:i d/m/Y', strtotime($row->data));
                 $imagem = $row->imagem;
                 $comentario = $row->comentario;
@@ -260,7 +260,7 @@ class Ajax_model extends CI_Model {
     }
     
     public function NovoComentario($nome, $imagem, $comentario, $data, $isDono = false, $codigoPagina = 0){
-    $imagem = (file_exists(base_url("src/imagens/usuario/$imagem"))) ? base_url("src/imagens/usuario/$imagem") : base_url("src/imagens/default/default.png"); 
+    $imagem = (preg_match("/.png|.jpg$/i", $imagem)) ? base_url("src/imagens/usuario/$imagem") : base_url("src/imagens/default/default.png"); 
     if($isDono){
         $retorno = "<div class='card-panel z-depth-1 card-comentario'>";
     }else {
@@ -315,5 +315,27 @@ class Ajax_model extends CI_Model {
             return false;
         } 
             
+    }
+    
+    public function TestandoAvg(){
+        $resultado_query = $this->db->query("select P.cd_pagina as 'codigo', avg(A.vl_avaliacao) as 'media', count(A.cd_usuario) as 'quantidade', 
+	case 
+		when  avg(A.vl_avaliacao) < 2 then (avg(A.vl_avaliacao) * count(A.cd_usuario))/4  
+      	when  avg(A.vl_avaliacao) < 3 then (avg(A.vl_avaliacao) * count(A.cd_usuario))/3  
+        when  avg(A.vl_avaliacao) < 4 then (avg(A.vl_avaliacao) * count(A.cd_usuario))/2  
+        when   avg(A.vl_avaliacao) < 6 then (avg(A.vl_avaliacao) * count(A.cd_usuario))/1  
+    end as 'ordenacao'
+     
+    
+	from tb_pagina as P, avalia as A
+		where P.cd_pagina = A.cd_pagina;
+");
+        if($resultado_query->num_rows() > 0){
+            foreach($resultado_query->result() as $row){
+                echo $row->codigo ." -- ". $row->media ." -- ". $row->quantidade ." -- ". $row->ordenacao ." ";
+            }
+        } else {
+            echo "retorno vazio";
+        }
     }
 } 
