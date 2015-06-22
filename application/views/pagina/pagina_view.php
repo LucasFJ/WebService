@@ -141,7 +141,7 @@ document.getElementById("cabecalho").innerHTML = " <?php echo $nome; ?>";
         <span><?php echo "$logradouro $numero $complemento, $bairro, $cidade / $uf CEP: $cep"; ?></span><br/><br/>
         <!-- O mapa será apresentado aqui -->
         <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyC58cXWKOECkK7cENYOkA7JpIv7T3WrYxo&amp;sensor=false"></script>
-        <div id="mapa" class="col s12" style="height: 300px; width: 100%;">a</div>
+        <div id="mapa" class="col s12" style="height: 300px; width: 100%;"></div>
     </div>
     </div>
     </div>
@@ -215,7 +215,13 @@ document.getElementById("cabecalho").innerHTML = " <?php echo $nome; ?>";
         <h4>Compartilhar</h4>
         <p class="center-align">Caixa de opções para compartilhamento.</p><div id="fb-root"></div>
         
-        <div class="fb-share-button" data-href="<?php base_url('pagina/visualizar/9'); ?>" data-layout="button"></div>
+        <div class="fb-share-button" data-href="<?php base_url('pagina/minhapagina'); ?>" data-layout="button"></div>
+        <div
+            class="fb-like"
+            data-share="true"
+            data-width="450"
+            data-show-faces="true">
+        </div>
     </div>
     <div class="modal-footer grey lighten-4">
         <a href="#" class="waves-effect waves-green btn-flat modal-action modal-close">Compartilhar</a>
@@ -285,7 +291,7 @@ document.getElementById("cabecalho").innerHTML = " <?php echo $nome; ?>";
         });
         
         $('select').material_select();
-        
+        window.scrollTo(0,1);
         IniciarMapa(<?php echo "$lat,$long";?>);
         CarregarMeuComentario(<?php echo $codigo; ?>);
         CarregarComentarios(<?php echo $codigo; ?>);
