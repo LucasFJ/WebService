@@ -25,9 +25,10 @@ function CarregarImagemProduto(codigo){
            
         },
         error: function(xhr, ajaxOptions, thrownError){
-            alert(xhr.status);
-            alert(thrownError);
-            alert(xhr.responseText);
+            //alert(xhr.status);
+           // alert(thrownError);
+            //alert(xhr.responseText);
+            alert("Um erro inesperado ocorreu");
         }
         // o callback será no elemento com o id #visualizar 
         }).submit();
