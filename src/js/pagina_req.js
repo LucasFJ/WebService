@@ -149,3 +149,26 @@ function IniciarMapa(lat, long){
                 index++;
             }
         }
+        
+ function AvaliarPagina(codigo){
+     var valor = document.getElementById('select-nota').value;
+     alert(valor);
+     var xmlreq = CriaRequest();
+        if(!xmlreq){
+        } else {
+            xmlreq.open("GET", base_url + "ajax/AvaliarPagina/" + codigo + "/" + valor, false);
+            xmlreq.onreadystatechange = function(){
+            // Verifica se foi concluído com sucesso e a conexão fechada (readyState=4) 
+                if (xmlreq.readyState == 4) {
+                       if (xmlreq.status === 200) {
+                         var resultado = xmlreq.responseText;
+                         if(resultado === "Erro"){
+                          } else {
+                          }
+                       } else {
+                       }
+                }
+            };
+            xmlreq.send(null);
+        }
+ }

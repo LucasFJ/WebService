@@ -195,10 +195,11 @@ class Pagina extends CI_Controller{
             }
         $dados = array('codigo' => $codigo, 
             'mensagem_erro' => $mensagem_erro);
+        $dados_footer = array('javascript' => array('crudproduto_req.js', 'jquery.form.js'));
         $this->load->view('include/head_view');
         $this->load->view('include/header_view');
         $this->load->view('pagina/criarproduto_view', $dados);
-        $this->load->view('include/footer_view');
+        $this->load->view('include/footer_view', $dados_footer);
         } else {
             redirect('login');
         }

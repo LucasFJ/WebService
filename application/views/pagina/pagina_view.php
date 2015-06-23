@@ -58,17 +58,17 @@ document.getElementById("cabecalho").innerHTML = " <?php echo $nome; ?>";
     </div>
 </div>
         <?php 
-            $address = "$logradouro+$numero,$bairro,$cidade,$uf,brasil";
-            $address = strtolower($address);
-            $address = urlencode($address);
-            $address = str_replace(" ", "+", $address);
-            //$address = "Alameda+Dois+215,Parque+Continental,Sao+Vicente,Brasil";
-            $geocode = file_get_contents('http://maps.google.com/maps/api/geocode/json?address='.$address.'&sensor=false');
-
-            $output= json_decode($geocode);
-
-            $lat = $output->results[0]->geometry->location->lat;
-            $long = $output->results[0]->geometry->location->lng;
+//            $address = "$logradouro+$numero,$bairro,$cidade,$uf,brasil";
+//            $address = strtolower($address);
+//            $address = urlencode($address);
+//            $address = str_replace(" ", "+", $address);
+//            //$address = "Alameda+Dois+215,Parque+Continental,Sao+Vicente,Brasil";
+//            $geocode = file_get_contents('http://maps.google.com/maps/api/geocode/json?address='.$address.'&sensor=false');
+//
+//            $output= json_decode($geocode);
+//
+//            $lat = $output->results[0]->geometry->location->lat;
+//            $long = $output->results[0]->geometry->location->lng;
         ?>
     <style type="text/css"> 
         .tabs .indicator{
@@ -140,8 +140,9 @@ document.getElementById("cabecalho").innerHTML = " <?php echo $nome; ?>";
     <div class="col s12">
         <span><?php echo "$logradouro $numero $complemento, $bairro, $cidade / $uf CEP: $cep"; ?></span><br/><br/>
         <!-- O mapa será apresentado aqui -->
-        <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyC58cXWKOECkK7cENYOkA7JpIv7T3WrYxo&amp;sensor=false"></script>
-        <div id="mapa" class="col s12" style="height: 300px; width: 100%;"></div>
+<!--        <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyC58cXWKOECkK7cENYOkA7JpIv7T3WrYxo&amp;sensor=false"></script>
+        <div id="mapa" class="col s12" style="height: 300px; width: 100%;"></div>-->
+        <img src="<?php echo base_url('src/imagens/default/mapa.png'); ?>" class="responsive-img" />
     </div>
     </div>
     </div>
@@ -240,7 +241,7 @@ document.getElementById("cabecalho").innerHTML = " <?php echo $nome; ?>";
     <!-- Escolha da nota -->
     
         <select id="select-nota" onchange="alteraEstrela()">
-        <option value="0" disabled selected>Selecione uma nota</option>
+        <option value="1" selected>Selecione uma nota</option>
         <option value="1">Muito Ruim</option>
         <option value="2">Ruim</option>
         <option value="3">Médio</option>
@@ -248,7 +249,7 @@ document.getElementById("cabecalho").innerHTML = " <?php echo $nome; ?>";
         <option value="5">Muito Bom</option>
         </select>
     <!-- Estrelas -->
-    <i class="mdi-action-star-rate estrela black-text rateServico"></i>
+    <i class="mdi-action-star-rate estrela amber-text rateServico"></i>
     <i class="mdi-action-star-rate estrela black-text rateServico"></i>
     <i class="mdi-action-star-rate estrela black-text rateServico"></i>
     <i class="mdi-action-star-rate estrela black-text rateServico"></i>
@@ -256,7 +257,7 @@ document.getElementById("cabecalho").innerHTML = " <?php echo $nome; ?>";
     </div>  
 </div>
 <div class="modal-footer grey lighten-4" style="margin:0px; padding: 0px;">
-    <a href="#" class="waves-effect waves-green btn-flat modal-action modal-close">Enviar Avaliação</a>
+    <a onclick="AvaliarPagina(<?php echo $codigo;?>);" href="#" class="waves-effect waves-green btn-flat modal-action modal-close">Enviar Avaliação</a>
 </div>
     
     </form>
@@ -292,7 +293,7 @@ document.getElementById("cabecalho").innerHTML = " <?php echo $nome; ?>";
         
         $('select').material_select();
         window.scrollTo(0,1);
-        IniciarMapa(<?php echo "$lat,$long";?>);
+        //IniciarMapa(<?php echo "$lat,$long";?>);
         CarregarMeuComentario(<?php echo $codigo; ?>);
         CarregarComentarios(<?php echo $codigo; ?>);
     }

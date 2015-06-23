@@ -238,4 +238,18 @@ class Ajax extends CI_Controller{
     public function TestandoAvg(){
         $this->ajaxmod->TestandoAvg();
     }
+    
+    public function AvaliarPagina($codigoPagina = false, $valorDado = false){
+        $codigoUsuario = $this->ajaxmod->CarregarCodigoUsuario();
+        if(is_numeric($codigoPagina) && is_numeric($codigoUsuario) && is_numeric($valorDado)){
+            $retorno = $this->ajaxmod->AvaliarPagina($codigoPagina, $codigoUsuario, $valorDado);
+            if($retorno){
+                echo "Funcionou";
+            } else {
+                echo "Erro";
+            }
+        } else {
+            echo "Erro";
+        }
+    }
 }

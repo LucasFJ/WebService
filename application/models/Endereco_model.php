@@ -12,7 +12,8 @@ class Endereco_model extends CI_Model {
     public function retornarEndereco($cep){
         $codigo_logradouro = $this->verificarEnderecoBanco($cep);
         if(!$codigo_logradouro){
-            $codigo_logradouro = $this->verificarEnderecoCorreios($cep);
+            //$codigo_logradouro = $this->verificarEnderecoCorreios($cep);
+            return false;
         }
         if(!$codigo_logradouro){ //O CEP nao existe nem no banco nem nos Correios
             return false;

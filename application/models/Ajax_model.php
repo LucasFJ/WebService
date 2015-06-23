@@ -11,7 +11,7 @@ class Ajax_model extends CI_Model {
             $cidade = false, $bairro = false, $ordenacao = false, $offset = 0){
         
         //Conteúdo buscado (Ainda não existe a tabela de avaliação)
-        $strConsulta = "SELECT DISTINCT P.nm_pagina as 'nome', P.nm_slogan as 'slogan',"
+        $strConsulta = "SELECT DISTINCT P.nm_pagina as 'nome', P.nm_slogan as 'slogan', "
                 . " P.nr_telefone as 'telefone', P.nr_celular as 'celular', "
                 . " L.nm_logradouro as 'endereco', B.nm_bairro as 'bairro',"
                 . " P.nr_endereco as 'numero',P.nm_caminho_imagem as 'imagem',  "
@@ -19,7 +19,7 @@ class Ajax_model extends CI_Model {
                 . "COR.nm_cor as 'cor'";
         //Tabelas de origem
         $strConsulta .= " FROM tb_pagina as P, tb_ramo as R, tb_logradouro as L, tb_bairro as B, tb_cidade as C, tb_uf as UF, "
-                . "tb_layout as COR";
+                . "tb_layout as COR ";
         //Condições de busca
         $strConsulta .= " WHERE L.cd_logradouro = P.cd_logradouro AND L.cd_bairro = B.cd_bairro"
                 . " AND B.cd_cidade = C.cd_cidade AND C.cd_uf = UF.cd_uf AND P.cd_layout = COR.cd_layout ";
@@ -74,6 +74,7 @@ class Ajax_model extends CI_Model {
                     $imagem = $row->imagem;
                     $codigo = $row->codigo;
                     $cor = $row->cor;
+                     
                     //chamamos a função que vai inserir os dados no molde da faixada
                     $resultado .= $this->novoCartao($nome, $slogan, $endereco, $bairro, $cidade, $estado, $numero, $imagem, $codigo, 
                             $cor, $telefone, $celular);
@@ -317,25 +318,59 @@ class Ajax_model extends CI_Model {
             
     }
     
-    public function TestandoAvg(){
-        $resultado_query = $this->db->query("select P.cd_pagina as 'codigo', avg(A.vl_avaliacao) as 'media', count(A.cd_usuario) as 'quantidade', 
-	case 
+    
+    public function AvaliarPagina($codigoPagina, $codigoUsuario, $valorDado){
+        if($valorDado < 5){
+            echo $valorDado ." ". $codigoUsuario;
+            $resultado_query = $this->db->query("select vl_avaliacao from avalia where"
+                    . " cd_usuario = $codigoUsuario and cd_pagina = $codigoPagina limit 1;");
+            if($resultado_query->num_rows() > 0){
+                $resultado_query = $this->db->query("update avalia set vl_avaliacao = $valorDado
+                     , dt_avaliacao = NOW() where cd_usuario = $codigoUsuario and cd_pagina = $codigoPagina;");
+                
+            } else {
+                $resultado_query = $this->db->query("insert into avalia (cd_usuario, cd_pagina, dt_avaliacao, vl_avaliacao)"
+                        . " values ($codigoUsuario, $codigoPagina, NOW(), $valorDado);");
+            }
+            
+            if($resultado_query){
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+        
+    }
+    /* case 
 		when  avg(A.vl_avaliacao) < 2 then (avg(A.vl_avaliacao) * count(A.cd_usuario))/4  
       	when  avg(A.vl_avaliacao) < 3 then (avg(A.vl_avaliacao) * count(A.cd_usuario))/3  
         when  avg(A.vl_avaliacao) < 4 then (avg(A.vl_avaliacao) * count(A.cd_usuario))/2  
         when   avg(A.vl_avaliacao) < 6 then (avg(A.vl_avaliacao) * count(A.cd_usuario))/1  
     end as 'ordenacao'
+    
+    public function TestandoAvg(){
+        $strConsulta = "select avg(A.vl_avaliacao) as 'media',  case 
+		when  avg(A.vl_avaliacao) < 2 then (avg(A.vl_avaliacao) * count(A.cd_usuario))/4  
+      	when  avg(A.vl_avaliacao) < 3 then (avg(A.vl_avaliacao) * count(A.cd_usuario))/3  
+        when  avg(A.vl_avaliacao) < 4 then (avg(A.vl_avaliacao) * count(A.cd_usuario))/2  
+        when   avg(A.vl_avaliacao) < 6 then (avg(A.vl_avaliacao) * count(A.cd_usuario))/1  
+    end as 'ordenacao' FROM avalia as A WHERE cd_pagina = ";
+        /* $resultado_query = $this->db->query("SELECT DISTINCT P.cd_pagina as 'codigo', avg(A.vl_avaliacao) as 'media', count(A.cd_usuario) as 'quantidade' 
+	
      
     
 	from tb_pagina as P, avalia as A
-		where P.cd_pagina = A.cd_pagina;
-");
+		where P.cd_pagina = A.cd_pagina; 
+"); 
+        $resultado_query = $this->db->query($strConsulta);
         if($resultado_query->num_rows() > 0){
             foreach($resultado_query->result() as $row){
-                echo $row->codigo ." -- ". $row->media ." -- ". $row->quantidade ." -- ". $row->ordenacao ." ";
+                echo $row->nome." -- ". $row->media ." -- ". $row->quantidade ." -- ". "<br/> ";
             }
         } else {
             echo "retorno vazio";
         }
-    }
+    } */
 } 
