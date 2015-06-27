@@ -43,7 +43,7 @@ document.getElementById("cabecalho").innerHTML = "Informações";
         <div class="col s12 center-align cardImagem"> 
             <?php
                 $imagemantiga = $imagem;
-                $imagem = (preg_match("/.png|.jpg$/i", $imagem)) ? base_url("src/imagens/usuario/$imagem") : "http://localhost/WebService/src/imagens/default/default.png";
+                $imagem = (preg_match("/.png|.jpg$/i", $imagem)) ? base_url("src/imagens/usuario/$imagem") : base_url('src/imagens/default/default.png');
             ?>
           <img id="imagem-usuario" src="<?php echo $imagem; ?>" class="circle imgServico z-depth-1"/>
         </div><br/>

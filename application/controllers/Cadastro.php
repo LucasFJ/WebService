@@ -76,7 +76,7 @@ class Cadastro extends CI_Controller{
                 redirect("cadastro/index/nascimentoinvalido");
             } elseif($concorda != "on"){
                 redirect("cadastro/index/termosinvalido");
-            } elseif(!$this->cadmodel->cadastrarConta($email, $senha, $nome, $nome, $nascimento, $genero)) {
+            } elseif(!$this->cadmodel->cadastrarConta($email, $senha, $nome, $sobrenome, $nascimento, $genero)) {
                 redirect("cadastro/index/emailindisponivel");   
             } else {
                 redirect("cadastro/sucesso");

@@ -31,7 +31,7 @@ class Pagina extends CI_Controller{
              $dados['produtos'] = $this->pagmod->CarregarProdutosPagina($codigo);
             // print_r($dados_pagina);
              $dados_footer = array('javascript' => array("pagina_req.js"));
-             $this->load->view('include/head_view');
+             $this->load->view('include/head_view', $dados);
              $this->load->view('include/header_view');
              $this->load->view('pagina/pagina_view', $dados);
              $this->load->view('include/footer_view', $dados_footer);
